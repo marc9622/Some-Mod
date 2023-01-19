@@ -1,0 +1,68 @@
+{
+    "parent": "somemod:jewellery/craft_crystal",
+    "display": {
+      "icon": {
+        "item": "somemod:crystal_chestplate"
+      },
+      "title": {
+        "translate": "somemod.advancements.craft.crystal.armour.title"
+      },
+      "description": {
+        "translate": "somemod.advancements.craft.crystal.armour.description"
+      },
+      "frame": "task",
+      "show_toast": true,
+      "announce_to_chat": true,
+      "hidden": false
+    },
+    "criteria": {
+        "has_helmet": {
+          "trigger": "minecraft:inventory_changed",
+          "conditions": {
+            "items": [
+                {
+                "item": "somemod:crystal_helmet"
+                }
+              ]
+          }
+        },
+        "has_chestplate": {
+          "trigger": "minecraft:inventory_changed",
+          "conditions": {
+            "items": [
+                {
+                "item": "somemod:crystal_chestplate"
+                }
+              ]
+          }
+        },
+        "has_leggings": {
+          "trigger": "minecraft:inventory_changed",
+          "conditions": {
+            "items": [
+                {
+                "item": "somemod:crystal_leggings"
+                }
+              ]
+          }
+        },
+        "has_boots": {
+          "trigger": "minecraft:inventory_changed",
+          "conditions": {
+            "items": [
+                {
+                "item": "somemod:crystal_boots"
+                }
+              ]
+          }
+        }
+      },
+      "requirements": [
+        [
+          "has_helmet",
+          "has_chestplate",
+          "has_leggings",
+          "has_boots"
+        ]
+      ]
+  }

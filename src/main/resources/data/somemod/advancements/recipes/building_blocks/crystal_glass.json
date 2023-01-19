@@ -1,0 +1,32 @@
+{
+    "parent": "minecraft:recipes/root",
+    "rewards": {
+        "recipes": [
+            "somemod:crystal_glass"
+        ]
+    },
+    "criteria": {
+        "has_crystal_dust": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "somemod:crystal_dust"
+                    }
+                ]
+            }
+        },
+        "has_the_recipe": {
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+                "recipe": "somemod:crystal_glass"
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_crystal_dust",
+            "has_the_recipe"
+        ]
+    ]
+}

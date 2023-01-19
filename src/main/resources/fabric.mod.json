@@ -18,8 +18,16 @@
 
   "environment": "*",
   "entrypoints": {
+    "fabric-datagen": [
+      "somemod.datagen.SomeModDataGeneration"
+    ],
     "main": [
       "somemod.SomeMod"
+    ],
+    "client": [
+      "somemod.SomeModClient"
+    ],
+    "server": [
     ]
   },
   "mixins": [

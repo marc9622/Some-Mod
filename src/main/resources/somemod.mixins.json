@@ -4,6 +4,7 @@
   "package": "somemod.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [ // Client and server mixins
+    "EndermanAngeringBlock"
   ],
   "client": [ // Client-side only mixins
     "SomeMixin",

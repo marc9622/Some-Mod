@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " c ",
+    "csc",
+    " c "
+  ],
+  "key": {
+    "c": {
+      "item": "somemod:crystal_dust"
+    },
+    "s": {
+      "item": "minecraft:cobblestone"
+    }
+  },
+  "result": {
+    "item": "minecraft:end_stone"
+  }
+}

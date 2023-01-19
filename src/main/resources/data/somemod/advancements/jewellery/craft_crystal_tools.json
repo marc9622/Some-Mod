@@ -1,0 +1,79 @@
+{
+    "parent": "somemod:jewellery/craft_crystal",
+    "display": {
+      "icon": {
+        "item": "somemod:crystal_pickaxe"
+      },
+      "title": {
+        "translate": "somemod.advancements.craft.crystal.tools.title"
+      },
+      "description": {
+        "translate": "somemod.advancements.craft.crystal.tools.description"
+      },
+      "frame": "task",
+      "show_toast": true,
+      "announce_to_chat": true,
+      "hidden": false
+    },
+    "criteria": {
+        "has_sword": {
+          "trigger": "minecraft:inventory_changed",
+          "conditions": {
+            "items": [
+                {
+                "item": "somemod:crystal_sword"
+                }
+              ]
+          }
+        },
+        "has_pickaxe": {
+          "trigger": "minecraft:inventory_changed",
+          "conditions": {
+            "items": [
+                {
+                "item": "somemod:crystal_pickaxe"
+                }
+              ]
+          }
+        },
+        "has_axe": {
+          "trigger": "minecraft:inventory_changed",
+          "conditions": {
+            "items": [
+                {
+                "item": "somemod:crystal_axe"
+                }
+              ]
+          }
+        },
+        "has_shovel": {
+          "trigger": "minecraft:inventory_changed",
+          "conditions": {
+            "items": [
+                {
+                "item": "somemod:crystal_shovel"
+                }
+              ]
+          }
+        },
+        "has_hoe": {
+          "trigger": "minecraft:inventory_changed",
+          "conditions": {
+            "items": [
+                {
+                "item": "somemod:crystal_hoe"
+                }
+              ]
+          }
+        }
+      },
+      "requirements": [
+        [
+          "has_sword",
+          "has_pickaxe",
+          "has_axe",
+          "has_shovel",
+          "has_hoe"
+        ]
+      ]
+  }

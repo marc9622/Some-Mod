@@ -1,0 +1,7 @@
+{
+  "type": "somemod:end_crystal_glass_pillar",
+  "config": {
+    "max_height": 5,
+    "min_height": 1
+  }
+}

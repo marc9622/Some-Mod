@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+      "c",
+      "s",
+      "s"
+    ],
+    "key": {
+      "c": {
+        "item": "somemod:crystal"
+      },
+      "s": {
+        "item": "minecraft:stick"
+      }
+    },
+    "result": {
+      "item": "somemod:crystal_shovel"
+    }
+  }

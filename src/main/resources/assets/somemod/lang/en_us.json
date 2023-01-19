@@ -1,0 +1,37 @@
+{
+    "item.somemod.crystal_dust": "End Stone Dust",
+    "item.somemod.crystal": "Crystal",
+    "item.somemod.amethyst": "Amethyst",
+    "item.somemod.citrine": "Citrine",
+    "item.somemod.ruby": "Ruby",
+    "item.somemod.sapphire": "Sapphire",
+
+    "item.somemod.crystal_sword": "Crystal Sword",
+    "item.somemod.crystal_pickaxe": "Crystal Pickaxe",
+    "item.somemod.crystal_shovel": "Crystal Shovel",
+    "item.somemod.crystal_axe": "Crystal Axe",
+    "item.somemod.crystal_hoe": "Crystal Hoe",
+
+    "item.somemod.crystal_helmet": "Crystal Helmet",
+    "item.somemod.crystal_chestplate": "Crystal Chestplate",
+    "item.somemod.crystal_leggings": "Crystal Leggings",
+    "item.somemod.crystal_boots": "Crystal Boots",
+
+    "block.somemod.crystal_block": "Block of Crystal",
+    "block.somemod.crystal_glass": "End Stone Crystal",
+    "block.somemod.amethyst_ore": "Amethyst Ore",
+    "block.somemod.citrine_ore": "Citrine Ore",
+    "block.somemod.ruby_ore": "Ruby Ore",
+    "block.somemod.sapphire_ore": "Sapphire Ore",
+
+    "somemod.advancements.end.break.end_stone.crystal.title": "Ohhh Shiny!",
+    "somemod.advancements.end.break.end_stone.crystal.description": "Break a block of end stone crystal.",
+    "somemod.advancements.jewellery.root.title": "Jewellery",
+    "somemod.advancements.jewellery.root.description": "The next tier of equipment.",
+    "somemod.advancements.craft.crystal.title": "Crystal Clear",
+    "somemod.advancements.craft.crystal.description": "Craft a piece of crystal with crystal dust.",
+    "somemod.advancements.craft.crystal.tools.title": "Tools of Crystals",
+    "somemod.advancements.craft.crystal.tools.description": "Use some crystals to make yourself some new tools.",
+    "somemod.advancements.craft.crystal.armour.title": "Crystal Power",
+    "somemod.advancements.craft.crystal.armour.description": "Use some crystals to make yourself a new set of armour."
+  }
