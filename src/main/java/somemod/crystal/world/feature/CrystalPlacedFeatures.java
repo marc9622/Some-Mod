@@ -45,24 +45,24 @@ public class CrystalPlacedFeatures {
 
         RegistryEntry.Reference<ConfiguredFeature<?, ?>> citrineRegistryEntry = registryEntryLookup.getOrThrow(CrystalConfiguredFeatures.ORE_CITRINE);
         PlacedFeatures.register(featureRegisterable, ORE_CITRINE, citrineRegistryEntry, 
-            CountPlacementModifier.of(100),
-            HeightRangePlacementModifier.trapezoid(YOffset.fixed(-16), YOffset.fixed(480)),
+            CountPlacementModifier.of(32),
+            HeightRangePlacementModifier.trapezoid(YOffset.fixed(-16), YOffset.fixed(64)),
             SquarePlacementModifier.of(),
             BiomePlacementModifier.of()
         );
 
         RegistryEntry.Reference<ConfiguredFeature<?, ?>> sapphireRegistryEntry = registryEntryLookup.getOrThrow(CrystalConfiguredFeatures.ORE_SAPPHIRE);
         PlacedFeatures.register(featureRegisterable, ORE_SAPPHIRE, sapphireRegistryEntry, 
-            CountPlacementModifier.of(100),
-            HeightRangePlacementModifier.trapezoid(YOffset.fixed(-16), YOffset.fixed(480)),
+            CountPlacementModifier.of(32),
+            HeightRangePlacementModifier.trapezoid(YOffset.fixed(-16), YOffset.fixed(64)),
             SquarePlacementModifier.of(),
             BiomePlacementModifier.of()
         );
 
         RegistryEntry.Reference<ConfiguredFeature<?, ?>> rubyRegistryEntry = registryEntryLookup.getOrThrow(CrystalConfiguredFeatures.ORE_RUBY);
         PlacedFeatures.register(featureRegisterable, ORE_RUBY, rubyRegistryEntry, 
-            CountPlacementModifier.of(100),
-            HeightRangePlacementModifier.trapezoid(YOffset.fixed(-16), YOffset.fixed(480)),
+            CountPlacementModifier.of(32),
+            HeightRangePlacementModifier.trapezoid(YOffset.fixed(-16), YOffset.fixed(64)),
             SquarePlacementModifier.of(),
             BiomePlacementModifier.of()
         );
