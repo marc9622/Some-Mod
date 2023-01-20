@@ -3,6 +3,7 @@ package somemod;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
+import somemod.crystal.block.CrystalBlocks;
 import somemod.crystal.item.CrystalItems;
 import somemod.crystal.world.feature.CrystalFeatures;
 import somemod.crystal.world.gen.CrystalGeneration;
@@ -18,6 +19,8 @@ public class SomeMod implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		notifyFabric();
+
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
@@ -30,7 +33,15 @@ public class SomeMod implements ModInitializer {
 	private static void addRegistryEntries() {
 		CrystalFeatures.register();
 		CrystalGeneration.generateCrystalFeatures();
-		LOGGER.info(CrystalItems.CRYSTAL.toString()); // Fabric won't load classes that aren't used, so this is here to make sure the class is loaded.
+	}
+
+	/**
+	 * If a class is not referenced anywhere, it might not be loaded.
+	 * This method does nothing, but it makes sure that the classes are loaded.
+	 */
+	private static void notifyFabric() {
+		CrystalBlocks.notifyFabric();
+		CrystalItems.notifyFabric();
 	}
 	
 	public static void logRegistration(String name, String registry) {
