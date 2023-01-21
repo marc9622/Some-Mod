@@ -6,7 +6,6 @@ import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.EnchantingTableBlockEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -17,7 +16,6 @@ import net.minecraft.screen.SimpleNamedScreenHandlerFactory;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.Nameable;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -78,9 +76,7 @@ public class EnchantedBookshelfBlock extends BlockWithEntity {
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (world.isClient) {
-            return ActionResult.SUCCESS;
-        }
+        if (world.isClient) return ActionResult.SUCCESS;
         player.openHandledScreen(state.createScreenHandlerFactory(world, pos));
         return ActionResult.CONSUME;
     }
@@ -89,8 +85,8 @@ public class EnchantedBookshelfBlock extends BlockWithEntity {
     @Nullable
     public NamedScreenHandlerFactory createScreenHandlerFactory(BlockState state, World world, BlockPos pos) {
         BlockEntity blockEntity = world.getBlockEntity(pos);
-        if (blockEntity instanceof EnchantedBookshelfBlockEntity) {
-            Text text = ((Nameable)((Object)blockEntity)).getDisplayName();
+        if (blockEntity instanceof EnchantedBookshelfBlockEntity bookshelfBlockEntity) {
+            Text text = bookshelfBlockEntity.getDisplayName();
             return new SimpleNamedScreenHandlerFactory((syncId, inventory, player) -> new EnchantedBookshelfScreenHandler(syncId, inventory, ScreenHandlerContext.create(world, pos)), text);
         }
         return null;
@@ -98,9 +94,10 @@ public class EnchantedBookshelfBlock extends BlockWithEntity {
 
     @Override
     public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
-        BlockEntity blockEntity;
-        if (itemStack.hasCustomName() && (blockEntity = world.getBlockEntity(pos)) instanceof EnchantingTableBlockEntity) {
-            ((EnchantingTableBlockEntity)blockEntity).setCustomName(itemStack.getName());
+        if (itemStack.hasCustomName()) {
+            BlockEntity blockEntity = world.getBlockEntity(pos);
+            if (blockEntity instanceof EnchantedBookshelfBlockEntity bookshelfBlockEntity)
+                bookshelfBlockEntity.setCustomName(itemStack.getName());
         }
     }
     

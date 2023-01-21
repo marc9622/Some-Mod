@@ -5,10 +5,10 @@
         "item": "somemod:crystal"
       },
       "title": {
-        "translate": "somemod.advancements.craft.crystal.title"
+        "translate": "advancements.somemod.craft.crystal.title"
       },
       "description": {
-        "translate": "somemod.advancements.craft.crystal.description"
+        "translate": "advancements.somemod.craft.crystal.description"
       },
       "frame": "task",
       "show_toast": true,

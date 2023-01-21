@@ -16,6 +16,7 @@ public class SomeModClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(CrystalBlocks.CRYSTAL_GLASS, RenderLayer.getTranslucent());
 
         HandledScreens.register(EnchantingScreenHandlers.ENCHANTED_BOOKSHELF_SCREEN_HANDLER, EnchantedBookshelfScreen::new);
+        HandledScreens.register(EnchantingScreenHandlers.OBSIDIAN_ENCHANTED_BOOKSHELF_SCREEN_HANDLER, EnchantedBookshelfScreen::new);
 
     }
 

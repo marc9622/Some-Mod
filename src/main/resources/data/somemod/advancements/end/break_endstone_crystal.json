@@ -5,10 +5,10 @@
         "item": "somemod:crystal_glass"
       },
       "title": {
-        "translate": "somemod.advancements.end.break.end_stone.crystal.title"
+        "translate": "advancements.somemod.end.break.end_stone.crystal.title"
       },
       "description": {
-        "translate": "somemod.advancements.end.break.end_stone.crystal.description"
+        "translate": "advancements.somemod.end.break.end_stone.crystal.description"
       },
       "frame": "task",
       "show_toast": true,

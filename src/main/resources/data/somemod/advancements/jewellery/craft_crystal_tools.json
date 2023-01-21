@@ -5,10 +5,10 @@
         "item": "somemod:crystal_pickaxe"
       },
       "title": {
-        "translate": "somemod.advancements.craft.crystal.tools.title"
+        "translate": "advancements.somemod.craft.crystal.tools.title"
       },
       "description": {
-        "translate": "somemod.advancements.craft.crystal.tools.description"
+        "translate": "advancements.somemod.craft.crystal.tools.description"
       },
       "frame": "task",
       "show_toast": true,

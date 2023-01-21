@@ -4,10 +4,10 @@
       "item": "somemod:crystal_dust"
     },
     "title": {
-      "translate": "somemod.advancements.jewellery.root.title"
+      "translate": "advancements.somemod.jewellery.root.title"
     },
     "description": {
-      "translate": "somemod.advancements.jewellery.root.description"
+      "translate": "advancements.somemod.jewellery.root.description"
     },
     "frame": "task",
     "show_toast": false,

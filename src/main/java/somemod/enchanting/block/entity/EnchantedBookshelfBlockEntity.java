@@ -43,12 +43,14 @@ public class EnchantedBookshelfBlockEntity extends BlockEntity implements Nameab
         this.customName = customName;
     }
 
+    protected Text getDefaultName() {
+        return Text.translatable("container.somemod.enchanted_bookshelf");
+    }
+
     @Override
     public Text getName() {
-        if (this.customName != null) {
-            return this.customName;
-        }
-        return Text.of("Enchant");
+        if (this.customName != null) return this.customName;
+        return getDefaultName();
     }
 
     @Override

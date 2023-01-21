@@ -5,10 +5,10 @@
         "item": "somemod:crystal_chestplate"
       },
       "title": {
-        "translate": "somemod.advancements.craft.crystal.armour.title"
+        "translate": "advancements.somemod.craft.crystal.armour.title"
       },
       "description": {
-        "translate": "somemod.advancements.craft.crystal.armour.description"
+        "translate": "advancements.somemod.craft.crystal.armour.description"
       },
       "frame": "task",
       "show_toast": true,

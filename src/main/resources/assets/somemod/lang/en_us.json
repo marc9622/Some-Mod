@@ -24,17 +24,22 @@
     "block.somemod.ruby_ore": "Ruby Ore",
     "block.somemod.sapphire_ore": "Sapphire Ore",
 
-    "somemod.advancements.end.break.end_stone.crystal.title": "Ohhh Shiny!",
-    "somemod.advancements.end.break.end_stone.crystal.description": "Break a block of end stone crystal.",
-    "somemod.advancements.jewellery.root.title": "Jewellery",
-    "somemod.advancements.jewellery.root.description": "The next tier of equipment.",
-    "somemod.advancements.craft.crystal.title": "Crystal Clear",
-    "somemod.advancements.craft.crystal.description": "Craft a piece of crystal with crystal dust.",
-    "somemod.advancements.craft.crystal.tools.title": "Tools of Crystals",
-    "somemod.advancements.craft.crystal.tools.description": "Use some crystals to make yourself some new tools.",
-    "somemod.advancements.craft.crystal.armour.title": "Crystal Power",
-    "somemod.advancements.craft.crystal.armour.description": "Use some crystals to make yourself a new set of armour.",
+    "advancements.somemod.end.break.end_stone.crystal.title": "Ohhh Shiny!",
+    "advancements.somemod.end.break.end_stone.crystal.description": "Break a block of end stone crystal.",
+    "advancements.somemod.jewellery.root.title": "Jewellery",
+    "advancements.somemod.jewellery.root.description": "The next tier of equipment.",
+    "advancements.somemod.craft.crystal.title": "Crystal Clear",
+    "advancements.somemod.craft.crystal.description": "Craft a piece of crystal with crystal dust.",
+    "advancements.somemod.craft.crystal.tools.title": "Tools of Crystals",
+    "advancements.somemod.craft.crystal.tools.description": "Use some crystals to make yourself some new tools.",
+    "advancements.somemod.craft.crystal.armour.title": "Crystal Power",
+    "advancements.somemod.craft.crystal.armour.description": "Use some crystals to make yourself a new set of armour.",
 
-    "block.somemod.enchanted_bookshelf": "Enchanted Bookshelf"
+    "container.somemod.enchanted_bookshelf": "Enchant Book",
+    "container.somemod.enchanted_bookshelf.cost": "Enchantment Cost: %1$s",
+    "container.somemod.enchanted_bookshelf.expensive": "Too Expensive",
+
+    "block.somemod.enchanted_bookshelf": "Enchanted Bookshelf",
+    "block.somemod.obsidian_enchanted_bookshelf": "Obsidian Enchanted Bookshelf"
 
 }

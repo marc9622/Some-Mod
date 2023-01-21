@@ -15,10 +15,10 @@ import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.EnchantedBookItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.registry.Registries;
 import net.minecraft.screen.Property;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
+import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
@@ -55,26 +55,29 @@ public class EnchantedBookshelfScreenHandler extends ScreenHandler {
         }
     };
 
-    private final ScreenHandlerContext context;
-    private final PlayerEntity player;
+    protected final ScreenHandlerContext context;
+    protected final PlayerEntity player;
 
     private final Random random = Random.create();
     private final Property seed = Property.create(); // Stores the seed for the current player
     private static final Map<PlayerEntity, Integer> seeds = new WeakHashMap<>(); // Stores the seeds for each player.
     // Enchanting tables uses a field in the player entity, but to do it like that, I would have to add a new field to the player entity, which I'm not sure is possible.
 
-    
-
     public int enchantmentPower = 0;
     public int enchantmentId = -1;
     public int enchantmentLevel = 0;
+    public int enchantmentCost = 0;
 
     public EnchantedBookshelfScreenHandler(int syncId, PlayerInventory playerInventory) {
         this(syncId, playerInventory, ScreenHandlerContext.EMPTY);
     }
 
     public EnchantedBookshelfScreenHandler(int syncId, PlayerInventory playerInventory, ScreenHandlerContext context) {
-        super(EnchantingScreenHandlers.ENCHANTED_BOOKSHELF_SCREEN_HANDLER, syncId);
+        this(EnchantingScreenHandlers.ENCHANTED_BOOKSHELF_SCREEN_HANDLER, syncId, playerInventory, context);
+    }
+
+    protected EnchantedBookshelfScreenHandler(ScreenHandlerType<? extends EnchantedBookshelfScreenHandler> type, int syncId, PlayerInventory playerInventory, ScreenHandlerContext context) {
+        super(type, syncId);
         
         int i;
 
@@ -167,6 +170,19 @@ public class EnchantedBookshelfScreenHandler extends ScreenHandler {
             }
 
         });
+        this.addProperty(new Property() {
+
+            @Override
+            public int get() {
+                return EnchantedBookshelfScreenHandler.this.enchantmentCost;
+            }
+
+            @Override
+            public void set(int value) {
+                EnchantedBookshelfScreenHandler.this.enchantmentCost = value;
+            }
+
+        });
     }
 
     /**
@@ -182,37 +198,14 @@ public class EnchantedBookshelfScreenHandler extends ScreenHandler {
                 this.enchantmentPower = 0;
                 this.enchantmentId = -1;
                 this.enchantmentLevel = -1;
+                this.enchantmentCost = 0;
             }
             else {
                 this.context.run((world, pos) -> {
                     this.random.setSeed(this.seed.get());
+                    this.outputInventory.setStack(0, generateOutput(this.random, inputItemStack));
 
-                    final int MAX_ENCHANTMENT_POWER = 10;
-
-                    // The enchantment power should probably be shown in the GUI
-                    this.enchantmentPower = random.nextInt(MAX_ENCHANTMENT_POWER) + 1; // from 1 to 10
-                    if(!player.getAbilities().creativeMode) // if the player is not in creative mode, then the enchantment power is limited by the player's experience level
-                        this.enchantmentPower = Math.min(this.enchantmentPower, player.experienceLevel);
-
-                    List<EnchantmentLevelEntry> list;
-
-                    if(this.enchantmentPower == 0 || (list = EnchantmentHelper.generateEnchantments(this.random, inputItemStack, this.enchantmentPower, false)).isEmpty()) {
-
-                        this.outputInventory.setStack(0, ItemStack.EMPTY);
-                        this.enchantmentLevel = -1;
-                        this.enchantmentId = -1;
-                    }
-                    else {
-                        EnchantmentLevelEntry enchantmentLevelEntry = list.get(this.random.nextInt(list.size()));
-                        this.enchantmentId = Registries.ENCHANTMENT.getRawId(enchantmentLevelEntry.enchantment);
-                        this.enchantmentLevel = enchantmentLevelEntry.level;
-
-                        ItemStack outputItemStack = new ItemStack(Items.ENCHANTED_BOOK);
-                        EnchantedBookItem.addEnchantment(outputItemStack, enchantmentLevelEntry);
-
-                        this.outputInventory.setStack(0, outputItemStack);
-                        this.outputInventory.markDirty();
-                    }
+                    this.outputInventory.markDirty();
                     this.sendContentUpdates();
                 });
             }
@@ -224,18 +217,68 @@ public class EnchantedBookshelfScreenHandler extends ScreenHandler {
                 this.enchantmentPower = 0;
                 this.enchantmentId = -1;
                 this.enchantmentLevel = -1;
+                this.enchantmentCost = 0;
             }
 
             this.sendContentUpdates();
         }
     }
 
-    protected boolean hasEnoughExperience() {
-        return (player.experienceLevel >= this.enchantmentPower || player.getAbilities().creativeMode)
-            && this.enchantmentPower > 0;
+    protected ItemStack generateOutput(Random random, ItemStack inputItemStack) {
+        // The enchantment power should probably be shown in the GUI
+        this.enchantmentPower = random.nextBetween(getMinEnchantmentPower(), this.getMaxEnchantmentPower()); // Random from Min to Max
+
+        List<EnchantmentLevelEntry> list;
+
+        if(this.enchantmentPower == 0
+        || (list = EnchantmentHelper.generateEnchantments(this.random, inputItemStack, this.enchantmentPower, this.canGenerateTreasure())).isEmpty()) {
+            this.enchantmentLevel = -1;
+            this.enchantmentId = -1;
+            this.enchantmentCost = 0;
+            return ItemStack.EMPTY;
+        }
+        else {
+            this.enchantmentCost = this.calculateEnchantingCost(random, this.enchantmentPower, inputItemStack, list);
+            
+            ItemStack outputItemStack = new ItemStack(Items.ENCHANTED_BOOK);
+
+            for(EnchantmentLevelEntry enchantmentLevelEntry : list) {
+                EnchantedBookItem.addEnchantment(outputItemStack, enchantmentLevelEntry);
+            }
+
+            return outputItemStack;
+        }
+    }
+    
+    protected int getMaxEnchantmentPower() {
+        return 10;
+    }
+    
+    protected int getMinEnchantmentPower() {
+        return 1;
     }
 
-    public void onTakeOriginalBook() {
+    protected boolean hasEnoughExperience() {
+        return player.experienceLevel >= this.getEnchantingCost() || player.getAbilities().creativeMode;
+    }
+
+    public int getEnchantingCost() {
+        return this.enchantmentCost;
+    }
+
+    protected int calculateEnchantingCost(Random random, int enchantmentPower, ItemStack inputItemStack, List<EnchantmentLevelEntry> enchantmentLevelEntry) {
+        return enchantmentPower;
+    }
+    
+    public boolean hasPlayerEnoughExperience() {
+        return this.hasEnoughExperience();
+    }
+
+    protected boolean canGenerateTreasure() {
+        return false;
+    }
+
+    private void onTakeOriginalBook() {
 
         if (!player.world.isClient) {
             this.outputInventory.setStack(0, ItemStack.EMPTY);
@@ -246,13 +289,13 @@ public class EnchantedBookshelfScreenHandler extends ScreenHandler {
 
     }
 
-    public void onTakeEnchantedBook() {
+    private void onTakeEnchantedBook() {
 
         ItemStack enchantedBookItemStack = this.outputInventory.getStack(0);
 
         if(!player.world.isClient) {
             if (!player.getAbilities().creativeMode)
-                player.applyEnchantmentCosts(enchantedBookItemStack, this.enchantmentPower);
+                player.applyEnchantmentCosts(enchantedBookItemStack, this.getEnchantingCost());
 
             this.inputInventory.setStack(0, ItemStack.EMPTY);
         }
@@ -261,7 +304,7 @@ public class EnchantedBookshelfScreenHandler extends ScreenHandler {
 
         // Not sure what this does, but it's used in the vanilla enchantment table
         if (player instanceof ServerPlayerEntity)
-            Criteria.ENCHANTED_ITEM.trigger((ServerPlayerEntity)player, enchantedBookItemStack, this.enchantmentPower);
+            Criteria.ENCHANTED_ITEM.trigger((ServerPlayerEntity)player, enchantedBookItemStack, this.getEnchantingCost());
 
         this.inputInventory.markDirty();
         this.outputInventory.markDirty();
@@ -281,7 +324,7 @@ public class EnchantedBookshelfScreenHandler extends ScreenHandler {
 
     @Override
     public boolean canUse(PlayerEntity player) {
-        return EnchantedBookshelfScreenHandler.canUse(this.context, player, EnchantingBlocks.ENCHANTED_BOOKSHELF);
+        return EnchantedBookshelfScreenHandler.canUse(this.context, this.player, EnchantingBlocks.ENCHANTED_BOOKSHELF);
     }
 
     @Override
@@ -308,7 +351,9 @@ public class EnchantedBookshelfScreenHandler extends ScreenHandler {
             selectedSlot.onQuickTransfer(itemStack2, itemStack);
         }
         else if(selectedSlotIndex >= PLAYER_INVENTORY_START_INDEX && selectedSlotIndex < PLAYER_INVENTORY_END_INDEX) {
-            if(!this.insertItem(itemStack2, INPUT_SLOT_INDEX, INPUT_SLOT_INDEX + 1, false))
+            Slot inputSlot = this.slots.get(INPUT_SLOT_INDEX);
+            if(inputSlot.getStack().getCount() >= inputSlot.getMaxItemCount()
+            || !this.insertItem(itemStack2, INPUT_SLOT_INDEX, INPUT_SLOT_INDEX + 1, false))
                 return ItemStack.EMPTY;
         }
         else
