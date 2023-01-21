@@ -7,6 +7,10 @@ import somemod.crystal.block.CrystalBlocks;
 import somemod.crystal.item.CrystalItems;
 import somemod.crystal.world.feature.CrystalFeatures;
 import somemod.crystal.world.gen.CrystalGeneration;
+import somemod.enchanting.block.EnchantingBlocks;
+import somemod.enchanting.block.entity.EnchantingBlockEntities;
+import somemod.enchanting.item.EnchantingItems;
+import somemod.enchanting.screen.EnchantingScreenHandlers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,6 +46,10 @@ public class SomeMod implements ModInitializer {
 	private static void notifyFabric() {
 		CrystalBlocks.notifyFabric();
 		CrystalItems.notifyFabric();
+		EnchantingBlocks.notifyFabric();
+		EnchantingBlockEntities.notifyFabric();
+		EnchantingItems.notifyFabric();
+		EnchantingScreenHandlers.notifyFabric();
 	}
 	
 	public static void logRegistration(String name, String registry) {

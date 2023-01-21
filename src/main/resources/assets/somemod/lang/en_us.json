@@ -33,5 +33,8 @@
     "somemod.advancements.craft.crystal.tools.title": "Tools of Crystals",
     "somemod.advancements.craft.crystal.tools.description": "Use some crystals to make yourself some new tools.",
     "somemod.advancements.craft.crystal.armour.title": "Crystal Power",
-    "somemod.advancements.craft.crystal.armour.description": "Use some crystals to make yourself a new set of armour."
-  }
+    "somemod.advancements.craft.crystal.armour.description": "Use some crystals to make yourself a new set of armour.",
+
+    "block.somemod.enchanted_bookshelf": "Enchanted Bookshelf"
+
+}
