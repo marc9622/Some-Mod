@@ -45,7 +45,7 @@ public class EndCrystalGlassPillar extends Feature<EndCrystalGlassPillarConfig> 
         Direction offset = Direction.NORTH; // Start with the north pillar
 
         for (int i = 0; i < 4; i++) {
-            int heightSide = heightCenter - (random.nextInt(heightCenter) + 1); // 0 to heightCenter - 1
+            int heightSide = random.nextInt(heightCenter + 1); // 0 to heightCenter (inclusive)
 
             // If the block below the top position is end stone, build the pillar
             if (Blocks.END_STONE.getDefaultState() == world.getBlockState(topPos.down().offset(offset)))
