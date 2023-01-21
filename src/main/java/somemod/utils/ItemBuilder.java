@@ -1,6 +1,8 @@
 package somemod.utils;
 
+import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.UnaryOperator;
 
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.Block;
@@ -15,55 +17,66 @@ import somemod.SomeMod;
 
 public class ItemBuilder {
     
-    private ItemBuilder(Item item) {
-        this.item = item;
+    private ItemBuilder(String name, Function<Item.Settings, Item> itemConstructor, Item.Settings settings) {
+        this.name = name;
+        this.itemConstructor = itemConstructor;
+        this.settings = settings;
     }
 
-    private final Item item;
+    private final String name;
+
+    private final Function<Item.Settings, Item> itemConstructor;
+    private Item.Settings settings;
+
+    private Consumer<Item> groupAdder = item -> {};
 
     public static ItemBuilder defaultItem(String name) {
-        return fromItem(name, new Item(new Item.Settings()));
+        return fromItem(name, Item::new);
     }
 
     public static ItemBuilder defaultArmorItem(String name, ArmorMaterial material, EquipmentSlot slot) {
-        return fromItem(name, new ArmorItem(material, slot, new Item.Settings()));
+        return fromItem(name, settings -> new ArmorItem(material, slot, settings));
     }
 
     public static ItemBuilder defaultBlockItem(String name, Block block) {
-        return fromItem(name, new BlockItem(block, new Item.Settings()));
+        return fromItem(name, settings -> new BlockItem(block, settings));
     }
 
-    public static ItemBuilder fromItem(String name, Function<Item.Settings, Item> item) {
-        return fromItem(name, item.apply(new Item.Settings()));
+    public static ItemBuilder fromItem(String name, Function<Item.Settings, Item> itemConstructor) {
+        return new ItemBuilder(name, itemConstructor, new Item.Settings());
     }
 
-    public static ItemBuilder fromItem(String name, Item item) {
-        var builder = new ItemBuilder(item);
-        return builder.register(name);
-    }
-
-    private ItemBuilder register(String name) {
-        SomeMod.register(Registries.ITEM, name, item);
+    public ItemBuilder modifySettings(UnaryOperator<Item.Settings> settingsModifier) {
+        settings = settingsModifier.apply(settings);
         return this;
     }
-
+    
     public ItemBuilder addGroup(ItemGroup group) {
-        ItemGroupEvents.modifyEntriesEvent(group).register(content -> content.add(item));
+        groupAdder = groupAdder.andThen(
+            item -> ItemGroupEvents.modifyEntriesEvent(group).register(content -> content.add(item)));
         return this;
     }
-
+    
     public ItemBuilder addGroupAfter(ItemGroup group, Item after) {
-        ItemGroupEvents.modifyEntriesEvent(group).register(content -> content.addAfter(after, item));
+        groupAdder = groupAdder.andThen(
+            item -> ItemGroupEvents.modifyEntriesEvent(group).register(content -> content.addAfter(after, item)));
+        return this;
+    }
+    
+    public ItemBuilder addGroupBefore(ItemGroup group, Item before) {
+        groupAdder = groupAdder.andThen(
+            item -> ItemGroupEvents.modifyEntriesEvent(group).register(content -> content.addBefore(before, item)));
         return this;
     }
 
-    public ItemBuilder addGroupBefore(ItemGroup group, Item before) {
-        ItemGroupEvents.modifyEntriesEvent(group).register(content -> content.addBefore(before, item));
-        return this;
+    private Item register(Item item) {
+        return SomeMod.register(Registries.ITEM, name, item);
     }
 
     public Item build() {
-        return item;
+        Item item = itemConstructor.apply(settings);
+        groupAdder.accept(item);
+        return register(item);
     }
 
 }

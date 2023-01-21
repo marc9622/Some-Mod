@@ -4,7 +4,6 @@ import java.util.function.Function;
 import java.util.function.UnaryOperator;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.ExperienceDroppingBlock;
 import net.minecraft.block.Material;
@@ -14,7 +13,7 @@ import somemod.SomeMod;
 
 public class BlockBuilder {
 
-    private BlockBuilder(String name, Function<Block.Settings, Block> blockConstructor, AbstractBlock.Settings settings) {
+    private BlockBuilder(String name, Function<Block.Settings, Block> blockConstructor, Block.Settings settings) {
         this.name = name;
         this.blockConstructor = blockConstructor;
         this.settings = settings;
@@ -23,7 +22,7 @@ public class BlockBuilder {
     private final String name;
 
     private final Function<Block.Settings, Block> blockConstructor;
-    private AbstractBlock.Settings settings;
+    private Block.Settings settings;
 
     public static BlockBuilder defaultBlock(String name, Material material) {
         return fromBlock(name, Block::new, material);
@@ -37,17 +36,18 @@ public class BlockBuilder {
         return new BlockBuilder(name, blockConstructor, FabricBlockSettings.of(material));
     }
 
-    public BlockBuilder modifySettings(UnaryOperator<AbstractBlock.Settings> settingsModifier) {
+    public BlockBuilder modifySettings(UnaryOperator<Block.Settings> settingsModifier) {
         settings = settingsModifier.apply(settings);
         return this;
     }
 
-    private Block register() {
-        return SomeMod.register(Registries.BLOCK, name, blockConstructor.apply(settings));
+    private Block register(Block block) {
+        return SomeMod.register(Registries.BLOCK, name, block);
     }
 
     public Block build() {
-        return register();
+        Block block = blockConstructor.apply(settings);
+        return register(block);
     }
 
 }
