@@ -1,6 +1,6 @@
 package somemod.enchanting.screen;
 
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.screen.ScreenHandlerContext;
 import somemod.enchanting.block.EnchantingBlocks;
@@ -31,8 +31,8 @@ public class ObsidianEnchantedBookshelfScreenHandler extends EnchantedBookshelfS
     }
 
     @Override
-    public boolean canUse(PlayerEntity player) {
-        return ObsidianEnchantedBookshelfScreenHandler.canUse(this.context, this.player, EnchantingBlocks.OBSIDIAN_ENCHANTED_BOOKSHELF);
+    protected Block getBlock() {
+        return EnchantingBlocks.OBSIDIAN_ENCHANTED_BOOKSHELF;
     }
     
 }

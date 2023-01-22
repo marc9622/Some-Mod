@@ -5,21 +5,18 @@ import java.util.Map;
 import java.util.WeakHashMap;
 
 import net.minecraft.advancement.criterion.Criteria;
+import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.EnchantmentLevelEntry;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.CraftingResultInventory;
 import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.EnchantedBookItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.screen.Property;
-import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.ScreenHandlerType;
-import net.minecraft.screen.slot.Slot;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -39,24 +36,7 @@ import somemod.enchanting.block.EnchantingBlocks;
 // book out, if they don't want the enchantment.
 // At this point, I don't know if that's a good thing or not.
 
-public class EnchantedBookshelfScreenHandler extends ScreenHandler {
-
-    public static final int INPUT_SLOT_INDEX = 0;
-    public static final int OUTPUT_SLOT_INDEX = 1;
-    private static final int PLAYER_INVENTORY_START_INDEX = 2;
-    private static final int PLAYER_INVENTORY_END_INDEX = PLAYER_INVENTORY_START_INDEX + 36;
-    
-    private final CraftingResultInventory outputInventory = new CraftingResultInventory() {};
-    private final Inventory inputInventory = new SimpleInventory(1) {
-        @Override
-        public void markDirty() {
-            super.markDirty();
-            EnchantedBookshelfScreenHandler.this.onContentChanged(this);
-        }
-    };
-
-    protected final ScreenHandlerContext context;
-    protected final PlayerEntity player;
+public class EnchantedBookshelfScreenHandler extends AbstractConverterScreenHandler {
 
     private final Random random = Random.create();
     private final Property seed = Property.create(); // Stores the seed for the current player
@@ -77,153 +57,142 @@ public class EnchantedBookshelfScreenHandler extends ScreenHandler {
     }
 
     protected EnchantedBookshelfScreenHandler(ScreenHandlerType<? extends EnchantedBookshelfScreenHandler> type, int syncId, PlayerInventory playerInventory, ScreenHandlerContext context) {
-        super(type, syncId);
+        super(type, syncId, playerInventory, context);
         
-        int i;
-
-        this.context = context;
-        this.player = playerInventory.player;
-        this.addSlot(new Slot(this.inputInventory, INPUT_SLOT_INDEX, 53, 20) {
-
-            @Override
-            public boolean canInsert(ItemStack stack) {
-                return stack.getItem() == Items.BOOK;
-            }
-
-            @Override
-            public int getMaxItemCount() {
-                return 1;
-            }
-
-            @Override
-            public void onTakeItem(PlayerEntity player, ItemStack stack) {
-                EnchantedBookshelfScreenHandler.this.onTakeOriginalBook();
-            }
-            
-        });
-        this.addSlot(new Slot(this.outputInventory, OUTPUT_SLOT_INDEX, 107, 20) {
-
-            @Override
-            public boolean canInsert(ItemStack stack) {
-                return false;
-            }
-
-            @Override
-            public boolean canTakeItems(PlayerEntity playerEntity) {
-                return this.hasStack() && EnchantedBookshelfScreenHandler.this.hasEnoughExperience();
-            }
-
-            @Override
-            public void onTakeItem(PlayerEntity player, ItemStack stack) {
-                EnchantedBookshelfScreenHandler.this.onTakeEnchantedBook();
-            }
-
-        });
-
-        for (i = 0; i < 3; ++i) {
-            for (int j = 0; j < 9; ++j) {
-                this.addSlot(new Slot(playerInventory, j + i * 9 + 9, 8 + j * 18, 51 + i * 18));
-            }
-        }
-        for (i = 0; i < 9; ++i) {
-            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 109));
-        }
-    
-        seeds.putIfAbsent(player, random.nextInt());
+        seeds.putIfAbsent(this.player, random.nextInt());
         this.addProperty(this.seed).set(seeds.get(player));
         this.addProperty(new Property() {
-
             @Override
             public int get() {
                 return EnchantedBookshelfScreenHandler.this.enchantmentPower;
             }
-
             @Override
             public void set(int value) {
                 EnchantedBookshelfScreenHandler.this.enchantmentPower = value;
             }
-
         });
         this.addProperty(new Property() {
-
             @Override
             public int get() {
                 return EnchantedBookshelfScreenHandler.this.enchantmentId;
             }
-
             @Override
             public void set(int value) {
                 EnchantedBookshelfScreenHandler.this.enchantmentId = value;
             }
-
         });
         this.addProperty(new Property() {
-
             @Override
             public int get() {
                 return EnchantedBookshelfScreenHandler.this.enchantmentLevel;
             }
-
             @Override
             public void set(int value) {
                 EnchantedBookshelfScreenHandler.this.enchantmentLevel = value;
             }
-
         });
         this.addProperty(new Property() {
-
             @Override
             public int get() {
                 return EnchantedBookshelfScreenHandler.this.enchantmentCost;
             }
-
             @Override
             public void set(int value) {
                 EnchantedBookshelfScreenHandler.this.enchantmentCost = value;
             }
-
         });
     }
 
-    /**
-     * Called when the content of any of the inventories changes.
-     */
     @Override
-    public void onContentChanged(Inventory inventory) {
-        super.onContentChanged(inventory);
+    protected void onInputChanged(Inventory inputInventory, Inventory outputInventory) {
+        ItemStack inputItemStack = inputInventory.getStack(0);
 
-        if(inventory == this.inputInventory) {
-            ItemStack inputItemStack = inventory.getStack(0);
-            if(inputItemStack.isEmpty()) {
-                this.enchantmentPower = 0;
-                this.enchantmentId = -1;
-                this.enchantmentLevel = -1;
-                this.enchantmentCost = 0;
-            }
-            else {
-                this.context.run((world, pos) -> {
-                    this.random.setSeed(this.seed.get());
-                    this.outputInventory.setStack(0, generateOutput(this.random, inputItemStack));
-
-                    this.outputInventory.markDirty();
-                    this.sendContentUpdates();
-                });
-            }
+        if(inputItemStack.isEmpty()) {
+            this.enchantmentPower = 0;
+            this.enchantmentId = -1;
+            this.enchantmentLevel = -1;
+            this.enchantmentCost = 0;
         }
-    
-        if(inventory == this.outputInventory) {
-            ItemStack outputItemStack = inventory.getStack(0);
-            if(outputItemStack.isEmpty()) {
-                this.enchantmentPower = 0;
-                this.enchantmentId = -1;
-                this.enchantmentLevel = -1;
-                this.enchantmentCost = 0;
-            }
 
-            this.sendContentUpdates();
+        else {
+            this.context.run((world, pos) -> {
+                this.random.setSeed(this.seed.get());
+                outputInventory.setStack(0, generateOutput(this.random, inputItemStack));
+
+                outputInventory.markDirty();
+            });
         }
+
+        this.sendContentUpdates();
     }
 
+    @Override
+    protected void onOutputChanged(Inventory inputInventory, Inventory outputInventory) {
+        ItemStack outputItemStack = outputInventory.getStack(0);
+
+        if(outputItemStack.isEmpty()) {
+            this.enchantmentPower = 0;
+            this.enchantmentId = -1;
+            this.enchantmentLevel = -1;
+            this.enchantmentCost = 0;
+        }
+
+        this.sendContentUpdates();
+    }
+
+    @Override
+    protected void onTakeInputItem(Inventory inputInventory, Inventory outputInventory) {
+        if (!player.world.isClient)
+            outputInventory.setStack(0, ItemStack.EMPTY);
+
+        inputInventory.markDirty();
+        outputInventory.markDirty();
+    }
+
+    @Override
+    protected void onTakeOutputItem(Inventory inputInventory, Inventory outputInventory) {
+        ItemStack enchantedBookItemStack = outputInventory.getStack(0);
+
+        if(!player.world.isClient) {
+            if (!player.getAbilities().creativeMode)
+                player.applyEnchantmentCosts(enchantedBookItemStack, getEnchantingCost());
+
+            inputInventory.setStack(0, ItemStack.EMPTY);
+        }
+
+        player.incrementStat(Stats.ENCHANT_ITEM);
+
+        // Not sure what this does, but it's used in the vanilla enchantment table
+        if (player instanceof ServerPlayerEntity)
+            Criteria.ENCHANTED_ITEM.trigger((ServerPlayerEntity)player, enchantedBookItemStack, this.getEnchantingCost());
+
+        inputInventory.markDirty();
+        outputInventory.markDirty();
+
+        EnchantedBookshelfScreenHandler.seeds.put(player, this.random.nextInt());
+        this.seed.set(EnchantedBookshelfScreenHandler.seeds.get(player));
+
+        this.onContentChanged(outputInventory);
+        this.context.run((world, pos) -> world.playSound(null, (BlockPos)pos, SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE, SoundCategory.BLOCKS, 1.0f, world.random.nextFloat() * 0.1f + 0.9f));    
+    }
+
+    @Override
+    protected boolean canInsertIntoInput(ItemStack itemStack, Inventory inputInventory) {
+        ItemStack inputStack = inputInventory.getStack(0);
+        return itemStack.isOf(Items.BOOK)
+            && inputStack.getCount() < Math.min(inputStack.getMaxCount(), this.getMaxInputItemCount());
+    }
+
+    @Override
+    protected int getMaxInputItemCount() {
+        return 1;
+    }
+
+    @Override
+    protected boolean canTakeOutputItem(PlayerEntity playerEntity) {
+        return this.player == playerEntity && EnchantedBookshelfScreenHandler.this.hasEnoughExperience();
+    }
+    
     protected ItemStack generateOutput(Random random, ItemStack inputItemStack) {
         // The enchantment power should probably be shown in the GUI
         this.enchantmentPower = random.nextBetween(getMinEnchantmentPower(), this.getMaxEnchantmentPower()); // Random from Min to Max
@@ -278,94 +247,8 @@ public class EnchantedBookshelfScreenHandler extends ScreenHandler {
         return false;
     }
 
-    private void onTakeOriginalBook() {
-
-        if (!player.world.isClient) {
-            this.outputInventory.setStack(0, ItemStack.EMPTY);
-        }
-
-        this.inputInventory.markDirty();
-        this.outputInventory.markDirty();
-
-    }
-
-    private void onTakeEnchantedBook() {
-
-        ItemStack enchantedBookItemStack = this.outputInventory.getStack(0);
-
-        if(!player.world.isClient) {
-            if (!player.getAbilities().creativeMode)
-                player.applyEnchantmentCosts(enchantedBookItemStack, this.getEnchantingCost());
-
-            this.inputInventory.setStack(0, ItemStack.EMPTY);
-        }
-
-        player.incrementStat(Stats.ENCHANT_ITEM);
-
-        // Not sure what this does, but it's used in the vanilla enchantment table
-        if (player instanceof ServerPlayerEntity)
-            Criteria.ENCHANTED_ITEM.trigger((ServerPlayerEntity)player, enchantedBookItemStack, this.getEnchantingCost());
-
-        this.inputInventory.markDirty();
-        this.outputInventory.markDirty();
-
-        EnchantedBookshelfScreenHandler.seeds.put(player, this.random.nextInt());
-        this.seed.set(EnchantedBookshelfScreenHandler.seeds.get(player));
-
-        this.onContentChanged(this.outputInventory);
-        this.context.run((world, pos) -> world.playSound(null, (BlockPos)pos, SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE, SoundCategory.BLOCKS, 1.0f, world.random.nextFloat() * 0.1f + 0.9f));    
-    }
-
-    @Override
-    public void close(PlayerEntity player) {
-        super.close(player);
-        this.context.run((world, pos) -> this.dropInventory(player, this.inputInventory));
-    }
-
-    @Override
-    public boolean canUse(PlayerEntity player) {
-        return EnchantedBookshelfScreenHandler.canUse(this.context, this.player, EnchantingBlocks.ENCHANTED_BOOKSHELF);
-    }
-
-    @Override
-    public ItemStack quickMove(PlayerEntity player, final int selectedSlotIndex) {
-        final Slot selectedSlot = (Slot)this.slots.get(selectedSlotIndex);
-        
-        if(selectedSlot == null || !selectedSlot.hasStack())
-            return ItemStack.EMPTY;
-
-        ItemStack itemStack = ItemStack.EMPTY;
-        ItemStack itemStack2 = selectedSlot.getStack();
-        itemStack = itemStack2.copy();
-
-        if(selectedSlotIndex == INPUT_SLOT_INDEX) {
-            if(!this.insertItem(itemStack2, PLAYER_INVENTORY_START_INDEX, PLAYER_INVENTORY_END_INDEX, false))
-                return ItemStack.EMPTY;
-
-            selectedSlot.onQuickTransfer(itemStack2, itemStack);
-        }
-        else if(selectedSlotIndex == OUTPUT_SLOT_INDEX) {
-            if(!this.insertItem(itemStack2, PLAYER_INVENTORY_START_INDEX, PLAYER_INVENTORY_END_INDEX, true))
-                return ItemStack.EMPTY;
-
-            selectedSlot.onQuickTransfer(itemStack2, itemStack);
-        }
-        else if(selectedSlotIndex >= PLAYER_INVENTORY_START_INDEX && selectedSlotIndex < PLAYER_INVENTORY_END_INDEX) {
-            Slot inputSlot = this.slots.get(INPUT_SLOT_INDEX);
-            if(inputSlot.getStack().getCount() >= inputSlot.getMaxItemCount()
-            || !this.insertItem(itemStack2, INPUT_SLOT_INDEX, INPUT_SLOT_INDEX + 1, false))
-                return ItemStack.EMPTY;
-        }
-        else
-            return ItemStack.EMPTY;
-
-        selectedSlot.markDirty();
-        
-        if(itemStack2.getCount() == itemStack.getCount())
-            return ItemStack.EMPTY;
-
-        selectedSlot.onTakeItem(player, itemStack2);
-        return ItemStack.EMPTY;
+    protected Block getBlock() {
+        return EnchantingBlocks.ENCHANTED_BOOKSHELF;
     }
 
 }
