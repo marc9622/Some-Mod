@@ -233,6 +233,18 @@
                 "Name": "minecraft:spruce_planks"
               }
             },
+            "minecraft:ice_spikes": {
+              "input_predicate": {
+                "block": "minecraft:oak_planks",
+                "predicate_type": "minecraft:block_match"
+              },
+              "location_predicate": {
+                "predicate_type": "minecraft:always_true"
+              },
+              "output_state": {
+                "Name": "minecraft:spruce_planks"
+              }
+            },
             "minecraft:jagged_peaks": {
               "input_predicate": {
                 "block": "minecraft:oak_planks",
@@ -269,7 +281,7 @@
                 "Name": "minecraft:birch_planks"
               }
             },
-            "minecraft:snowy_slopes": {
+            "minecraft:old_growth_pine_taiga": {
               "input_predicate": {
                 "block": "minecraft:oak_planks",
                 "predicate_type": "minecraft:block_match"
@@ -279,6 +291,42 @@
               },
               "output_state": {
                 "Name": "minecraft:spruce_planks"
+              }
+            },
+            "minecraft:old_growth_spruce_taiga": {
+              "input_predicate": {
+                "block": "minecraft:oak_planks",
+                "predicate_type": "minecraft:block_match"
+              },
+              "location_predicate": {
+                "predicate_type": "minecraft:always_true"
+              },
+              "output_state": {
+                "Name": "minecraft:spruce_planks"
+              }
+            },
+            "minecraft:snowy_taiga": {
+              "input_predicate": {
+                "block": "minecraft:oak_planks",
+                "predicate_type": "minecraft:block_match"
+              },
+              "location_predicate": {
+                "predicate_type": "minecraft:always_true"
+              },
+              "output_state": {
+                "Name": "minecraft:spruce_planks"
+              }
+            },
+            "minecraft:sparse_jungle": {
+              "input_predicate": {
+                "block": "minecraft:oak_planks",
+                "predicate_type": "minecraft:block_match"
+              },
+              "location_predicate": {
+                "predicate_type": "minecraft:always_true"
+              },
+              "output_state": {
+                "Name": "minecraft:jungle_planks"
               }
             },
             "minecraft:stony_peaks": {
@@ -291,6 +339,42 @@
               },
               "output_state": {
                 "Name": "minecraft:spruce_planks"
+              }
+            },
+            "minecraft:taiga": {
+              "input_predicate": {
+                "block": "minecraft:oak_planks",
+                "predicate_type": "minecraft:block_match"
+              },
+              "location_predicate": {
+                "predicate_type": "minecraft:always_true"
+              },
+              "output_state": {
+                "Name": "minecraft:spruce_planks"
+              }
+            },
+            "minecraft:windswept_forest": {
+              "input_predicate": {
+                "block": "minecraft:oak_planks",
+                "predicate_type": "minecraft:block_match"
+              },
+              "location_predicate": {
+                "predicate_type": "minecraft:always_true"
+              },
+              "output_state": {
+                "Name": "minecraft:oak_planks"
+              }
+            },
+            "minecraft:windswept_savanna": {
+              "input_predicate": {
+                "block": "minecraft:oak_planks",
+                "predicate_type": "minecraft:block_match"
+              },
+              "location_predicate": {
+                "predicate_type": "minecraft:always_true"
+              },
+              "output_state": {
+                "Name": "minecraft:acacia_planks"
               }
             }
           }

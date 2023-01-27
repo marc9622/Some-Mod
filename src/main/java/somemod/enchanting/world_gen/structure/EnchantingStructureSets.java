@@ -12,16 +12,22 @@ import somemod.SomeMod;
 
 public class EnchantingStructureSets {
     
-    public static final RegistryKey<StructureSet> ENCHANTING_TOWER = SomeMod.keyOf(RegistryKeys.STRUCTURE_SET, "enchanting_tower");
+    public static final RegistryKey<StructureSet> ENCHANTING_TOWER_COMMON = SomeMod.keyOf(RegistryKeys.STRUCTURE_SET, "enchanting_tower_common");
+    public static final RegistryKey<StructureSet> ENCHANTING_TOWER_RARE   = SomeMod.keyOf(RegistryKeys.STRUCTURE_SET, "enchanting_tower_rare");
 
     public static void bootstrap(Registerable<StructureSet> registerable) {
 
         RegistryEntryLookup<Structure> registryEntryLookup = registerable.getRegistryLookup(RegistryKeys.STRUCTURE);
         
-        SomeMod.registerStructureSet(registerable, ENCHANTING_TOWER,
-            registryEntryLookup.getOrThrow(EnchantingStructures.ENCHANTING_TOWER),
-            new RandomSpreadStructurePlacement(40, 30, SpreadType.LINEAR, 1201149419)
+        SomeMod.registerStructureSet(registerable, ENCHANTING_TOWER_COMMON,
+            registryEntryLookup.getOrThrow(EnchantingStructures.ENCHANTING_TOWER_COMMON),
+            new RandomSpreadStructurePlacement(20, 15, SpreadType.LINEAR, 1201149419)
         );
+
+        SomeMod.registerStructureSet(registerable, ENCHANTING_TOWER_RARE,
+        registryEntryLookup.getOrThrow(EnchantingStructures.ENCHANTING_TOWER_RARE),
+        new RandomSpreadStructurePlacement(75, 40, SpreadType.LINEAR, 1201149419)
+    );
 
     }
 

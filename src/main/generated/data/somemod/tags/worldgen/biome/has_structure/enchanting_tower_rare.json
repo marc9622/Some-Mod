@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:birch_forest",
+    "minecraft:forest",
+    "minecraft:snowy_taiga",
+    "minecraft:taiga",
+    "minecraft:windswept_forest",
+    "minecraft:meadow",
+    "minecraft:stony_peaks",
+    "minecraft:sparse_jungle",
+    "minecraft:windswept_savanna"
+  ]
+}

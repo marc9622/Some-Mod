@@ -6,8 +6,8 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper.WrapperLookup;
-import net.minecraft.registry.tag.BiomeTags;
 import net.minecraft.world.biome.Biome;
+import static net.minecraft.world.biome.BiomeKeys.*;
 import somemod.enchanting.tag.EnchantingHasStructureBiomeTags;
 
 public class BiomeTagGenerator extends FabricTagProvider<Biome> {
@@ -19,8 +19,31 @@ public class BiomeTagGenerator extends FabricTagProvider<Biome> {
     @Override
     protected void configure(WrapperLookup registries) {
         
-        getOrCreateTagBuilder(EnchantingHasStructureBiomeTags.ENCHANTING_TOWER_HAS_STRUCTURE).forceAddTag(BiomeTags.IS_MOUNTAIN).forceAddTag(BiomeTags.IS_FOREST);
+        getOrCreateTagBuilder(EnchantingHasStructureBiomeTags.ENCHANTING_TOWER_COMMON_HAS_STRUCTURE).add(
+            DARK_FOREST,
+            FLOWER_FOREST,
+            OLD_GROWTH_BIRCH_FOREST,
+            OLD_GROWTH_PINE_TAIGA,
+            OLD_GROWTH_SPRUCE_TAIGA,
+            FROZEN_PEAKS,
+            JAGGED_PEAKS,
+            GROVE,
+            ICE_SPIKES
+        );
+        
+        getOrCreateTagBuilder(EnchantingHasStructureBiomeTags.ENCHANTING_TOWER_RARE_HAS_STRUCTURE).add(
+            BIRCH_FOREST,
+            FOREST,
+            SNOWY_TAIGA,
+            TAIGA,
+            WINDSWEPT_FOREST,
+            MEADOW,
+            STONY_PEAKS,
+            SPARSE_JUNGLE,
+            WINDSWEPT_SAVANNA
+        );
     
     }
     
 }
+

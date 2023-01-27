@@ -2,12 +2,12 @@
   "placement": {
     "type": "minecraft:random_spread",
     "salt": 1201149419,
-    "separation": 30,
-    "spacing": 40
+    "separation": 15,
+    "spacing": 20
   },
   "structures": [
     {
-      "structure": "somemod:enchanting_tower",
+      "structure": "somemod:enchanting_tower_common",
       "weight": 1
     }
   ]
