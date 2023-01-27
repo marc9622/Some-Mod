@@ -25,9 +25,9 @@ public class EnchantingStructureSets {
         );
 
         SomeMod.registerStructureSet(registerable, ENCHANTING_TOWER_RARE,
-        registryEntryLookup.getOrThrow(EnchantingStructures.ENCHANTING_TOWER_RARE),
-        new RandomSpreadStructurePlacement(75, 40, SpreadType.LINEAR, 1201149419)
-    );
+            registryEntryLookup.getOrThrow(EnchantingStructures.ENCHANTING_TOWER_RARE),
+            new RandomSpreadStructurePlacement(75, 40, SpreadType.LINEAR, 1201149419)
+        );
 
     }
 
