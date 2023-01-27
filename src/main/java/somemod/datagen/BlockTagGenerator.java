@@ -7,8 +7,8 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.block.Block;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper.WrapperLookup;
-import somemod.crystal.block.CrystalBlockTags;
 import somemod.crystal.block.CrystalBlocks;
+import somemod.crystal.tag.CrystalBlockTags;
 
 public class BlockTagGenerator extends FabricTagProvider<Block> {
 

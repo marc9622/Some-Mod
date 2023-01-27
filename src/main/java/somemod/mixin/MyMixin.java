@@ -16,7 +16,7 @@ public abstract class MyMixin {
 	@Inject(method = "getName(I)Lnet/minecraft/text/Text;", at = @At(value = "RETURN"), locals = LocalCapture.CAPTURE_FAILHARD)
 	private void getName(int level, CallbackInfoReturnable<Text> info, MutableText mutableText) {
 
-		mutableText.append(" Hello from MyMixin!");
+		// mutableText.append(" Hello from MyMixin!");
 		
 	}
 

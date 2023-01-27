@@ -5,9 +5,9 @@ import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.item.Items;
-import static somemod.utils.ItemBuilder.*;
 
 import static somemod.crystal.block.CrystalBlocks.*;
+import static somemod.utils.ItemBuilder.*;
 
 public final class CrystalItems {
     

@@ -1,9 +1,9 @@
-package somemod.crystal.world.gen;
+package somemod.crystal.world_gen;
 
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.minecraft.world.gen.GenerationStep;
-import somemod.crystal.world.feature.CrystalPlacedFeatures;
+import somemod.crystal.world_gen.feature.CrystalPlacedFeatures;
 
 public class CrystalGeneration {
     

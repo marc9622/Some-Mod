@@ -8,7 +8,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
-import somemod.crystal.block.CrystalBlockTags;
+import somemod.crystal.tag.CrystalBlockTags;
 
 import java.util.ArrayList;
 
@@ -18,9 +18,14 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Block.class)
-public class EndermanAngeringBlock {
+public abstract class EndermanAngeringBlock {
     
-    @Inject(method = "onBreak(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Lnet/minecraft/entity/player/PlayerEntity;)V",
+    @Inject(method = "onBreak(" +
+                "Lnet/minecraft/world/World;" +
+                "Lnet/minecraft/util/math/BlockPos;" +
+                "Lnet/minecraft/block/BlockState;" +
+                "Lnet/minecraft/entity/player/PlayerEntity;)" +
+                "V",
             at = @At("HEAD"))
     private void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player, CallbackInfo info) {
 

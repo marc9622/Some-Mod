@@ -1,4 +1,4 @@
-package somemod.crystal.world.feature;
+package somemod.crystal.world_gen.feature;
 
 import net.minecraft.registry.Registries;
 import net.minecraft.world.gen.feature.Feature;

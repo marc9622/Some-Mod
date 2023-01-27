@@ -1,0 +1,12 @@
+{
+  "type": "somemod:tower_structure",
+  "biomes": "#somemod:has_structure/enchanting_tower",
+  "extra_floor_pools_and_rotation_styles": {
+    "somemod:enchanting_tower_middle": "copy_previous",
+    "somemod:enchanting_tower_top": "random_any"
+  },
+  "ground_floor_pool": "somemod:enchanting_tower_bottom",
+  "spawn_overrides": {},
+  "step": "surface_structures",
+  "terrain_adaptation": "beard_thin"
+}

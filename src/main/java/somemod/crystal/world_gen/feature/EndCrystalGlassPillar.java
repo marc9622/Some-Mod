@@ -1,4 +1,4 @@
-package somemod.crystal.world.feature;
+package somemod.crystal.world_gen.feature;
 
 import com.mojang.serialization.Codec;
 

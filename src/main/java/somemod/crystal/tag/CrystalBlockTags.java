@@ -1,4 +1,4 @@
-package somemod.crystal.block;
+package somemod.crystal.tag;
 
 import net.minecraft.block.Block;
 import net.minecraft.registry.RegistryKeys;

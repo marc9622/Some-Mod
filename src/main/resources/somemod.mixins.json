@@ -4,7 +4,9 @@
   "package": "somemod.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [ // Client and server mixins
-    "EndermanAngeringBlock"
+    "EndermanAngeringBlock",
+    "StructureWithOneGroundPieceTerrainAdaption",
+    "AccessableStructureWeightSampler"
   ],
   "client": [ // Client-side only mixins
     "SomeMixin",
