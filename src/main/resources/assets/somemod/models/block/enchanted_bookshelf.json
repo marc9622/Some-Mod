@@ -1,6 +1,7 @@
 {
-    "parent": "minecraft:block/cube_all",
+    "parent": "minecraft:block/cube_column",
     "textures": {
-        "all": "somemod:block/enchanted_bookshelf"
+        "end": "minecraft:block/gold_block",
+        "side": "somemod:block/enchanted_bookshelf"
     }
 }
