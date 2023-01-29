@@ -10,9 +10,9 @@ import net.minecraft.registry.RegistryWrapper.WrapperLookup;
 import somemod.crystal.block.CrystalBlocks;
 import somemod.crystal.tag.CrystalBlockTags;
 
-public class BlockTagGenerator extends FabricTagProvider<Block> {
+public class BlockTagProvider extends FabricTagProvider<Block> {
 
-    public BlockTagGenerator(FabricDataOutput output, CompletableFuture<WrapperLookup> registriesFuture) {
+    public BlockTagProvider(FabricDataOutput output, CompletableFuture<WrapperLookup> registriesFuture) {
         super(output, RegistryKeys.BLOCK, registriesFuture);
     }
 

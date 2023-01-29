@@ -34,9 +34,9 @@ import static somemod.crystal.block.CrystalBlocks.*;
 import static somemod.crystal.item.CrystalItems.*;
 import static somemod.enchanting.block.EnchantingBlocks.*;
 
-public class CrystalBlocksLootTableProvider extends SimpleFabricLootTableProvider {
+public class SomeModBlockLootTableProvider extends SimpleFabricLootTableProvider {
 
-    public CrystalBlocksLootTableProvider(FabricDataOutput output) {
+    public SomeModBlockLootTableProvider(FabricDataOutput output) {
         super(output, LootContextTypes.BLOCK);
     }
 
@@ -67,19 +67,19 @@ public class CrystalBlocksLootTableProvider extends SimpleFabricLootTableProvide
         );
 
         addDrop(exporter, OBSIDIAN_ENCHANTED_BOOKSHELF,
-        LootPool.builder()
-            .rolls(ConstantLootNumberProvider.create(1.0f))
-            .with(ItemEntry.builder(OBSIDIAN_ENCHANTED_BOOKSHELF)
-            .conditionally(WITH_SILK_TOUCH)),
-        LootPool.builder()
-            .rolls(ConstantLootNumberProvider.create(3.0f))
-            .with(ItemEntry.builder(Items.BOOK))
-            .conditionally(WITH_SILK_TOUCH.invert()),
-        LootPool.builder()
-            .rolls(ConstantLootNumberProvider.create(1.0f))
-            .with(ItemEntry.builder(Items.OBSIDIAN))
-            .conditionally(WITH_SILK_TOUCH.invert())
-    );
+            LootPool.builder()
+                .rolls(ConstantLootNumberProvider.create(1.0f))
+                .with(ItemEntry.builder(OBSIDIAN_ENCHANTED_BOOKSHELF)
+                .conditionally(WITH_SILK_TOUCH)),
+            LootPool.builder()
+                .rolls(ConstantLootNumberProvider.create(3.0f))
+                .with(ItemEntry.builder(Items.BOOK))
+                .conditionally(WITH_SILK_TOUCH.invert()),
+            LootPool.builder()
+                .rolls(ConstantLootNumberProvider.create(1.0f))
+                .with(ItemEntry.builder(Items.OBSIDIAN))
+                .conditionally(WITH_SILK_TOUCH.invert())
+        );
 
     }
 

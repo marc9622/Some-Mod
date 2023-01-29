@@ -1,0 +1,37 @@
+{
+  "criteria": {
+    "has_crystal_dust": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "somemod:crystal_dust"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "minecraft:textures/gui/advancements/backgrounds/nether.png",
+    "description": {
+      "translate": "advancements.somemod.jewellery.root.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "somemod:crystal_dust"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.somemod.jewellery.root.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_crystal_dust"
+    ]
+  ]
+}

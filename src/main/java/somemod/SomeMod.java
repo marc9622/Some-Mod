@@ -134,6 +134,10 @@ public class SomeMod implements ModInitializer {
 		return registerStructurePool(registerable, key, fallback, ImmutableList.of(elementCountsByGetter), projection);
 	}
 
+	public static void logAdvancementRegistration(String path) {
+		LOGGER.info("| Registering Advancement | " + path);
+	}
+
 	public static void logLootTableRegistration(String path) {
 		LOGGER.info("| Registering Loot Table | " + path);
 	}

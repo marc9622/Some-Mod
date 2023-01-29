@@ -10,9 +10,9 @@ import net.minecraft.world.biome.Biome;
 import static net.minecraft.world.biome.BiomeKeys.*;
 import somemod.enchanting.tag.EnchantingHasStructureBiomeTags;
 
-public class BiomeTagGenerator extends FabricTagProvider<Biome> {
+public class BiomeTagProvider extends FabricTagProvider<Biome> {
 
-    public BiomeTagGenerator(FabricDataOutput output, CompletableFuture<WrapperLookup> registriesFuture) {
+    public BiomeTagProvider(FabricDataOutput output, CompletableFuture<WrapperLookup> registriesFuture) {
         super(output, RegistryKeys.BIOME, registriesFuture);
     }
 
