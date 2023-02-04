@@ -5,12 +5,9 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [ // Client and server mixins
     "EndermanAngeringBlock",
-    "StructureWithOneGroundPieceTerrainAdaption",
-    "AccessableStructureWeightSampler"
+    "EntityDashing"
   ],
   "client": [ // Client-side only mixins
-    "SomeMixin",
-    "MyMixin"
   ],
   "server": [ // Server-side only mixins
   ],
