@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EquipmentSlot;
@@ -15,7 +16,7 @@ import net.minecraft.entity.attribute.EntityAttributes;
 public class DashingEnchantment extends Enchantment {
 
     private static final UUID DASHING_SPEED_BOOST_ID = UUID .fromString("75F66D0E-BC9D-4276-896E-2EE85C7ED9D9");
-    private static final EntityAttributeModifier DASHING_SPEED_BOOST = new EntityAttributeModifier(DASHING_SPEED_BOOST_ID, "Dashing speed boost", 0.1f, EntityAttributeModifier.Operation.ADDITION);
+    private static final EntityAttributeModifier DASHING_SPEED_BOOST = new EntityAttributeModifier(DASHING_SPEED_BOOST_ID, "Dashing speed boost", 0.08f, EntityAttributeModifier.Operation.ADDITION);
 
     /**
      * A map representing how many ticks should pass before a dash runs out for each Entity.
@@ -100,19 +101,30 @@ public class DashingEnchantment extends Enchantment {
     public static void tickDash(LivingEntity entity) {
         if(entity.world.isClient) return;
 
+        // No reason to update entities not in the map
         Integer duration = DASHING_DURATIONS.get(entity);
-        
         if(duration == null) return;
-
-        EntityAttributeInstance movementSpeedAttribute = entity.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
         
-        if(duration <= 0) {
-            if(movementSpeedAttribute.getModifier(DASHING_SPEED_BOOST_ID) != null) {
+        boolean shouldRemoveSpeedBoost = false;
+        
+        // If leggings with dashing equipment is longer equipped, remove speed boost
+        if(EnchantmentHelper.getLevel(EnchantingEnchantments.DASHING, entity.getEquippedStack(EquipmentSlot.LEGS)) <= 0) {
+            shouldRemoveSpeedBoost = true;
+            DASHING_DURATIONS.remove(entity); // TODO: This would mean that any on-going cooldown will also be reset, which I don't yet have an opinion on.
+        }
+        else {
+            if(duration <= 0)
+                shouldRemoveSpeedBoost = true;
+
+            DASHING_DURATIONS.put(entity, duration-1);
+        }
+        
+        if(shouldRemoveSpeedBoost) {
+            EntityAttributeInstance movementSpeedAttribute = entity.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
+            if(movementSpeedAttribute.getModifier(DASHING_SPEED_BOOST_ID) != null)
                 movementSpeedAttribute.removeModifier(DASHING_SPEED_BOOST);
-            }
         }
 
-        DASHING_DURATIONS.put(entity, duration-1);
     }
 
     @Override

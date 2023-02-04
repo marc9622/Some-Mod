@@ -1,4 +1,5 @@
 {
+    //#region Crystal
     "item.somemod.crystal_dust": "End Stone Dust",
     "item.somemod.crystal": "Crystal",
     "item.somemod.amethyst": "Amethyst",
@@ -34,12 +35,16 @@
     "advancements.somemod.jewellery.craft.crystal.tools.description": "Use some crystals to make yourself some new tools.",
     "advancements.somemod.jewellery.craft.crystal.armor.title": "Crystal Power",
     "advancements.somemod.jewellery.craft.crystal.armor.description": "Use some crystals to make yourself a new set of armour.",
+    //#endregion
 
+    //#region Enchanting
     "container.somemod.enchanted_bookshelf": "Enchant Book",
     "container.somemod.enchanted_bookshelf.cost": "Enchantment Cost: %1$s",
     "container.somemod.enchanted_bookshelf.expensive": "Too Expensive",
 
     "block.somemod.enchanted_bookshelf": "Enchanted Bookshelf",
-    "block.somemod.obsidian_enchanted_bookshelf": "Obsidian Enchanted Bookshelf"
+    "block.somemod.obsidian_enchanted_bookshelf": "Obsidian Enchanted Bookshelf",
 
+    "enchantment.somemod.dashing": "Dashing"
+    //#endregion
 }

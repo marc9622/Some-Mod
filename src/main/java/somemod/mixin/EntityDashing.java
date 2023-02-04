@@ -31,6 +31,4 @@ public abstract class EntityDashing {
         DashingEnchantment.tickDash(entity);
     }
 
-    //TODO: When unequipping dash-enchanted leggings. Any on-going dash should be stopped.
-
 }
