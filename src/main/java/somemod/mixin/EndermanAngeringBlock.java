@@ -34,12 +34,12 @@ public abstract class EndermanAngeringBlock {
             ArrayList<EndermanEntity> endermen = new ArrayList<>(); // In vanilla, endermen can be provoked from 64 blocks away, when looking at them.
             world.collectEntitiesByType(EntityType.ENDERMAN, new Box(pos).expand(24), enderman -> !enderman.isAngry() && !enderman.isProvoked(), endermen, 4);
 
-            int angerCount = world.random.nextInt(Math.min(4, endermen.size()));
+            int endermanCount = endermen.size() >= 0 ? endermen.size() : 0;
+            int angerCount = world.random.nextInt(Math.min(endermanCount, 4));
 
             for(int i = 0; i < angerCount; i++) {
-                EndermanEntity enderman = endermen.remove(world.random.nextInt(endermen.size()));
+                EndermanEntity enderman = endermen.remove(world.random.nextInt(endermanCount));
                 enderman.setTarget(player);
-                enderman.setProvoked();
             }
         }
     }
