@@ -46,6 +46,7 @@
     "block.somemod.obsidian_enchanted_bookshelf": "Obsidian Enchanted Bookshelf",
 
     "enchantment.somemod.dashing": "Dashing",
-    "enchantment.somemod.hermes": "Hermes Sprint"
+    "enchantment.somemod.hermes": "Hermes Sprint",
+    "enchantment.somemod.dullness_curse": "Curse of Dullness"
     //#endregion
 }
