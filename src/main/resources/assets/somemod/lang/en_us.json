@@ -45,6 +45,7 @@
     "block.somemod.enchanted_bookshelf": "Enchanted Bookshelf",
     "block.somemod.obsidian_enchanted_bookshelf": "Obsidian Enchanted Bookshelf",
 
-    "enchantment.somemod.dashing": "Dashing"
+    "enchantment.somemod.dashing": "Dashing",
+    "enchantment.somemod.hermes": "Hermes Sprint"
     //#endregion
 }
