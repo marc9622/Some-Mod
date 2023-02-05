@@ -54,7 +54,7 @@ public class DashingEnchantment extends Enchantment {
 
     @Override
     public boolean isAvailableForRandomSelection() {
-        return false;
+        return true;
     }
 
     @Override

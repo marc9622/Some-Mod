@@ -52,7 +52,7 @@ public class HermesEnchantment extends Enchantment {
 
     @Override
     public boolean isAvailableForRandomSelection() {
-        return false;
+        return true;
     }
 
     @Override
