@@ -27,6 +27,7 @@ import somemod.crystal.world_gen.feature.CrystalFeatures;
 import somemod.enchanting.block.EnchantingBlocks;
 import somemod.enchanting.block.entity.EnchantingBlockEntities;
 import somemod.enchanting.enchantment.EnchantingEnchantments;
+import somemod.enchanting.entity.effect.EnchantingStatusEffects;
 import somemod.enchanting.item.EnchantingItems;
 import somemod.enchanting.screen.EnchantingScreenHandlers;
 import somemod.enchanting.world_gen.structure.EnchantingStructurePieceTypes;
@@ -82,6 +83,7 @@ public class SomeMod implements ModInitializer {
 		EnchantingStructurePieceTypes.notifyFabric();
 		EnchantingStructureProcessorTypes.notifyFabric();
 		EnchantingEnchantments.notifyFabric();
+		EnchantingStatusEffects.notifyFabric();
 	}
 
 	public static void logKeyRegistration(String path, String registry) {
