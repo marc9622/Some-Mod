@@ -1,12 +1,12 @@
 package somemod.crystal.item;
 
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.item.Items;
 
 import static somemod.crystal.block.CrystalBlocks.*;
+import static somemod.crystal.item.CrystalArmorMaterials.*;
 import static somemod.utils.ItemBuilder.*;
 
 public final class CrystalItems {
@@ -23,20 +23,22 @@ public final class CrystalItems {
     //#region TOOLS
     public static final Item CRYSTAL_SHOVEL  = fromItem("crystal_shovel",  CrystalShovelItem::new) .addGroupAfter(ItemGroups.TOOLS, Items.NETHERITE_HOE).build();
     public static final Item CRYSTAL_PICKAXE = fromItem("crystal_pickaxe", CrystalPickaxeItem::new).addGroupAfter(ItemGroups.TOOLS, CRYSTAL_SHOVEL).build();
-    public static final Item CRYSTAL_AXE     = fromItem("crystal_axe",     CrystalAxeItem::new)    .addGroupAfter(ItemGroups.TOOLS, CRYSTAL_PICKAXE)
-                                                                                                               .addGroupAfter(ItemGroups.COMBAT, Items.NETHERITE_AXE).build();
+    public static final Item CRYSTAL_AXE     = fromItem("crystal_axe",     CrystalAxeItem::new)    .addGroupAfter(ItemGroups.TOOLS, CRYSTAL_PICKAXE).addGroupAfter(ItemGroups.COMBAT, Items.NETHERITE_AXE).build();
     public static final Item CRYSTAL_HOE     = fromItem("crystal_hoe",     CrystalHoeItem::new)    .addGroupAfter(ItemGroups.TOOLS, CRYSTAL_AXE).build();
     //#endregion
 
     //#region COMBAT
     public static final Item CRYSTAL_SWORD = fromItem("crystal_sword", CrystalSwordItem::new).addGroupAfter(ItemGroups.COMBAT, Items.NETHERITE_SWORD).build();
     
-    public static final ArmorMaterial CRYSTAL_ARMOR_MATERIAL = new CrystalArmorMaterial();
+    public static final Item CRYSTAL_HELMET     = defaultArmorItem("crystal_helmet",     CrystalArmorMaterials.CRYSTAL, EquipmentSlot.HEAD) .addGroupAfter(ItemGroups.COMBAT, Items.NETHERITE_BOOTS).build();
+    public static final Item CRYSTAL_CHESTPLATE = defaultArmorItem("crystal_chestplate", CrystalArmorMaterials.CRYSTAL, EquipmentSlot.CHEST).addGroupAfter(ItemGroups.COMBAT, CRYSTAL_HELMET).build();
+    public static final Item CRYSTAL_LEGGINGS   = defaultArmorItem("crystal_leggings",   CrystalArmorMaterials.CRYSTAL, EquipmentSlot.LEGS) .addGroupAfter(ItemGroups.COMBAT, CRYSTAL_CHESTPLATE).build();
+    public static final Item CRYSTAL_BOOTS      = defaultArmorItem("crystal_boots",      CrystalArmorMaterials.CRYSTAL, EquipmentSlot.FEET) .addGroupAfter(ItemGroups.COMBAT, CRYSTAL_LEGGINGS).build();
     
-    public static final Item CRYSTAL_HELMET     = defaultArmorItem("crystal_helmet",     CRYSTAL_ARMOR_MATERIAL, EquipmentSlot.HEAD) .addGroupAfter(ItemGroups.COMBAT, Items.NETHERITE_BOOTS).build();
-    public static final Item CRYSTAL_CHESTPLATE = defaultArmorItem("crystal_chestplate", CRYSTAL_ARMOR_MATERIAL, EquipmentSlot.CHEST).addGroupAfter(ItemGroups.COMBAT, CRYSTAL_HELMET).build();
-    public static final Item CRYSTAL_LEGGINGS   = defaultArmorItem("crystal_leggings",   CRYSTAL_ARMOR_MATERIAL, EquipmentSlot.LEGS) .addGroupAfter(ItemGroups.COMBAT, CRYSTAL_CHESTPLATE).build();
-    public static final Item CRYSTAL_BOOTS      = defaultArmorItem("crystal_boots",      CRYSTAL_ARMOR_MATERIAL, EquipmentSlot.FEET) .addGroupAfter(ItemGroups.COMBAT, CRYSTAL_LEGGINGS).build();
+    public static final Item DRAGON_SCALE_HELMET     = defaultArmorItem("dragon_scale_helmet",     DRAGON_SCALE, EquipmentSlot.HEAD) .addGroupAfter(ItemGroups.COMBAT, CRYSTAL_BOOTS).build();
+    public static final Item DRAGON_SCALE_CHESTPLATE = defaultArmorItem("dragon_scale_chestplate", DRAGON_SCALE, EquipmentSlot.CHEST).addGroupAfter(ItemGroups.COMBAT, DRAGON_SCALE_HELMET).build();
+    public static final Item DRAGON_SCALE_LEGGINGS   = defaultArmorItem("dragon_scale_leggings",   DRAGON_SCALE, EquipmentSlot.LEGS) .addGroupAfter(ItemGroups.COMBAT, DRAGON_SCALE_CHESTPLATE).build();
+    public static final Item DRAGON_SCALE_BOOTS      = defaultArmorItem("dragon_scale_boots",      DRAGON_SCALE, EquipmentSlot.FEET) .addGroupAfter(ItemGroups.COMBAT, DRAGON_SCALE_LEGGINGS).build();
     //#endregion
 
     //#region BLOCKS
