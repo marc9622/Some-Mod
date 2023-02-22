@@ -106,7 +106,7 @@ public class MagicPotions {
         return register("", name, instances);
     }
     private static final Potion register(String prefix, String baseName, StatusEffectInstance... instances) {
-        return SomeMod.register(Registries.POTION, prefix + "_" + baseName, new Potion(baseName, instances));
+        return SomeMod.register(Registries.POTION, prefix + (prefix.isEmpty() ? "" : "_") + baseName, new Potion(baseName, instances));
     }
 
     public static void notifyFabric() {/* This is just here to make sure the class is loaded */}
