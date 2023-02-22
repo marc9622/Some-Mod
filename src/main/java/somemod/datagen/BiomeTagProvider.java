@@ -7,8 +7,9 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper.WrapperLookup;
 import net.minecraft.world.biome.Biome;
+import somemod.magic.tag.MagicHasStructureBiomeTags;
+
 import static net.minecraft.world.biome.BiomeKeys.*;
-import somemod.enchanting.tag.EnchantingHasStructureBiomeTags;
 
 public class BiomeTagProvider extends FabricTagProvider<Biome> {
 
@@ -19,7 +20,7 @@ public class BiomeTagProvider extends FabricTagProvider<Biome> {
     @Override
     protected void configure(WrapperLookup registries) {
         
-        getOrCreateTagBuilder(EnchantingHasStructureBiomeTags.ENCHANTING_TOWER_COMMON_HAS_STRUCTURE).add(
+        getOrCreateTagBuilder(MagicHasStructureBiomeTags.ENCHANTING_TOWER_COMMON_HAS_STRUCTURE).add(
             DARK_FOREST,
             FLOWER_FOREST,
             OLD_GROWTH_BIRCH_FOREST,
@@ -31,7 +32,7 @@ public class BiomeTagProvider extends FabricTagProvider<Biome> {
             ICE_SPIKES
         );
         
-        getOrCreateTagBuilder(EnchantingHasStructureBiomeTags.ENCHANTING_TOWER_RARE_HAS_STRUCTURE).add(
+        getOrCreateTagBuilder(MagicHasStructureBiomeTags.ENCHANTING_TOWER_RARE_HAS_STRUCTURE).add(
             BIRCH_FOREST,
             FOREST,
             SNOWY_TAIGA,

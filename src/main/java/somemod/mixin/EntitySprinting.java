@@ -13,7 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.registry.Registries;
-import somemod.enchanting.enchantment.SprintingEnchantment;
+import somemod.magic.enchantment.SprintingEnchantment;
 
 @Mixin(LivingEntity.class)
 public abstract class EntitySprinting {

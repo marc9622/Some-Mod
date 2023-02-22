@@ -8,8 +8,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
-import somemod.enchanting.entity.effect.DamageDealtStatusEffect;
-import somemod.enchanting.entity.effect.DamageTakenStatusEffect;
+import somemod.magic.entity.effect.DamageDealtStatusEffect;
+import somemod.magic.entity.effect.DamageTakenStatusEffect;
 
 @Mixin(LivingEntity.class)
 public abstract class EntityDamageTaken {

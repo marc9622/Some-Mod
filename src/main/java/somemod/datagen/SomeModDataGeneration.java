@@ -6,10 +6,10 @@ import net.minecraft.registry.RegistryBuilder;
 import net.minecraft.registry.RegistryKeys;
 import somemod.crystal.world_gen.feature.CrystalConfiguredFeatures;
 import somemod.crystal.world_gen.feature.CrystalPlacedFeatures;
-import somemod.enchanting.world_gen.structure.EnchantingStructureSets;
-import somemod.enchanting.world_gen.structure.EnchantingStructures;
-import somemod.enchanting.world_gen.structure.pool.EnchantingStructurePools;
-import somemod.enchanting.world_gen.structure.processor.EnchantingStructureProcessorLists;
+import somemod.magic.world_gen.structure.MagicStructureSets;
+import somemod.magic.world_gen.structure.MagicStructures;
+import somemod.magic.world_gen.structure.pool.MagicStructurePools;
+import somemod.magic.world_gen.structure.processor.MagicStructureProcessorLists;
 
 public class SomeModDataGeneration implements DataGeneratorEntrypoint {
 
@@ -29,10 +29,10 @@ public class SomeModDataGeneration implements DataGeneratorEntrypoint {
 
         registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, registry -> CrystalConfiguredFeatures.bootstrap(registry)); // Compiler won't let me use a method reference here.. Bug?
         registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, CrystalPlacedFeatures::bootstrap);
-        registryBuilder.addRegistry(RegistryKeys.STRUCTURE, EnchantingStructures::bootstrap);
-        registryBuilder.addRegistry(RegistryKeys.STRUCTURE_SET, EnchantingStructureSets::bootstrap);
-        registryBuilder.addRegistry(RegistryKeys.PROCESSOR_LIST, EnchantingStructureProcessorLists::bootstrap);
-        registryBuilder.addRegistry(RegistryKeys.TEMPLATE_POOL, EnchantingStructurePools::bootstrap);
+        registryBuilder.addRegistry(RegistryKeys.STRUCTURE, MagicStructures::bootstrap);
+        registryBuilder.addRegistry(RegistryKeys.STRUCTURE_SET, MagicStructureSets::bootstrap);
+        registryBuilder.addRegistry(RegistryKeys.PROCESSOR_LIST, MagicStructureProcessorLists::bootstrap);
+        registryBuilder.addRegistry(RegistryKeys.TEMPLATE_POOL, MagicStructurePools::bootstrap);
 
     }
 

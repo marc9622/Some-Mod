@@ -37,7 +37,7 @@
     "advancements.somemod.jewellery.craft.crystal.armor.description": "Use some crystals to make yourself a new set of armour.",
     //#endregion
 
-    //#region Enchanting
+    //#region Magic
     "container.somemod.enchanted_bookshelf": "Enchant Book",
     "container.somemod.enchanted_bookshelf.cost": "Enchantment Cost: %1$s",
     "container.somemod.enchanted_bookshelf.expensive": "Too Expensive",

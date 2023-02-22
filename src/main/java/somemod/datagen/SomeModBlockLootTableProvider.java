@@ -32,7 +32,7 @@ import net.minecraft.util.Identifier;
 import somemod.SomeMod;
 import static somemod.crystal.block.CrystalBlocks.*;
 import static somemod.crystal.item.CrystalItems.*;
-import static somemod.enchanting.block.EnchantingBlocks.*;
+import static somemod.magic.block.MagicBlocks.*;
 
 public class SomeModBlockLootTableProvider extends SimpleFabricLootTableProvider {
 

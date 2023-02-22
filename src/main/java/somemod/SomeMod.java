@@ -24,16 +24,16 @@ import somemod.crystal.block.CrystalBlocks;
 import somemod.crystal.item.CrystalItems;
 import somemod.crystal.world_gen.CrystalGeneration;
 import somemod.crystal.world_gen.feature.CrystalFeatures;
-import somemod.enchanting.block.EnchantingBlocks;
-import somemod.enchanting.block.entity.EnchantingBlockEntities;
-import somemod.enchanting.enchantment.EnchantingEnchantments;
-import somemod.enchanting.entity.effect.EnchantingStatusEffects;
-import somemod.enchanting.item.EnchantingItems;
-import somemod.enchanting.potion.EnchantingPotions;
-import somemod.enchanting.screen.EnchantingScreenHandlers;
-import somemod.enchanting.world_gen.structure.EnchantingStructurePieceTypes;
-import somemod.enchanting.world_gen.structure.EnchantingStructureTypes;
-import somemod.enchanting.world_gen.structure.processor.EnchantingStructureProcessorTypes;
+import somemod.magic.block.MagicBlocks;
+import somemod.magic.block.entity.MagicBlockEntities;
+import somemod.magic.enchantment.MagicEnchantments;
+import somemod.magic.entity.effect.MagicStatusEffects;
+import somemod.magic.item.MagicItems;
+import somemod.magic.potion.MagicPotions;
+import somemod.magic.screen.MagicScreenHandlers;
+import somemod.magic.world_gen.structure.MagicStructurePieceTypes;
+import somemod.magic.world_gen.structure.MagicStructureTypes;
+import somemod.magic.world_gen.structure.processor.MagicStructureProcessorTypes;
 
 import java.util.Arrays;
 import java.util.List;
@@ -76,16 +76,16 @@ public class SomeMod implements ModInitializer {
 	private static void notifyFabric() {
 		CrystalBlocks.notifyFabric();
 		CrystalItems.notifyFabric();
-		EnchantingBlocks.notifyFabric();
-		EnchantingBlockEntities.notifyFabric();
-		EnchantingItems.notifyFabric();
-		EnchantingScreenHandlers.notifyFabric();
-		EnchantingStructureTypes.notifyFabric();
-		EnchantingStructurePieceTypes.notifyFabric();
-		EnchantingStructureProcessorTypes.notifyFabric();
-		EnchantingEnchantments.notifyFabric();
-		EnchantingStatusEffects.notifyFabric();
-		EnchantingPotions.notifyFabric();
+		MagicBlocks.notifyFabric();
+		MagicBlockEntities.notifyFabric();
+		MagicItems.notifyFabric();
+		MagicScreenHandlers.notifyFabric();
+		MagicStructureTypes.notifyFabric();
+		MagicStructurePieceTypes.notifyFabric();
+		MagicStructureProcessorTypes.notifyFabric();
+		MagicEnchantments.notifyFabric();
+		MagicStatusEffects.notifyFabric();
+		MagicPotions.notifyFabric();
 	}
 
 	public static void logKeyRegistration(String path, String registry) {
