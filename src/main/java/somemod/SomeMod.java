@@ -24,6 +24,7 @@ import somemod.crystal.block.CrystalBlocks;
 import somemod.crystal.item.CrystalItems;
 import somemod.crystal.world_gen.CrystalGeneration;
 import somemod.crystal.world_gen.feature.CrystalFeatures;
+import somemod.frost.item.FrostItems;
 import somemod.magic.block.MagicBlocks;
 import somemod.magic.block.entity.MagicBlockEntities;
 import somemod.magic.enchantment.MagicEnchantments;
@@ -76,6 +77,7 @@ public class SomeMod implements ModInitializer {
 	private static void notifyFabric() {
 		CrystalBlocks.notifyFabric();
 		CrystalItems.notifyFabric();
+		
 		MagicBlocks.notifyFabric();
 		MagicBlockEntities.notifyFabric();
 		MagicItems.notifyFabric();
@@ -86,6 +88,8 @@ public class SomeMod implements ModInitializer {
 		MagicEnchantments.notifyFabric();
 		MagicStatusEffects.notifyFabric();
 		MagicPotions.notifyFabric();
+		
+		FrostItems.notifyFabric();
 	}
 
 	public static void logKeyRegistration(String path, String registry) {

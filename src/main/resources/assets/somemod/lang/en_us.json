@@ -65,11 +65,6 @@
     "item.somemod.pirate_pants": "Pirate Pants",
     "item.somemod.pirate_boots": "Pirate Boots",
 
-    "item.somemod.arctic_hat": "Arctic Hat",
-    "item.somemod.arctic_jacket": "Arctic Jacket",
-    "item.somemod.arctic_pants": "Arctic Pants",
-    "item.somemod.arctic_boots": "Arctic Boots",
-
     "item.somemod.alchemist_jacket": "Alchemist Jacket",
     "item.somemod.alchemist_pants": "Alchemist Pants",
     "item.somemod.alchemist_boots": "Alchemist Boots",
@@ -103,11 +98,6 @@
     "item.somemod.divine_leggings": "Divine Leggings",
     "item.somemod.divine_boots": "Divine Boots",
 
-    "item.somemod.glacier_helmet": "Glacier Helmet",
-    "item.somemod.glacier_chestplate": "Glacier Chestplate",
-    "item.somemod.glacier_leggings": "Glacier Leggings",
-    "item.somemod.glacier_boots": "Glacier Boots",
-
     "item.somemod.necrotic_mask": "Necrotic Mask",
     "item.somemod.necrotic_chestplate": "Necrotic Chestplate",
     "item.somemod.necrotic_leggings": "Necrotic Leggings",
@@ -116,7 +106,7 @@
     "item.somemod.living_mask": "Living Mask",
     "item.somemod.living_suit": "Living Suit",
     "item.somemod.living_leggings": "Living Leggings",
-    "item.somemod.living_shoes": "Living Shoes",
+    "item.somemod.living_boots": "Living Boots",
 
     "item.somemod.shadow_mask": "Shadow Mask",
     "item.somemod.shadow_chestplate": "Shadow Chestplate",
@@ -203,6 +193,26 @@
     "item.minecraft.tipped_arrow.effect.mighty_miners": "Migthy Miner's Tipped Arrow",
     "item.minecraft.tipped_arrow.effect.swift_hands": "Tipped Arrow of Swift Hands",
     "item.minecraft.tipped_arrow.effect.meditation": "Meditation Tipped Arrow",
-    "item.minecraft.tipped_arrow.effect.agility": "Tipped Arrow of Agility"
+    "item.minecraft.tipped_arrow.effect.agility": "Tipped Arrow of Agility",
     //#endregion
+
+    //#region FROST
+    "item.somemod.arctic_hat": "Arctic Hat",
+    "item.somemod.arctic_jacket": "Arctic Jacket",
+    "item.somemod.arctic_pants": "Arctic Pants",
+    "item.somemod.arctic_boots": "Arctic Boots",
+
+    "item.somemod.glacier_helmet": "Glacier Helmet",
+    "item.somemod.glacier_chestplate": "Glacier Chestplate",
+    "item.somemod.glacier_leggings": "Glacier Leggings",
+    "item.somemod.glacier_boots": "Glacier Boots",
+
+    "item.somemod.blizzard_boots": "Blizzard Boots",
+
+    "item.somemod.frostbite_chestplate": "Frostbite Chestplate",
+    "item.somemod.frostbite_leggings": "Frostbite Leggings",
+
+    "item.somemod.ice_queen_crown": "Ice Queen Crown"
+    //#endregion
+
 }
