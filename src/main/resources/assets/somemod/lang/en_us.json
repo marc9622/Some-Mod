@@ -13,6 +13,11 @@
     "item.somemod.crystal_axe": "Crystal Axe",
     "item.somemod.crystal_hoe": "Crystal Hoe",
 
+    "item.somemod.dragon_scale_helmet": "Dragon Scale Helmet",
+    "item.somemod.dragon_scale_chestplate": "Dragon Scale Chestplate",
+    "item.somemod.dragon_scale_leggings": "Dragon Scale Leggings",
+    "item.somemod.dragon_scale_boots": "Dragon Scale Boots",
+
     "item.somemod.crystal_helmet": "Crystal Helmet",
     "item.somemod.crystal_chestplate": "Crystal Chestplate",
     "item.somemod.crystal_leggings": "Crystal Leggings",
@@ -44,6 +49,96 @@
 
     "block.somemod.enchanted_bookshelf": "Enchanted Bookshelf",
     "block.somemod.obsidian_enchanted_bookshelf": "Obsidian Enchanted Bookshelf",
+
+    //#region Armor
+    "item.somemod.arcane_hat": "Arcane Hat",
+    "item.somemod.arcane_robe": "Arcane Robe",
+    "item.somemod.arcane_pants": "Arcane Pants",
+    
+    "item.somemod.honey_mask": "Honey Mask",
+    "item.somemod.honey_chestpiece": "Honey Chestpiece",
+    "item.somemod.honey_leggings": "Honey Leggings",
+    "item.somemod.honey_boots": "Honey Boots",
+
+    "item.somemod.pirate_hat": "Pirate Hat",
+    "item.somemod.pirate_shirt": "Pirate Shirt",
+    "item.somemod.pirate_pants": "Pirate Pants",
+    "item.somemod.pirate_boots": "Pirate Boots",
+
+    "item.somemod.arctic_hat": "Arctic Hat",
+    "item.somemod.arctic_jacket": "Arctic Jacket",
+    "item.somemod.arctic_pants": "Arctic Pants",
+    "item.somemod.arctic_boots": "Arctic Boots",
+
+    "item.somemod.alchemist_jacket": "Alchemist Jacket",
+    "item.somemod.alchemist_pants": "Alchemist Pants",
+    "item.somemod.alchemist_boots": "Alchemist Boots",
+
+    "item.somemod.elven_helmet": "Elven Helmet",
+    "item.somemod.elven_chestplate": "Elven Chestplate",
+    "item.somemod.elven_leggings": "Elven Leggings",
+    "item.somemod.elven_boots": "Elven Boots",
+
+    "item.somemod.oceanic_mask": "Oceanic Mask",
+    "item.somemod.oceanic_suit": "Oceanic Suit",
+    "item.somemod.oceanic_leggings": "Oceanic Leggings",
+    "item.somemod.oceanic_shoes": "Oceanic Shoes",
+
+    "item.somemod.desert_helmet": "Desert Helmet",
+    "item.somemod.desert_chestplate": "Desert Chestplate",
+    "item.somemod.desert_leggings": "Desert Leggings",
+    "item.somemod.desert_boots": "Desert Boots",
+
+    "item.somemod.lunar_helmet": "Lunar Helmet",
+    "item.somemod.lunar_chestplate": "Lunar Chestplate",
+    "item.somemod.lunar_leggings": "Lunar Leggings",
+    "item.somemod.lunar_boots": "Lunar Boots",
+
+    "item.somemod.phantom_mask": "Phantom Mask",
+    "item.somemod.phantom_chestplate": "Phantom Chestplate",
+    "item.somemod.phantom_leggings": "Phantom Leggings",
+
+    "item.somemod.divine_helmet": "Divine Helmet",
+    "item.somemod.divine_chestplate": "Divine Chestplate",
+    "item.somemod.divine_leggings": "Divine Leggings",
+    "item.somemod.divine_boots": "Divine Boots",
+
+    "item.somemod.glacier_helmet": "Glacier Helmet",
+    "item.somemod.glacier_chestplate": "Glacier Chestplate",
+    "item.somemod.glacier_leggings": "Glacier Leggings",
+    "item.somemod.glacier_boots": "Glacier Boots",
+
+    "item.somemod.necrotic_mask": "Necrotic Mask",
+    "item.somemod.necrotic_chestplate": "Necrotic Chestplate",
+    "item.somemod.necrotic_leggings": "Necrotic Leggings",
+    "item.somemod.necrotic_boots": "Necrotic Boots",
+
+    "item.somemod.living_mask": "Living Mask",
+    "item.somemod.living_suit": "Living Suit",
+    "item.somemod.living_leggings": "Living Leggings",
+    "item.somemod.living_shoes": "Living Shoes",
+
+    "item.somemod.shadow_mask": "Shadow Mask",
+    "item.somemod.shadow_chestplate": "Shadow Chestplate",
+    "item.somemod.shadow_leggings": "Shadow Leggings",
+
+    "item.somemod.angelic_chestplate": "Angelic Chestplate",
+    "item.somemod.angelic_leggings": "Angelic Leggings",
+
+    "item.somemod.deep_sea_mask": "Deep Sea Mask",
+    "item.somemod.deep_sea_chestplate": "Deep Sea Chestplate",
+    "item.somemod.deep_sea_leggings": "Deep Sea Leggings",
+    "item.somemod.deep_sea_boots": "Deep Sea Boots",
+
+    "item.somemod.magma_chestplate": "Magma Chestplate",
+    "item.somemod.magma_leggings": "Magma Leggings",
+    "item.somemod.magma_boots": "Magma Boots",
+
+    "item.somemod.guardian_helmet": "Guardian Helmet",
+    "item.somemod.guardian_chestplate": "Guardian Chestplate",
+    "item.somemod.guardian_leggings": "Guardian Leggings",
+    "item.somemod.guardian_boots": "Guardian Boots",
+    //#endregion
 
     "enchantment.somemod.dashing": "Dashing",
     "enchantment.somemod.hermes": "Hermes Sprint",

@@ -38,10 +38,10 @@ public class MagicItems {
     public static final Item PIRATE_PANTS = defaultArmorItem("pirate_pants", PIRATE, EquipmentSlot.LEGS).addGroupAfter(ItemGroups.COMBAT, PIRATE_SHIRT).build();
     public static final Item PIRATE_BOOTS = defaultArmorItem("pirate_boots", PIRATE, EquipmentSlot.FEET).addGroupAfter(ItemGroups.COMBAT, PIRATE_PANTS).build();
 
-    public static final Item ARCTIC_HAT    = defaultArmorItem("arctic_hat",   ARCTIC, EquipmentSlot.HEAD).addGroupAfter(ItemGroups.COMBAT, PIRATE_BOOTS).build();
-    public static final Item ARCTIC_JACKET = defaultArmorItem("arctic_shirt", ARCTIC, EquipmentSlot.CHEST).addGroupAfter(ItemGroups.COMBAT, ARCTIC_HAT).build();
-    public static final Item ARCTIC_PANTS  = defaultArmorItem("arctic_pants", ARCTIC, EquipmentSlot.LEGS).addGroupAfter(ItemGroups.COMBAT, ARCTIC_JACKET).build();
-    public static final Item ARCTIC_BOOTS  = defaultArmorItem("arctic_boots", ARCTIC, EquipmentSlot.FEET).addGroupAfter(ItemGroups.COMBAT, ARCTIC_PANTS).build();
+    public static final Item ARCTIC_HAT    = defaultArmorItem("arctic_hat",    ARCTIC, EquipmentSlot.HEAD).addGroupAfter(ItemGroups.COMBAT, PIRATE_BOOTS).build();
+    public static final Item ARCTIC_JACKET = defaultArmorItem("arctic_jacket", ARCTIC, EquipmentSlot.CHEST).addGroupAfter(ItemGroups.COMBAT, ARCTIC_HAT).build();
+    public static final Item ARCTIC_PANTS  = defaultArmorItem("arctic_pants",  ARCTIC, EquipmentSlot.LEGS).addGroupAfter(ItemGroups.COMBAT, ARCTIC_JACKET).build();
+    public static final Item ARCTIC_BOOTS  = defaultArmorItem("arctic_boots",  ARCTIC, EquipmentSlot.FEET).addGroupAfter(ItemGroups.COMBAT, ARCTIC_PANTS).build();
 
     public static final Item ALCHEMIST_JACKET = defaultArmorItem("alchemist_jacket", ALCHEMIST, EquipmentSlot.CHEST).addGroupAfter(ItemGroups.COMBAT, ARCTIC_BOOTS).build();
     public static final Item ALCHEMIST_PANTS  = defaultArmorItem("alchemist_pants",  ALCHEMIST, EquipmentSlot.LEGS).addGroupAfter(ItemGroups.COMBAT, ALCHEMIST_JACKET).build();
