@@ -47,10 +47,10 @@ public class MagicItems {
     public static final Item ELVEN_LEGGINGS   = defaultArmorItem("elven_leggings",   ELVEN, EquipmentSlot.LEGS).addGroupAfter(ItemGroups.COMBAT, ELVEN_CHESTPLATE).build();
     public static final Item ELVEN_BOOTS      = defaultArmorItem("elven_boots",      ELVEN, EquipmentSlot.FEET).addGroupAfter(ItemGroups.COMBAT, ELVEN_LEGGINGS).build();
     
-    public static final Item OCEANIC_MASK     = defaultArmorItem("oceanic_mask",    OCEANIC, EquipmentSlot.HEAD).addGroupAfter(ItemGroups.COMBAT, Items.CHAINMAIL_BOOTS).build();
-    public static final Item OCEANIC_SUIT     = defaultArmorItem("oceanic_suit",    OCEANIC, EquipmentSlot.CHEST).addGroupAfter(ItemGroups.COMBAT, OCEANIC_MASK).build();
+    public static final Item OCEANIC_MASK     = defaultArmorItem("oceanic_mask",     OCEANIC, EquipmentSlot.HEAD).addGroupAfter(ItemGroups.COMBAT, Items.CHAINMAIL_BOOTS).build();
+    public static final Item OCEANIC_SUIT     = defaultArmorItem("oceanic_suit",     OCEANIC, EquipmentSlot.CHEST).addGroupAfter(ItemGroups.COMBAT, OCEANIC_MASK).build();
     public static final Item OCEANIC_LEGGINGS = defaultArmorItem("oceanic_leggings", OCEANIC, EquipmentSlot.LEGS).addGroupAfter(ItemGroups.COMBAT, OCEANIC_SUIT).build();
-    public static final Item OCEANIC_SHOES    = defaultArmorItem("oceanic_shoes",   OCEANIC, EquipmentSlot.FEET).addGroupAfter(ItemGroups.COMBAT, OCEANIC_LEGGINGS).build();
+    public static final Item OCEANIC_SHOES    = defaultArmorItem("oceanic_shoes",    OCEANIC, EquipmentSlot.FEET).addGroupAfter(ItemGroups.COMBAT, OCEANIC_LEGGINGS).build();
 
     public static final Item DESERT_HELMET     = defaultArmorItem("desert_helmet",     DESERT, EquipmentSlot.HEAD).addGroupAfter(ItemGroups.COMBAT, OCEANIC_SHOES).build();
     public static final Item DESERT_CHESTPLATE = defaultArmorItem("desert_chestplate", DESERT, EquipmentSlot.CHEST).addGroupAfter(ItemGroups.COMBAT, DESERT_HELMET).build();

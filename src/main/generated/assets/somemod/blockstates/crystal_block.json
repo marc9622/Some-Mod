@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "somemod:block/crystal_block"
+    }
+  }
+}
