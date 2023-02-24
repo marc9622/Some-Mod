@@ -98,11 +98,11 @@ public class ModelProvider extends FabricModelProvider {
             //#region MAGIC
             ARCANE_HAT,
             ARCANE_ROBE,
-            ARCANE_LEGGINGS,
+            ARCANE_PANTS,
 
             HONEY_MASK,
             HONEY_CHESTPIECE,
-            HONEY_LEGGINGS,
+            HONEY_LEGPIECE,
             HONEY_BOOTS,
             
             PIRATE_HAT,
@@ -155,7 +155,7 @@ public class ModelProvider extends FabricModelProvider {
             
             SHADOW_MASK,
             SHADOW_CHESTPIECE,
-            SHADOW_LEGGINGS,
+            SHADOW_LEGPIECE,
 
             ANGELIC_CHESTPLATE,
             ANGELIC_LEGGINGS,

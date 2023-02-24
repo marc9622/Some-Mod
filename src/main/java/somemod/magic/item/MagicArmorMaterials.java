@@ -11,8 +11,8 @@ public enum MagicArmorMaterials implements ArmorMaterial {
     
 	//TODO: Make original materials for some of these
 	ARCANE("arcane_robe", 6, new int[]{1, 2, 3, 1}, 27, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0f, 0.0f, Ingredient.ofItems(Items.LEATHER)),
+	PIRATE("pirate", 	 11, new int[]{1, 3, 4, 1}, 6,  SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0f, 0.0f, Ingredient.ofItems(Items.LEATHER)),
 	HONEY("honey", 		 5,  new int[]{1, 3, 4, 1}, 12, SoundEvents.ITEM_ARMOR_EQUIP_GOLD,    0.0f, 0.05f, Ingredient.ofItems(Items.HONEYCOMB)),
-	PIRATE("pirate", 	 11, new int[]{1, 3, 5, 1}, 6,  SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0f, 0.0f, Ingredient.ofItems(Items.LEATHER)),
 	ALCHEMIST("alchemist", 7, new int[]{2, 3, 4, 2}, 17, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0f, 0.0f, Ingredient.ofItems(Items.GLASS_BOTTLE)),
 	ELVEN("elven", 		 12, new int[]{2, 3, 4, 2}, 22, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0f, 0.0f, Ingredient.ofItems(Items.LEATHER)),
 	OCEANIC("oceanic", 	 10, new int[]{2, 4, 4, 2}, 15, SoundEvents.ITEM_ARMOR_EQUIP_TURTLE,  0.0f, 0.0f, Ingredient.ofItems(Items.FIRE_CORAL)),

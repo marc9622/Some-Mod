@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "somemod:item/honey_leggings"
+    "layer0": "somemod:item/shadow_legpiece"
   }
 }

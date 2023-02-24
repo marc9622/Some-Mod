@@ -24,19 +24,19 @@ public class MagicItems {
         }).modifySettings(s -> s.rarity(Rarity.RARE)).addGroupAfter(ItemGroups.FUNCTIONAL, ENCHANTED_BOOKSHELF_ITEM).build(); // Or maybe next to enchanting table instead?
 
     //#region ARMOR
-    public static final Item ARCANE_HAT      = defaultArmorItem("arcane_hat",   ARCANE, EquipmentSlot.CHEST).addGroupAfter(ItemGroups.COMBAT, Items.LEATHER_BOOTS).build();
-    public static final Item ARCANE_ROBE     = defaultArmorItem("arcane_robe",  ARCANE, EquipmentSlot.CHEST).addGroupAfter(ItemGroups.COMBAT, ARCANE_HAT).build();
-    public static final Item ARCANE_LEGGINGS = defaultArmorItem("arcane_pants", ARCANE, EquipmentSlot.LEGS).addGroupAfter(ItemGroups.COMBAT, ARCANE_ROBE).build();
+    public static final Item ARCANE_HAT   = defaultArmorItem("arcane_hat",   ARCANE, EquipmentSlot.HEAD).addGroupAfter(ItemGroups.COMBAT, Items.LEATHER_BOOTS).build();
+    public static final Item ARCANE_ROBE  = defaultArmorItem("arcane_robe",  ARCANE, EquipmentSlot.CHEST).addGroupAfter(ItemGroups.COMBAT, ARCANE_HAT).build();
+    public static final Item ARCANE_PANTS = defaultArmorItem("arcane_pants", ARCANE, EquipmentSlot.LEGS).addGroupAfter(ItemGroups.COMBAT, ARCANE_ROBE).build();
     
-    public static final Item HONEY_MASK       = defaultArmorItem("honey_mask",       HONEY, EquipmentSlot.HEAD).addGroupAfter(ItemGroups.COMBAT, ARCANE_LEGGINGS).build();
-    public static final Item HONEY_CHESTPIECE = defaultArmorItem("honey_chestpiece", HONEY, EquipmentSlot.CHEST).addGroupAfter(ItemGroups.COMBAT, HONEY_MASK).build();
-    public static final Item HONEY_LEGGINGS   = defaultArmorItem("honey_leggings",   HONEY, EquipmentSlot.LEGS).addGroupAfter(ItemGroups.COMBAT, HONEY_CHESTPIECE).build();
-    public static final Item HONEY_BOOTS      = defaultArmorItem("honey_boots",      HONEY, EquipmentSlot.FEET).addGroupAfter(ItemGroups.COMBAT, HONEY_LEGGINGS).build();
-    
-    public static final Item PIRATE_HAT   = defaultArmorItem("pirate_hat",   PIRATE, EquipmentSlot.HEAD).addGroupAfter(ItemGroups.COMBAT, HONEY_BOOTS).build();
+    public static final Item PIRATE_HAT   = defaultArmorItem("pirate_hat",   PIRATE, EquipmentSlot.HEAD).addGroupAfter(ItemGroups.COMBAT, ARCANE_PANTS).build();
     public static final Item PIRATE_SHIRT = defaultArmorItem("pirate_shirt", PIRATE, EquipmentSlot.CHEST).addGroupAfter(ItemGroups.COMBAT, PIRATE_HAT).build();
     public static final Item PIRATE_PANTS = defaultArmorItem("pirate_pants", PIRATE, EquipmentSlot.LEGS).addGroupAfter(ItemGroups.COMBAT, PIRATE_SHIRT).build();
     public static final Item PIRATE_BOOTS = defaultArmorItem("pirate_boots", PIRATE, EquipmentSlot.FEET).addGroupAfter(ItemGroups.COMBAT, PIRATE_PANTS).build();
+    
+    public static final Item HONEY_MASK       = defaultArmorItem("honey_mask",       HONEY, EquipmentSlot.HEAD).addGroupAfter(ItemGroups.COMBAT, PIRATE_BOOTS).build();
+    public static final Item HONEY_CHESTPIECE = defaultArmorItem("honey_chestpiece", HONEY, EquipmentSlot.CHEST).addGroupAfter(ItemGroups.COMBAT, HONEY_MASK).build();
+    public static final Item HONEY_LEGPIECE   = defaultArmorItem("honey_legpiece",   HONEY, EquipmentSlot.LEGS).addGroupAfter(ItemGroups.COMBAT, HONEY_CHESTPIECE).build();
+    public static final Item HONEY_BOOTS      = defaultArmorItem("honey_boots",      HONEY, EquipmentSlot.FEET).addGroupAfter(ItemGroups.COMBAT, HONEY_LEGPIECE).build();
 
     public static final Item ALCHEMIST_JACKET = defaultArmorItem("alchemist_jacket", ALCHEMIST, EquipmentSlot.CHEST).addGroupAfter(ItemGroups.COMBAT, PIRATE_BOOTS).build();
     public static final Item ALCHEMIST_PANTS  = defaultArmorItem("alchemist_pants",  ALCHEMIST, EquipmentSlot.LEGS).addGroupAfter(ItemGroups.COMBAT, ALCHEMIST_JACKET).build();
@@ -82,10 +82,10 @@ public class MagicItems {
     public static final Item LIVING_BOOTS    = defaultArmorItem("living_boots",    LIVING, EquipmentSlot.FEET).addGroupAfter(ItemGroups.COMBAT, LIVING_LEGGINGS).build();
 
     public static final Item SHADOW_MASK       = defaultArmorItem("shadow_mask",       SHADOW, EquipmentSlot.HEAD).addGroupAfter(ItemGroups.COMBAT, Items.IRON_BOOTS).build();
-    public static final Item SHADOW_CHESTPIECE = defaultArmorItem("shadow_chestplate", SHADOW, EquipmentSlot.CHEST).addGroupAfter(ItemGroups.COMBAT, SHADOW_MASK).build();
-    public static final Item SHADOW_LEGGINGS   = defaultArmorItem("shadow_leggings",   SHADOW, EquipmentSlot.LEGS).addGroupAfter(ItemGroups.COMBAT, SHADOW_CHESTPIECE).build();
+    public static final Item SHADOW_CHESTPIECE = defaultArmorItem("shadow_chestpiece", SHADOW, EquipmentSlot.CHEST).addGroupAfter(ItemGroups.COMBAT, SHADOW_MASK).build();
+    public static final Item SHADOW_LEGPIECE   = defaultArmorItem("shadow_legpiece",   SHADOW, EquipmentSlot.LEGS).addGroupAfter(ItemGroups.COMBAT, SHADOW_CHESTPIECE).build();
 
-    public static final Item ANGELIC_CHESTPLATE = defaultArmorItem("angelic_chestplate", ANGELIC, EquipmentSlot.CHEST).addGroupAfter(ItemGroups.COMBAT, SHADOW_LEGGINGS).build();
+    public static final Item ANGELIC_CHESTPLATE = defaultArmorItem("angelic_chestplate", ANGELIC, EquipmentSlot.CHEST).addGroupAfter(ItemGroups.COMBAT, SHADOW_LEGPIECE).build();
     public static final Item ANGELIC_LEGGINGS   = defaultArmorItem("angelic_leggings",   ANGELIC, EquipmentSlot.LEGS).addGroupAfter(ItemGroups.COMBAT, ANGELIC_CHESTPLATE).build();
 
     public static final Item DEEP_SEA_MASK       = defaultArmorItem("deep_sea_mask",       DEEP_SEA, EquipmentSlot.HEAD).addGroupAfter(ItemGroups.COMBAT, ANGELIC_LEGGINGS).build();
@@ -93,7 +93,7 @@ public class MagicItems {
     public static final Item DEEP_SEA_LEGGINGS   = defaultArmorItem("deep_sea_leggings",   DEEP_SEA, EquipmentSlot.LEGS).addGroupAfter(ItemGroups.COMBAT, DEEP_SEA_CHESTPLATE).build();
     public static final Item DEEP_SEA_BOOTS      = defaultArmorItem("deep_sea_boots",      DEEP_SEA, EquipmentSlot.FEET).addGroupAfter(ItemGroups.COMBAT, DEEP_SEA_LEGGINGS).build();
 
-    public static final Item MAGMA_CHESTPLATE = defaultArmorItem("magma_chestplate", MAGMA, EquipmentSlot.CHEST).addGroupAfter(ItemGroups.COMBAT, DEEP_SEA_BOOTS).build();
+    public static final Item MAGMA_CHESTPLATE = defaultArmorItem("magma_chestplate", MAGMA, EquipmentSlot.CHEST).addGroupAfter(ItemGroups.COMBAT, Items.GOLDEN_BOOTS).build();
     public static final Item MAGMA_LEGGINGS   = defaultArmorItem("magma_leggings",   MAGMA, EquipmentSlot.LEGS).addGroupAfter(ItemGroups.COMBAT, MAGMA_CHESTPLATE).build();
     public static final Item MAGMA_BOOTS      = defaultArmorItem("magma_boots",      MAGMA, EquipmentSlot.FEET).addGroupAfter(ItemGroups.COMBAT, MAGMA_LEGGINGS).build();
 
