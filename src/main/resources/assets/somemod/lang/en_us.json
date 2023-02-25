@@ -50,6 +50,8 @@
     "block.somemod.enchanted_bookshelf": "Enchanted Bookshelf",
     "block.somemod.obsidian_enchanted_bookshelf": "Obsidian Enchanted Bookshelf",
 
+    "block.somemod.forgotten_chest": "Forgotten Chest",
+
     //#region Armor
     "item.somemod.arcane_hat": "Arcane Hat",
     "item.somemod.arcane_robe": "Arcane Robe",
@@ -57,7 +59,7 @@
     
     "item.somemod.honey_mask": "Honey Mask",
     "item.somemod.honey_chestpiece": "Honey Chestpiece",
-    "item.somemod.honey_leggings": "Honey Leggings",
+    "item.somemod.honey_legpiece": "Honey Legpiece",
     "item.somemod.honey_boots": "Honey Boots",
 
     "item.somemod.pirate_hat": "Pirate Hat",

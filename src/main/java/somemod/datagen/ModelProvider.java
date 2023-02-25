@@ -7,6 +7,7 @@ import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.Models;
 import net.minecraft.data.client.TextureMap;
+import somemod.SomeMod;
 
 import static somemod.crystal.block.CrystalBlocks.*;
 import static somemod.crystal.item.CrystalItems.*;
@@ -44,13 +45,14 @@ public class ModelProvider extends FabricModelProvider {
             OBSIDIAN_ENCHANTED_BOOKSHELF,
             TextureMap.sideEnd(TextureMap.getId(OBSIDIAN_ENCHANTED_BOOKSHELF), TextureMap.getId(Blocks.OBSIDIAN)),
             Models.CUBE_COLUMN);
+
+        generator.registerBuiltin(SomeMod.id("block/forgotten_chest"), Blocks.OAK_PLANKS).includeWithoutItem(FORGOTTEN_CHEST);
         //#endregion
 
     }
 
     @Override
     public void generateItemModels(ItemModelGenerator generator) {
-        
         Stream.of(
             //#region CRYSTAL
             CRYSTAL_DUST,
@@ -75,26 +77,6 @@ public class ModelProvider extends FabricModelProvider {
             DRAGON_SCALE_LEGGINGS,
             DRAGON_SCALE_BOOTS,
             //#endregion
-            
-            //#region FROST
-            ARCTIC_HAT,
-            ARCTIC_JACKET,
-            ARCTIC_PANTS,
-            ARCTIC_BOOTS,
-
-            GLACIER_HELMET,
-            GLACIER_CHESTPLATE,
-            GLACIER_LEGGINGS,
-            GLACIER_BOOTS,
-
-            BLIZZARD_BOOTS,
-
-            FROSTBITE_CHESTPLATE,
-            FROSTBITE_LEGGINGS,
-
-            ICE_QUEEN_CROWN,
-            //#endregion
-            
             //#region MAGIC
             ARCANE_HAT,
             ARCANE_ROBE,
@@ -172,7 +154,25 @@ public class ModelProvider extends FabricModelProvider {
             GUARDIAN_HELMET,
             GUARDIAN_CHESTPLATE,
             GUARDIAN_LEGGINGS,
-            GUARDIAN_BOOTS
+            GUARDIAN_BOOTS,
+            //#endregion
+            //#region FROST
+            ARCTIC_HAT,
+            ARCTIC_JACKET,
+            ARCTIC_PANTS,
+            ARCTIC_BOOTS,
+
+            GLACIER_HELMET,
+            GLACIER_CHESTPLATE,
+            GLACIER_LEGGINGS,
+            GLACIER_BOOTS,
+
+            BLIZZARD_BOOTS,
+
+            FROSTBITE_CHESTPLATE,
+            FROSTBITE_LEGGINGS,
+
+            ICE_QUEEN_CROWN
             //#endregion
         ).forEach(item -> generator.register(item, Models.GENERATED));
 

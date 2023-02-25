@@ -1,10 +1,8 @@
 package somemod.magic.item;
 
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.Rarity;
 
@@ -15,13 +13,16 @@ import static somemod.utils.ItemBuilder.*;
 public class MagicItems {
     
     public static final Item ENCHANTED_BOOKSHELF_ITEM =
-        fromItem("enchanted_bookshelf", s -> new BlockItem(ENCHANTED_BOOKSHELF, s) {
-            @Override public boolean hasGlint(ItemStack stack) { return false; }
-        }).modifySettings(s -> s.rarity(Rarity.UNCOMMON)).addGroupAfter(ItemGroups.FUNCTIONAL, Items.BOOKSHELF).build(); // Or maybe next to enchanting table instead?
+        defaultBlockItem("enchanted_bookshelf", ENCHANTED_BOOKSHELF)
+        .modifySettings(s -> s.rarity(Rarity.UNCOMMON)).addGroupAfter(ItemGroups.FUNCTIONAL, Items.BOOKSHELF).build(); // Or maybe next to enchanting table instead?
+    
     public static final Item OBSIDIAN_ENCHANTED_BOOKSHELF_ITEM =
-        fromItem("obsidian_enchanted_bookshelf", s -> new BlockItem(OBSIDIAN_ENCHANTED_BOOKSHELF, s) {
-            @Override public boolean hasGlint(ItemStack stack) { return false; }
-        }).modifySettings(s -> s.rarity(Rarity.RARE)).addGroupAfter(ItemGroups.FUNCTIONAL, ENCHANTED_BOOKSHELF_ITEM).build(); // Or maybe next to enchanting table instead?
+        defaultBlockItem("obsidian_enchanted_bookshelf", OBSIDIAN_ENCHANTED_BOOKSHELF)
+        .modifySettings(s -> s.rarity(Rarity.RARE)).addGroupAfter(ItemGroups.FUNCTIONAL, ENCHANTED_BOOKSHELF_ITEM).build(); // Or maybe next to enchanting table instead?
+    
+    public static final Item FORGOTTEN_CHEST_ITEM =
+        defaultBlockItem("forgotten_chest", FORGOTTEN_CHEST)
+        .modifySettings(s -> s.rarity(Rarity.COMMON)).addGroupBefore(ItemGroups.FUNCTIONAL, Items.ENDER_CHEST).build();
 
     //#region ARMOR
     public static final Item ARCANE_HAT   = defaultArmorItem("arcane_hat",   ARCANE, EquipmentSlot.HEAD).addGroupAfter(ItemGroups.COMBAT, Items.LEATHER_BOOTS).build();

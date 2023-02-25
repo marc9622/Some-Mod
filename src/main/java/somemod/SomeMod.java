@@ -27,6 +27,8 @@ import somemod.crystal.world_gen.feature.CrystalFeatures;
 import somemod.frost.item.FrostItems;
 import somemod.magic.block.MagicBlocks;
 import somemod.magic.block.entity.MagicBlockEntities;
+import somemod.magic.block.entity.MagicBlockEntityTypes;
+import somemod.magic.block.entity.render.MagicBlockEntityRendererFactories;
 import somemod.magic.enchantment.MagicEnchantments;
 import somemod.magic.entity.effect.MagicStatusEffects;
 import somemod.magic.item.MagicItems;
@@ -80,6 +82,8 @@ public class SomeMod implements ModInitializer {
 		
 		MagicBlocks.notifyFabric();
 		MagicBlockEntities.notifyFabric();
+		MagicBlockEntityTypes.notifyFabric();
+		MagicBlockEntityRendererFactories.notifyFabric();
 		MagicItems.notifyFabric();
 		MagicScreenHandlers.notifyFabric();
 		MagicStructureTypes.notifyFabric();

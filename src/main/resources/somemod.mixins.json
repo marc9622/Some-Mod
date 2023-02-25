@@ -4,9 +4,10 @@
   "package": "somemod.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [ // Client and server mixins
+    "CustomChestEntityRenderer",
     "EndermanAngeringBlock",
-    "EntitySprinting",
-    "EntityDamageTaken"
+    "EntityDamageTaken",
+    "EntitySprinting"
   ],
   "client": [ // Client-side only mixins
   ],
