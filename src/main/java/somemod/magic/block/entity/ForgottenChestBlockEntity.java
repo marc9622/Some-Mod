@@ -18,7 +18,7 @@ public class ForgottenChestBlockEntity extends CustomChestBlockEntity {
     }
 
     public ForgottenChestBlockEntity(BlockPos blockPos, BlockState blockState) {
-        this(MagicBlockEntityTypes.FORGOTTEN_CHEST, blockPos, blockState);
+        this(MagicBlockEntityTypes.FORGOTTEN_CHEST_ENTITY, blockPos, blockState);
     }
 
     @Override

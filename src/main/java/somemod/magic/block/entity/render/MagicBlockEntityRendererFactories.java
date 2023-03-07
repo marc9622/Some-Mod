@@ -7,7 +7,7 @@ import somemod.magic.block.entity.MagicBlockEntityTypes;
 public class MagicBlockEntityRendererFactories {
     
     static {
-        BlockEntityRendererFactories.register(MagicBlockEntityTypes.FORGOTTEN_CHEST, ChestBlockEntityRenderer::new);
+        BlockEntityRendererFactories.register(MagicBlockEntityTypes.FORGOTTEN_CHEST_ENTITY, ChestBlockEntityRenderer::new);
     }
 
     public static void notifyFabric() {/* This is just here to make sure the class is loaded */}

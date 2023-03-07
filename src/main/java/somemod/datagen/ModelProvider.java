@@ -5,8 +5,10 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
+import net.minecraft.data.client.Model;
 import net.minecraft.data.client.Models;
 import net.minecraft.data.client.TextureMap;
+import net.minecraft.util.Identifier;
 import somemod.SomeMod;
 
 import static somemod.crystal.block.CrystalBlocks.*;
@@ -15,6 +17,7 @@ import static somemod.frost.item.FrostItems.*;
 import static somemod.magic.block.MagicBlocks.*;
 import static somemod.magic.item.MagicItems.*;
 
+import java.util.Optional;
 import java.util.stream.Stream;
 
 public class ModelProvider extends FabricModelProvider {
@@ -176,6 +179,11 @@ public class ModelProvider extends FabricModelProvider {
             //#endregion
         ).forEach(item -> generator.register(item, Models.GENERATED));
 
+        // I believe the JSONs for the chest items in the real game are hand-written for some reason.
+        // But to reuse the model transformations from the chest item, we can just use 'item/chest' as the parent.
+        generator.register(FORGOTTEN_CHEST_ITEM, CHEST_MODEL);
     }
+    
+    private static final Model CHEST_MODEL = new Model(Optional.of(new Identifier("minecrafr", "item/chest")), Optional.empty());
 
 }

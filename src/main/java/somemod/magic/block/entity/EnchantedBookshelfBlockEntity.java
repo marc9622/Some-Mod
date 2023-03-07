@@ -20,7 +20,7 @@ public class EnchantedBookshelfBlockEntity extends BlockEntity implements Nameab
     private Text customName;
 
     public EnchantedBookshelfBlockEntity(BlockPos pos, BlockState state) {
-        super(MagicBlockEntities.ENCHANTED_BOOKSHELF_ENTITY, pos, state);
+        super(MagicBlockEntityTypes.ENCHANTED_BOOKSHELF_ENTITY, pos, state);
     }
 
     @Override

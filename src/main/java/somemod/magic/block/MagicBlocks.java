@@ -19,7 +19,7 @@ public class MagicBlocks {
         .modifySettings(s -> s.strength(5.0f, 1200.0f).luminance(state -> 7).sounds(BlockSoundGroup.STONE).mapColor(MapColor.BLACK).requiresTool()).build();
 
     public static final Block FORGOTTEN_CHEST =
-        fromBlock("forgotten_chest", settings -> new CustomChestBlock(settings, () -> MagicBlockEntityTypes.FORGOTTEN_CHEST), Material.WOOD)
+        fromBlock("forgotten_chest", settings -> new CustomChestBlock(settings, () -> MagicBlockEntityTypes.FORGOTTEN_CHEST_ENTITY), Material.WOOD)
         .modifySettings(s -> s.strength(2,5f).sounds(BlockSoundGroup.WOOD)).build();
 
     public static void notifyFabric() {/* This is just here to make sure the class is loaded */}
