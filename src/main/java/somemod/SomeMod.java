@@ -2,6 +2,7 @@ package somemod;
 
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.registry.Registerable;
+import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.entry.RegistryEntry;
@@ -22,7 +23,7 @@ import net.minecraft.world.gen.placementmodifier.PlacementModifier;
 import net.minecraft.world.gen.structure.Structure;
 import somemod.crystal.block.CrystalBlocks;
 import somemod.crystal.item.CrystalItems;
-import somemod.crystal.world_gen.CrystalGeneration;
+import somemod.crystal.world_gen.CrystalBiomeModifications;
 import somemod.crystal.world_gen.feature.CrystalFeatures;
 import somemod.frost.item.FrostItems;
 import somemod.magic.block.MagicBlocks;
@@ -63,12 +64,7 @@ public class SomeMod implements ModInitializer {
 
 		// LOGGER.info("Hello Fabric world!");
 
-		addRegistryEntries();
-	}
-	
-	private static void addRegistryEntries() {
-		CrystalFeatures.register();
-		CrystalGeneration.generateCrystalFeatures();
+		CrystalBiomeModifications.addCrystalModifications();
 	}
 
 	/**
@@ -78,6 +74,7 @@ public class SomeMod implements ModInitializer {
 	private static void notifyFabric() {
 		CrystalBlocks.notifyFabric();
 		CrystalItems.notifyFabric();
+		CrystalFeatures.notifyFabric();
 		
 		MagicBlocks.notifyFabric();
 		MagicBlockEntityTypes.notifyFabric();
@@ -115,6 +112,10 @@ public class SomeMod implements ModInitializer {
 	public static <R, T extends R> Reference<R> register(Registerable<R> registerable, RegistryKey<R> key, T entry) {
 		logRegistration(key.getValue().toString(), key.getRegistry().getPath().toString());
 		return registerable.register(key, entry);
+	}
+
+	public static <FC extends FeatureConfig> Feature<FC> registerFeature(String path, Feature<FC> feature) {
+		return SomeMod.register(Registries.FEATURE, path, feature);
 	}
 
 	public static <FC extends FeatureConfig, F extends Feature<FC>> Reference<ConfiguredFeature<?, ?>> registerConfiguredFeature(Registerable<ConfiguredFeature<?, ?>> registerable, RegistryKey<ConfiguredFeature<?, ?>> key, F feature, FC config) {

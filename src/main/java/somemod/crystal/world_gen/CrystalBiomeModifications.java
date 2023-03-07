@@ -5,9 +5,9 @@ import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.minecraft.world.gen.GenerationStep;
 import somemod.crystal.world_gen.feature.CrystalPlacedFeatures;
 
-public class CrystalGeneration {
+public class CrystalBiomeModifications {
     
-    public static void generateCrystalFeatures() {
+    public static void addCrystalModifications() {
 
         BiomeModifications.addFeature(BiomeSelectors.foundInTheEnd(), GenerationStep.Feature.SURFACE_STRUCTURES, CrystalPlacedFeatures.END_CRYSTAL_GLASS_PLACED_FEATURE);
 
