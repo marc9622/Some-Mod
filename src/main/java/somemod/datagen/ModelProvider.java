@@ -184,6 +184,6 @@ public class ModelProvider extends FabricModelProvider {
         generator.register(FORGOTTEN_CHEST_ITEM, CHEST_MODEL);
     }
     
-    private static final Model CHEST_MODEL = new Model(Optional.of(new Identifier("minecrafr", "item/chest")), Optional.empty());
+    private static final Model CHEST_MODEL = new Model(Optional.of(new Identifier("minecraft", "item/chest")), Optional.empty());
 
 }
