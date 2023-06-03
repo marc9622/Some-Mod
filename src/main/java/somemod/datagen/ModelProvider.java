@@ -103,6 +103,7 @@ public class ModelProvider extends FabricModelProvider {
             ELVEN_CHESTPLATE,
             ELVEN_LEGGINGS,
             ELVEN_BOOTS,
+            ELVEN_STEEL,
             
             OCEANIC_MASK,
             OCEANIC_SUIT,

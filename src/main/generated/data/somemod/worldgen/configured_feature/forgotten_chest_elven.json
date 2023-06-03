@@ -1,0 +1,9 @@
+{
+  "type": "somemod:forgotten_chest",
+  "config": {
+    "custom_name": {
+      "text": "Forgotten Elven Chest"
+    },
+    "loot_table": "somemod:chests/elven_chest"
+  }
+}

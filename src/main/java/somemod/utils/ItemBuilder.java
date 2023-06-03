@@ -6,7 +6,6 @@ import java.util.function.UnaryOperator;
 
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.Block;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.BlockItem;
@@ -34,8 +33,8 @@ public class ItemBuilder {
         return fromItem(name, Item::new);
     }
 
-    public static ItemBuilder defaultArmorItem(String name, ArmorMaterial material, EquipmentSlot slot) {
-        return fromItem(name, settings -> new ArmorItem(material, slot, settings));
+    public static ItemBuilder defaultArmorItem(String name, ArmorMaterial material, ArmorItem.Type type) {
+        return fromItem(name, settings -> new ArmorItem(material, type, settings));
     }
 
     public static ItemBuilder defaultBlockItem(String name, Block block) {
@@ -57,13 +56,13 @@ public class ItemBuilder {
         return this;
     }
     
-    public ItemBuilder addGroupAfter(ItemGroup group, Item after) {
+    public ItemBuilder groupAfter(ItemGroup group, Item after) {
         groupAdder = groupAdder.andThen(
             item -> ItemGroupEvents.modifyEntriesEvent(group).register(content -> content.addAfter(after, item)));
         return this;
     }
     
-    public ItemBuilder addGroupBefore(ItemGroup group, Item before) {
+    public ItemBuilder groupBefore(ItemGroup group, Item before) {
         groupAdder = groupAdder.andThen(
             item -> ItemGroupEvents.modifyEntriesEvent(group).register(content -> content.addBefore(before, item)));
         return this;

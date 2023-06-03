@@ -1,0 +1,861 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "damage": {
+                "type": "minecraft:uniform",
+                "max": 0.95,
+                "min": 0.5
+              },
+              "function": "minecraft:set_damage"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Belonged to King Elnaril Gilran"
+                },
+                {
+                  "text": "of the Elven Kingdom."
+                }
+              ],
+              "replace": false
+            },
+            {
+              "add": false,
+              "enchantments": {
+                "minecraft:protection": {
+                  "type": "minecraft:uniform",
+                  "max": 3.0,
+                  "min": 2.0
+                },
+                "minecraft:unbreaking": 1.0
+              },
+              "function": "minecraft:set_enchantments"
+            }
+          ],
+          "name": "somemod:elven_helmet"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "damage": {
+                "type": "minecraft:uniform",
+                "max": 0.95,
+                "min": 0.25
+              },
+              "function": "minecraft:set_damage"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Belogned to Ashryn Gilran"
+                },
+                {
+                  "text": "of the Elven Kingdom."
+                }
+              ],
+              "replace": false
+            },
+            {
+              "add": false,
+              "enchantments": {
+                "minecraft:mending": 1.0,
+                "minecraft:protection": {
+                  "type": "minecraft:uniform",
+                  "max": 2.0,
+                  "min": 1.0
+                }
+              },
+              "function": "minecraft:set_enchantments"
+            }
+          ],
+          "name": "somemod:elven_helmet"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "damage": {
+                "type": "minecraft:uniform",
+                "max": 0.5,
+                "min": 0.1
+              },
+              "function": "minecraft:set_damage"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Lost by Emryth Vallee"
+                },
+                {
+                  "text": "after dying in battle."
+                }
+              ],
+              "replace": false
+            },
+            {
+              "add": false,
+              "enchantments": {
+                "minecraft:mending": 1.0,
+                "minecraft:protection": {
+                  "type": "minecraft:uniform",
+                  "max": 3.0,
+                  "min": 0.0
+                }
+              },
+              "function": "minecraft:set_enchantments"
+            }
+          ],
+          "name": "somemod:elven_chestplate"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "damage": {
+                "type": "minecraft:uniform",
+                "max": 0.95,
+                "min": 0.8
+              },
+              "function": "minecraft:set_damage"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Gifted to Aerendy Naereiros"
+                },
+                {
+                  "text": "for his heroric deeds."
+                }
+              ],
+              "replace": false
+            },
+            {
+              "add": false,
+              "enchantments": {
+                "minecraft:protection": {
+                  "type": "minecraft:uniform",
+                  "max": 2.0,
+                  "min": 1.0
+                },
+                "minecraft:thorns": {
+                  "type": "minecraft:uniform",
+                  "max": 1.0,
+                  "min": 0.0
+                },
+                "minecraft:unbreaking": {
+                  "type": "minecraft:uniform",
+                  "max": 1.0,
+                  "min": 0.0
+                }
+              },
+              "function": "minecraft:set_enchantments"
+            }
+          ],
+          "name": "somemod:elven_chestplate"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "damage": {
+                "type": "minecraft:uniform",
+                "max": 0.95,
+                "min": 0.1
+              },
+              "function": "minecraft:set_damage"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Made by Artin Rohan Glynlee,"
+                },
+                {
+                  "text": "A true master of his craft."
+                }
+              ],
+              "replace": false
+            },
+            {
+              "add": false,
+              "enchantments": {
+                "minecraft:feather_falling": {
+                  "type": "minecraft:uniform",
+                  "max": 1.0,
+                  "min": 0.0
+                },
+                "minecraft:protection": {
+                  "type": "minecraft:uniform",
+                  "max": 2.0,
+                  "min": 1.0
+                },
+                "minecraft:unbreaking": {
+                  "type": "minecraft:uniform",
+                  "max": 2.0,
+                  "min": 0.0
+                }
+              },
+              "function": "minecraft:set_enchantments"
+            }
+          ],
+          "name": "somemod:elven_leggings"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "damage": {
+                "type": "minecraft:uniform",
+                "max": 0.95,
+                "min": 0.5
+              },
+              "function": "minecraft:set_damage"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Lost by Isarrel Aywin-Enjor"
+                },
+                {
+                  "text": "after dying in battle."
+                }
+              ],
+              "replace": false
+            },
+            {
+              "add": false,
+              "enchantments": {
+                "minecraft:depth_strider": 1.0,
+                "minecraft:protection": {
+                  "type": "minecraft:uniform",
+                  "max": 1.0,
+                  "min": 0.0
+                }
+              },
+              "function": "minecraft:set_enchantments"
+            }
+          ],
+          "name": "somemod:elven_boots"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "damage": {
+                "type": "minecraft:uniform",
+                "max": 0.6,
+                "min": 0.2
+              },
+              "function": "minecraft:set_damage"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Given to Elaith Leoleth"
+                },
+                {
+                  "text": "from her beloved."
+                }
+              ],
+              "replace": false
+            },
+            {
+              "add": false,
+              "enchantments": {
+                "minecraft:smite": {
+                  "type": "minecraft:uniform",
+                  "max": 2.0,
+                  "min": 1.0
+                },
+                "minecraft:unbreaking": 1.0
+              },
+              "function": "minecraft:set_enchantments"
+            }
+          ],
+          "name": "minecraft:iron_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "damage": {
+                "type": "minecraft:uniform",
+                "max": 0.95,
+                "min": 0.15
+              },
+              "function": "minecraft:set_damage"
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Belonged to Princess Aleva Wrangella,"
+                },
+                {
+                  "text": "The lone hunter."
+                }
+              ],
+              "replace": false
+            },
+            {
+              "add": false,
+              "enchantments": {
+                "minecraft:infinity": {
+                  "type": "minecraft:uniform",
+                  "max": 1.0,
+                  "min": 0.0
+                },
+                "minecraft:mending": {
+                  "type": "minecraft:uniform",
+                  "max": 1.0,
+                  "min": 0.0
+                },
+                "minecraft:power": {
+                  "type": "minecraft:uniform",
+                  "max": 2.0,
+                  "min": 0.0
+                },
+                "minecraft:punch": {
+                  "type": "minecraft:uniform",
+                  "max": 1.0,
+                  "min": 0.0
+                }
+              },
+              "function": "minecraft:set_enchantments"
+            }
+          ],
+          "name": "minecraft:bow"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "damage": {
+                "type": "minecraft:uniform",
+                "max": 0.95,
+                "min": 0.1
+              },
+              "function": "minecraft:set_damage"
+            }
+          ],
+          "name": "somemod:elven_helmet",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "damage": {
+                "type": "minecraft:uniform",
+                "max": 0.95,
+                "min": 0.1
+              },
+              "function": "minecraft:set_damage"
+            }
+          ],
+          "name": "somemod:elven_chestplate",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "damage": {
+                "type": "minecraft:uniform",
+                "max": 0.95,
+                "min": 0.1
+              },
+              "function": "minecraft:set_damage"
+            }
+          ],
+          "name": "somemod:elven_leggings",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "damage": {
+                "type": "minecraft:uniform",
+                "max": 0.95,
+                "min": 0.1
+              },
+              "function": "minecraft:set_damage"
+            }
+          ],
+          "name": "somemod:elven_boots",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "damage": {
+                "type": "minecraft:uniform",
+                "max": 0.95,
+                "min": 0.1
+              },
+              "function": "minecraft:set_damage"
+            }
+          ],
+          "name": "minecraft:iron_sword",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "add": false,
+              "damage": {
+                "type": "minecraft:uniform",
+                "max": 0.95,
+                "min": 0.1
+              },
+              "function": "minecraft:set_damage"
+            }
+          ],
+          "name": "minecraft:bow",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 5.0,
+                "min": 3.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "somemod:elven_steel",
+          "weight": 5
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "name": "somemod:chests/elven_chest_writing"
+        },
+        {
+          "type": "minecraft:loot_table",
+          "name": "somemod:chests/elven_chest_food"
+        },
+        {
+          "type": "minecraft:loot_table",
+          "name": "somemod:chests/elven_chest_combat"
+        },
+        {
+          "type": "minecraft:loot_table",
+          "name": "somemod:chests/elven_chest_magic"
+        },
+        {
+          "type": "minecraft:loot_table",
+          "name": "somemod:chests/elven_chest_building"
+        },
+        {
+          "type": "minecraft:loot_table",
+          "name": "somemod:chests/elven_chest_valuables"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "name": "somemod:chests/elven_chest_writing"
+        },
+        {
+          "type": "minecraft:loot_table",
+          "name": "somemod:chests/elven_chest_food"
+        },
+        {
+          "type": "minecraft:loot_table",
+          "name": "somemod:chests/elven_chest_combat"
+        },
+        {
+          "type": "minecraft:loot_table",
+          "name": "somemod:chests/elven_chest_building"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "function": "minecraft:set_name",
+              "name": {
+                "text": "Letter"
+              }
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Dear Aerendy,\nit has been too long"
+                },
+                {
+                  "text": "since I last saw you. I miss you"
+                },
+                {
+                  "text": "so very much. I am planning to come"
+                },
+                {
+                  "text": "visit you very soon. - Elaith"
+                }
+              ],
+              "replace": false
+            }
+          ],
+          "name": "minecraft:paper"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "function": "minecraft:set_name",
+              "name": {
+                "text": "Note"
+              }
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "I will be going on a small journey"
+                },
+                {
+                  "text": "not too far east. Do not worry; I will"
+                },
+                {
+                  "text": "be back before you know it. - Emryth"
+                }
+              ],
+              "replace": false
+            }
+          ],
+          "name": "minecraft:paper"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "function": "minecraft:set_name",
+              "name": {
+                "text": "Note"
+              }
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "THEY ARE COMING FROM THE EAST"
+                },
+                {
+                  "text": "WARN THE OTHERS AND PREPARE YOURSELVES"
+                }
+              ],
+              "replace": false
+            }
+          ],
+          "name": "minecraft:paper"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "function": "minecraft:set_name",
+              "name": {
+                "text": "Note"
+              }
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "To Artin and Isarrel,"
+                },
+                {
+                  "text": "I have written a letter to"
+                },
+                {
+                  "text": "Elnaril and Ashryn, informing"
+                },
+                {
+                  "text": "them about the attack."
+                },
+                {
+                  "text": "We must flee west. - Aerendy"
+                }
+              ],
+              "replace": false
+            }
+          ],
+          "name": "minecraft:paper"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "function": "minecraft:set_name",
+              "name": {
+                "text": "Note"
+              }
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Isarrel, hopefully you will see this."
+                },
+                {
+                  "text": "Aerendy and I have been looking for him,"
+                },
+                {
+                  "text": "but he is nowhere to be found."
+                },
+                {
+                  "text": "So we have decided to travel"
+                },
+                {
+                  "text": "west tomorrow at noon, but by the"
+                },
+                {
+                  "text": "time you read this, we have"
+                },
+                {
+                  "text": "probably already left. - Artin"
+                }
+              ],
+              "replace": false
+            }
+          ],
+          "name": "minecraft:paper"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "function": "minecraft:set_name",
+              "name": {
+                "text": "Letter"
+              }
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Elaith, my dear. If you find this,"
+                },
+                {
+                  "text": "please do not go towards the village."
+                },
+                {
+                  "text": "I have travelled west with the others."
+                },
+                {
+                  "text": "I hope you are safe."
+                }
+              ],
+              "replace": false
+            }
+          ],
+          "name": "minecraft:paper"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            },
+            {
+              "function": "minecraft:set_name",
+              "name": {
+                "text": "Letter"
+              }
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Aerendy Naereiros... I am sorry"
+                },
+                {
+                  "text": "to inform you... but I found"
+                },
+                {
+                  "text": "Elaith dead near the village..."
+                },
+                {
+                  "text": "I am so so sorry..."
+                },
+                {
+                  "text": " - Aleva Wrangella"
+                }
+              ],
+              "replace": false
+            }
+          ],
+          "name": "minecraft:paper"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 4.0,
+                "min": 1.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "somemod:elven_steel"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ]
+}

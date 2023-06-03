@@ -17,12 +17,29 @@ public abstract class SprintingEnchantment extends Enchantment {
         super(weight, type, slotTypes);
     }
 
+    /**
+     * Determines what to do when an entity has multiple equipment pieces that have the same sprinting enchantment.
+     * <p>
+     * Two sprinting enchantments are considered 'the same' if they have the same registry id.
+     */
+    public static enum StackingBehavior {
+        /** Apply each individual enchantment one by one */
+        ApplyIndividually,
+        /** Applies the enchantment once using the sum of all the levels */
+        ApplySummed,
+        /** Only applies the enchantment with the highest level */
+        ApplyMax,
+    }
+
+    /** {@see StackingBehavior} */
+    public abstract StackingBehavior stackingBehavior();
+
     public void onStartSprint(LivingEntity entity, int enchantmentLevel) {}
 
     public void onEndSprint(LivingEntity entity, int enchantmentLevel) {}
 
     public static void beforeTickSprintEnchantments(LivingEntity entity) {
-        if(entity.world.isClient) return;
+        if (entity.world.isClient) return;
 
         beforeTickConsumers.forEach(consumer -> consumer.accept(entity));
         beforeTickConsumers.clear();

@@ -2,6 +2,7 @@ package somemod.magic.enchantment;
 
 import java.util.Map;
 import java.util.UUID;
+import java.util.WeakHashMap;
 import java.util.function.Supplier;
 
 import net.minecraft.enchantment.Enchantment;
@@ -16,7 +17,7 @@ import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.math.random.Random;
 
-public class HermesEnchantment extends SprintingEnchantment {
+public final class HermesEnchantment extends SprintingEnchantment {
 
     private static final UUID HERMES_SPEED_BOOST_ID = UUID.fromString("621976BB-92DE-4D3C-91DF-3EE3D3CD1FC4");
     private static final EntityAttributeModifier HERMES_SPEED_BOOST_LOW = new EntityAttributeModifier(HERMES_SPEED_BOOST_ID, "Hermes speed boost low", 0.01f, EntityAttributeModifier.Operation.ADDITION);
@@ -27,10 +28,15 @@ public class HermesEnchantment extends SprintingEnchantment {
     /**
      * A map representing how many consecutive ticks a player has been sprinting.
      */
-    private static final Map<LivingEntity, Integer> SPRINTING_DURATION = new java.util.WeakHashMap<>();
+    private static final Map<LivingEntity, Integer> SPRINTING_DURATIONS = new WeakHashMap<>();
 
     protected HermesEnchantment(Enchantment.Rarity rarity, EquipmentSlot ... slots) {
         super(rarity, EnchantmentTarget.ARMOR_LEGS, slots);
+    }
+
+    @Override
+    public StackingBehavior stackingBehavior() {
+        return StackingBehavior.ApplyMax;
     }
     
     @Override
@@ -68,83 +74,81 @@ public class HermesEnchantment extends SprintingEnchantment {
         return false;
     }
 
-    protected static boolean shouldGiveLowBoost(int level, int currentTicks) {
-        return level >= 1 && currentTicks >= 30f / (level / 2f);
+    protected static boolean shouldGiveLowBoost(int level, int duration) {
+        return level >= 1 && duration >= 30f / (level / 2f);
     }
 
-    protected static boolean shouldGiveMidBoost(int level, int currentTicks) {
-        return level >= 2 && currentTicks >= 55f / (level / 2f);
+    protected static boolean shouldGiveMidBoost(int level, int duration) {
+        return level >= 2 && duration >= 55f / (level / 2f);
     }
 
-    protected static boolean shouldGiveHighBoost(int level, int currentTicks) {
-        return level >= 3 && currentTicks >= 75f / (level / 2f);
+    protected static boolean shouldGiveHighBoost(int level, int duration) {
+        return level >= 3 && duration >= 75f / (level / 2f);
     }
 
-    protected static boolean shouldGiveTopBoost(int level, int currentTicks) {
-        return level >= 4 && currentTicks >= 90f / (level / 2f);
+    protected static boolean shouldGiveTopBoost(int level, int duration) {
+        return level >= 4 && duration >= 90f / (level / 2f);
     }
 
     @Override
-    public void tickSprintEnchantment(LivingEntity entity, int enchantmentLevel) {
-        EntityAttributeModifier speedAttribute;
+    public void tickSprintEnchantment(LivingEntity entity, int enchLevel) {
 
-        if(entity.world.isClient) {
-            Integer currentTicks = SPRINTING_DURATION.get(entity);
-            if(currentTicks == null)
-                return;
+        if (entity.world.isClient) {
+            final Integer duration = SPRINTING_DURATIONS.get(entity);
+            if (duration == null) return; // the player isn't sprinting
 
-            ParticleEffect particle;
+            final ParticleEffect particle;
+            if      (shouldGiveTopBoost(enchLevel, duration)) particle = ParticleTypes./*BIG*/FLAME;
+            else if (shouldGiveLowBoost(enchLevel, duration)) particle = ParticleTypes.SMALL_FLAME;
+            else return;
 
-            if(shouldGiveTopBoost(enchantmentLevel, currentTicks))
-                particle = ParticleTypes.FLAME;
-            else if(shouldGiveLowBoost(enchantmentLevel, currentTicks))
-                particle = ParticleTypes.SMALL_FLAME;
-            else
-                return;
+            final Random random = entity.getRandom();
+            if (random.nextInt(enchLevel + 1) == 0) return; // 1 in enchantmentLevel chance of not spawning a particle
 
-            Random random = entity.getRandom();
-            if(random.nextInt(enchantmentLevel + 1) == 0) return;
-            Supplier<Double> randomNum = () -> random.nextDouble() - 0.5f; // Number between -0.5 and 0.5
-            double x = entity.getX() + randomNum.get();
-            double y = entity.getY() + randomNum.get();
-            double z = entity.getZ() + randomNum.get();
-            double vx = 0 + randomNum.get() / 4;
-            double vy = 0 + randomNum.get() / 2;
-            double vz = 0 + randomNum.get() / 4;
-            entity.world.addParticle(particle, x, y, z, vx,vy, vz);
+            Supplier<Double> randomNum = () -> (random.nextDouble() - 0.5d); // -0.5 to 0.5
+            double px = randomNum.get() + entity.getX();
+            double py = randomNum.get() + entity.getY();
+            double pz = randomNum.get() + entity.getZ();
+            double vx = randomNum.get() / 4d;
+            double vy = randomNum.get() / 2d;
+            double vz = randomNum.get() / 4d;
+            entity.world.addParticle(particle, px, py, pz, vx, vy, vz);
         }
-        else {
-            // Level must be above zero to avoid division by zero
-            if (entity.isSprinting() && enchantmentLevel > 0) {
-                
-                Integer currentTicks = SPRINTING_DURATION.get(entity);
-                if(currentTicks == null) {
-                    speedAttribute = null;
-                    SPRINTING_DURATION.put(entity, 0);
-                }
-                else if(shouldGiveTopBoost(enchantmentLevel, currentTicks))
-                    speedAttribute = HERMES_SPEED_BOOST_TOP;
-                else if(shouldGiveHighBoost(enchantmentLevel, currentTicks))
-                    speedAttribute = HERMES_SPEED_BOOST_HIGH;
-                else if(shouldGiveMidBoost(enchantmentLevel, currentTicks))
-                    speedAttribute = HERMES_SPEED_BOOST_MID;
-                else if(shouldGiveLowBoost(enchantmentLevel, currentTicks))
-                    speedAttribute = HERMES_SPEED_BOOST_LOW;
-                else
-                    speedAttribute = null;
+        else /* !isClient */ {
+            final EntityAttributeModifier speedAttribute;
 
-                SPRINTING_DURATION.compute(entity, (key, duration) -> duration + 1);
-            }
-            else {
-                speedAttribute = null;
-                SPRINTING_DURATION.remove(entity);
+            setSpeedAttribute: {
+                if (entity.isSprinting() && enchLevel > 0) { // level must be above zero to avoid division by zero
+
+                    final Integer duration = SPRINTING_DURATIONS.get(entity);
+
+                    if (duration == null) { // happens when the player has just started sprinting
+                        speedAttribute = null;
+                        SPRINTING_DURATIONS.put(entity, 0);
+                        break setSpeedAttribute;
+                    }
+
+                    if      (shouldGiveTopBoost(enchLevel, duration)) speedAttribute = HERMES_SPEED_BOOST_TOP;
+                    else if (shouldGiveHighBoost(enchLevel,duration)) speedAttribute = HERMES_SPEED_BOOST_HIGH;
+                    else if (shouldGiveMidBoost(enchLevel, duration)) speedAttribute = HERMES_SPEED_BOOST_MID;
+                    else if (shouldGiveLowBoost(enchLevel, duration)) speedAttribute = HERMES_SPEED_BOOST_LOW;
+                    else                                              speedAttribute = null;
+
+                    SPRINTING_DURATIONS.put(entity, duration + 1);
+                    break setSpeedAttribute;
+                }
+                /* !isSprinting || enchLevel <= 0 */ {
+                    speedAttribute = null;
+                    SPRINTING_DURATIONS.remove(entity);
+                }
             }
 
             EntityAttributeInstance attributeInstance = entity.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
-            HermesEnchantment.addConsumerBeforeNextTick(e -> attributeInstance.removeModifier(HERMES_SPEED_BOOST_ID));
 
-            if(speedAttribute != null)
-                attributeInstance.addTemporaryModifier(speedAttribute);
+            if (speedAttribute != null) attributeInstance.addTemporaryModifier(speedAttribute);
+
+            // Just to be safe, we are also removing the attribute even when we don't add it.
+            SprintingEnchantment.addConsumerBeforeNextTick(e -> attributeInstance.removeModifier(HERMES_SPEED_BOOST_ID));
         }
     }
     

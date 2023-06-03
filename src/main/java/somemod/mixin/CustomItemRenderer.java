@@ -10,7 +10,7 @@ import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.item.BuiltinModelItemRenderer;
 import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.render.model.BakedModel;
-import net.minecraft.client.render.model.json.ModelTransformation;
+import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
@@ -25,7 +25,7 @@ public abstract class CustomItemRenderer {
     @Inject(
         method = "renderItem(" +
                  "Lnet/minecraft/item/ItemStack;" +
-                 "Lnet/minecraft/client/render/model/json/ModelTransformation$Mode;" +
+                 "Lnet/minecraft/client/render/model/json/ModelTransformationMode;" +
                  "Z" +
                  "Lnet/minecraft/client/util/math/MatrixStack;" +
                  "Lnet/minecraft/client/render/VertexConsumerProvider;" +
@@ -41,7 +41,7 @@ public abstract class CustomItemRenderer {
             shift = At.Shift.AFTER,
             by = 0),
         cancellable = true)
-    private void renderCustomItemBlockEntity(ItemStack stack, ModelTransformation.Mode mode, boolean leftHanded, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, BakedModel model, CallbackInfo ci) {
+    private void renderCustomItemBlockEntity(ItemStack stack, ModelTransformationMode mode, boolean leftHanded, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, BakedModel model, CallbackInfo ci) {
         if(stack.getItem() instanceof BlockItem blockItem) {
             if(blockItem.getBlock() instanceof CustomBlockItemRenderer customBlock) {
                 {

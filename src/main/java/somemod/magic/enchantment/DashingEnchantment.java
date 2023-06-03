@@ -16,7 +16,7 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.random.Random;
 
-public class DashingEnchantment extends SprintingEnchantment {
+public final class DashingEnchantment extends SprintingEnchantment {
 
     private static final UUID DASHING_SPEED_BOOST_ID = UUID.fromString("75F66D0E-BC9D-4276-896E-2EE85C7ED9D9");
     private static final EntityAttributeModifier DASHING_SPEED_BOOST = new EntityAttributeModifier(DASHING_SPEED_BOOST_ID, "Dashing speed boost", 0.05f, EntityAttributeModifier.Operation.ADDITION);
@@ -34,7 +34,12 @@ public class DashingEnchantment extends SprintingEnchantment {
     protected DashingEnchantment(Enchantment.Rarity rarity, EquipmentSlot ... slots) {
         super(rarity, EnchantmentTarget.ARMOR_LEGS, slots);
     }
-    
+
+    @Override
+    public StackingBehavior stackingBehavior() {
+        return StackingBehavior.ApplyMax;
+    }
+
     @Override
     public int getMinPower(int level) {
         return level * 10 + 5;
@@ -97,68 +102,54 @@ public class DashingEnchantment extends SprintingEnchantment {
     @Override
     public void tickSprintEnchantment(LivingEntity entity, int enchantmentLevel) {
         
-        // No reason to update entities not in the map, since they haven't started any dashes
-        Integer duration = DASHING_DURATIONS.get(entity);
-        if(duration == null) return;
-        
-        EntityAttributeModifier speedAttribute;
+        final Integer duration = DASHING_DURATIONS.get(entity);
+        if(duration == null) return; // No reason to update entities not in the map, since they haven't started any dashes
         
         if(entity.world.isClient) {
-            // Just check duration since the server will make sure the
-            // duration is positive only when the entity is dashing.
             if(duration > 0) {
                 Random random = entity.getRandom();
                 if(random.nextInt(enchantmentLevel + 1) == 0) return;
+
                 Supplier<Double> randomNum = () -> random.nextDouble() - 0.5f; // Number between -0.5 and 0.5
-                double x = entity.getX() + randomNum.get();
-                double y = entity.getY() + randomNum.get() / 2 + 0.25f;
-                double z = entity.getZ() + randomNum.get();
-                double vx = randomNum.get() / 8;
-                double vy = randomNum.get() / 16;
-                double vz = randomNum.get() / 8;
-                entity.world.addParticle(ParticleTypes.FLAME, x, y, z, vx,vy, vz);
+                double px = randomNum.get()      + entity.getX();
+                double py = randomNum.get() / 2d + entity.getY() + 0.25f;
+                double pz = randomNum.get()      + entity.getZ();
+                double vx = randomNum.get() / 8d;
+                double vy = randomNum.get() / 16d;
+                double vz = randomNum.get() / 8d;
+                entity.world.addParticle(ParticleTypes.FLAME, px, py, pz, vx,vy, vz);
             }
         }
         else {
-            // If entity has equipped item with Dashing level more than zero (Items with enchantment levels of zero is possible through commands)
-            if(enchantmentLevel > 0) {
-                int newDuration;
+            final EntityAttributeModifier speedAttribute;
 
+            if(enchantmentLevel > 0) {
                 if(duration > 0) {
-                    // If entity is sprinting with active dash,
-                    // add speed boost and decrement duration.
                     if(entity.isSprinting()) {
                         speedAttribute = DASHING_SPEED_BOOST;
-                        newDuration = duration-1;
+                        DASHING_DURATIONS.put(entity, duration - 1);
                     }
-                    // If entity stopped sprinting with active dash,
-                    // don't add speed boost and set duration to zero.
-                    else {
+                    else /* !isSprinting */ {
                         speedAttribute = null;
-                        newDuration = 0;
+                        DASHING_DURATIONS.put(entity, 0);
                     }
                 }
-                // If entity does not have an active dash,
-                // don't add speed boost and decrement duration.
-                else {
+                else /* duration <= 0 */ {
                     speedAttribute = null;
-                    newDuration = duration-1;
+                    DASHING_DURATIONS.put(entity, duration - 1);
                 }
-                
-                DASHING_DURATIONS.put(entity, newDuration);
             }
-            // If leggings with dashing equipment is longer equipped,
-            // don't add speed boost and remove entity from durations map.
-            else {
+            else /* enchantmentLevel <= 0 */ {
                 speedAttribute = null;
                 DASHING_DURATIONS.remove(entity);
             }
 
             EntityAttributeInstance attributeInstance = entity.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
-            DashingEnchantment.addConsumerBeforeNextTick(e -> attributeInstance.removeModifier(DASHING_SPEED_BOOST_ID));
 
-            if(speedAttribute != null)
-                attributeInstance.addTemporaryModifier(speedAttribute);
+            if(speedAttribute != null) attributeInstance.addTemporaryModifier(speedAttribute);
+
+            // Just to be safe, we are also removing the attribute even when we don't add it.
+            DashingEnchantment.addConsumerBeforeNextTick(e -> attributeInstance.removeModifier(DASHING_SPEED_BOOST_ID));
         }
     }
 

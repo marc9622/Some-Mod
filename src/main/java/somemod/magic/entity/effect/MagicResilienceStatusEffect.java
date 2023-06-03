@@ -2,6 +2,7 @@ package somemod.magic.entity.effect;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.effect.StatusEffectCategory;
 
 public class MagicResilienceStatusEffect extends DamageTakenStatusEffect {
@@ -12,8 +13,7 @@ public class MagicResilienceStatusEffect extends DamageTakenStatusEffect {
 
     @Override
     public float modifyAppliedDamage(LivingEntity entity, int amplifier, DamageSource source, float amount, float amountOriginal) {
-        // Only reduces magic damage
-        if(!source.isMagic())
+        if(!source.isOf(DamageTypes.MAGIC))
             return amount;
         
         if(amplifier <= 0)

@@ -15,7 +15,7 @@ import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.StructureTerrainAdaptation;
 import net.minecraft.world.gen.structure.Structure;
 import somemod.SomeMod;
-import somemod.magic.tag.MagicHasStructureBiomeTags;
+import somemod.magic.tag.MagicBiomeTags;
 import somemod.magic.world_gen.structure.pool.MagicStructurePools;
 
 public class MagicStructures {
@@ -43,8 +43,8 @@ public class MagicStructures {
             )
         );
 
-        SomeMod.register(registerable, ENCHANTING_TOWER_COMMON, ENCHANTING_TOWER_STRUCTURE.apply(MagicHasStructureBiomeTags.ENCHANTING_TOWER_COMMON_HAS_STRUCTURE));
-        SomeMod.register(registerable, ENCHANTING_TOWER_RARE, ENCHANTING_TOWER_STRUCTURE.apply(MagicHasStructureBiomeTags.ENCHANTING_TOWER_RARE_HAS_STRUCTURE));
+        SomeMod.register(registerable, ENCHANTING_TOWER_COMMON, ENCHANTING_TOWER_STRUCTURE.apply(MagicBiomeTags.ENCHANTING_TOWER_COMMON_HAS_STRUCTURE));
+        SomeMod.register(registerable, ENCHANTING_TOWER_RARE, ENCHANTING_TOWER_STRUCTURE.apply(MagicBiomeTags.ENCHANTING_TOWER_RARE_HAS_STRUCTURE));
 
     }
 

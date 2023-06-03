@@ -11,13 +11,11 @@ import somemod.magic.block.MagicBlocks;
 
 public class MagicBlockEntityTypes {
     
-    public static final BlockEntityType<EnchantedBookshelfBlockEntity> ENCHANTED_BOOKSHELF_ENTITY = SomeMod.register(
-        Registries.BLOCK_ENTITY_TYPE,
-        "enchanted_bookshelf_entity",
-        FabricBlockEntityTypeBuilder.create(EnchantedBookshelfBlockEntity::new, MagicBlocks.ENCHANTED_BOOKSHELF).build()
-    );
+    public static final BlockEntityType<EnchantedBookshelfBlockEntity> ENCHANTED_BOOKSHELF_ENTITY =
+        register("enchanted_bookshelf_entity", EnchantedBookshelfBlockEntity::new, MagicBlocks.ENCHANTED_BOOKSHELF);
 
-    public static final BlockEntityType<CustomChestBlockEntity> FORGOTTEN_CHEST_ENTITY = register("forgotten_chest", ForgottenChestBlockEntity::new, MagicBlocks.FORGOTTEN_CHEST);
+    public static final BlockEntityType<CustomChestBlockEntity> FORGOTTEN_CHEST_ENTITY =
+        register("forgotten_chest", ForgottenChestBlockEntity::new, MagicBlocks.FORGOTTEN_CHEST);
 
     private static <T extends BlockEntity> BlockEntityType<T> register(String path, Factory<T> factory, Block... blocks) {
         return SomeMod.register(Registries.BLOCK_ENTITY_TYPE, path, FabricBlockEntityTypeBuilder.create(factory, blocks).build());

@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '1.0-SNAPSHOT'
+	id 'fabric-loom' version '1.2-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -77,6 +77,8 @@ publishing {
 }
 
 loom {
+    accessWidenerPath = file("src/main/resources/somemod.accesswidener")
+
     runs {
         //
         // This adds a new gradle task that runs the datagen API: "gradlew runDatagenClient"

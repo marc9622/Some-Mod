@@ -34,6 +34,8 @@ import somemod.magic.entity.effect.MagicStatusEffects;
 import somemod.magic.item.MagicItems;
 import somemod.magic.potion.MagicPotions;
 import somemod.magic.screen.MagicScreenHandlers;
+import somemod.magic.world_gen.MagicBiomeModifications;
+import somemod.magic.world_gen.feature.MagicFeatures;
 import somemod.magic.world_gen.structure.MagicStructurePieceTypes;
 import somemod.magic.world_gen.structure.MagicStructureTypes;
 import somemod.magic.world_gen.structure.processor.MagicStructureProcessorTypes;
@@ -65,6 +67,7 @@ public class SomeMod implements ModInitializer {
 		// LOGGER.info("Hello Fabric world!");
 
 		CrystalBiomeModifications.addCrystalModifications();
+		MagicBiomeModifications.addMagicModifications();
 	}
 
 	/**
@@ -81,6 +84,7 @@ public class SomeMod implements ModInitializer {
 		MagicBlockEntityRendererFactories.notifyFabric();
 		MagicItems.notifyFabric();
 		MagicScreenHandlers.notifyFabric();
+		MagicFeatures.notifyFabric();
 		MagicStructureTypes.notifyFabric();
 		MagicStructurePieceTypes.notifyFabric();
 		MagicStructureProcessorTypes.notifyFabric();
@@ -151,8 +155,14 @@ public class SomeMod implements ModInitializer {
 		LOGGER.info("| Registering Advancement | " + path);
 	}
 
-	public static void logLootTableRegistration(String path) {
+	public static void logLootTableRegistration(Identifier id) {
+		LOGGER.info("| Registering Loot Table | " + id.toString());
+	}
+
+	public static Identifier registerLootTable(String path) {
+		path = "chests/" + path;
 		LOGGER.info("| Registering Loot Table | " + path);
+		return SomeMod.id(path);
 	}
 
 	public static Identifier id(String path) {

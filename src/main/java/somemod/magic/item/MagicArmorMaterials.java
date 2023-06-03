@@ -1,6 +1,6 @@
 package somemod.magic.item;
 
-import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.item.ArmorItem.Type;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
@@ -10,38 +10,48 @@ import net.minecraft.sound.SoundEvents;
 public enum MagicArmorMaterials implements ArmorMaterial {
     
 	//TODO: Make original materials for some of these
-	ARCANE("arcane_robe", 6, new int[]{1, 2, 3, 1}, 27, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0f, 0.0f, Ingredient.ofItems(Items.LEATHER)),
-	PIRATE("pirate", 	 11, new int[]{1, 3, 4, 1}, 6,  SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0f, 0.0f, Ingredient.ofItems(Items.LEATHER)),
-	HONEY("honey", 		 5,  new int[]{1, 3, 4, 1}, 12, SoundEvents.ITEM_ARMOR_EQUIP_GOLD,    0.0f, 0.05f, Ingredient.ofItems(Items.HONEYCOMB)),
-	ALCHEMIST("alchemist", 7, new int[]{2, 3, 4, 2}, 17, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0f, 0.0f, Ingredient.ofItems(Items.GLASS_BOTTLE)),
-	ELVEN("elven", 		 12, new int[]{2, 3, 4, 2}, 22, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0f, 0.0f, Ingredient.ofItems(Items.LEATHER)),
-	OCEANIC("oceanic", 	 10, new int[]{2, 4, 4, 2}, 15, SoundEvents.ITEM_ARMOR_EQUIP_TURTLE,  0.0f, 0.0f, Ingredient.ofItems(Items.FIRE_CORAL)),
-	DESERT("desert_nomad", 9, new int[]{1, 4, 5, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0f, 0.0f, Ingredient.ofItems(Items.SANDSTONE)),
-	LUNAR("lunar", 		 12, new int[]{1, 4, 5, 2}, 19, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 	  0.0f, 0.0f, Ingredient.ofItems(Items.IRON_INGOT)),
-	PHANTOM("phantom", 	 7,  new int[]{2, 4, 5, 2}, 10, SoundEvents.ITEM_ARMOR_EQUIP_ELYTRA,  0.0f, 0.0f, Ingredient.ofItems(Items.AIR)),
-	DIVINE("divine", 	 25, new int[]{2, 4, 5, 2}, 22, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 	  0.5f, 0.0f, Ingredient.ofItems(Items.GOLD_INGOT)),
-	NECROTIC("necrotic", 14, new int[]{2, 4, 5, 3}, 6,  SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, 0.0f, 0.0f, Ingredient.ofItems(Items.BONE)),
-	LIVING("living",     14, new int[]{2, 4, 5, 3}, 17, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.5f, 0.0f, Ingredient.ofItems(Items.OAK_WOOD)),
-	SHADOW("shadow", 	 9,  new int[]{3, 4, 5, 3}, 15, SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, 0.0f, 0.0f, Ingredient.ofItems(Items.NETHER_BRICK, Items.SOUL_SAND)),
-	ANGELIC("angelic", 	 15, new int[]{3, 5, 6, 3}, 19, SoundEvents.ITEM_ARMOR_EQUIP_ELYTRA,  0.0f, 0.0f, Ingredient.ofItems(Items.ELYTRA)),
-	DEEP_SEA("deep_sea", 23, new int[]{3, 5, 6, 2}, 17, SoundEvents.ITEM_ARMOR_EQUIP_TURTLE,  0.0f, 0.05f, Ingredient.ofItems(Items.FIRE_CORAL)),
-	MAGMA("magma", 		 20, new int[]{3, 5, 6, 4}, 12, SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, 0.5f, 0.0f, Ingredient.ofItems(Items.MAGMA_CREAM, Items.BLAZE_ROD)),
-	GUARDIAN("guardian", 30, new int[]{3, 5, 7, 3}, 10, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 1.0f, 0.05f, Ingredient.ofItems(Items.DIAMOND));
+	ARCANE("arcane_robe", 6, 1, 3, 2, 1, 27, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0f, 0.0f, Ingredient.ofItems(Items.LEATHER)),
+	PIRATE("pirate", 	 11, 1, 4, 3, 1,  6, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0f, 0.0f, Ingredient.ofItems(Items.LEATHER)),
+	HONEY("honey", 		  5, 1, 4, 3, 1, 12, SoundEvents.ITEM_ARMOR_EQUIP_GOLD,    0.0f, 0.05f,Ingredient.ofItems(Items.HONEYCOMB)),
+	ALCHEMIST("alchemist",7, 2, 4, 3, 2, 17, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0f, 0.0f, Ingredient.ofItems(Items.GLASS_BOTTLE)),
+	ELVEN("elven", 		 12, 2, 4, 3, 2, 22, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0f, 0.0f, Ingredient.ofItems(MagicItems.ELVEN_STEEL)),
+	OCEANIC("oceanic", 	 10, 2, 4, 4, 2, 15, SoundEvents.ITEM_ARMOR_EQUIP_TURTLE,  0.0f, 0.0f, Ingredient.ofItems(Items.FIRE_CORAL)),
+	DESERT("desert_nomad",9, 2, 5, 4, 1,  9, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0f, 0.0f, Ingredient.ofItems(Items.SANDSTONE)),
+	LUNAR("lunar", 		 12, 2, 5, 4, 1, 19, SoundEvents.ITEM_ARMOR_EQUIP_IRON,    0.0f, 0.0f, Ingredient.ofItems(Items.IRON_INGOT)),
+	PHANTOM("phantom", 	  7, 2, 5, 4, 2, 10, SoundEvents.ITEM_ARMOR_EQUIP_ELYTRA,  0.0f, 0.0f, Ingredient.ofItems(Items.AIR)),
+	DIVINE("divine", 	 25, 2, 5, 4, 2, 22, SoundEvents.ITEM_ARMOR_EQUIP_GOLD,    0.5f, 0.0f, Ingredient.ofItems(Items.GOLD_INGOT)),
+	NECROTIC("necrotic", 14, 3, 5, 4, 2,  6, SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE,0.0f, 0.0f,Ingredient.ofItems(Items.BONE)),
+	LIVING("living",     14, 3, 5, 4, 2, 17, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.5f, 0.0f, Ingredient.ofItems(Items.OAK_WOOD)),
+	SHADOW("shadow", 	  9, 3, 5, 4, 3, 15, SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE,0.0f, 0.0f,Ingredient.ofItems(Items.NETHER_BRICK, Items.SOUL_SAND)),
+	ANGELIC("angelic", 	 15, 3, 6, 5, 3, 19, SoundEvents.ITEM_ARMOR_EQUIP_ELYTRA,  0.0f, 0.0f, Ingredient.ofItems(Items.ELYTRA)),
+	DEEP_SEA("deep_sea", 23, 3, 6, 5, 3, 17, SoundEvents.ITEM_ARMOR_EQUIP_TURTLE,  0.0f, 0.05f,Ingredient.ofItems(Items.FIRE_CORAL)),
+	MAGMA("magma", 		 20, 4, 6, 5, 3, 12, SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE,0.5f, 0.0f,Ingredient.ofItems(Items.MAGMA_CREAM, Items.BLAZE_ROD)),
+	GUARDIAN("guardian", 30, 3, 7, 5, 3, 10, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 1.0f, 0.05f,Ingredient.ofItems(Items.DIAMOND));
 
-	private static final int[] BASE_DURABILITY = new int[] {13, 15, 16, 11};
+    private static final int BASE_DURABILITY_HEAD = 11;
+    private static final int BASE_DURABILITY_CHEST = 16;
+    private static final int BASE_DURABILITY_LEGS = 15;
+    private static final int BASE_DURABILITY_FEET = 13;
+
 	private final String name;
 	private final int durabilityMultiplier;
-	private final int[] protectionAmounts;
+    private final int protectionHead;
+    private final int protectionChest;
+    private final int protectionLegs;
+    private final int protectionFeet;
 	private final int enchantability;
 	private final SoundEvent equipSound;
 	private final float toughness;
 	private final float knockbackResistance;
 	private final Ingredient repairIngredient;
 
-	private MagicArmorMaterials(String name, int durabilityMultiplier, int[] protectionAmounts, int enchantability, SoundEvent equipSound, float toughness, float knockbackResistance, Ingredient repairIngredient) {
+	private MagicArmorMaterials(String name, int durabilityMultiplier, int protectionHead, int protectionChest, int protectionLegs, int protectionFeet, int enchantability, SoundEvent equipSound, float toughness, float knockbackResistance, Ingredient repairIngredient) {
 		this.name = name;
 		this.durabilityMultiplier = durabilityMultiplier;
-		this.protectionAmounts = protectionAmounts;
+        this.protectionHead = protectionHead;
+        this.protectionChest = protectionChest;
+        this.protectionLegs = protectionLegs;
+        this.protectionFeet = protectionFeet;
 		this.enchantability = enchantability;
 		this.equipSound = equipSound;
 		this.toughness = toughness;
@@ -50,13 +60,23 @@ public enum MagicArmorMaterials implements ArmorMaterial {
 	}
 
     @Override
-	public int getDurability(EquipmentSlot slot) {
-		return BASE_DURABILITY[slot.getEntitySlotId()] * this.durabilityMultiplier;
+	public int getDurability(Type slot) {
+        return switch (slot) {
+            case HELMET -> BASE_DURABILITY_HEAD;
+            case CHESTPLATE -> BASE_DURABILITY_CHEST;
+            case LEGGINGS -> BASE_DURABILITY_LEGS;
+            case BOOTS -> BASE_DURABILITY_FEET;
+        } * this.durabilityMultiplier;
 	}
  
 	@Override
-	public int getProtectionAmount(EquipmentSlot slot) {
-		return this.protectionAmounts[slot.getEntitySlotId()];
+	public int getProtection(Type slot) {
+        return switch (slot) {
+            case HELMET -> protectionHead;
+            case CHESTPLATE -> protectionChest;
+            case LEGGINGS -> protectionLegs;
+            case BOOTS -> protectionFeet;
+        };
 	}
  
 	@Override

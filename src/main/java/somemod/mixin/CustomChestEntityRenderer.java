@@ -49,7 +49,7 @@ public abstract class CustomChestEntityRenderer {
         at = @At(
             value = "INVOKE_ASSIGN",
             target = "Lnet/minecraft/client/render/TexturedRenderLayers;" + 
-                     "getChestTexture(" +
+                     "getChestTextureId(" +
                      "Lnet/minecraft/block/entity/BlockEntity;" +
                      "Lnet/minecraft/block/enums/ChestType;" +
                      "Z)" +

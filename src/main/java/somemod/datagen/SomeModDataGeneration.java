@@ -6,6 +6,8 @@ import net.minecraft.registry.RegistryBuilder;
 import net.minecraft.registry.RegistryKeys;
 import somemod.crystal.world_gen.feature.CrystalConfiguredFeatures;
 import somemod.crystal.world_gen.feature.CrystalPlacedFeatures;
+import somemod.magic.world_gen.feature.MagicConfiguredFeatures;
+import somemod.magic.world_gen.feature.MagicPlacedFeatures;
 import somemod.magic.world_gen.structure.MagicStructureSets;
 import somemod.magic.world_gen.structure.MagicStructures;
 import somemod.magic.world_gen.structure.pool.MagicStructurePools;
@@ -20,7 +22,8 @@ public class SomeModDataGeneration implements DataGeneratorEntrypoint {
         pack.addProvider(AdvancementsProvider::new);
         pack.addProvider(BiomeTagProvider::new);
         pack.addProvider(BlockTagProvider::new);
-        pack.addProvider(SomeModBlockLootTableProvider::new);
+        pack.addProvider(BlockLootTableProvider::new);
+        pack.addProvider(ChestLootTableProvider::new);
         pack.addProvider(WorldGenProvider::new);
         pack.addProvider(ModelProvider::new);
     }
@@ -30,6 +33,9 @@ public class SomeModDataGeneration implements DataGeneratorEntrypoint {
 
         registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, registry -> CrystalConfiguredFeatures.bootstrap(registry)); // Compiler won't let me use a method reference here.. Bug?
         registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, CrystalPlacedFeatures::bootstrap);
+
+        registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, registry -> MagicConfiguredFeatures.bootstrap(registry));
+        registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, MagicPlacedFeatures::bootstrap);
         registryBuilder.addRegistry(RegistryKeys.STRUCTURE, MagicStructures::bootstrap);
         registryBuilder.addRegistry(RegistryKeys.STRUCTURE_SET, MagicStructureSets::bootstrap);
         registryBuilder.addRegistry(RegistryKeys.PROCESSOR_LIST, MagicStructureProcessorLists::bootstrap);

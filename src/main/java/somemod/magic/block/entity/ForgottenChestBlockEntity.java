@@ -5,6 +5,7 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.block.enums.ChestType;
 import net.minecraft.client.util.SpriteIdentifier;
+import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 
 public class ForgottenChestBlockEntity extends CustomChestBlockEntity {
@@ -19,6 +20,11 @@ public class ForgottenChestBlockEntity extends CustomChestBlockEntity {
 
     public ForgottenChestBlockEntity(BlockPos blockPos, BlockState blockState) {
         this(MagicBlockEntityTypes.FORGOTTEN_CHEST_ENTITY, blockPos, blockState);
+    }
+
+    public ForgottenChestBlockEntity(BlockPos blockPos, BlockState blockState, Text customName) {
+        this(MagicBlockEntityTypes.FORGOTTEN_CHEST_ENTITY, blockPos, blockState);
+        setCustomName(customName);
     }
 
     @Override

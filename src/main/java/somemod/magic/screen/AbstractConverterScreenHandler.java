@@ -110,8 +110,8 @@ public abstract class AbstractConverterScreenHandler extends ScreenHandler {
     protected boolean canTakeOutputItem(PlayerEntity player) { return true; }
 
     @Override
-    public void close(PlayerEntity player) {
-        super.close(player);
+    public void onClosed(PlayerEntity player) {
+        super.onClosed(player);
         this.context.run((world, blockPos) -> this.dropInventory(player, this.inputInventory));
     }
 

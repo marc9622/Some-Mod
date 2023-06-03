@@ -14,7 +14,6 @@ import net.minecraft.structure.processor.StructureProcessor;
 import net.minecraft.structure.processor.StructureProcessorRule;
 import net.minecraft.structure.processor.StructureProcessorType;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.WorldView;
 
@@ -39,7 +38,7 @@ public class BiomeRuleStructureProcessor extends StructureProcessor {
     @Override
     public StructureBlockInfo process(WorldView world, BlockPos pos, BlockPos pivot, StructureBlockInfo originalBlockInfo, StructureBlockInfo currentBlockInfo, StructurePlacementData data) {
         
-        Random random = Random.create(MathHelper.hashCode(currentBlockInfo.pos));
+        Random random = Random.create(currentBlockInfo.pos.hashCode());
         BlockState blockState = world.getBlockState(currentBlockInfo.pos);
 
         for (StructureProcessorBiomeRule structureProcessorBiomeRule : this.rules) {
