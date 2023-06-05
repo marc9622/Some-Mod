@@ -20,12 +20,12 @@ public enum MagicArmorMaterials implements ArmorMaterial {
 	LUNAR("lunar", 		 12, 2, 5, 4, 1, 19, SoundEvents.ITEM_ARMOR_EQUIP_IRON,    0.0f, 0.0f, Ingredient.ofItems(Items.IRON_INGOT)),
 	PHANTOM("phantom", 	  7, 2, 5, 4, 2, 10, SoundEvents.ITEM_ARMOR_EQUIP_ELYTRA,  0.0f, 0.0f, Ingredient.ofItems(Items.AIR)),
 	DIVINE("divine", 	 25, 2, 5, 4, 2, 22, SoundEvents.ITEM_ARMOR_EQUIP_GOLD,    0.5f, 0.0f, Ingredient.ofItems(Items.GOLD_INGOT)),
-	NECROTIC("necrotic", 14, 3, 5, 4, 2,  6, SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE,0.0f, 0.0f,Ingredient.ofItems(Items.BONE)),
+	NECROTIC("necrotic", 14, 3, 5, 4, 2,  6, SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE,0.0f,0.0f, Ingredient.ofItems(Items.BONE)),
 	LIVING("living",     14, 3, 5, 4, 2, 17, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.5f, 0.0f, Ingredient.ofItems(Items.OAK_WOOD)),
-	SHADOW("shadow", 	  9, 3, 5, 4, 3, 15, SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE,0.0f, 0.0f,Ingredient.ofItems(Items.NETHER_BRICK, Items.SOUL_SAND)),
+	SHADOW("shadow", 	  9, 3, 5, 4, 3, 15, SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE,0.0f,0.0f, Ingredient.ofItems(Items.NETHER_BRICK, Items.SOUL_SAND)),
 	ANGELIC("angelic", 	 15, 3, 6, 5, 3, 19, SoundEvents.ITEM_ARMOR_EQUIP_ELYTRA,  0.0f, 0.0f, Ingredient.ofItems(Items.ELYTRA)),
 	DEEP_SEA("deep_sea", 23, 3, 6, 5, 3, 17, SoundEvents.ITEM_ARMOR_EQUIP_TURTLE,  0.0f, 0.05f,Ingredient.ofItems(Items.FIRE_CORAL)),
-	MAGMA("magma", 		 20, 4, 6, 5, 3, 12, SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE,0.5f, 0.0f,Ingredient.ofItems(Items.MAGMA_CREAM, Items.BLAZE_ROD)),
+	MAGMA("magma", 		 20, 4, 6, 5, 3, 12, SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE,0.5f,0.0f, Ingredient.ofItems(Items.MAGMA_CREAM, Items.BLAZE_ROD)),
 	GUARDIAN("guardian", 30, 3, 7, 5, 3, 10, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 1.0f, 0.05f,Ingredient.ofItems(Items.DIAMOND));
 
     private static final int BASE_DURABILITY_HEAD = 11;

@@ -1,4 +1,4 @@
-package somemod.magic.screen;
+package somemod.common.screen;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.PlayerEntity;
@@ -12,6 +12,7 @@ import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.screen.slot.Slot;
+import somemod.magic.screen.EnchantedBookshelfScreenHandler;
 
 public abstract class AbstractConverterScreenHandler extends ScreenHandler {
     

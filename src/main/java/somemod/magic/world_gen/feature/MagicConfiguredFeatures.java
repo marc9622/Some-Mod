@@ -8,7 +8,9 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.text.Text;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import somemod.SomeMod;
+import somemod.common.world_gen.feature.SingleChestFeatureConfig;
 import somemod.datagen.ChestLootTableProvider;
+import somemod.magic.block.MagicBlocks;
 
 public class MagicConfiguredFeatures {
     
@@ -18,8 +20,12 @@ public class MagicConfiguredFeatures {
         
         SomeMod.registerConfiguredFeature(registerable,
             FORGOTTEN_CHEST_ELVEN, MagicFeatures.FORGOTTEN_CHEST,
-            new ForgottenChestFeatureConfig(Optional.of(Text.of("Forgotten Elven Chest")),
-            ChestLootTableProvider.ELVEN_CHEST));
+            new SingleChestFeatureConfig(
+                Optional.of(Text.of("Forgotten Elven Chest")),
+                MagicBlocks.FORGOTTEN_CHEST,
+                ChestLootTableProvider.ELVEN_CHEST
+            )
+        );
 
     }
 

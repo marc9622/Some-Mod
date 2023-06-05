@@ -16,6 +16,7 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.math.random.Random;
+import somemod.common.enchantment.SprintingEnchantment;
 
 public final class HermesEnchantment extends SprintingEnchantment {
 

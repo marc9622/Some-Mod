@@ -18,8 +18,8 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
-import somemod.magic.enchantment.SprintingEnchantment;
-import somemod.magic.enchantment.SprintingEnchantment.StackingBehavior;
+import somemod.common.enchantment.SprintingEnchantment;
+import somemod.common.enchantment.SprintingEnchantment.StackingBehavior;
 
 @Mixin(LivingEntity.class)
 public abstract class EntitySprinting {

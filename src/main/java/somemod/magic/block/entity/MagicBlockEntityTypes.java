@@ -7,12 +7,13 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.registry.Registries;
 import somemod.SomeMod;
+import somemod.common.block.entity.CustomChestBlockEntity;
 import somemod.magic.block.MagicBlocks;
 
 public class MagicBlockEntityTypes {
     
     public static final BlockEntityType<EnchantedBookshelfBlockEntity> ENCHANTED_BOOKSHELF_ENTITY =
-        register("enchanted_bookshelf_entity", EnchantedBookshelfBlockEntity::new, MagicBlocks.ENCHANTED_BOOKSHELF);
+        register("enchanted_bookshelf", EnchantedBookshelfBlockEntity::new, MagicBlocks.ENCHANTED_BOOKSHELF);
 
     public static final BlockEntityType<CustomChestBlockEntity> FORGOTTEN_CHEST_ENTITY =
         register("forgotten_chest", ForgottenChestBlockEntity::new, MagicBlocks.FORGOTTEN_CHEST);

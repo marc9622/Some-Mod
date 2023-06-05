@@ -14,7 +14,7 @@ import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
-import somemod.magic.block.CustomBlockItemRenderer;
+import somemod.common.block.CustomBlockItemRenderer;
 
 @Mixin(ItemRenderer.class)
 public abstract class CustomItemRenderer {

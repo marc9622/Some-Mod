@@ -25,7 +25,12 @@ import somemod.crystal.block.CrystalBlocks;
 import somemod.crystal.item.CrystalItems;
 import somemod.crystal.world_gen.CrystalBiomeModifications;
 import somemod.crystal.world_gen.feature.CrystalFeatures;
+import somemod.frost.block.FrostBlocks;
+import somemod.frost.block.entity.FrostBlockEntityTypes;
+import somemod.frost.block.entity.render.FrostBlockEntityRendererFactories;
 import somemod.frost.item.FrostItems;
+import somemod.frost.world_gen.FrostBiomeModifications;
+import somemod.frost.world_gen.feature.FrostFeatures;
 import somemod.magic.block.MagicBlocks;
 import somemod.magic.block.entity.MagicBlockEntityTypes;
 import somemod.magic.block.entity.render.MagicBlockEntityRendererFactories;
@@ -50,7 +55,7 @@ import org.slf4j.LoggerFactory;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 
-public class SomeMod implements ModInitializer {
+public final class SomeMod implements ModInitializer {
 	// This logger is used to write text to the console and the log file.
 	// It is considered best practice to use your mod id as the logger's name.
 	// That way, it's clear which mod wrote info, warnings, and errors.
@@ -68,6 +73,7 @@ public class SomeMod implements ModInitializer {
 
 		CrystalBiomeModifications.addCrystalModifications();
 		MagicBiomeModifications.addMagicModifications();
+        FrostBiomeModifications.addFrostModifications();
 	}
 
 	/**
@@ -92,8 +98,32 @@ public class SomeMod implements ModInitializer {
 		MagicStatusEffects.notifyFabric();
 		MagicPotions.notifyFabric();
 		
+        FrostBlocks.notifyFabric();
+        FrostBlockEntityTypes.notifyFabric();
+        FrostBlockEntityRendererFactories.notifyFabric();
 		FrostItems.notifyFabric();
+        FrostFeatures.notifyFabric();
 	}
+
+    public static void logInfo(String string, Object... objects) { // info is for general information
+        LOGGER.info(string.formatted(objects));
+    }
+
+    public static void logWarn(String string, Object... objects) { // warn is for information that might indicate a problem
+        LOGGER.warn(string.formatted(objects));
+    }
+
+    public static void logError(String string, Object... objects) { // error is for when something goes wrong
+        LOGGER.error(string.formatted(objects));
+    }
+
+    public static void logDebug(String string, Object... objects) { // debug is ment for information that is only useful for debugging
+        LOGGER.debug(string.formatted(objects));
+    }
+
+    public static void logTrace(String string, Object... objects) { // trace is for very detailed information that is only useful for debugging
+        LOGGER.trace(string.formatted(objects));
+    }
 
 	public static void logKeyRegistration(String path, String registry) {
 		LOGGER.info("| Registering Key | " + registry + "\t <- \t" + path);

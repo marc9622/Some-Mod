@@ -1,0 +1,10 @@
+{
+  "type": "somemod:ice_chest",
+  "config": {
+    "chest_block": "somemod:ice_chest",
+    "custom_name": {
+      "text": "Ice Chest"
+    },
+    "loot_table": "somemod:chests/ice_chest"
+  }
+}

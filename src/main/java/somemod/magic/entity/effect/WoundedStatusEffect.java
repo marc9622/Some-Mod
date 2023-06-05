@@ -6,6 +6,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.effect.StatusEffectCategory;
+import somemod.common.entity.effect.DamageTakenStatusEffect;
 
 public class WoundedStatusEffect extends DamageTakenStatusEffect {
 

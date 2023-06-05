@@ -1,0 +1,10 @@
+{
+  "type": "somemod:spruce_chest",
+  "config": {
+    "chest_block": "somemod:spruce_chest",
+    "custom_name": {
+      "text": "Taiga Spruce Chest"
+    },
+    "loot_table": "somemod:chests/spruce_chest_taiga"
+  }
+}

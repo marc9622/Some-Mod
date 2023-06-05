@@ -23,7 +23,8 @@ import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.predicate.NumberRange;
 import net.minecraft.predicate.item.EnchantmentPredicate;
 import net.minecraft.predicate.item.ItemPredicate;
-import static somemod.crystal.block.CrystalBlocks.*;
+
+import somemod.crystal.block.CrystalBlocks;
 import static somemod.crystal.item.CrystalItems.*;
 import static somemod.magic.block.MagicBlocks.*;
 
@@ -37,12 +38,12 @@ public class BlockLootTableProvider extends FabricBlockLootTableProvider {
 
     @Override
     public void generate() {
-        this.addGlowStoneLikeDrop(CRYSTAL_GLASS, CRYSTAL_DUST);
-        this.addDropItself(CRYSTAL_BLOCK);
+        this.addGlowStoneLikeDrop(CrystalBlocks.CRYSTAL_GLASS, CRYSTAL_DUST);
+        this.addDropItself(CrystalBlocks.CRYSTAL_BLOCK);
         
-        this.addOreSingleWithItem(CITRINE_ORE,  CITRINE);
-        this.addOreSingleWithItem(RUBY_ORE,     RUBY);
-        this.addOreSingleWithItem(SAPPHIRE_ORE, SAPPHIRE);
+        this.addOreSingleWithItem(CrystalBlocks.CITRINE_ORE,  CITRINE);
+        this.addOreSingleWithItem(CrystalBlocks.RUBY_ORE,     RUBY);
+        this.addOreSingleWithItem(CrystalBlocks.SAPPHIRE_ORE, SAPPHIRE);
 
         this.addBookshelfLikeDrop(ENCHANTED_BOOKSHELF, Items.GOLD_INGOT,
             builder -> builder.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2.0f, 4.0f))));

@@ -16,7 +16,7 @@ import net.minecraft.client.util.SpriteIdentifier;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
-import somemod.magic.block.entity.CustomChestBlockEntity;
+import somemod.common.block.entity.CustomChestBlockEntity;
 
 @Mixin(ChestBlockEntityRenderer.class)
 public abstract class CustomChestEntityRenderer {

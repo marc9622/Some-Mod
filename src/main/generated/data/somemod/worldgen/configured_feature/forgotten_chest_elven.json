@@ -1,6 +1,7 @@
 {
   "type": "somemod:forgotten_chest",
   "config": {
+    "chest_block": "somemod:forgotten_chest",
     "custom_name": {
       "text": "Forgotten Elven Chest"
     },

@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.minecraft.registry.tag.BiomeTags;
 import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.gen.GenerationStep;
+
 import somemod.magic.tag.MagicBiomeTags;
 import somemod.magic.world_gen.feature.MagicPlacedFeatures;
 

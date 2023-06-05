@@ -23,6 +23,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
+import somemod.common.screen.AbstractConverterScreenHandler;
 import somemod.magic.block.MagicBlocks;
 
 // The way that the bookshelf screen workd currently,

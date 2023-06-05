@@ -7,10 +7,9 @@ import java.util.function.Consumer;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.SimpleFabricLootTableProvider;
-import net.minecraft.enchantment.Enchantments;
+import static net.minecraft.enchantment.Enchantments.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
-import net.minecraft.item.Items;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.condition.LootCondition;
@@ -36,10 +35,13 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.Potions;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import somemod.SomeMod;
-import somemod.magic.potion.MagicPotions;
 
+import somemod.SomeMod;
+import static net.minecraft.item.Items.*;
 import static somemod.magic.item.MagicItems.*;
+import somemod.magic.potion.MagicPotions;
+import somemod.frost.item.FrostItems;
+import static somemod.frost.item.FrostItems.*;
 
 @SuppressWarnings("unused")
 public class ChestLootTableProvider extends SimpleFabricLootTableProvider {
@@ -86,25 +88,25 @@ public class ChestLootTableProvider extends SimpleFabricLootTableProvider {
     private static final Text[] ELVEN_LORE_ALEVA   = new Text[]{Text.of("Belonged to " + "Princess Aleva Wrangella,"),Text.of("The lone hunter.")};
 
     private static final LeafEntry.Builder<?> ELVEN_LORE_1 =
-        itemEntry(Items.PAPER, 1, constant(1), setName(Text.of("Letter")), setLore(
+        itemEntry(PAPER, 1, constant(1), setName(Text.of("Letter")), setLore(
             Text.of("Dear Aerendy, it has been too long"),
             Text.of("since I last saw you. I miss you"),
             Text.of("so very much. I am planning to come"),
             Text.of("visit you very soon. - Elaith")));
 
     private static final LeafEntry.Builder<?> ELVEN_LORE_2 =
-        itemEntry(Items.PAPER, 1, constant(1), setName(Text.of("Note")), setLore(
+        itemEntry(PAPER, 1, constant(1), setName(Text.of("Note")), setLore(
             Text.of("I will be going on a small journey"),
             Text.of("not too far east. Do not worry; I will"),
             Text.of("be back before you know it. - Emryth")));
 
     private static final LeafEntry.Builder<?> ELVEN_LORE_3 =
-        itemEntry(Items.PAPER, 1, constant(1), setName(Text.of("Note")), setLore(
+        itemEntry(PAPER, 1, constant(1), setName(Text.of("Note")), setLore(
             Text.of("THEY ARE COMING FROM THE EAST"),
             Text.of("WARN THE OTHERS AND PREPARE YOURSELVES")));
 
     private static final LeafEntry.Builder<?> ELVEN_LORE_4 =
-        itemEntry(Items.PAPER, 1, constant(1), setName(Text.of("Note")), setLore(
+        itemEntry(PAPER, 1, constant(1), setName(Text.of("Note")), setLore(
             Text.of("To Artin and Isarrel,"),
             Text.of("I have written a letter to"),
             Text.of("Elnaril and Ashryn, informing"),
@@ -112,7 +114,7 @@ public class ChestLootTableProvider extends SimpleFabricLootTableProvider {
             Text.of("We must flee west. - Aerendy")));
 
     private static final LeafEntry.Builder<?> ELVEN_LORE_5 =
-        itemEntry(Items.PAPER, 1, constant(1), setName(Text.of("Note")), setLore(
+        itemEntry(PAPER, 1, constant(1), setName(Text.of("Note")), setLore(
             Text.of("Isarrel, hopefully you will see this."),
             Text.of("Aerendy and I have been looking for him,"),
             Text.of("but he is nowhere to be found."),
@@ -122,14 +124,14 @@ public class ChestLootTableProvider extends SimpleFabricLootTableProvider {
             Text.of("probably already left. - Artin")));
 
     private static final LeafEntry.Builder<?> ELVEN_LORE_6 =
-        itemEntry(Items.PAPER, 1, constant(1), setName(Text.of("Letter")), setLore(
+        itemEntry(PAPER, 1, constant(1), setName(Text.of("Letter")), setLore(
             Text.of("Elaith, my dear. If you find this,"),
             Text.of("please do not go towards the village."),
             Text.of("I have travelled west with the others."),
             Text.of("I hope you are safe.")));
 
     private static final LeafEntry.Builder<?> ELVEN_LORE_7 =
-        itemEntry(Items.PAPER, 1, constant(1), setName(Text.of("Letter")), setLore(
+        itemEntry(PAPER, 1, constant(1), setName(Text.of("Letter")), setLore(
             Text.of("Aerendy Naereiros... I am sorry"),
             Text.of("to inform you... but I found"),
             Text.of("Elaith dead near the village..."),
@@ -138,181 +140,181 @@ public class ChestLootTableProvider extends SimpleFabricLootTableProvider {
 
     private static final LeafEntry.Builder<?> ELVEN_HELMET_ELNARIL =
         itemEntry(ELVEN_HELMET, 1, constant(1), setDamage(uniform(0.5f, 0.95f)), setLore(ELVEN_LORE_ELNARIL), setEnchantments()
-            .enchantment(Enchantments.PROTECTION, uniform(2, 3))
-            .enchantment(Enchantments.UNBREAKING, constant(1)));
+            .enchantment(PROTECTION, uniform(2, 3))
+            .enchantment(UNBREAKING, constant(1)));
 
     private static final LeafEntry.Builder<?> ELVEN_HELMET_ASHRYN =
         itemEntry(ELVEN_HELMET, 1, constant(1), setDamage(uniform(0.25f, 0.95f)), setLore(ELVEN_LORE_ASHRYN), setEnchantments()
-            .enchantment(Enchantments.PROTECTION, uniform(1, 2))
-            .enchantment(Enchantments.MENDING, constant(1)));
+            .enchantment(PROTECTION, uniform(1, 2))
+            .enchantment(MENDING, constant(1)));
 
     private static final LeafEntry.Builder<?> ELVEN_CHESTPLATE_EMRYTH =
         itemEntry(ELVEN_CHESTPLATE, 1, constant(1), setDamage(uniform(0.1f, 0.5f)), setLore(ELVEN_LORE_EMRYTH), setEnchantments()
-            .enchantment(Enchantments.PROTECTION, uniform(0, 3))
-            .enchantment(Enchantments.MENDING, constant(1)));
+            .enchantment(PROTECTION, uniform(0, 3))
+            .enchantment(MENDING, constant(1)));
 
     private static final LeafEntry.Builder<?> ELVEN_CHESTPLATE_AERENDY =
         itemEntry(ELVEN_CHESTPLATE, 1, constant(1), setDamage(uniform(0.8f, 0.95f)), setLore(ELVEN_LORE_AERENDY), setEnchantments()
-            .enchantment(Enchantments.PROTECTION, uniform(1, 2))
-            .enchantment(Enchantments.THORNS, uniform(0, 1))
-            .enchantment(Enchantments.UNBREAKING, uniform(0, 1)));
+            .enchantment(PROTECTION, uniform(1, 2))
+            .enchantment(THORNS, uniform(0, 1))
+            .enchantment(UNBREAKING, uniform(0, 1)));
 
     private static final LeafEntry.Builder<?> ELVEN_SWORD_ELAITH =
-        itemEntry(Items.IRON_SWORD, 1, constant(1), setDamage(uniform(0.2f, 0.6f)), setLore(ELVEN_LORE_ELAITH), setEnchantments()
-            .enchantment(Enchantments.SMITE, uniform(1, 2))
-            .enchantment(Enchantments.UNBREAKING, constant(1)));
+        itemEntry(IRON_SWORD, 1, constant(1), setDamage(uniform(0.2f, 0.6f)), setLore(ELVEN_LORE_ELAITH), setEnchantments()
+            .enchantment(SMITE, uniform(1, 2))
+            .enchantment(UNBREAKING, constant(1)));
 
     private static final LeafEntry.Builder<?> ELVEN_LEGGINGS_ARTIN =
         itemEntry(ELVEN_LEGGINGS, 1, constant(1), setDamage(uniform(0.1f, 0.95f)), setLore(ELVEN_LORE_ARTIN), setEnchantments()
-            .enchantment(Enchantments.FEATHER_FALLING, uniform(0, 1))
-            .enchantment(Enchantments.PROTECTION, uniform(1, 2))
-            .enchantment(Enchantments.UNBREAKING, uniform(0, 2)));
+            .enchantment(FEATHER_FALLING, uniform(0, 1))
+            .enchantment(PROTECTION, uniform(1, 2))
+            .enchantment(UNBREAKING, uniform(0, 2)));
 
     private static final LeafEntry.Builder<?> ELVEN_BOOTS_ISARREL =
         itemEntry(ELVEN_BOOTS, 1, constant(1), setDamage(uniform(0.5f, 0.95f)), setLore(ELVEN_LORE_ISARREL), setEnchantments()
-            .enchantment(Enchantments.DEPTH_STRIDER, constant(1))
-            .enchantment(Enchantments.PROTECTION, uniform(0, 1)));
+            .enchantment(DEPTH_STRIDER, constant(1))
+            .enchantment(PROTECTION, uniform(0, 1)));
 
     private static final LeafEntry.Builder<?> ELVEN_BOW_ALEVA =
-        itemEntry(Items.BOW, 1, constant(1), setDamage(uniform(0.15f, 0.95f)), setLore(ELVEN_LORE_ALEVA), setEnchantments()
-            .enchantment(Enchantments.POWER, uniform(0, 2))
-            .enchantment(Enchantments.PUNCH, uniform(0, 1))
-            .enchantment(Enchantments.INFINITY, uniform(0, 1))
-            .enchantment(Enchantments.MENDING, uniform(0, 1)));
+        itemEntry(BOW, 1, constant(1), setDamage(uniform(0.15f, 0.95f)), setLore(ELVEN_LORE_ALEVA), setEnchantments()
+            .enchantment(POWER, uniform(0, 2))
+            .enchantment(PUNCH, uniform(0, 1))
+            .enchantment(INFINITY, uniform(0, 1))
+            .enchantment(MENDING, uniform(0, 1)));
 
     private static final LeafEntry.Builder<?> ELVEN_HELMET_BASIC     = itemEntry(ELVEN_HELMET,     2, constant(1), setDamage(uniform(0.1f, 0.95f)));
     private static final LeafEntry.Builder<?> ELVEN_CHESTPLATE_BASIC = itemEntry(ELVEN_CHESTPLATE, 2, constant(1), setDamage(uniform(0.1f, 0.95f)));
     private static final LeafEntry.Builder<?> ELVEN_LEGGINGS_BASIC   = itemEntry(ELVEN_LEGGINGS,   2, constant(1), setDamage(uniform(0.1f, 0.95f)));
     private static final LeafEntry.Builder<?> ELVEN_BOOTS_BASIC      = itemEntry(ELVEN_BOOTS,      2, constant(1), setDamage(uniform(0.1f, 0.95f)));
-    private static final LeafEntry.Builder<?> ELVEN_SWORD_BASIC      = itemEntry(Items.IRON_SWORD, 2, constant(1), setDamage(uniform(0.1f, 0.95f)));
-    private static final LeafEntry.Builder<?> ELVEN_BOW_BASIC        = itemEntry(Items.BOW,        2, constant(1), setDamage(uniform(0.1f, 0.95f)));
+    private static final LeafEntry.Builder<?> ELVEN_SWORD_BASIC      = itemEntry(IRON_SWORD, 2, constant(1), setDamage(uniform(0.1f, 0.95f)));
+    private static final LeafEntry.Builder<?> ELVEN_BOW_BASIC        = itemEntry(BOW,        2, constant(1), setDamage(uniform(0.1f, 0.95f)));
 
-    public static final Identifier ELVEN_CHEST_WRITING =
+    private static final Identifier ELVEN_CHEST_WRITING =
         registerLootTable("elven_chest_writing",
             LootPool.builder()
                 .rolls(uniform(2, 3))
-                .with(itemEntry(Items.BOOK,       4, uniform(1, 3)))
-                .with(itemEntry(Items.PAPER,     10, uniform(2, 4)))
-                .with(itemEntry(Items.FEATHER,    6, uniform(2, 4)))
-                .with(itemEntry(Items.INK_SAC,    5, constant(1)))
-                .with(itemEntry(Items.BLACK_DYE,  2, uniform(1, 3)))
-                .with(itemEntry(Items.GREEN_DYE,  1, uniform(1, 2)))
-                .with(itemEntry(Items.PURPLE_DYE, 1, uniform(1, 2)))
-                .with(itemEntry(Items.YELLOW_DYE, 1, uniform(1, 2)))
-                .with(itemEntry(Items.STRING,     3, uniform(2, 4)))
-                .with(itemEntry(Items.NAME_TAG,   1))
+                .with(itemEntry(BOOK,       4, uniform(1, 3)))
+                .with(itemEntry(PAPER,     10, uniform(2, 4)))
+                .with(itemEntry(FEATHER,    6, uniform(2, 4)))
+                .with(itemEntry(INK_SAC,    5, constant(1)))
+                .with(itemEntry(BLACK_DYE,  2, uniform(1, 3)))
+                .with(itemEntry(GREEN_DYE,  1, uniform(1, 2)))
+                .with(itemEntry(PURPLE_DYE, 1, uniform(1, 2)))
+                .with(itemEntry(YELLOW_DYE, 1, uniform(1, 2)))
+                .with(itemEntry(STRING,     3, uniform(2, 4)))
+                .with(itemEntry(NAME_TAG,   1))
         );
 
-    public static final Identifier ELVEN_CHEST_FOOD =
+    private static final Identifier ELVEN_CHEST_FOOD =
         registerLootTable("elven_chest_food",
             LootPool.builder()
                 .rolls(uniform(2, 3))
-                .with(itemEntry(Items.WHEAT,       3, uniform(2, 4)))
-                .with(itemEntry(Items.WHEAT_SEEDS, 1, uniform(2, 4)))
-                .with(itemEntry(Items.BREAD,       2, uniform(1, 3)))
-                .with(itemEntry(Items.APPLE,       4, uniform(2, 4)))
-                .with(itemEntry(Items.SWEET_BERRIES, 4, uniform(2, 4)))
-                .with(itemEntry(Items.SUGAR,       1, uniform(2, 4)))
-                .with(itemEntry(Items.SUGAR_CANE,  1, uniform(2, 4)))
-                .with(itemEntry(Items.STRING,      2, uniform(2, 4)))
-                .with(itemEntry(Items.NAME_TAG,    1))
+                .with(itemEntry(WHEAT,       3, uniform(2, 4)))
+                .with(itemEntry(WHEAT_SEEDS, 1, uniform(2, 4)))
+                .with(itemEntry(BREAD,       2, uniform(1, 3)))
+                .with(itemEntry(APPLE,       4, uniform(2, 4)))
+                .with(itemEntry(SWEET_BERRIES, 4, uniform(2, 4)))
+                .with(itemEntry(SUGAR,       1, uniform(2, 4)))
+                .with(itemEntry(SUGAR_CANE,  1, uniform(2, 4)))
+                .with(itemEntry(STRING,      2, uniform(2, 4)))
+                .with(itemEntry(NAME_TAG,    1))
         );
 
-    public static final Identifier ELVEN_CHEST_COMBAT =
+    private static final Identifier ELVEN_CHEST_COMBAT =
         registerLootTable("elven_chest_combat",
             LootPool.builder()
                 .rolls(uniform(2, 3))
-                .with(itemEntry(Items.ARROW,  5, uniform(2, 4)))
-                .with(itemEntry(Items.STICK,  4, uniform(2, 4)))
-                .with(itemEntry(Items.FLINT,  3, uniform(2, 4)))
-                .with(itemEntry(Items.APPLE,  1, uniform(1, 3)))
-                .with(itemEntry(Items.POTION, 1, constant(1), setPotion(Potions.HEALING)))
-                .with(itemEntry(Items.POTION, 1, constant(1), setPotion(Potions.REGENERATION)))
-                .with(itemEntry(Items.POTION, 1, constant(1), setPotion(Potions.INVISIBILITY)))
-                .with(itemEntry(Items.WOODEN_SWORD, 1, constant(1), setDamage(uniform(0.2f, 0.8f))))
-                .with(itemEntry(Items.STONE_SWORD,  1, constant(1), setDamage(uniform(0.2f, 0.8f))))
-                .with(itemEntry(Items.WOODEN_AXE,   1, constant(1), setDamage(uniform(0.2f, 0.8f))))
-                .with(itemEntry(Items.STONE_AXE,    1, constant(1), setDamage(uniform(0.2f, 0.8f))))
-                .with(itemEntry(Items.BOW,          2, constant(1), setDamage(uniform(0.2f, 0.8f))))
+                .with(itemEntry(ARROW,  5, uniform(2, 4)))
+                .with(itemEntry(STICK,  4, uniform(2, 4)))
+                .with(itemEntry(FLINT,  3, uniform(2, 4)))
+                .with(itemEntry(APPLE,  1, uniform(1, 3)))
+                .with(itemEntry(POTION, 1, constant(1), setPotion(Potions.HEALING)))
+                .with(itemEntry(POTION, 1, constant(1), setPotion(Potions.REGENERATION)))
+                .with(itemEntry(POTION, 1, constant(1), setPotion(Potions.INVISIBILITY)))
+                .with(itemEntry(WOODEN_SWORD, 1, constant(1), setDamage(uniform(0.2f, 0.8f))))
+                .with(itemEntry(STONE_SWORD,  1, constant(1), setDamage(uniform(0.2f, 0.8f))))
+                .with(itemEntry(WOODEN_AXE,   1, constant(1), setDamage(uniform(0.2f, 0.8f))))
+                .with(itemEntry(STONE_AXE,    1, constant(1), setDamage(uniform(0.2f, 0.8f))))
+                .with(itemEntry(BOW,          2, constant(1), setDamage(uniform(0.2f, 0.8f))))
         );
 
-    public static final Identifier ELVEN_CHEST_MAGIC =
+    private static final Identifier ELVEN_CHEST_MAGIC =
         registerLootTable("elven_chest_magic",
             LootPool.builder()
                 .rolls(constant(2))
-                .with(itemEntry(Items.GLASS_BOTTLE, 8, uniform(1, 2)))
-                .with(itemEntry(Items.POTION, 2, uniform(1, 2), setPotion(Potions.AWKWARD)))
-                .with(itemEntry(Items.POTION, 2, uniform(1, 2), setPotion(Potions.MUNDANE)))
-                .with(itemEntry(Items.POTION, 2, uniform(1, 2), setPotion(Potions.THICK)))
-                .with(itemEntry(Items.BOOK,   4, uniform(2, 4))),
+                .with(itemEntry(GLASS_BOTTLE, 8, uniform(1, 2)))
+                .with(itemEntry(POTION, 2, uniform(1, 2), setPotion(Potions.AWKWARD)))
+                .with(itemEntry(POTION, 2, uniform(1, 2), setPotion(Potions.MUNDANE)))
+                .with(itemEntry(POTION, 2, uniform(1, 2), setPotion(Potions.THICK)))
+                .with(itemEntry(BOOK,   4, uniform(2, 4))),
             LootPool.builder()
                 .rolls(constant(1))
-                .with(itemEntry(Items.ENDER_PEARL,  8, uniform(1, 3)))
-                .with(itemEntry(Items.SPIDER_EYE,  10, uniform(1, 3)))
-                .with(itemEntry(Items.FERMENTED_SPIDER_EYE, 5, constant(1)))
-                .with(itemEntry(Items.ROTTEN_FLESH, 5, uniform(1, 3)))
-                .with(itemEntry(Items.SLIME_BALL,  10, uniform(2, 4)))
-                .with(itemEntry(Items.SUGAR,        5, uniform(1, 3)))
-                .with(itemEntry(Items.GOLDEN_APPLE, 2, constant(1)))
-                .with(itemEntry(Items.GLISTERING_MELON_SLICE, 2, constant(1)))
-                .with(itemEntry(Items.EXPERIENCE_BOTTLE, 1, uniform(1, 2))),
+                .with(itemEntry(ENDER_PEARL,  8, uniform(1, 3)))
+                .with(itemEntry(SPIDER_EYE,  10, uniform(1, 3)))
+                .with(itemEntry(FERMENTED_SPIDER_EYE, 5, constant(1)))
+                .with(itemEntry(ROTTEN_FLESH, 5, uniform(1, 3)))
+                .with(itemEntry(SLIME_BALL,  10, uniform(2, 4)))
+                .with(itemEntry(SUGAR,        5, uniform(1, 3)))
+                .with(itemEntry(GOLDEN_APPLE, 2, constant(1)))
+                .with(itemEntry(GLISTERING_MELON_SLICE, 2, constant(1)))
+                .with(itemEntry(EXPERIENCE_BOTTLE, 1, uniform(1, 2))),
             LootPool.builder()
                 .rolls(constant(1))
-                .with(itemEntry(Items.POTION,         4, constant(1), setPotion(MagicPotions.AGILITY)))
-                .with(itemEntry(Items.SPLASH_POTION,  4, constant(1), setPotion(MagicPotions.AGILITY)))
-                .with(itemEntry(Items.POTION,         3, constant(1), setPotion(Potions.SWIFTNESS)))
-                .with(itemEntry(Items.SPLASH_POTION,  3, constant(1), setPotion(Potions.SWIFTNESS)))
-                .with(itemEntry(Items.POTION,         3, constant(1), setPotion(MagicPotions.FERAL_ENDURANCE)))
-                .with(itemEntry(Items.SPLASH_POTION,  3, constant(1), setPotion(MagicPotions.FERAL_ENDURANCE)))
-                .with(itemEntry(Items.POTION,         2, constant(1), setPotion(MagicPotions.MAGIC_RESILIENCE)))
-                .with(itemEntry(Items.SPLASH_POTION,  2, constant(1), setPotion(MagicPotions.MAGIC_RESILIENCE)))
-                .with(itemEntry(Items.POTION,         1, constant(1), setPotion(Potions.LUCK)))
-                .with(itemEntry(Items.ENCHANTED_BOOK, 1, constant(1), setEnchantments().enchantment(Enchantments.MENDING, constant(1))))
-                .with(itemEntry(Items.ENCHANTED_BOOK, 2, constant(1), setEnchantments().enchantment(Enchantments.PROTECTION, uniform(1, 2))))
-                .with(itemEntry(Items.ENCHANTED_BOOK, 2, constant(1), setEnchantments().enchantment(Enchantments.UNBREAKING, uniform(1, 2))))
-                .with(itemEntry(Items.ENCHANTED_BOOK, 2, constant(1), setEnchantments().enchantment(Enchantments.SMITE, constant(1))))
-                .with(itemEntry(Items.ENCHANTED_BOOK, 2, constant(1), setEnchantments().enchantment(Enchantments.INFINITY, constant(1))))
+                .with(itemEntry(POTION,         4, constant(1), setPotion(MagicPotions.AGILITY)))
+                .with(itemEntry(SPLASH_POTION,  4, constant(1), setPotion(MagicPotions.AGILITY)))
+                .with(itemEntry(POTION,         3, constant(1), setPotion(Potions.SWIFTNESS)))
+                .with(itemEntry(SPLASH_POTION,  3, constant(1), setPotion(Potions.SWIFTNESS)))
+                .with(itemEntry(POTION,         3, constant(1), setPotion(MagicPotions.FERAL_ENDURANCE)))
+                .with(itemEntry(SPLASH_POTION,  3, constant(1), setPotion(MagicPotions.FERAL_ENDURANCE)))
+                .with(itemEntry(POTION,         2, constant(1), setPotion(MagicPotions.MAGIC_RESILIENCE)))
+                .with(itemEntry(SPLASH_POTION,  2, constant(1), setPotion(MagicPotions.MAGIC_RESILIENCE)))
+                .with(itemEntry(POTION,         1, constant(1), setPotion(Potions.LUCK)))
+                .with(itemEntry(ENCHANTED_BOOK, 1, constant(1), setEnchantments().enchantment(MENDING, constant(1))))
+                .with(itemEntry(ENCHANTED_BOOK, 2, constant(1), setEnchantments().enchantment(PROTECTION, uniform(1, 2))))
+                .with(itemEntry(ENCHANTED_BOOK, 2, constant(1), setEnchantments().enchantment(UNBREAKING, uniform(1, 2))))
+                .with(itemEntry(ENCHANTED_BOOK, 2, constant(1), setEnchantments().enchantment(SMITE, constant(1))))
+                .with(itemEntry(ENCHANTED_BOOK, 2, constant(1), setEnchantments().enchantment(INFINITY, constant(1))))
         );
 
-    public static final Identifier ELVEN_CHEST_DARK_OAK =
+    private static final Identifier ELVEN_CHEST_DARK_OAK =
         registerLootTable("elven_chest_building_dark_oak",
             LootPool.builder()
                 .rolls(constant(1))
-                .with(itemEntry(Items.DARK_OAK_LOG,    4, uniform(1, 3)))
-                .with(itemEntry(Items.DARK_OAK_PLANKS, 5, uniform(2, 4)))
-                .with(itemEntry(Items.DARK_OAK_FENCE,  2, uniform(2, 4)))
+                .with(itemEntry(DARK_OAK_LOG,    4, uniform(1, 3)))
+                .with(itemEntry(DARK_OAK_PLANKS, 5, uniform(2, 4)))
+                .with(itemEntry(DARK_OAK_FENCE,  2, uniform(2, 4)))
         );
 
-    public static final Identifier ELVEN_CHEST_OAK =
+    private static final Identifier ELVEN_CHEST_OAK =
         registerLootTable("elven_chest_building_oak",
             LootPool.builder()
                 .rolls(constant(1))
-                .with(itemEntry(Items.OAK_LOG,    4, uniform(1, 3)))
-                .with(itemEntry(Items.OAK_PLANKS, 5, uniform(2, 4)))
-                .with(itemEntry(Items.OAK_FENCE,  2, uniform(2, 4)))
+                .with(itemEntry(OAK_LOG,    4, uniform(1, 3)))
+                .with(itemEntry(OAK_PLANKS, 5, uniform(2, 4)))
+                .with(itemEntry(OAK_FENCE,  2, uniform(2, 4)))
         );
 
-    public static final Identifier ELVEN_CHEST_BIRCH =
+    private static final Identifier ELVEN_CHEST_BIRCH =
         registerLootTable("elven_chest_building_birch",
             LootPool.builder()
                 .rolls(constant(1))
-                .with(itemEntry(Items.BIRCH_LOG,    4, uniform(1, 3)))
-                .with(itemEntry(Items.BIRCH_PLANKS, 5, uniform(2, 4)))
-                .with(itemEntry(Items.BIRCH_FENCE,  2, uniform(2, 4)))
+                .with(itemEntry(BIRCH_LOG,    4, uniform(1, 3)))
+                .with(itemEntry(BIRCH_PLANKS, 5, uniform(2, 4)))
+                .with(itemEntry(BIRCH_FENCE,  2, uniform(2, 4)))
         );
 
-    public static final Identifier ELVEN_CHEST_BUILDING =
+    private static final Identifier ELVEN_CHEST_BUILDING =
         registerLootTable("elven_chest_building",
             LootPool.builder()
                 .rolls(constant(1))
                 .conditionally(randomChance(0.5f))
-                .with(itemEntry(Items.CHEST))
-                .with(itemEntry(Items.CRAFTING_TABLE))
-                .with(itemEntry(Items.CAMPFIRE))
-                .with(itemEntry(Items.WOODEN_PICKAXE, 1, constant(1), setDamage(uniform(0.2f, 0.8f))))
-                .with(itemEntry(Items.WOODEN_AXE,     1, constant(1), setDamage(uniform(0.2f, 0.8f))))
-                .with(itemEntry(Items.WOODEN_SHOVEL,  1, constant(1), setDamage(uniform(0.2f, 0.8f))))
-                .with(itemEntry(Items.WOODEN_HOE,     1, constant(1), setDamage(uniform(0.2f, 0.8f)))),
+                .with(itemEntry(CHEST))
+                .with(itemEntry(CRAFTING_TABLE))
+                .with(itemEntry(CAMPFIRE))
+                .with(itemEntry(WOODEN_PICKAXE, 1, constant(1), setDamage(uniform(0.2f, 0.8f))))
+                .with(itemEntry(WOODEN_AXE,     1, constant(1), setDamage(uniform(0.2f, 0.8f))))
+                .with(itemEntry(WOODEN_SHOVEL,  1, constant(1), setDamage(uniform(0.2f, 0.8f))))
+                .with(itemEntry(WOODEN_HOE,     1, constant(1), setDamage(uniform(0.2f, 0.8f)))),
             LootPool.builder()
                 .rolls(constant(2))
                 .with(LootTableEntry.builder(ELVEN_CHEST_DARK_OAK))
@@ -320,25 +322,25 @@ public class ChestLootTableProvider extends SimpleFabricLootTableProvider {
                 .with(LootTableEntry.builder(ELVEN_CHEST_BIRCH)),
             LootPool.builder()
                 .rolls(constant(2))
-                .with(itemEntry(Items.STICK,       5, uniform(2, 6)))
-                .with(itemEntry(Items.COBBLESTONE, 1, uniform(2, 4)))
-                .with(itemEntry(Items.STRING,      3, uniform(2, 4)))
-                .with(itemEntry(Items.FLINT,       3, uniform(1, 2)))
+                .with(itemEntry(STICK,       5, uniform(2, 6)))
+                .with(itemEntry(COBBLESTONE, 1, uniform(2, 4)))
+                .with(itemEntry(STRING,      3, uniform(2, 4)))
+                .with(itemEntry(FLINT,       3, uniform(1, 2)))
         );
 
-    public static final Identifier ELVEN_CHEST_VALUABLES =
+    private static final Identifier ELVEN_CHEST_VALUABLES =
         registerLootTable("elven_chest_valuables",
             LootPool.builder()
                 .rolls(constant(1))
-                .with(itemEntry(Items.EXPERIENCE_BOTTLE, 1, uniform(1, 2)))
-                .with(itemEntry(Items.EMERALD, 1, constant(1)))
-                .with(itemEntry(Items.DIAMOND, 1, constant(1)))
-                .with(itemEntry(Items.GOLD_NUGGET, 3, uniform(9, 18)))
-                .with(itemEntry(Items.LEATHER_HORSE_ARMOR, 3, constant(1)))
-                .with(itemEntry(Items.IRON_HORSE_ARMOR,    2, constant(1)))
-                .with(itemEntry(Items.GOLDEN_HORSE_ARMOR,  2, constant(1)))
-                .with(itemEntry(Items.COMPASS, 1, constant(1)))
-                .with(itemEntry(Items.CLOCK,   1, constant(1)))
+                .with(itemEntry(EXPERIENCE_BOTTLE, 1, uniform(1, 2)))
+                .with(itemEntry(EMERALD, 1, constant(1)))
+                .with(itemEntry(DIAMOND, 1, constant(1)))
+                .with(itemEntry(GOLD_NUGGET, 3, uniform(9, 18)))
+                .with(itemEntry(LEATHER_HORSE_ARMOR, 3, constant(1)))
+                .with(itemEntry(IRON_HORSE_ARMOR,    2, constant(1)))
+                .with(itemEntry(GOLDEN_HORSE_ARMOR,  2, constant(1)))
+                .with(itemEntry(COMPASS, 1, constant(1)))
+                .with(itemEntry(CLOCK,   1, constant(1)))
         );
 
     public static final Identifier ELVEN_CHEST =
@@ -387,6 +389,188 @@ public class ChestLootTableProvider extends SimpleFabricLootTableProvider {
         );
     //#endregion
 
+    //#region FROST
+    private static final Identifier SPRUCE_CHEST_ARCTIC_ARMOR =
+        registerLootTable("spruce_chest_arctic_armor",
+            LootPool.builder()
+                .rolls(constant(1))
+                .conditionally(randomChance(0.15f))
+                .with(itemEntry(ARCTIC_HAT,    1, constant(1), setDamage(uniform(0.1f, 0.9f)), setEnchantments().enchantment(UNBREAKING, uniform(0, 1)))),
+            LootPool.builder()
+                .rolls(constant(1))
+                .conditionally(randomChance(0.15f))
+                .with(itemEntry(ARCTIC_JACKET, 1, constant(1), setDamage(uniform(0.1f, 0.9f)), setEnchantments().enchantment(UNBREAKING, uniform(0, 1)))),
+            LootPool.builder()
+                .rolls(constant(1))
+                .conditionally(randomChance(0.15f))
+                .with(itemEntry(ARCTIC_PANTS,  1, constant(1), setDamage(uniform(0.1f, 0.9f)), setEnchantments().enchantment(UNBREAKING, uniform(0, 1)))),
+            LootPool.builder()
+                .rolls(constant(1))
+                .conditionally(randomChance(0.15f))
+                .with(itemEntry(ARCTIC_BOOTS,  1, constant(1), setDamage(uniform(0.1f, 0.9f)), setEnchantments().enchantment(UNBREAKING, uniform(0, 1))))
+        );
+
+    private static final Identifier SPRUCE_CHEST_GLACIER_ARMOR =
+        registerLootTable("spruce_chest_glacier_armor",
+            LootPool.builder()
+                .rolls(constant(1))
+                .with(itemEntry(GLACIER_HELMET,     1, constant(1), setDamage(uniform(0.5f, 1.0f)), setEnchantments().enchantment(PROTECTION, uniform(0, 1))))
+                .with(itemEntry(GLACIER_CHESTPLATE, 1, constant(1), setDamage(uniform(0.5f, 1.0f)), setEnchantments().enchantment(PROTECTION, uniform(0, 1))))
+                .with(itemEntry(GLACIER_LEGGINGS,   1, constant(1), setDamage(uniform(0.5f, 1.0f)), setEnchantments().enchantment(PROTECTION, uniform(0, 1))))
+                .with(itemEntry(GLACIER_BOOTS,      1, constant(1), setDamage(uniform(0.5f, 1.0f)), setEnchantments().enchantment(FROST_WALKER, uniform(0, 1))))
+        );
+
+    public static final Identifier SPRUCE_CHEST_SNOWY =
+        registerLootTable("spruce_chest_snowy",
+            LootPool.builder()
+                .rolls(constant(1))
+                .with(lootTableEntry(SPRUCE_CHEST_ARCTIC_ARMOR, 2))
+                .with(lootTableEntry(SPRUCE_CHEST_GLACIER_ARMOR)),
+            LootPool.builder()
+                .rolls(uniform(8, 12))
+                .with(itemEntry(SNOWBALL, 8))
+                .with(itemEntry(TORCH,    8))
+                .with(itemEntry(COAL,     2))
+                .with(itemEntry(STICK,    2))
+                .with(itemEntry(SPRUCE_LOG,     2))
+                .with(itemEntry(SPRUCE_PLANKS,  2))
+                .with(itemEntry(SPRUCE_FENCE,   2))
+                .with(itemEntry(CRAFTING_TABLE, 1))
+                .with(itemEntry(FURNACE,        1)),
+            LootPool.builder()
+                .rolls(constant(1))
+                .with(itemEntry(BREAD, 1, uniform(0, 3)))
+                .with(itemEntry(APPLE, 1, uniform(0, 6))),
+            LootPool.builder()
+                .rolls(constant(1))
+                .with(itemEntry(STONE_SWORD,  1, constant(1), setDamage(uniform(0.1f, 0.9f))))
+                .with(itemEntry(STONE_SHOVEL, 1, constant(1), setDamage(uniform(0.1f, 0.9f))))
+                .with(itemEntry(CAMPFIRE)),
+            LootPool.builder()
+                .rolls(constant(1))
+                .conditionally(randomChance(0.5f))
+                .with(itemEntry(IRON_INGOT, 1, uniform(1, 3)))
+                .with(itemEntry(GOLD_INGOT, 1, uniform(1, 3))),
+            LootPool.builder()
+                .rolls(constant(1))
+                .conditionally(randomChance(0.1f))
+                .with(itemEntry(DIAMOND))
+        );
+
+    public static final Identifier SPRUCE_CHEST_TAIGA =
+        registerLootTable("spruce_chest_taiga",
+            LootPool.builder()
+                .rolls(constant(1))
+                .with(lootTableEntry(SPRUCE_CHEST_ARCTIC_ARMOR)),
+            LootPool.builder()
+                .rolls(uniform(8, 12))
+                .with(itemEntry(TORCH,    8))
+                .with(itemEntry(COAL,     2))
+                .with(itemEntry(STICK,    2))
+                .with(itemEntry(SPRUCE_LOG,     2))
+                .with(itemEntry(SPRUCE_PLANKS,  2))
+                .with(itemEntry(SPRUCE_FENCE,   2))
+                .with(itemEntry(CRAFTING_TABLE, 1))
+                .with(itemEntry(FURNACE,        1)),
+            LootPool.builder()
+                .rolls(constant(1))
+                .with(itemEntry(BREAD, 1, uniform(0, 3)))
+                .with(itemEntry(APPLE, 1, uniform(0, 6)))
+                .with(itemEntry(SWEET_BERRIES, 4, uniform(0, 8))),
+            LootPool.builder()
+                .rolls(constant(1))
+                .with(itemEntry(STONE_SWORD,   1, constant(1), setDamage(uniform(0.1f, 0.9f))))
+                .with(itemEntry(STONE_PICKAXE, 1, constant(1), setDamage(uniform(0.1f, 0.9f))))
+                .with(itemEntry(STONE_AXE,     1, constant(1), setDamage(uniform(0.1f, 0.9f))))
+                .with(itemEntry(STONE_HOE,     1, constant(1), setDamage(uniform(0.1f, 0.9f))))
+                .with(itemEntry(CAMPFIRE)),
+            LootPool.builder()
+                .rolls(constant(1))
+                .conditionally(randomChance(0.5f))
+                .with(itemEntry(IRON_INGOT, 1, uniform(1, 3)))
+                .with(itemEntry(GOLD_INGOT, 1, uniform(1, 3)))
+        );
+
+    public static final Identifier SPRUCE_CHEST_MOUNTAIN =
+        registerLootTable("spruce_chest_mountain",
+            LootPool.builder()
+                .rolls(constant(1))
+                .with(lootTableEntry(SPRUCE_CHEST_ARCTIC_ARMOR, 2))
+                .with(lootTableEntry(SPRUCE_CHEST_GLACIER_ARMOR)),
+            LootPool.builder()
+                .rolls(uniform(8, 12))
+                .with(itemEntry(TORCH,    8))
+                .with(itemEntry(COAL,     2))
+                .with(itemEntry(STICK,    2))
+                .with(itemEntry(SPRUCE_LOG,     2))
+                .with(itemEntry(SPRUCE_PLANKS,  2))
+                .with(itemEntry(SPRUCE_FENCE,   2))
+                .with(itemEntry(CRAFTING_TABLE, 1))
+                .with(itemEntry(FURNACE,        1)),
+            LootPool.builder()
+                .rolls(constant(1))
+                .with(itemEntry(BREAD, 1, uniform(0, 3)))
+                .with(itemEntry(APPLE, 1, uniform(0, 6))),
+            LootPool.builder()
+                .rolls(constant(1))
+                .with(itemEntry(STONE_SWORD,   1, constant(1), setDamage(uniform(0.1f, 0.9f))))
+                .with(itemEntry(STONE_PICKAXE, 1, constant(1), setDamage(uniform(0.1f, 0.9f))))
+                .with(itemEntry(CAMPFIRE)),
+            LootPool.builder()
+                .rolls(constant(1))
+                .conditionally(randomChance(0.5f))
+                .with(itemEntry(IRON_INGOT, 1, uniform(1, 3)))
+                .with(itemEntry(GOLD_INGOT, 1, uniform(1, 3))),
+            LootPool.builder()
+                .rolls(constant(1))
+                .conditionally(randomChance(0.1f))
+                .with(itemEntry(EMERALD))
+        );
+
+    private static final Identifier ICE_CHEST_FROSTBITE =
+        registerLootTable("ice_chest_frostbite",
+            LootPool.builder()
+                .rolls(constant(1))
+                .with(itemEntry(FROSTBITE_CHESTPLATE, 2, constant(1), setDamage(uniform(0.2f, 1.0f)), setEnchantments().enchantment(PROTECTION, uniform(0, 2)).enchantment(UNBREAKING, uniform(0, 2)).enchantment(THORNS, uniform(0, 2))))
+                .with(itemEntry(FROSTBITE_LEGGINGS,   2, constant(1), setDamage(uniform(0.2f, 1.0f)), setEnchantments().enchantment(PROTECTION, uniform(0, 2)).enchantment(UNBREAKING, uniform(0, 2)).enchantment(THORNS, uniform(0, 2)))),
+            LootPool.builder()
+                .rolls(uniform(2, 4))
+                .with(itemEntry(IRON_INGOT,   8, uniform(1, 2)))
+                .with(itemEntry(IRON_SWORD,   1, constant(1), setDamage(uniform(0.1f, 0.9f))))
+                .with(itemEntry(IRON_PICKAXE, 1, constant(1), setDamage(uniform(0.1f, 0.9f))))
+                .with(itemEntry(IRON_AXE,     1, constant(1), setDamage(uniform(0.1f, 0.9f))))
+                .with(itemEntry(IRON_SHOVEL,  1, constant(1), setDamage(uniform(0.1f, 0.9f))))
+        );
+
+    private static final Identifier ICE_CHEST_CROWN =
+        registerLootTable("ice_chest_crown",
+            LootPool.builder()
+                .rolls(constant(1))
+                .with(itemEntry(ICE_QUEEN_CROWN, 1, constant(1), setEnchantments().enchantment(PROTECTION, uniform(2, 3)).enchantment(MENDING, constant(1)))),
+            LootPool.builder()
+                .rolls(constant(1))
+                .with(itemEntry(SKELETON_SKULL)),
+            LootPool.builder()
+                .rolls(uniform(2, 4))
+                .with(itemEntry(GOLD_NUGGET, 1, uniform(3, 5)))
+                .with(itemEntry(GOLD_INGOT,  1, uniform(1, 2)))
+        );
+
+    public static final Identifier ICE_CHEST =
+        registerLootTable("ice_chest",
+            LootPool.builder()
+                .rolls(uniform(6, 10))
+                .with(itemEntry(SNOW,       2))
+                .with(itemEntry(SNOWBALL,   1, uniform(1, 2)))
+                .with(itemEntry(SNOW_BLOCK, 2))
+                .with(itemEntry(ICE,        2)),
+            LootPool.builder()
+                .rolls(constant(1))
+                .with(lootTableEntry(ICE_CHEST_FROSTBITE, 4))
+                .with(lootTableEntry(ICE_CHEST_CROWN))
+        );
+    //#endregion
+
     private static Identifier registerLootTable(String path, LootPool.Builder... poolBuilders) {
         Identifier id = SomeMod.registerLootTable(path);
         exportings.add(exporter -> export(exporter, id, poolBuilders));
@@ -395,9 +579,8 @@ public class ChestLootTableProvider extends SimpleFabricLootTableProvider {
 
     private static void export(BiConsumer<Identifier, LootTable.Builder> exporter, Identifier id, LootPool.Builder... poolBuilders) {
         LootTable.Builder builder = LootTable.builder();
-        for (LootPool.Builder poolBuilder : poolBuilders) {
+        for (LootPool.Builder poolBuilder : poolBuilders)
             builder = builder.pool(poolBuilder);
-        }
         exporter.accept(id, builder);
     }
     
@@ -431,6 +614,10 @@ public class ChestLootTableProvider extends SimpleFabricLootTableProvider {
 
     private static LootTableEntry.Builder<?> lootTableEntry(Identifier id) {
         return LootTableEntry.builder(id);
+    }
+
+    private static LootTableEntry.Builder<?> lootTableEntry(Identifier id, int weight) {
+        return LootTableEntry.builder(id).weight(weight);
     }
 
     private static SetNameLootFunction.Builder<?> setName(Text name) {

@@ -10,6 +10,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World.ExplosionSourceType;
 import net.minecraft.world.explosion.Explosion;
 import net.minecraft.world.explosion.ExplosionBehavior;
+import somemod.common.entity.effect.DamageDealtStatusEffect;
 
 public class BlastStrikeStatusEffect extends DamageDealtStatusEffect {
 

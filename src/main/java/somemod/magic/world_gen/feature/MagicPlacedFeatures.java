@@ -29,19 +29,15 @@ public class MagicPlacedFeatures {
 
         RegistryEntry.Reference<ConfiguredFeature<?, ?>> configuredForgottenChestElven = registryEntryLookup.getOrThrow(MagicConfiguredFeatures.FORGOTTEN_CHEST_ELVEN);
         
-        MagicPlacedFeatures.registerForgottenChest(
-            registerable, FORGOTTEN_CHEST_ELVEN, configuredForgottenChestElven,
-            64, PlacedFeatures.OCEAN_FLOOR_HEIGHTMAP);
+        registerChest(registerable, FORGOTTEN_CHEST_ELVEN, configuredForgottenChestElven, 64, PlacedFeatures.OCEAN_FLOOR_HEIGHTMAP);
         
-        MagicPlacedFeatures.registerForgottenChest(
-            registerable, FORGOTTEN_CHEST_UNDERGROUND_TEST, configuredForgottenChestElven,
-            1, PlacedFeatures.BOTTOM_TO_120_RANGE);
+        registerChest(registerable, FORGOTTEN_CHEST_UNDERGROUND_TEST, configuredForgottenChestElven, 1, PlacedFeatures.BOTTOM_TO_120_RANGE);
 
     }
 
-    private static void registerForgottenChest(Registerable<PlacedFeature> registerable, RegistryKey<PlacedFeature> placedFeatureKey,
-                                               RegistryEntry.Reference<ConfiguredFeature<?, ?>> configuredFeatureKey,
-                                               int rarity, PlacementModifier placementModifier, Block... validGroundBlocks) {
+    private static void registerChest(Registerable<PlacedFeature> registerable, RegistryKey<PlacedFeature> placedFeatureKey,
+                                      RegistryEntry.Reference<ConfiguredFeature<?, ?>> configuredFeatureKey,
+                                      int rarity, PlacementModifier placementModifier, Block... validGroundBlocks) {
         
         SomeMod.registerPlacedFeature(registerable, placedFeatureKey, configuredFeatureKey,
             RarityFilterPlacementModifier.of(rarity),

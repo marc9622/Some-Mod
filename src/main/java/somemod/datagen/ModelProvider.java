@@ -9,12 +9,15 @@ import net.minecraft.data.client.Model;
 import net.minecraft.data.client.Models;
 import net.minecraft.data.client.TextureMap;
 import net.minecraft.util.Identifier;
-import somemod.SomeMod;
 
-import static somemod.crystal.block.CrystalBlocks.*;
+import somemod.SomeMod;
+import somemod.crystal.block.CrystalBlocks;
 import static somemod.crystal.item.CrystalItems.*;
+import somemod.frost.block.FrostBlocks;
+import somemod.frost.item.FrostItems;
 import static somemod.frost.item.FrostItems.*;
-import static somemod.magic.block.MagicBlocks.*;
+import somemod.magic.block.MagicBlocks;
+import somemod.magic.item.MagicItems;
 import static somemod.magic.item.MagicItems.*;
 
 import java.util.Optional;
@@ -30,26 +33,31 @@ public class ModelProvider extends FabricModelProvider {
     public void generateBlockStateModels(BlockStateModelGenerator generator) {
         
         //#region CRYSTAL
-        generator.registerSimpleCubeAll(CRYSTAL_GLASS);
-        generator.registerSimpleCubeAll(CRYSTAL_BLOCK);
+        generator.registerSimpleCubeAll(CrystalBlocks.CRYSTAL_GLASS);
+        generator.registerSimpleCubeAll(CrystalBlocks.CRYSTAL_BLOCK);
 
-        generator.registerSimpleCubeAll(CITRINE_ORE);
-        generator.registerSimpleCubeAll(RUBY_ORE);
-        generator.registerSimpleCubeAll(SAPPHIRE_ORE);
+        generator.registerSimpleCubeAll(CrystalBlocks.CITRINE_ORE);
+        generator.registerSimpleCubeAll(CrystalBlocks.RUBY_ORE);
+        generator.registerSimpleCubeAll(CrystalBlocks.SAPPHIRE_ORE);
         //#endregion
 
         //#region MAGIC
         generator.registerSingleton(
-            ENCHANTED_BOOKSHELF,
-            TextureMap.sideEnd(TextureMap.getId(ENCHANTED_BOOKSHELF), TextureMap.getId(Blocks.GOLD_BLOCK)),
+            MagicBlocks.ENCHANTED_BOOKSHELF,
+            TextureMap.sideEnd(TextureMap.getId(MagicBlocks.ENCHANTED_BOOKSHELF), TextureMap.getId(Blocks.GOLD_BLOCK)),
             Models.CUBE_COLUMN);
 
         generator.registerSingleton(
-            OBSIDIAN_ENCHANTED_BOOKSHELF,
-            TextureMap.sideEnd(TextureMap.getId(OBSIDIAN_ENCHANTED_BOOKSHELF), TextureMap.getId(Blocks.OBSIDIAN)),
+            MagicBlocks.OBSIDIAN_ENCHANTED_BOOKSHELF,
+            TextureMap.sideEnd(TextureMap.getId(MagicBlocks.OBSIDIAN_ENCHANTED_BOOKSHELF), TextureMap.getId(Blocks.OBSIDIAN)),
             Models.CUBE_COLUMN);
 
-        generator.registerBuiltin(SomeMod.id("block/forgotten_chest"), Blocks.OAK_PLANKS).includeWithoutItem(FORGOTTEN_CHEST);
+        generator.registerBuiltin(SomeMod.id("block/forgotten_chest"), Blocks.OAK_PLANKS).includeWithoutItem(MagicBlocks.FORGOTTEN_CHEST);
+        //#endregion
+
+        //#region FROST
+        generator.registerBuiltin(SomeMod.id("block/spruce_chest"), Blocks.SPRUCE_PLANKS).includeWithoutItem(FrostBlocks.SPRUCE_CHEST);
+        generator.registerBuiltin(SomeMod.id("block/ice_chest"), Blocks.ICE).includeWithoutItem(FrostBlocks.ICE_CHEST);
         //#endregion
 
     }
@@ -80,6 +88,7 @@ public class ModelProvider extends FabricModelProvider {
             DRAGON_SCALE_LEGGINGS,
             DRAGON_SCALE_BOOTS,
             //#endregion
+
             //#region MAGIC
             ARCANE_HAT,
             ARCANE_ROBE,
@@ -160,6 +169,7 @@ public class ModelProvider extends FabricModelProvider {
             GUARDIAN_LEGGINGS,
             GUARDIAN_BOOTS,
             //#endregion
+
             //#region FROST
             ARCTIC_HAT,
             ARCTIC_JACKET,
@@ -182,7 +192,9 @@ public class ModelProvider extends FabricModelProvider {
 
         // I believe the JSONs for the chest items in the real game are hand-written for some reason.
         // But to reuse the model transformations from the chest item, we can just use 'item/chest' as the parent.
-        generator.register(FORGOTTEN_CHEST_ITEM, CHEST_MODEL);
+        generator.register(MagicItems.FORGOTTEN_CHEST, CHEST_MODEL);
+        generator.register(FrostItems.SPRUCE_CHEST, CHEST_MODEL);
+        generator.register(FrostItems.ICE_CHEST, CHEST_MODEL);
     }
     
     private static final Model CHEST_MODEL = new Model(Optional.of(new Identifier("minecraft", "item/chest")), Optional.empty());

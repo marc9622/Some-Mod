@@ -199,6 +199,9 @@
     //#endregion
 
     //#region FROST
+    "block.somemod.spruce_chest": "Spruce Chest",
+    "block.somemod.ice_chest": "Ice Chest",
+
     "item.somemod.arctic_hat": "Arctic Hat",
     "item.somemod.arctic_jacket": "Arctic Jacket",
     "item.somemod.arctic_pants": "Arctic Pants",

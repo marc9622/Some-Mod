@@ -9,9 +9,8 @@ import net.minecraft.sound.SoundEvents;
 
 public enum CrystalArmorMaterials implements ArmorMaterial {
     
-    CRYSTAL("crystal",                 33, 3, 8, 6, 3, 20, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 4.0f, 0.0f, Ingredient.ofItems(CrystalItems.CRYSTAL)),
-
-	DRAGON_SCALE("dragon_scale_armor", 42, 2, 8, 6, 3, 9, SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, 2.5f, 0.15f, Ingredient.ofItems(Items.NETHERITE_INGOT)); // TODO: Make original material
+    CRYSTAL("crystal",           33, 3, 8, 6, 3, 20, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND,  4.0f, 0.0f, Ingredient.ofItems(CrystalItems.CRYSTAL)),
+	DRAGON_SCALE("dragon_scale", 42, 2, 8, 6, 3,  9, SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE,2.5f, 0.15f,Ingredient.ofItems(Items.NETHERITE_INGOT)); // TODO: Make original material
 
     private static final int BASE_DURABILITY_HEAD = 11;
     private static final int BASE_DURABILITY_CHEST = 16;

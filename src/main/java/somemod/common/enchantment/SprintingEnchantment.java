@@ -1,4 +1,4 @@
-package somemod.magic.enchantment;
+package somemod.common.enchantment;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -7,6 +7,7 @@ import net.minecraft.block.enums.ChestType;
 import net.minecraft.client.util.SpriteIdentifier;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
+import somemod.common.block.entity.CustomChestBlockEntity;
 
 public class ForgottenChestBlockEntity extends CustomChestBlockEntity {
 

@@ -1,4 +1,4 @@
-package somemod.magic.block;
+package somemod.common.block;
 
 import net.minecraft.block.entity.BlockEntity;
 

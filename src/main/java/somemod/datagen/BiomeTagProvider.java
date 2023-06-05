@@ -7,6 +7,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper.WrapperLookup;
 import net.minecraft.world.biome.Biome;
+import somemod.frost.tag.FrostBiomeTags;
 import somemod.magic.tag.MagicBiomeTags;
 
 import static net.minecraft.world.biome.BiomeKeys.*;
@@ -54,6 +55,31 @@ public class BiomeTagProvider extends FabricTagProvider<Biome> {
             OLD_GROWTH_BIRCH_FOREST,
             OLD_GROWTH_PINE_TAIGA,
             OLD_GROWTH_SPRUCE_TAIGA
+        );
+
+        // From 'has_structure/igloo'
+        getOrCreateTagBuilder(FrostBiomeTags.HAS_SPRUCE_CHEST_SNOWY).add(
+            SNOWY_TAIGA,
+            SNOWY_PLAINS,
+            SNOWY_SLOPES,
+            SNOWY_BEACH
+        );
+
+        // From 'is_taiga'
+        getOrCreateTagBuilder(FrostBiomeTags.HAS_SPRUCE_CHEST_TAIGA).add(
+            TAIGA,
+            // SNOWY_TAIGA
+            OLD_GROWTH_PINE_TAIGA,
+            OLD_GROWTH_SPRUCE_TAIGA
+        );
+
+        // From 'is_mountain'
+        getOrCreateTagBuilder(FrostBiomeTags.HAS_SPRUCE_CHEST_MOUNTAIN).add(
+            MEADOW,
+            FROZEN_PEAKS, // TODO: maybe move to _SNOWY?
+            JAGGED_PEAKS,
+            STONY_PEAKS
+            // SNOWY_SLOPES
         );
     
     }

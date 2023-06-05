@@ -1,4 +1,4 @@
-package somemod.magic.entity.effect;
+package somemod.common.entity.effect;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
