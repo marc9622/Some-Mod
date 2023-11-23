@@ -25,7 +25,7 @@ public class EnchantedBookshelfScreen extends HandledScreen<EnchantedBookshelfSc
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        // this.renderBackground(matrices);
+        this.renderBackground(context);
         super.render(context, mouseX, mouseY, delta);
         this.drawMouseoverTooltip(context, mouseX, mouseY);
     }
@@ -44,7 +44,8 @@ public class EnchantedBookshelfScreen extends HandledScreen<EnchantedBookshelfSc
         if(this.handler.hasEnoughExperience()) {
             text = Text.translatable(ENCHANTING_COST_TEXT, cost);
             color = 0x80FF20; // 8453920 in dec
-        } else {
+        }
+        else {
             text = Text.translatable(ENCHANTING_TOO_EXPENSIVE_TEXT, cost);
             color = 0xFF6060;
         }

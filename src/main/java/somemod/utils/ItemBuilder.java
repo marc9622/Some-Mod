@@ -20,14 +20,10 @@ public class ItemBuilder<I extends Item> {
     private final String name;
 
     private final Function<Item.Settings, I> itemConstructor;
-    private Item.Settings settings;
 
-    private Consumer<I> groupAdder = item -> {};
-
-    private ItemBuilder(String name, Function<Item.Settings, I> itemConstructor, Item.Settings settings) {
+    private ItemBuilder(String name, Function<Item.Settings, I> itemConstructor) {
         this.name = name;
         this.itemConstructor = itemConstructor;
-        this.settings = settings;
     }
 
     public static ItemBuilder<Item> defaultItem(String name) {
@@ -43,38 +39,69 @@ public class ItemBuilder<I extends Item> {
     }
 
     public static <I extends Item> ItemBuilder<I> fromItem(String name, Function<Item.Settings, I> itemConstructor) {
-        return new ItemBuilder<I>(name, itemConstructor, new Item.Settings());
+        return new ItemBuilder<I>(name, itemConstructor);
     }
 
-    public ItemBuilder<I> modifySettings(UnaryOperator<Item.Settings> settingsModifier) {
-        settings = settingsModifier.apply(settings);
-        return this;
-    }
-    
-    public ItemBuilder<I> addGroup(RegistryKey<ItemGroup> group) {
-        groupAdder = groupAdder.andThen(
-            item -> ItemGroupEvents.modifyEntriesEvent(group).register(content -> content.add(item)));
-        return this;
-    }
-    
-    public ItemBuilder<I> groupAfter(RegistryKey<ItemGroup> group, Item after) {
-        groupAdder = groupAdder.andThen(
-            item -> ItemGroupEvents.modifyEntriesEvent(group).register(content -> content.addAfter(after, item))
-        );
-        return this;
-    }
-    
-    public ItemBuilder<I> groupBefore(RegistryKey<ItemGroup> group, Item before) {
-        groupAdder = groupAdder.andThen(
-            item -> ItemGroupEvents.modifyEntriesEvent(group).register(content -> content.addBefore(before, item))
-        );
-        return this;
+    public Grouper settings(UnaryOperator<Item.Settings> settingsModifier) {
+        return new Grouper(settingsModifier.apply(new Item.Settings()));
     }
 
     public I build() {
-        I item = itemConstructor.apply(settings);
-        groupAdder.accept(item);
+        I item = itemConstructor.apply(new Item.Settings());
         return SomeMod.register(Registries.ITEM, name, item);
+    }
+    
+    public Grouper addGroup(RegistryKey<ItemGroup> group) {
+        return new Grouper().addGroup(group);
+    }
+    
+    public Grouper groupAfter(RegistryKey<ItemGroup> group, Item after) {
+        return new Grouper().groupAfter(group, after);
+    }
+    
+    public Grouper groupBefore(RegistryKey<ItemGroup> group, Item before) {
+        return new Grouper().groupBefore(group, before);
+    }
+
+    public final class Grouper {
+
+        private final Item.Settings settings;
+        private Consumer<I> groupAdder = item -> {};
+
+        private Grouper() {
+            this(new Item.Settings());
+        }
+
+        private Grouper(Item.Settings settings) {
+            this.settings = settings;
+        }
+
+        public Grouper addGroup(RegistryKey<ItemGroup> group) {
+            groupAdder = groupAdder.andThen(
+                item -> ItemGroupEvents.modifyEntriesEvent(group).register(content -> content.add(item))
+            );
+            return this;
+        }
+
+        public Grouper groupAfter(RegistryKey<ItemGroup> group, Item after) {
+            groupAdder = groupAdder.andThen(
+                item -> ItemGroupEvents.modifyEntriesEvent(group).register(content -> content.addAfter(after, item))
+            );
+            return this;
+        }
+
+        public Grouper groupBefore(RegistryKey<ItemGroup> group, Item before) {
+            groupAdder = groupAdder.andThen(
+                item -> ItemGroupEvents.modifyEntriesEvent(group).register(content -> content.addBefore(before, item))
+            );
+            return this;
+        }
+
+        public I build() {
+            I item = itemConstructor.apply(settings);
+            groupAdder.accept(item);
+            return SomeMod.register(Registries.ITEM, name, item);
+        }
     }
 
 }

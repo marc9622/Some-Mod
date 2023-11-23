@@ -16,15 +16,15 @@ public class MagicItems {
     
     public static final BlockItem ENCHANTED_BOOKSHELF =
         defaultBlockItem("enchanted_bookshelf", MagicBlocks.ENCHANTED_BOOKSHELF)
-        .modifySettings(s -> s.rarity(Rarity.UNCOMMON)).groupAfter(ItemGroups.FUNCTIONAL, Items.BOOKSHELF).build(); // Or maybe next to enchanting table instead?
+        .settings(s -> s.rarity(Rarity.UNCOMMON)).groupAfter(ItemGroups.FUNCTIONAL, Items.BOOKSHELF).build(); // Or maybe next to enchanting table instead?
     
     public static final BlockItem OBSIDIAN_ENCHANTED_BOOKSHELF =
         defaultBlockItem("obsidian_enchanted_bookshelf", MagicBlocks.OBSIDIAN_ENCHANTED_BOOKSHELF)
-        .modifySettings(s -> s.rarity(Rarity.RARE)).groupAfter(ItemGroups.FUNCTIONAL, ENCHANTED_BOOKSHELF).build(); // Or maybe next to enchanting table instead?
+        .settings(s -> s.rarity(Rarity.RARE)).groupAfter(ItemGroups.FUNCTIONAL, ENCHANTED_BOOKSHELF).build(); // Or maybe next to enchanting table instead?
     
     public static final BlockItem FORGOTTEN_CHEST =
         defaultBlockItem("forgotten_chest", MagicBlocks.FORGOTTEN_CHEST)
-        .modifySettings(s -> s.rarity(Rarity.COMMON)).groupAfter(ItemGroups.FUNCTIONAL, Items.CHEST).build();
+        .settings(s -> s.rarity(Rarity.COMMON)).groupAfter(ItemGroups.FUNCTIONAL, Items.CHEST).build();
 
     //#region ARMOR
     // Arcane: Found in chests

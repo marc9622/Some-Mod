@@ -15,11 +15,11 @@ public class FrostItems {
 
     public static final BlockItem SPRUCE_CHEST =
         defaultBlockItem("spruce_chest", FrostBlocks.SPRUCE_CHEST)
-        .modifySettings(s -> s.rarity(Rarity.COMMON)).groupAfter(ItemGroups.FUNCTIONAL, Items.CHEST).build();
+        .settings(s -> s.rarity(Rarity.COMMON)).groupAfter(ItemGroups.FUNCTIONAL, Items.CHEST).build();
 
     public static final BlockItem ICE_CHEST =
         defaultBlockItem("ice_chest", FrostBlocks.ICE_CHEST)
-        .modifySettings(s -> s.rarity(Rarity.COMMON)).groupAfter(ItemGroups.FUNCTIONAL, Items.CHEST).build();
+        .settings(s -> s.rarity(Rarity.COMMON)).groupAfter(ItemGroups.FUNCTIONAL, Items.CHEST).build();
     
     // Arctic: Craftable & Found in chests
     public static final ArmorItem ARCTIC_BOOTS  = defaultArmorItem("arctic_boots",  ARCTIC, Type.BOOTS).groupBefore(ItemGroups.COMBAT, Items.CHAINMAIL_HELMET).build();
