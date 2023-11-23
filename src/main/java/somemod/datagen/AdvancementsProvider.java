@@ -35,7 +35,7 @@ public class AdvancementsProvider extends FabricAdvancementProvider {
         //     )
         //     .criterion("has_crystal_dust", InventoryChangedCriterion.Conditions.items(CrystalItems.CRYSTAL_DUST))
         //     .criterion("has_crystal_glass", InventoryChangedCriterion.Conditions.items(CrystalItems.CRYSTAL_GLASS_ITEM))
-        //     .requirements(OneArr("has_crystal_dust", "has_crystal_glass")));
+        //     .requirements(anyOf("has_crystal_dust", "has_crystal_glass")));
 
         Advancement jewelleryRoot = create("jewellery/root", exporter, b -> b
             .display(
@@ -47,7 +47,8 @@ public class AdvancementsProvider extends FabricAdvancementProvider {
                 false, false, false
             )
             .criterion("has_crystal_dust", InventoryChangedCriterion.Conditions.items(CrystalItems.CRYSTAL_DUST))
-            .requirements(OneArr("has_crystal_dust")));
+            .requirements(anyOf("has_crystal_dust")));
+            //.requirements(anyOf("has_crystal_dust")));
 
         Advancement jewelleryCraftCrystal = create("jewellery/craft_crystal", exporter, b -> b
             .parent(jewelleryRoot)
@@ -60,7 +61,8 @@ public class AdvancementsProvider extends FabricAdvancementProvider {
                 true, true, false
             )
             .criterion("has_crystal", InventoryChangedCriterion.Conditions.items(CrystalItems.CRYSTAL))
-            .requirements(OneArr("has_crystal")));
+            .requirements(anyOf("has_crystal")));
+            //.requirements(anyOf("has_crystal")));
 
         Advancement jewelleryCraftCrystalArmor = create("jewellery/craft_crystal_armor", exporter, b -> b
             .parent(jewelleryCraftCrystal)
@@ -76,7 +78,8 @@ public class AdvancementsProvider extends FabricAdvancementProvider {
             .criterion("has_chestplate", InventoryChangedCriterion.Conditions.items(CrystalItems.CRYSTAL_CHESTPLATE))
             .criterion("has_leggings", InventoryChangedCriterion.Conditions.items(CrystalItems.CRYSTAL_LEGGINGS))
             .criterion("has_boots", InventoryChangedCriterion.Conditions.items(CrystalItems.CRYSTAL_BOOTS))
-            .requirements(OneArr("has_helmet", "has_chestplate", "has_leggings", "has_boots")));
+            .requirements(anyOf("has_helmet", "has_chestplate", "has_leggings", "has_boots")));
+            //.requirements(anyOf("has_helmet", "has_chestplate", "has_leggings", "has_boots")));
 
         Advancement jewelleryCraftCrystalTools = create("jewellery/craft_crystal_tools", exporter, b -> b
             .parent(jewelleryCraftCrystal)
@@ -93,8 +96,8 @@ public class AdvancementsProvider extends FabricAdvancementProvider {
             .criterion("has_axe", InventoryChangedCriterion.Conditions.items(CrystalItems.CRYSTAL_AXE))
             .criterion("has_shovel", InventoryChangedCriterion.Conditions.items(CrystalItems.CRYSTAL_SHOVEL))
             .criterion("has_hoe", InventoryChangedCriterion.Conditions.items(CrystalItems.CRYSTAL_HOE))
-            .requirements(OneArr("has_pickaxe", "has_axe", "has_shovel", "has_hoe", "has_sword")));
-
+            .requirements(anyOf("has_pickaxe", "has_axe", "has_shovel", "has_hoe", "has_sword")));
+            //.requirements(anyOf("has_pickaxe", "has_axe", "has_shovel", "has_hoe", "has_sword")));
     }
 
     private static Advancement create(String path, Consumer<Advancement> exporter, Function<Advancement.Builder, Advancement.Builder> function) {
@@ -103,16 +106,18 @@ public class AdvancementsProvider extends FabricAdvancementProvider {
         return advancement;
     }
 
-    private static String[] StrArr(String... strings) {
-        return strings;
+    private static String[][] anyOf(String... strings) {
+        return new String[][] { strings };
     }
 
-    private static String[][] ArrArr(String[]... strings) {
-        return strings;
-    }
+    // For 12.0.2
 
-    private static String[][] OneArr(String... strings) {
-        return ArrArr(StrArr(strings));
-    }
-    
+    // private static AdvancementRequirements allOf(String... requirements) {
+    //     return AdvancementRequirements.allOf(List.of(requirements));
+    // }
+
+    // private static AdvancementRequirements anyOf(String... requirements) {
+    //     return AdvancementRequirements.anyOf(List.of(requirements));
+    // }
+
 }

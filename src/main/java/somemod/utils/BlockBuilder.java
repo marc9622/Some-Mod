@@ -1,48 +1,71 @@
 package somemod.utils;
 
-import java.util.function.Function;
 import java.util.function.UnaryOperator;
 
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.ExperienceDroppingBlock;
-import net.minecraft.block.Material;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import somemod.SomeMod;
 
+/**
+ * A builder class for creating blocks.
+ */
 public class BlockBuilder<B extends Block> {
 
+    @FunctionalInterface
+    public interface BlockConstructor<B> {
+        B createWith(Block.Settings settings);
+    }
+
     private final String name;
+    private final BlockConstructor<B> blockConstructor;
 
-    private final Function<Block.Settings, B> blockConstructor;
-    private Block.Settings settings;
-
-    private BlockBuilder(String name, Function<Block.Settings, B> blockConstructor, Block.Settings settings) {
+    private BlockBuilder(String name, BlockConstructor<B> blockConstructor) {
         this.name = name;
         this.blockConstructor = blockConstructor;
-        this.settings = settings;
     }
 
-    public static BlockBuilder<Block> defaultBlock(String name, Material material) {
-        return fromBlock(name, Block::new, material);
+    /**
+     * Create a default block using {@code Block::new}.
+     */
+    public static BlockBuilder<Block> defaultBlock(String name) {
+        return newBlock(name, Block::new);
     }
 
-    public static BlockBuilder<ExperienceDroppingBlock> defaultXpBlock(String name, Material material, UniformIntProvider xp) {
-        return fromBlock(name, settings -> new ExperienceDroppingBlock(settings, xp), material);
+    /**
+     * Create an experience dropping block that drops {@code xp} using {@code ExperienceDroppingBlock::new}.
+     */
+    public static BlockBuilder<ExperienceDroppingBlock> defaultXpBlock(String name, UniformIntProvider xp) {
+        return newBlock(name, settings -> new ExperienceDroppingBlock(settings, xp));
     }
 
-    public static <B extends Block> BlockBuilder<B> fromBlock(String name, Function<Block.Settings, B> blockConstructor, Material material) {
-        return new BlockBuilder<B>(name, blockConstructor, FabricBlockSettings.of(material));
+    /**
+     * Create a new block using the given {@code blockConstructor}.
+     */
+    public static <B extends Block> BlockBuilder<B> newBlock(String name, BlockConstructor<B> blockConstructor) {
+        return new BlockBuilder<B>(name, blockConstructor);
     }
 
-    public BlockBuilder<B> modifySettings(UnaryOperator<Block.Settings> settingsModifier) {
-        settings = settingsModifier.apply(settings);
-        return this;
+    /**
+     * Copies the settings from {@code block} and uses them to create the block.
+     */
+    public B copy(Block block) {
+        return SomeMod.register(Registries.BLOCK, name, blockConstructor.createWith(Block.Settings.copy(block)));
     }
 
-    public B build() {
-        return SomeMod.register(Registries.BLOCK, name, blockConstructor.apply(settings));
+    /**
+     * Creates the block with the given {@code settings}.
+     */
+    public B with(Block.Settings settings) {
+        return SomeMod.register(Registries.BLOCK, name, blockConstructor.createWith(settings));
+    }
+
+    /**
+     * Copies the settings from {@code block} applies the given {@code modifier} to them and uses them to create the block.
+     */
+    public B copyWith(Block block, UnaryOperator<Block.Settings> modifier) {
+        return SomeMod.register(Registries.BLOCK, name, blockConstructor.createWith(modifier.apply(Block.Settings.copy(block))));
     }
 
 }

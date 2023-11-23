@@ -7,6 +7,7 @@ import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 import net.minecraft.world.World.ExplosionSourceType;
 import net.minecraft.world.explosion.Explosion;
 import net.minecraft.world.explosion.ExplosionBehavior;
@@ -29,7 +30,8 @@ public class BlastStrikeStatusEffect extends DamageDealtStatusEffect {
             };
             float power = 1.5f + effectInstance.getAmplifier() * 0.5f;
             
-            victim.world.createExplosion(victim, source, behavior, victim.getPos(), power, false, ExplosionSourceType.MOB);
+            World world = victim.getWorld();
+            world.createExplosion(victim, source, behavior, victim.getPos(), power, false, ExplosionSourceType.MOB);
         }
     }
     

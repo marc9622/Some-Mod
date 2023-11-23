@@ -2,6 +2,8 @@ package somemod.magic.world_gen.structure.processor;
 
 import java.util.Map;
 
+import org.jetbrains.annotations.Nullable;
+
 import com.mojang.datafixers.util.Either;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -27,8 +29,8 @@ public class StructureProcessorBiomeRule {
         public BlockState getOutputState() {
             throw new UnsupportedOperationException();
         }
-        @Override
-        public NbtCompound getOutputNbt() {
+        @Override @Nullable
+        public NbtCompound getOutputNbt(Random random, @Nullable NbtCompound nbt) {
             throw new UnsupportedOperationException();
         }
     };

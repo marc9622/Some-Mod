@@ -4,7 +4,6 @@ import java.util.function.Supplier;
 
 import net.minecraft.block.Blocks;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Material;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.block.entity.ChestBlockEntity;
@@ -20,10 +19,15 @@ import net.minecraft.world.World;
 
 import somemod.common.block.CustomChestBlock;
 
+// Copied from net.minecraft.block.IceBlock (Rare case where multiple inheritence would have been useful).
 public class IceChestBlock extends CustomChestBlock {
 
     public IceChestBlock(Settings settings, Supplier<BlockEntityType<? extends ChestBlockEntity>> type) {
         super(settings, type);
+    }
+
+    public static BlockState getMeltedState() {
+        return Blocks.WATER.getDefaultState();
     }
 
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack tool) {
@@ -33,9 +37,10 @@ public class IceChestBlock extends CustomChestBlock {
                 world.removeBlock(pos, false);
                 return;
             }
-            Material material = world.getBlockState(pos.down()).getMaterial();
-            if (material.blocksMovement() || material.isLiquid())
-                world.setBlockState(pos, Blocks.WATER.getDefaultState());
+
+            BlockState blockState = world.getBlockState(pos.down());
+            if (blockState.blocksMovement() || blockState.isLiquid())
+                world.setBlockState(pos, getMeltedState());
         }
     }
 
@@ -50,8 +55,8 @@ public class IceChestBlock extends CustomChestBlock {
             world.removeBlock(pos, false);
             return;
         }
-        world.setBlockState(pos, Blocks.WATER.getDefaultState());
-        world.updateNeighbor(pos, Blocks.WATER, pos);
+        world.setBlockState(pos, getMeltedState());
+        world.updateNeighbor(pos, getMeltedState().getBlock(), pos);
     }
 
 }

@@ -14,7 +14,7 @@ public enum MagicArmorMaterials implements ArmorMaterial {
 	PIRATE("pirate", 	 11, 1, 4, 3, 1,  6, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0f, 0.0f, Ingredient.ofItems(Items.LEATHER)),
 	HONEY("honey", 		  5, 1, 4, 3, 1, 12, SoundEvents.ITEM_ARMOR_EQUIP_GOLD,    0.0f, 0.05f,Ingredient.ofItems(Items.HONEYCOMB)),
 	ALCHEMIST("alchemist",7, 2, 4, 3, 2, 17, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0f, 0.0f, Ingredient.ofItems(Items.GLASS_BOTTLE)),
-	ELVEN("elven", 		 12, 2, 4, 3, 2, 22, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0f, 0.0f, Ingredient.ofItems(MagicItems.ELVEN_STEEL)),
+	ELVEN("elven", 		 12, 2, 4, 3, 2, 22, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0f, 0.0f, Ingredient.ofItems(Items.IRON_INGOT)),//MagicItems.ELVEN_STEEL)),
 	OCEANIC("oceanic", 	 10, 2, 4, 4, 2, 15, SoundEvents.ITEM_ARMOR_EQUIP_TURTLE,  0.0f, 0.0f, Ingredient.ofItems(Items.FIRE_CORAL)),
 	DESERT("desert_nomad",9, 2, 5, 4, 1,  9, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0f, 0.0f, Ingredient.ofItems(Items.SANDSTONE)),
 	LUNAR("lunar", 		 12, 2, 5, 4, 1, 19, SoundEvents.ITEM_ARMOR_EQUIP_IRON,    0.0f, 0.0f, Ingredient.ofItems(Items.IRON_INGOT)),

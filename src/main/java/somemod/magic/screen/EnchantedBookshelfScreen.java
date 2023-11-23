@@ -2,11 +2,9 @@ package somemod.magic.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 
-import net.minecraft.client.gui.DrawableHelper;
-import net.minecraft.client.gui.screen.ingame.AnvilScreen;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
@@ -26,16 +24,16 @@ public class EnchantedBookshelfScreen extends HandledScreen<EnchantedBookshelfSc
     }
 
     @Override
-    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
+    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         // this.renderBackground(matrices);
-        super.render(matrices, mouseX, mouseY, delta);
-        this.drawMouseoverTooltip(matrices, mouseX, mouseY);
+        super.render(context, mouseX, mouseY, delta);
+        this.drawMouseoverTooltip(context, mouseX, mouseY);
     }
 
     @Override
-    protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
+    protected void drawForeground(DrawContext context, int mouseX, int mouseY) {
         RenderSystem.disableBlend();
-        super.drawForeground(matrices, mouseX, mouseY);
+        super.drawForeground(context, mouseX, mouseY);
         
         int cost = this.handler.getEnchantingCost();
         if(cost <= 0) return;
@@ -54,19 +52,17 @@ public class EnchantedBookshelfScreen extends HandledScreen<EnchantedBookshelfSc
         int x = (this.backgroundWidth - this.textRenderer.getWidth(text)) - 9;
         int y = 39;
 
-        AnvilScreen.fill(matrices, x - 2, y - 2, x + this.textRenderer.getWidth(text) + 2, y + 10, 0x4F000000);
-        this.textRenderer.drawWithShadow(matrices, text, x, y, color);
-
+        context.fill(x - 2, y - 2, x + this.textRenderer.getWidth(text) + 2, y + 10, 0x4F000000);
+        context.drawTextWithShadow(this.textRenderer, text, x, y, color);
     }
 
     @Override
-    protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
+    protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
         RenderSystem.setShader(GameRenderer::getPositionTexProgram);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.setShaderTexture(0, TEXTURE);
         int x = (this.width - this.backgroundWidth) / 2;
         int y = (this.height - this.backgroundHeight) / 2;
-        DrawableHelper.drawTexture(matrices, x, y, 0, 0, this.backgroundWidth, this.backgroundHeight);
+        context.drawTexture(TEXTURE, x, y, 0, 0, this.backgroundWidth, this.backgroundHeight);
     }
 
 }

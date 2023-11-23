@@ -6,11 +6,27 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:snow"
+          "name": "minecraft:snow",
+          "weight": 2
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:snowball",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 2.0,
+                "min": 1.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:snowball"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:snow_block",
           "weight": 2
         },
         {
@@ -30,19 +46,8 @@
       "entries": [
         {
           "type": "minecraft:loot_table",
-          "name": "somemod:chests/ice_chest_frostbite"
-        },
-        {
-          "type": "minecraft:loot_table",
-          "name": "somemod:chests/ice_chest_frostbite"
-        },
-        {
-          "type": "minecraft:loot_table",
-          "name": "somemod:chests/ice_chest_frostbite"
-        },
-        {
-          "type": "minecraft:loot_table",
-          "name": "somemod:chests/ice_chest_frostbite"
+          "name": "somemod:chests/ice_chest_frostbite",
+          "weight": 4
         },
         {
           "type": "minecraft:loot_table",

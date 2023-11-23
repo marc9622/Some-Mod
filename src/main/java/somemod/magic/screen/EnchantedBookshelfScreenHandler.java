@@ -23,6 +23,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
+import net.minecraft.world.World;
 import somemod.common.screen.AbstractConverterScreenHandler;
 import somemod.magic.block.MagicBlocks;
 
@@ -142,7 +143,8 @@ public class EnchantedBookshelfScreenHandler extends AbstractConverterScreenHand
 
     @Override
     protected void onTakeInputItem(Inventory inputInventory, Inventory outputInventory) {
-        if (!player.world.isClient)
+        World world = player.getWorld();
+        if (world.isClient)
             outputInventory.setStack(0, ItemStack.EMPTY);
 
         inputInventory.markDirty();
@@ -153,11 +155,14 @@ public class EnchantedBookshelfScreenHandler extends AbstractConverterScreenHand
     protected void onTakeOutputItem(Inventory inputInventory, Inventory outputInventory) {
         ItemStack enchantedBookItemStack = outputInventory.getStack(0);
 
-        if(!player.world.isClient) {
-            if (!player.getAbilities().creativeMode)
+        {
+            World world = player.getWorld();
+            if (world.isClient) {
+                if (!player.getAbilities().creativeMode)
                 player.applyEnchantmentCosts(enchantedBookItemStack, getEnchantingCost());
 
-            inputInventory.setStack(0, ItemStack.EMPTY);
+                inputInventory.setStack(0, ItemStack.EMPTY);
+            }
         }
 
         player.incrementStat(Stats.ENCHANT_ITEM);

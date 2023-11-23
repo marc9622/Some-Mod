@@ -6,11 +6,8 @@
       "entries": [
         {
           "type": "minecraft:loot_table",
-          "name": "somemod:chests/spruce_chest_arctic_armor"
-        },
-        {
-          "type": "minecraft:loot_table",
-          "name": "somemod:chests/spruce_chest_arctic_armor"
+          "name": "somemod:chests/spruce_chest_arctic_armor",
+          "weight": 2
         },
         {
           "type": "minecraft:loot_table",

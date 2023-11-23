@@ -8,6 +8,7 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.world.World;
 
 public abstract class SprintingEnchantment extends Enchantment {
 
@@ -39,7 +40,8 @@ public abstract class SprintingEnchantment extends Enchantment {
     public void onEndSprint(LivingEntity entity, int enchantmentLevel) {}
 
     public static void beforeTickSprintEnchantments(LivingEntity entity) {
-        if (entity.world.isClient) return;
+        World world = entity.getWorld();
+        if (world.isClient) return;
 
         beforeTickConsumers.forEach(consumer -> consumer.accept(entity));
         beforeTickConsumers.clear();

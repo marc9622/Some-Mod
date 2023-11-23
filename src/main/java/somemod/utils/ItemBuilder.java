@@ -12,6 +12,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.RegistryKey;
 import somemod.SomeMod;
 
 public class ItemBuilder<I extends Item> {
@@ -50,20 +51,20 @@ public class ItemBuilder<I extends Item> {
         return this;
     }
     
-    public ItemBuilder<I> addGroup(ItemGroup group) {
+    public ItemBuilder<I> addGroup(RegistryKey<ItemGroup> group) {
         groupAdder = groupAdder.andThen(
             item -> ItemGroupEvents.modifyEntriesEvent(group).register(content -> content.add(item)));
         return this;
     }
     
-    public ItemBuilder<I> groupAfter(ItemGroup group, Item after) {
+    public ItemBuilder<I> groupAfter(RegistryKey<ItemGroup> group, Item after) {
         groupAdder = groupAdder.andThen(
             item -> ItemGroupEvents.modifyEntriesEvent(group).register(content -> content.addAfter(after, item))
         );
         return this;
     }
     
-    public ItemBuilder<I> groupBefore(ItemGroup group, Item before) {
+    public ItemBuilder<I> groupBefore(RegistryKey<ItemGroup> group, Item before) {
         groupAdder = groupAdder.andThen(
             item -> ItemGroupEvents.modifyEntriesEvent(group).register(content -> content.addBefore(before, item))
         );

@@ -16,6 +16,7 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.math.random.Random;
+import net.minecraft.world.World;
 import somemod.common.enchantment.SprintingEnchantment;
 
 public final class HermesEnchantment extends SprintingEnchantment {
@@ -93,8 +94,9 @@ public final class HermesEnchantment extends SprintingEnchantment {
 
     @Override
     public void tickSprintEnchantment(LivingEntity entity, int enchLevel) {
+        World world = entity.getWorld();
 
-        if (entity.world.isClient) {
+        if (world.isClient) {
             final Integer duration = SPRINTING_DURATIONS.get(entity);
             if (duration == null) return; // the player isn't sprinting
 
@@ -113,35 +115,34 @@ public final class HermesEnchantment extends SprintingEnchantment {
             double vx = randomNum.get() / 4d;
             double vy = randomNum.get() / 2d;
             double vz = randomNum.get() / 4d;
-            entity.world.addParticle(particle, px, py, pz, vx, vy, vz);
+            world.addParticle(particle, px, py, pz, vx, vy, vz);
         }
         else /* !isClient */ {
             final EntityAttributeModifier speedAttribute;
 
             setSpeedAttribute: {
-                if (entity.isSprinting() && enchLevel > 0) { // level must be above zero to avoid division by zero
-
-                    final Integer duration = SPRINTING_DURATIONS.get(entity);
-
-                    if (duration == null) { // happens when the player has just started sprinting
-                        speedAttribute = null;
-                        SPRINTING_DURATIONS.put(entity, 0);
-                        break setSpeedAttribute;
-                    }
-
-                    if      (shouldGiveTopBoost(enchLevel, duration)) speedAttribute = HERMES_SPEED_BOOST_TOP;
-                    else if (shouldGiveHighBoost(enchLevel,duration)) speedAttribute = HERMES_SPEED_BOOST_HIGH;
-                    else if (shouldGiveMidBoost(enchLevel, duration)) speedAttribute = HERMES_SPEED_BOOST_MID;
-                    else if (shouldGiveLowBoost(enchLevel, duration)) speedAttribute = HERMES_SPEED_BOOST_LOW;
-                    else                                              speedAttribute = null;
-
-                    SPRINTING_DURATIONS.put(entity, duration + 1);
-                    break setSpeedAttribute;
-                }
-                /* !isSprinting || enchLevel <= 0 */ {
+                if (!entity.isSprinting() || enchLevel <= 0) { // level must be above zero to avoid division by zero
                     speedAttribute = null;
                     SPRINTING_DURATIONS.remove(entity);
+                    break setSpeedAttribute;
                 }
+
+                final Integer duration = SPRINTING_DURATIONS.get(entity);
+
+                if (duration == null) { // happens when the player has just started sprinting
+                    speedAttribute = null;
+                    SPRINTING_DURATIONS.put(entity, 0);
+                    break setSpeedAttribute;
+                }
+
+                if      (shouldGiveTopBoost(enchLevel, duration)) speedAttribute = HERMES_SPEED_BOOST_TOP;
+                else if (shouldGiveHighBoost(enchLevel,duration)) speedAttribute = HERMES_SPEED_BOOST_HIGH;
+                else if (shouldGiveMidBoost(enchLevel, duration)) speedAttribute = HERMES_SPEED_BOOST_MID;
+                else if (shouldGiveLowBoost(enchLevel, duration)) speedAttribute = HERMES_SPEED_BOOST_LOW;
+                else                                              speedAttribute = null;
+
+                SPRINTING_DURATIONS.put(entity, duration + 1);
+                break setSpeedAttribute;
             }
 
             EntityAttributeInstance attributeInstance = entity.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);

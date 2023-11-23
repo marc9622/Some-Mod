@@ -1,7 +1,9 @@
 package somemod.magic.enchantment;
 
+import java.io.IOException;
 import java.util.Map;
 import java.util.UUID;
+import java.util.WeakHashMap;
 import java.util.function.Supplier;
 
 import net.minecraft.enchantment.Enchantment;
@@ -15,6 +17,8 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.random.Random;
+import net.minecraft.world.World;
+import somemod.SomeMod;
 import somemod.common.enchantment.SprintingEnchantment;
 
 public final class DashingEnchantment extends SprintingEnchantment {
@@ -30,7 +34,7 @@ public final class DashingEnchantment extends SprintingEnchantment {
      * That is because negative numbers tells us how long ago the last dash ran out,
      * which is used as a cooldown.
      */
-    private static final Map<LivingEntity, Integer> DASHING_DURATIONS = new java.util.WeakHashMap<>();
+    private static final Map<LivingEntity, Integer> DASHING_DURATIONS = new WeakHashMap<>();
 
     protected DashingEnchantment(Enchantment.Rarity rarity, EquipmentSlot ... slots) {
         super(rarity, EnchantmentTarget.ARMOR_LEGS, slots);
@@ -90,13 +94,18 @@ public final class DashingEnchantment extends SprintingEnchantment {
         if (enchantmentLevel <= 0 || (duration = DASHING_DURATIONS.get(entity)) != null && duration > -getDashCooldown(enchantmentLevel))
             return;
         
-        if(entity.world.isClient) {
-            Random random = entity.getRandom();
-            float pitch = (random.nextFloat() - random.nextFloat()) * 0.2f + 1.0f; // Copied from other minecraft sounds
-            entity.playSound(SoundEvents.ENTITY_GHAST_SHOOT, 0.2f, pitch);
+        try (World world = entity.getWorld()) {
+            if (world.isClient) {
+                Random random = entity.getRandom();
+                float pitch = (random.nextFloat() - random.nextFloat()) * 0.2f + 1.0f; // Copied from other minecraft sounds
+                entity.playSound(SoundEvents.ENTITY_GHAST_SHOOT, 0.2f, pitch);
+            }
+            else {
+                DASHING_DURATIONS.put(entity, getDashDuration(enchantmentLevel));
+            }
         }
-        else {
-            DASHING_DURATIONS.put(entity, getDashDuration(enchantmentLevel));
+        catch (IOException e) {
+            SomeMod.logError("Error trying to close world: " + e);
         }
     }
 
@@ -105,8 +114,10 @@ public final class DashingEnchantment extends SprintingEnchantment {
         
         final Integer duration = DASHING_DURATIONS.get(entity);
         if(duration == null) return; // No reason to update entities not in the map, since they haven't started any dashes
+
+        World world;
         
-        if(entity.world.isClient) {
+        if((world = entity.getWorld()).isClient) {
             if(duration > 0) {
                 Random random = entity.getRandom();
                 if(random.nextInt(enchantmentLevel + 1) == 0) return;
@@ -118,7 +129,7 @@ public final class DashingEnchantment extends SprintingEnchantment {
                 double vx = randomNum.get() / 8d;
                 double vy = randomNum.get() / 16d;
                 double vz = randomNum.get() / 8d;
-                entity.world.addParticle(ParticleTypes.FLAME, px, py, pz, vx,vy, vz);
+                world.addParticle(ParticleTypes.FLAME, px, py, pz, vx,vy, vz);
             }
         }
         else {

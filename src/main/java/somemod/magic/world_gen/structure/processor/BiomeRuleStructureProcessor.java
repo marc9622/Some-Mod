@@ -38,15 +38,15 @@ public class BiomeRuleStructureProcessor extends StructureProcessor {
     @Override
     public StructureBlockInfo process(WorldView world, BlockPos pos, BlockPos pivot, StructureBlockInfo originalBlockInfo, StructureBlockInfo currentBlockInfo, StructurePlacementData data) {
         
-        Random random = Random.create(currentBlockInfo.pos.hashCode());
-        BlockState blockState = world.getBlockState(currentBlockInfo.pos);
+        Random random = Random.create(currentBlockInfo.pos().hashCode());
+        BlockState blockState = world.getBlockState(currentBlockInfo.pos());
 
         for (StructureProcessorBiomeRule structureProcessorBiomeRule : this.rules) {
-            StructureProcessorRule rule = structureProcessorBiomeRule.getRule(world.getBiome(currentBlockInfo.pos));
-            if (!rule.test(currentBlockInfo.state, blockState, originalBlockInfo.pos, currentBlockInfo.pos, pivot, random))
+            StructureProcessorRule rule = structureProcessorBiomeRule.getRule(world.getBiome(currentBlockInfo.pos()));
+            if (!rule.test(currentBlockInfo.state(), blockState, originalBlockInfo.pos(), currentBlockInfo.pos(), pivot, random))
                 continue;
 
-            return new StructureTemplate.StructureBlockInfo(currentBlockInfo.pos, rule.getOutputState(), rule.getOutputNbt());
+            return new StructureTemplate.StructureBlockInfo(currentBlockInfo.pos(), rule.getOutputState(), rule.getOutputNbt(random, currentBlockInfo.nbt()));
 
         }
         return currentBlockInfo;
