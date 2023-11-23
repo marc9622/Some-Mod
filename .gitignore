@@ -1,6 +1,7 @@
 .cache/
 Ideas.docx
 **/*.pdn
+.factorypath
 
 # gradle
 
