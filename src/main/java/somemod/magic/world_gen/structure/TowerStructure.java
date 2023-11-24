@@ -104,7 +104,7 @@ public class TowerStructure extends Structure {
             RotationStyle rotationStyle = pair.getSecond();
 
             StructurePoolElement floorPoolElement = floorPool.getRandomElement(random);
-            BlockRotation rotation = switch(rotationStyle) {
+            BlockRotation rotation = switch (rotationStyle) {
                 case RANDOM -> BlockRotation.random(random);
                 case RANDOM_NOT_PREVIOUS -> {
                     BlockRotation previousRotation = poolElements.get(i - 1).getSecond();
