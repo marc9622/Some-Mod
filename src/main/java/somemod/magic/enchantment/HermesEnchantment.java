@@ -32,7 +32,7 @@ public final class HermesEnchantment extends SprintingEnchantment {
      */
     private static final Map<LivingEntity, Integer> SPRINTING_DURATIONS = new WeakHashMap<>();
 
-    protected HermesEnchantment(Enchantment.Rarity rarity, EquipmentSlot ... slots) {
+    protected HermesEnchantment(Enchantment.Rarity rarity, EquipmentSlot... slots) {
         super(rarity, EnchantmentTarget.ARMOR_LEGS, slots);
     }
 
@@ -48,7 +48,7 @@ public final class HermesEnchantment extends SprintingEnchantment {
 
     @Override
     public int getMaxPower(int level) {
-        return super.getMinPower(level) * 3;
+        return getMinPower(level) * 3;
     }
 
     @Override

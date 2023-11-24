@@ -75,6 +75,7 @@
     "item.somemod.elven_chestplate": "Elven Chestplate",
     "item.somemod.elven_leggings": "Elven Leggings",
     "item.somemod.elven_boots": "Elven Boots",
+    "item.somemod.elven_steel": "Elven Steel",
 
     "item.somemod.oceanic_mask": "Oceanic Mask",
     "item.somemod.oceanic_suit": "Oceanic Suit",
@@ -135,11 +136,12 @@
     "enchantment.somemod.dashing": "Dashing",
     "enchantment.somemod.hermes": "Hermes Sprint",
     "enchantment.somemod.dullness_curse": "Curse of Dullness",
+    "enchantment.somemod.dullness_curse": "Blast Strike",
 
     "effect.somemod.wounded": "Wounded",
     "effect.somemod.magic_fragility": "Magic Fragility",
     "effect.somemod.magic_resilience": "Magic Resilience",
-    "effect.somemod.blast_strike": "Blast Strike",
+    //"effect.somemod.blast_strike": "Blast Strike",
 
     "item.minecraft.potion.effect.wounded": "Potion of Wounding",
     "item.minecraft.potion.effect.magic_fragility": "Potion of Magic Fragility",

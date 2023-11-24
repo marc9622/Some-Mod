@@ -24,9 +24,9 @@ public class MagicPotions {
     public static final Potion LONG_MAGIC_RESILIENCE = register("long", "magic_resilience", MagicStatusEffects.MAGIC_RESILIENCE, 9600);
     public static final Potion STRONG_MAGIC_RESILIENCE = register("strong", "magic_resilience", MagicStatusEffects.MAGIC_RESILIENCE, 1800, 2);
 
-    public static final Potion BLAST_STRIKE = register("blast_strike", MagicStatusEffects.BLAST_STRIKE, 1800);
-    public static final Potion LONG_BLAST_STRIKE = register("long", "blast_strike", MagicStatusEffects.BLAST_STRIKE, 4800);
-    public static final Potion STRONG_BLAST_STRIKE = register("strong", "blast_strike", MagicStatusEffects.BLAST_STRIKE, 400, 2);
+    //public static final Potion BLAST_STRIKE = register("blast_strike", MagicStatusEffects.BLAST_STRIKE, 1800);
+    //public static final Potion LONG_BLAST_STRIKE = register("long", "blast_strike", MagicStatusEffects.BLAST_STRIKE, 4800);
+    //public static final Potion STRONG_BLAST_STRIKE = register("strong", "blast_strike", MagicStatusEffects.BLAST_STRIKE, 400, 2);
 
     /* 
      * Ideas for potions combining different effects

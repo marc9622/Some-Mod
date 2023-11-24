@@ -36,7 +36,7 @@ public final class DashingEnchantment extends SprintingEnchantment {
      */
     private static final Map<LivingEntity, Integer> DASHING_DURATIONS = new WeakHashMap<>();
 
-    protected DashingEnchantment(Enchantment.Rarity rarity, EquipmentSlot ... slots) {
+    protected DashingEnchantment(Enchantment.Rarity rarity, EquipmentSlot... slots) {
         super(rarity, EnchantmentTarget.ARMOR_LEGS, slots);
     }
 
@@ -52,7 +52,7 @@ public final class DashingEnchantment extends SprintingEnchantment {
 
     @Override
     public int getMaxPower(int level) {
-        return super.getMinPower(level) + 20;
+        return getMinPower(level) + 20;
     }
 
     @Override

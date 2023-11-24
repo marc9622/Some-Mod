@@ -12,7 +12,7 @@ import net.minecraft.entity.EquipmentSlot;
  */
 public class DullnessCurseEnchantment extends Enchantment {
 
-    protected DullnessCurseEnchantment(Enchantment.Rarity rarity, EquipmentSlot ... slots) {
+    protected DullnessCurseEnchantment(Enchantment.Rarity rarity, EquipmentSlot... slots) {
         super(rarity, EnchantmentTarget.VANISHABLE, slots);
     }
 
