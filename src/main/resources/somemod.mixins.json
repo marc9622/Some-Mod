@@ -9,6 +9,7 @@
     "CustomModelItemRenderer",
     "EndermanAngeringBlock",
     "EntityDamageTaken",
+    "EntityMovement",
     "EntitySprinting"
   ],
   "client": [ // Client-side only mixins
