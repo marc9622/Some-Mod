@@ -18,16 +18,13 @@ import static somemod.utils.ItemBuilder.*;
 
 public class MagicItems {
     
-    public static final BlockItem ENCHANTED_BOOKSHELF =
-        defaultBlockItem("enchanted_bookshelf", MagicBlocks.ENCHANTED_BOOKSHELF)
+    public static final BlockItem ENCHANTED_BOOKSHELF = defaultBlockItem("enchanted_bookshelf", MagicBlocks.ENCHANTED_BOOKSHELF)
         .settings(s -> s.rarity(Rarity.UNCOMMON)).groupAfter(ItemGroups.FUNCTIONAL, Items.BOOKSHELF).build(); // Or maybe next to enchanting table instead?
     
-    public static final BlockItem OBSIDIAN_ENCHANTED_BOOKSHELF =
-        defaultBlockItem("obsidian_enchanted_bookshelf", MagicBlocks.OBSIDIAN_ENCHANTED_BOOKSHELF)
+    public static final BlockItem OBSIDIAN_ENCHANTED_BOOKSHELF = defaultBlockItem("obsidian_enchanted_bookshelf", MagicBlocks.OBSIDIAN_ENCHANTED_BOOKSHELF)
         .settings(s -> s.rarity(Rarity.RARE)).groupAfter(ItemGroups.FUNCTIONAL, ENCHANTED_BOOKSHELF).build(); // Or maybe next to enchanting table instead?
     
-    public static final BlockItem FORGOTTEN_CHEST =
-        defaultBlockItem("forgotten_chest", MagicBlocks.FORGOTTEN_CHEST)
+    public static final BlockItem FORGOTTEN_CHEST = defaultBlockItem("forgotten_chest", MagicBlocks.FORGOTTEN_CHEST)
         .settings(s -> s.rarity(Rarity.COMMON)).groupAfter(ItemGroups.FUNCTIONAL, Items.CHEST).build();
 
     //#region ARMOR
@@ -47,19 +44,24 @@ public class MagicItems {
     public static final ArmorItem HONEY_MASK       = defaultArmorItem("honey_mask",       HONEY, Type.HELMET).groupAfter(ItemGroups.COMBAT, PIRATE_BOOTS).build();
     public static final ArmorItem HONEY_CHESTPIECE = defaultArmorItem("honey_chestpiece", HONEY, Type.CHESTPLATE).groupAfter(ItemGroups.COMBAT, HONEY_MASK).build();
     public static final ArmorItem HONEY_LEGPIECE   = defaultArmorItem("honey_legpiece",   HONEY, Type.LEGGINGS).groupAfter(ItemGroups.COMBAT, HONEY_CHESTPIECE).build();
-    public static final ArmorItem HONEY_BOOTS = fromItem("honey_boots", StaticEffectArmorItem.builder(HONEY, Type.BOOTS).requires(HONEY_MASK, HONEY_CHESTPIECE, HONEY_LEGPIECE)
-                                                .gives(StatusEffects.ABSORPTION, 1).build()).groupAfter(ItemGroups.COMBAT, HONEY_LEGPIECE).build();
+    public static final ArmorItem HONEY_BOOTS = fromItem("honey_boots", RandomEffectArmorItem.builder(HONEY, Type.BOOTS).requires(HONEY_MASK, HONEY_CHESTPIECE, HONEY_LEGPIECE)
+                                                        .addGroup(StatusEffects.SATURATION).durationAndChance(1, 1f / 600f)
+                                                    .build()).groupAfter(ItemGroups.COMBAT, HONEY_LEGPIECE).build();
 
     // Alchemist: Found in chests
     public static final ArmorItem ALCHEMIST_JACKET = defaultArmorItem("alchemist_jacket", ALCHEMIST, Type.CHESTPLATE).groupAfter(ItemGroups.COMBAT, PIRATE_BOOTS).build();
     public static final ArmorItem ALCHEMIST_PANTS  = defaultArmorItem("alchemist_pants",  ALCHEMIST, Type.LEGGINGS).groupAfter(ItemGroups.COMBAT, ALCHEMIST_JACKET).build();
     public static final ArmorItem ALCHEMIST_BOOTS = fromItem("alchemist_boots", RandomEffectArmorItem.builder(ALCHEMIST, Type.BOOTS).requires(ALCHEMIST_JACKET, ALCHEMIST_PANTS)
-                                                        .addGroupSingle(MagicStatusEffects.MAGIC_RESILIENCE).durationAndChance(200, 1f / 300f)
+                                                        .addGroup(MagicStatusEffects.MAGIC_RESILIENCE).durationAndChance(600, 1f / (10_000f))
                                                         .copyGroupSingle(StatusEffects.ABSORPTION)
+                                                        .copyGroupSingle(StatusEffects.REGENERATION)
                                                         .copyGroupSingle(StatusEffects.HASTE)
                                                         .copyGroupSingle(StatusEffects.NIGHT_VISION)
-                                                        .copyGroupSingle(StatusEffects.REGENERATION)
-                                                        .copyGroupSingle(StatusEffects.NAUSEA).build()).groupAfter(ItemGroups.COMBAT, ALCHEMIST_PANTS).build();
+                                                        .copyGroupSingle(StatusEffects.INVISIBILITY)
+                                                        .copyGroupSingle(StatusEffects.FIRE_RESISTANCE)
+                                                        .copyGroupSingle(StatusEffects.WATER_BREATHING)
+                                                        .addGroup(StatusEffects.NAUSEA).and(StatusEffects.POISON).durationAndChance(200, 1f / (20_000f))
+                                                    .build()).groupAfter(ItemGroups.COMBAT, ALCHEMIST_PANTS).build();
     
     // Elven: Craftable & Found in chests
     public static final Item ELVEN_STEEL           = defaultItem     ("elven_steel")                        .groupAfter(ItemGroups.INGREDIENTS, Items.GOLD_INGOT).build();
@@ -114,13 +116,14 @@ public class MagicItems {
     public static final ArmorItem LIVING_MASK     = defaultArmorItem("living_mask",     LIVING, Type.HELMET).groupAfter(ItemGroups.COMBAT, NECROTIC_BOOTS).build();
     public static final ArmorItem LIVING_SUIT     = defaultArmorItem("living_suit",     LIVING, Type.CHESTPLATE).groupAfter(ItemGroups.COMBAT, LIVING_MASK).build();
     public static final ArmorItem LIVING_LEGGINGS = defaultArmorItem("living_leggings", LIVING, Type.LEGGINGS).groupAfter(ItemGroups.COMBAT, LIVING_SUIT).build();
-    public static final ArmorItem LIVING_BOOTS = fromItem("living_boots", StaticEffectArmorItem.builder(LIVING, Type.BOOTS).requires(LIVING_MASK, LIVING_SUIT, LIVING_LEGGINGS)
-                                                .gives(StatusEffects.REGENERATION).build()).groupAfter(ItemGroups.COMBAT, LIVING_LEGGINGS).build();
+    public static final ArmorItem LIVING_BOOTS = fromItem("living_boots", RandomEffectArmorItem.builder(LIVING, Type.BOOTS).requires(LIVING_MASK, LIVING_SUIT, LIVING_LEGGINGS)
+                                                        .addGroup(StatusEffects.REGENERATION).durationAndChance(200, 1f / 100f)
+                                                    .build()).groupAfter(ItemGroups.COMBAT, LIVING_LEGGINGS).build();
 
     // Shadow: Found in chests
     public static final ArmorItem SHADOW_MASK       = defaultArmorItem("shadow_mask",       SHADOW, Type.HELMET).groupAfter(ItemGroups.COMBAT, Items.IRON_BOOTS).build();
     public static final ArmorItem SHADOW_CHESTPIECE = defaultArmorItem("shadow_chestpiece", SHADOW, Type.CHESTPLATE).groupAfter(ItemGroups.COMBAT, SHADOW_MASK).build();
-    public static final ArmorItem SHADOW_LEGPIECE   = fromItem("shadow_legpiece", StaticEffectArmorItem.builder(SHADOW, Type.LEGGINGS).requires(SHADOW_MASK, SHADOW_CHESTPIECE)
+    public static final ArmorItem SHADOW_LEGPIECE = fromItem("shadow_legpiece", StaticEffectArmorItem.builder(SHADOW, Type.LEGGINGS).requires(SHADOW_MASK, SHADOW_CHESTPIECE)
                                                 .gives(StatusEffects.INVISIBILITY).build()).groupAfter(ItemGroups.COMBAT, SHADOW_CHESTPIECE).build();
 
     // Angelic: Found in chests
@@ -129,11 +132,12 @@ public class MagicItems {
                                                 .gives(StatusEffects.SLOW_FALLING, 1).build()).groupAfter(ItemGroups.COMBAT, ANGELIC_CHESTPLATE).build();
 
     // Deep Sea: Craftable & Found in chests
-    public static final ArmorItem DEEP_SEA_MASK       = defaultArmorItem("deep_sea_mask",       DEEP_SEA, Type.HELMET).groupAfter(ItemGroups.COMBAT, ANGELIC_LEGGINGS).build();
+    public static final ArmorItem DEEP_SEA_MASK = fromItem("deep_sea_mask", StaticEffectArmorItem.builder(DEEP_SEA, Type.HELMET).gives(StatusEffects.WATER_BREATHING).build())
+                                                                                                                        .groupAfter(ItemGroups.COMBAT, ANGELIC_LEGGINGS).build();
     public static final ArmorItem DEEP_SEA_CHESTPLATE = defaultArmorItem("deep_sea_chestplate", DEEP_SEA, Type.CHESTPLATE).groupAfter(ItemGroups.COMBAT, DEEP_SEA_MASK).build();
     public static final ArmorItem DEEP_SEA_LEGGINGS   = defaultArmorItem("deep_sea_leggings",   DEEP_SEA, Type.LEGGINGS).groupAfter(ItemGroups.COMBAT, DEEP_SEA_CHESTPLATE).build();
-    public static final ArmorItem DEEP_SEA_BOOTS      = fromItem("deep_sea_boots", StaticEffectArmorItem.builder(DEEP_SEA, Type.BOOTS).requires(DEEP_SEA_MASK, DEEP_SEA_CHESTPLATE, DEEP_SEA_LEGGINGS)
-                                                .gives(StatusEffects.WATER_BREATHING).build()).groupAfter(ItemGroups.COMBAT, DEEP_SEA_LEGGINGS).build();
+    public static final ArmorItem DEEP_SEA_BOOTS = fromItem("deep_sea_boots", StaticEffectArmorItem.builder(DEEP_SEA, Type.BOOTS).requires(DEEP_SEA_MASK, DEEP_SEA_CHESTPLATE, DEEP_SEA_LEGGINGS)
+                                                .gives(StatusEffects.CONDUIT_POWER).build()).groupAfter(ItemGroups.COMBAT, DEEP_SEA_LEGGINGS).build();
 
     // Magma: Found in chests
     public static final ArmorItem MAGMA_CHESTPLATE = defaultArmorItem("magma_chestplate", MAGMA, Type.CHESTPLATE).groupAfter(ItemGroups.COMBAT, Items.GOLDEN_BOOTS).build();

@@ -17,7 +17,7 @@ import net.minecraft.util.math.random.Random;
  */
 public class RandomEffectArmorItem extends EffectArmorItem {
 
-    protected record WeightedGroup(StatusEffect[] effects, int[] amplifiers, int duration, int chance) {}
+    protected record WeightedGroup(StatusEffect[] effects, int[] amplifiers, int duration, float chance) {}
 
     private final WeightedGroup[] groups;
     private final List<StatusEffectInstance> tempInstances = new ArrayList<>();
@@ -32,9 +32,9 @@ public class RandomEffectArmorItem extends EffectArmorItem {
         Random random = player.getRandom();
 
         for (WeightedGroup group : groups) {
-            if (random.nextInt(100) < group.chance) {
+            if (random.nextFloat() < group.chance) {
                 for (int i = 0; i < group.effects.length; i++) {
-                    StatusEffectInstance instance = new StatusEffectInstance(group.effects[i], group.duration, group.amplifiers[i]);
+                    StatusEffectInstance instance = new StatusEffectInstance(group.effects[i], group.duration, group.amplifiers[i], true, true, true);
                     tempInstances.add(instance);
                 }
             }
@@ -125,7 +125,7 @@ public class RandomEffectArmorItem extends EffectArmorItem {
                         new StatusEffect[]{Single.this.effect},
                         new int[]{Single.this.amplifier},
                         duration,
-                        (int) (chance * 100)
+                        chance
                     ));
                     return Require.this;
                 }
@@ -157,7 +157,7 @@ public class RandomEffectArmorItem extends EffectArmorItem {
                         this.effects.toArray(StatusEffect[]::new),
                         this.amplifiers.stream().mapToInt(Integer::intValue).toArray(),
                         duration,
-                        (int) (chance * 100)
+                        chance
                     ));
                     return Require.this;
                 }

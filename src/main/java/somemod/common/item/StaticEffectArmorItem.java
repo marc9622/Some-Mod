@@ -52,7 +52,7 @@ public class StaticEffectArmorItem extends EffectArmorItem {
         }
 
         public Require gives(StatusEffect type, int amplifier) {
-            return gives(new StatusEffectInstance(type, 20, amplifier));
+            return gives(new StatusEffectInstance(type, 75, amplifier));
         }
 
         public Require gives(StatusEffectInstance effect) {
@@ -73,7 +73,7 @@ public class StaticEffectArmorItem extends EffectArmorItem {
             }
 
             public Require gives(StatusEffect type, int amplifier) {
-                return gives(new StatusEffectInstance(type, 20, amplifier));
+                return gives(new StatusEffectInstance(type, 75, amplifier));
             }
 
             public Require gives(StatusEffectInstance effect) {
