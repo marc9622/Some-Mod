@@ -34,7 +34,7 @@ public class MagicItems {
     public static final ArmorItem ARCANE_PANTS = fromItem("arcane_pants", StaticEffectArmorItem.builder(ARCANE, Type.HELMET).requires(ARCANE_HAT, ARCANE_ROBE)
                                                 .gives(MagicStatusEffects.MAGIC_RESILIENCE).build()).groupAfter(ItemGroups.COMBAT, ARCANE_ROBE).build();
     
-    // Pirate: Craftable & Found in chests
+    // Pirate: Craftable & Found in chests & Villager tradeable
     public static final ArmorItem PIRATE_HAT   = defaultArmorItem("pirate_hat",   PIRATE, Type.HELMET).groupAfter(ItemGroups.COMBAT, ARCANE_PANTS).build();
     public static final ArmorItem PIRATE_SHIRT = defaultArmorItem("pirate_shirt", PIRATE, Type.CHESTPLATE).groupAfter(ItemGroups.COMBAT, PIRATE_HAT).build();
     public static final ArmorItem PIRATE_PANTS = defaultArmorItem("pirate_pants", PIRATE, Type.LEGGINGS).groupAfter(ItemGroups.COMBAT, PIRATE_SHIRT).build();
@@ -48,7 +48,7 @@ public class MagicItems {
                                                         .addGroup(StatusEffects.SATURATION).durationAndChance(1, 1f / 600f)
                                                     .build()).groupAfter(ItemGroups.COMBAT, HONEY_LEGPIECE).build();
 
-    // Alchemist: Found in chests
+    // Alchemist: Found in chests & Villager tradeable
     public static final ArmorItem ALCHEMIST_JACKET = defaultArmorItem("alchemist_jacket", ALCHEMIST, Type.CHESTPLATE).groupAfter(ItemGroups.COMBAT, PIRATE_BOOTS).build();
     public static final ArmorItem ALCHEMIST_PANTS  = defaultArmorItem("alchemist_pants",  ALCHEMIST, Type.LEGGINGS).groupAfter(ItemGroups.COMBAT, ALCHEMIST_JACKET).build();
     public static final ArmorItem ALCHEMIST_BOOTS = fromItem("alchemist_boots", RandomEffectArmorItem.builder(ALCHEMIST, Type.BOOTS).requires(ALCHEMIST_JACKET, ALCHEMIST_PANTS)
@@ -71,7 +71,7 @@ public class MagicItems {
     public static final ArmorItem ELVEN_BOOTS = fromItem("elven_boots", StaticEffectArmorItem.builder(ELVEN, Type.BOOTS).requires(ELVEN_HELMET, ELVEN_CHESTPLATE, ELVEN_LEGGINGS)
                                                 .gives(StatusEffects.SPEED).build()).groupAfter(ItemGroups.COMBAT, ELVEN_LEGGINGS).build();
 
-    // Oceanic: Craftable TODO: Maybe rename to 'Diving'?
+    // Oceanic: Craftable & Villager tradeable TODO: Maybe rename to 'Diving'?
     public static final ArmorItem OCEANIC_MASK = fromItem("oceanic_mask", StaticEffectArmorItem.builder(OCEANIC, Type.HELMET).gives(StatusEffects.WATER_BREATHING).build())
                                                                                                             .groupAfter(ItemGroups.COMBAT, Items.CHAINMAIL_BOOTS).build();
     public static final ArmorItem OCEANIC_SUIT     = defaultArmorItem("oceanic_suit",     OCEANIC, Type.CHESTPLATE).groupAfter(ItemGroups.COMBAT, OCEANIC_MASK).build();

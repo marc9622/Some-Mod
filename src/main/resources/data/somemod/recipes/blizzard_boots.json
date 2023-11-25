@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "b b",
+        "i i"
+    ],
+    "key": {
+        "b": {
+            "item": "minecraft:ice"
+        },
+        "i": {
+            "item": "minecraft:iron_ingot"
+        }
+    },
+    "result": {
+        "item": "somemod:blizzard_boots"
+    }
+}

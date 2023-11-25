@@ -30,6 +30,7 @@ import somemod.frost.block.entity.FrostBlockEntityTypes;
 import somemod.frost.block.entity.render.FrostBlockEntityRendererFactories;
 import somemod.frost.enchantment.FrostEnchantments;
 import somemod.frost.item.FrostItems;
+import somemod.frost.village.FrostTradeOffers;
 import somemod.frost.world_gen.FrostBiomeModifications;
 import somemod.frost.world_gen.feature.FrostFeatures;
 import somemod.magic.block.MagicBlocks;
@@ -40,6 +41,7 @@ import somemod.magic.entity.effect.MagicStatusEffects;
 import somemod.magic.item.MagicItems;
 import somemod.magic.potion.MagicPotions;
 import somemod.magic.screen.MagicScreenHandlers;
+import somemod.magic.village.MagicTradeOffers;
 import somemod.magic.world_gen.MagicBiomeModifications;
 import somemod.magic.world_gen.feature.MagicFeatures;
 import somemod.magic.world_gen.structure.MagicStructurePieceTypes;
@@ -74,7 +76,9 @@ public final class SomeMod implements ModInitializer {
 
 		CrystalBiomeModifications.addCrystalModifications();
 		MagicBiomeModifications.addMagicModifications();
+        MagicTradeOffers.registerTradeOffers();
         FrostBiomeModifications.addFrostModifications();
+        FrostTradeOffers.registerTradeOffers();
 	}
 
 	/**
