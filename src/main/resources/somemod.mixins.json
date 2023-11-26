@@ -9,6 +9,7 @@
     "CustomModelItemRenderer",
     "EndermanAngeringBlock",
     "EntityDamageTaken",
+    "EntityFreezing",
     "EntityMovement",
     "EntitySprinting"
   ],

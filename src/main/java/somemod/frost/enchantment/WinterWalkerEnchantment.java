@@ -7,7 +7,6 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome.Precipitation;
 import somemod.common.enchantment.WalkingSpeedEnchantment;
 
 public class WinterWalkerEnchantment extends Enchantment implements WalkingSpeedEnchantment {
@@ -23,11 +22,8 @@ public class WinterWalkerEnchantment extends Enchantment implements WalkingSpeed
         if (world.isRaining()) {
             BlockPos pos = entity.getSteppingPos();
 
-            if (world.isSkyVisible(pos) &&
-                world.getBiome(pos).value().getPrecipitation(pos) == Precipitation.SNOW) {
+            if (world.getBiome(pos).value().isCold(pos) && world.isRaining() && world.isSkyVisible(pos))
                 return 1.0f + (0.2f * enchantmentLevel);
-            }
-
         }
 
         return 1.0f;
