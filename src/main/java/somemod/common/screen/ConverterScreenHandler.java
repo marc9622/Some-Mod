@@ -12,9 +12,8 @@ import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.screen.slot.Slot;
-import somemod.magic.screen.EnchantedBookshelfScreenHandler;
 
-public abstract class AbstractConverterScreenHandler extends ScreenHandler {
+public abstract class ConverterScreenHandler extends ScreenHandler {
     
     public static final int INPUT_SLOT_INDEX = 0;
     public static final int OUTPUT_SLOT_INDEX = INPUT_SLOT_INDEX + 1;
@@ -27,14 +26,14 @@ public abstract class AbstractConverterScreenHandler extends ScreenHandler {
         @Override
         public void markDirty() {
             super.markDirty();
-            AbstractConverterScreenHandler.this.onContentChanged(this);
+            ConverterScreenHandler.this.onContentChanged(this);
         }
     };
 
     protected final ScreenHandlerContext context;
     protected final PlayerEntity player;
 
-    protected AbstractConverterScreenHandler(ScreenHandlerType<? extends AbstractConverterScreenHandler> type, int syncId, PlayerInventory playerInventory, ScreenHandlerContext context) {
+    protected ConverterScreenHandler(ScreenHandlerType<? extends ConverterScreenHandler> type, int syncId, PlayerInventory playerInventory, ScreenHandlerContext context) {
         super(type, syncId);
 
         this.context = context;
@@ -43,17 +42,17 @@ public abstract class AbstractConverterScreenHandler extends ScreenHandler {
 
             @Override
             public boolean canInsert(ItemStack stack) {
-                return AbstractConverterScreenHandler.this.canInsertIntoInput(stack, AbstractConverterScreenHandler.this.inputInventory);
+                return ConverterScreenHandler.this.canInsertIntoInput(stack, ConverterScreenHandler.this.inputInventory);
             }
 
             @Override
             public int getMaxItemCount() {
-                return AbstractConverterScreenHandler.this.getMaxInputItemCount();
+                return ConverterScreenHandler.this.getMaxInputItemCount();
             }
 
             @Override
             public void onTakeItem(PlayerEntity player, ItemStack stack) {
-                AbstractConverterScreenHandler.this.onTakeInputItem(AbstractConverterScreenHandler.this.inputInventory, AbstractConverterScreenHandler.this.outputInventory);
+                ConverterScreenHandler.this.onTakeInputItem(ConverterScreenHandler.this.inputInventory, ConverterScreenHandler.this.outputInventory);
             }
             
         });
@@ -66,12 +65,12 @@ public abstract class AbstractConverterScreenHandler extends ScreenHandler {
 
             @Override
             public boolean canTakeItems(PlayerEntity playerEntity) {
-                return AbstractConverterScreenHandler.this.canTakeOutputItem(playerEntity);
+                return ConverterScreenHandler.this.canTakeOutputItem(playerEntity);
             }
 
             @Override
             public void onTakeItem(PlayerEntity player, ItemStack stack) {
-                AbstractConverterScreenHandler.this.onTakeOutputItem(AbstractConverterScreenHandler.this.inputInventory, AbstractConverterScreenHandler.this.outputInventory);
+                ConverterScreenHandler.this.onTakeOutputItem(ConverterScreenHandler.this.inputInventory, ConverterScreenHandler.this.outputInventory);
             }
 
         });
@@ -118,7 +117,7 @@ public abstract class AbstractConverterScreenHandler extends ScreenHandler {
 
     @Override
     public boolean canUse(PlayerEntity player) {
-        return EnchantedBookshelfScreenHandler.canUse(this.context, this.player, this.getBlock());
+        return ScreenHandler.canUse(this.context, this.player, this.getBlock());
     }
 
     protected abstract Block getBlock();
@@ -130,55 +129,55 @@ public abstract class AbstractConverterScreenHandler extends ScreenHandler {
         if(selectedSlot == null || !selectedSlot.hasStack())
             return ItemStack.EMPTY;
 
-        ItemStack selectedItemStack = selectedSlot.getStack();
-        ItemStack selectedItemStackCopy = selectedItemStack.copy();
+        ItemStack selectedItemStackNew = selectedSlot.getStack();
+        ItemStack selectedItemStackOriginal = selectedItemStackNew.copy();
 
         if(selectedSlotIndex == INPUT_SLOT_INDEX) {
-            if(this.insertItem(selectedItemStack, PLAYER_INVENTORY_START_INDEX, PLAYER_INVENTORY_END_INDEX, false))
-                selectedSlot.onQuickTransfer(selectedItemStack, selectedItemStackCopy);
+            if(this.insertItem(selectedItemStackNew, PLAYER_INVENTORY_START_INDEX, PLAYER_INVENTORY_END_INDEX, false))
+                selectedSlot.onQuickTransfer(selectedItemStackNew, selectedItemStackOriginal);
             else
                 return ItemStack.EMPTY;
         }
         
         else if(selectedSlotIndex == OUTPUT_SLOT_INDEX) {
-            if(this.insertItem(selectedItemStack, PLAYER_INVENTORY_START_INDEX, PLAYER_INVENTORY_END_INDEX, true))
-                selectedSlot.onQuickTransfer(selectedItemStack, selectedItemStackCopy);
+            if(this.insertItem(selectedItemStackNew, PLAYER_INVENTORY_START_INDEX, PLAYER_INVENTORY_END_INDEX, true))
+                selectedSlot.onQuickTransfer(selectedItemStackNew, selectedItemStackOriginal);
             else
                 return ItemStack.EMPTY;
         }
         
         else if(selectedSlotIndex >= PLAYER_INVENTORY_START_INDEX && selectedSlotIndex < PLAYER_INVENTORY_END_INDEX) {
             
-            if(canInsertIntoInput(selectedItemStack, this.inputInventory)) {
-                if(this.insertItem(selectedItemStack, INPUT_SLOT_INDEX, INPUT_SLOT_INDEX + 1, false))
-                    selectedSlot.onQuickTransfer(selectedItemStack, selectedItemStackCopy);
+            if(canInsertIntoInput(selectedItemStackNew, this.inputInventory)) {
+                if(this.insertItem(selectedItemStackNew, INPUT_SLOT_INDEX, INPUT_SLOT_INDEX + 1, false))
+                    selectedSlot.onQuickTransfer(selectedItemStackNew, selectedItemStackOriginal);
                 else
                     return ItemStack.EMPTY;
             }
 
             else {
                 if(selectedSlotIndex < PLAYER_HOTBAR_START_INDEX) {
-                    if(this.insertItem(selectedItemStack, PLAYER_HOTBAR_START_INDEX, PLAYER_INVENTORY_END_INDEX, false))
-                        selectedSlot.onQuickTransfer(selectedItemStack, selectedItemStackCopy);
+                    if(this.insertItem(selectedItemStackNew, PLAYER_HOTBAR_START_INDEX, PLAYER_INVENTORY_END_INDEX, false))
+                        selectedSlot.onQuickTransfer(selectedItemStackNew, selectedItemStackOriginal);
                     else
                         return ItemStack.EMPTY;
                 }
-                else if(this.insertItem(selectedItemStack, PLAYER_INVENTORY_START_INDEX, PLAYER_HOTBAR_START_INDEX, false))
-                    selectedSlot.onQuickTransfer(selectedItemStack, selectedItemStackCopy);
+                else if(this.insertItem(selectedItemStackNew, PLAYER_INVENTORY_START_INDEX, PLAYER_HOTBAR_START_INDEX, false))
+                    selectedSlot.onQuickTransfer(selectedItemStackNew, selectedItemStackOriginal);
                 else
                     return ItemStack.EMPTY;
             }
         }
 
-        if(selectedItemStack.isEmpty())
+        if(selectedItemStackNew.isEmpty())
             selectedSlot.setStack(ItemStack.EMPTY);
         else
             selectedSlot.markDirty();
 
-        if(selectedItemStack.getCount() == selectedItemStackCopy.getCount())
+        if(selectedItemStackNew.getCount() == selectedItemStackOriginal.getCount())
             return ItemStack.EMPTY;
 
-        selectedSlot.onTakeItem(player, selectedItemStack);
+        selectedSlot.onTakeItem(player, selectedItemStackNew);
         
         return ItemStack.EMPTY;
     }

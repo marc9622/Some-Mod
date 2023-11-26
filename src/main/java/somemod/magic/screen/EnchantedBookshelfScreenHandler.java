@@ -21,10 +21,9 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
-import somemod.common.screen.AbstractConverterScreenHandler;
+import somemod.common.screen.ConverterScreenHandler;
 import somemod.magic.block.MagicBlocks;
 
 // The way that the bookshelf screen workd currently,
@@ -32,22 +31,21 @@ import somemod.magic.block.MagicBlocks;
 // and the output slot will show the book with some random
 // enchantments on it. The player can then take the book
 // out of the output slot, and the original book will be
-// destroyed. It works kind of like an anvil then.
+// destroyed. Meaning, it works kind of like an anvil.
 // This means that the player can just take the original
 // book out, if they don't want the enchantment.
 // At this point, I don't know if that's a good thing or not.
 
-public class EnchantedBookshelfScreenHandler extends AbstractConverterScreenHandler {
+public class EnchantedBookshelfScreenHandler extends ConverterScreenHandler {
 
     private final Random random = Random.create();
     private final Property seed = Property.create(); // Stores the seed for the current player
     private static final Map<PlayerEntity, Integer> seeds = new WeakHashMap<>(); // Stores the seeds for each player.
     // Enchanting tables uses a field in the player entity, but to do it like that, I would have to add a new field to the player entity, which I'm not sure is possible.
 
-    public int enchantmentPower = 0;
-    public int enchantmentId = -1;
-    public int enchantmentLevel = 0;
-    public int enchantmentCost = 0;
+    // Info about the current conversion.
+    private int enchantmentPower = 0;
+    private int enchantmentCost = 0;
 
     public EnchantedBookshelfScreenHandler(int syncId, PlayerInventory playerInventory) {
         this(syncId, playerInventory, ScreenHandlerContext.EMPTY);
@@ -75,26 +73,6 @@ public class EnchantedBookshelfScreenHandler extends AbstractConverterScreenHand
         this.addProperty(new Property() {
             @Override
             public int get() {
-                return EnchantedBookshelfScreenHandler.this.enchantmentId;
-            }
-            @Override
-            public void set(int value) {
-                EnchantedBookshelfScreenHandler.this.enchantmentId = value;
-            }
-        });
-        this.addProperty(new Property() {
-            @Override
-            public int get() {
-                return EnchantedBookshelfScreenHandler.this.enchantmentLevel;
-            }
-            @Override
-            public void set(int value) {
-                EnchantedBookshelfScreenHandler.this.enchantmentLevel = value;
-            }
-        });
-        this.addProperty(new Property() {
-            @Override
-            public int get() {
                 return EnchantedBookshelfScreenHandler.this.enchantmentCost;
             }
             @Override
@@ -106,19 +84,17 @@ public class EnchantedBookshelfScreenHandler extends AbstractConverterScreenHand
 
     @Override
     protected void onInputChanged(Inventory inputInventory, Inventory outputInventory) {
-        ItemStack inputItemStack = inputInventory.getStack(0);
+        ItemStack inputItemStack = inputInventory.getStack(INPUT_SLOT_INDEX);
 
         if(inputItemStack.isEmpty()) {
             this.enchantmentPower = 0;
-            this.enchantmentId = -1;
-            this.enchantmentLevel = -1;
             this.enchantmentCost = 0;
         }
 
         else {
             this.context.run((world, pos) -> {
                 this.random.setSeed(this.seed.get());
-                outputInventory.setStack(0, generateOutput(this.random, inputItemStack));
+                outputInventory.setStack(OUTPUT_SLOT_INDEX, generateOutput(this.random, inputItemStack));
 
                 outputInventory.markDirty();
             });
@@ -129,12 +105,10 @@ public class EnchantedBookshelfScreenHandler extends AbstractConverterScreenHand
 
     @Override
     protected void onOutputChanged(Inventory inputInventory, Inventory outputInventory) {
-        ItemStack outputItemStack = outputInventory.getStack(0);
+        ItemStack outputItemStack = outputInventory.getStack(OUTPUT_SLOT_INDEX);
 
         if(outputItemStack.isEmpty()) {
             this.enchantmentPower = 0;
-            this.enchantmentId = -1;
-            this.enchantmentLevel = -1;
             this.enchantmentCost = 0;
         }
 
@@ -143,9 +117,7 @@ public class EnchantedBookshelfScreenHandler extends AbstractConverterScreenHand
 
     @Override
     protected void onTakeInputItem(Inventory inputInventory, Inventory outputInventory) {
-        World world = player.getWorld();
-        if (world.isClient)
-            outputInventory.setStack(0, ItemStack.EMPTY);
+        outputInventory.setStack(OUTPUT_SLOT_INDEX, ItemStack.EMPTY);
 
         inputInventory.markDirty();
         outputInventory.markDirty();
@@ -153,23 +125,18 @@ public class EnchantedBookshelfScreenHandler extends AbstractConverterScreenHand
 
     @Override
     protected void onTakeOutputItem(Inventory inputInventory, Inventory outputInventory) {
-        ItemStack enchantedBookItemStack = outputInventory.getStack(0);
+        ItemStack enchantedBookItemStack = outputInventory.getStack(OUTPUT_SLOT_INDEX);
 
-        {
-            World world = player.getWorld();
-            if (world.isClient) {
-                if (!player.getAbilities().creativeMode)
-                player.applyEnchantmentCosts(enchantedBookItemStack, getEnchantingCost());
+        if (!player.getAbilities().creativeMode)
+            player.applyEnchantmentCosts(enchantedBookItemStack, getEnchantingCost());
 
-                inputInventory.setStack(0, ItemStack.EMPTY);
-            }
-        }
+        inputInventory.setStack(INPUT_SLOT_INDEX, ItemStack.EMPTY);
 
         player.incrementStat(Stats.ENCHANT_ITEM);
 
         // Not sure what this does, but it's used in the vanilla enchantment table
-        if (player instanceof ServerPlayerEntity)
-            Criteria.ENCHANTED_ITEM.trigger((ServerPlayerEntity)player, enchantedBookItemStack, this.getEnchantingCost());
+        if (player instanceof ServerPlayerEntity serverPlayer)
+            Criteria.ENCHANTED_ITEM.trigger(serverPlayer, enchantedBookItemStack, this.getEnchantingCost());
 
         inputInventory.markDirty();
         outputInventory.markDirty();
@@ -178,12 +145,12 @@ public class EnchantedBookshelfScreenHandler extends AbstractConverterScreenHand
         this.seed.set(EnchantedBookshelfScreenHandler.seeds.get(player));
 
         this.onContentChanged(outputInventory);
-        this.context.run((world, pos) -> world.playSound(null, (BlockPos)pos, SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE, SoundCategory.BLOCKS, 1.0f, world.random.nextFloat() * 0.1f + 0.9f));    
+        this.context.run((world, pos) -> world.playSound(null, pos, SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE, SoundCategory.BLOCKS, 1.0f, world.random.nextFloat() * 0.1f + 0.9f));    
     }
 
     @Override
     protected boolean canInsertIntoInput(ItemStack itemStack, Inventory inputInventory) {
-        ItemStack inputStack = inputInventory.getStack(0);
+        ItemStack inputStack = inputInventory.getStack(INPUT_SLOT_INDEX);
         return itemStack.isOf(Items.BOOK)
             && inputStack.getCount() < Math.min(inputStack.getMaxCount(), this.getMaxInputItemCount());
     }
@@ -199,15 +166,13 @@ public class EnchantedBookshelfScreenHandler extends AbstractConverterScreenHand
     }
     
     protected ItemStack generateOutput(Random random, ItemStack inputItemStack) {
-        // The enchantment power should probably be shown in the GUI
-        this.enchantmentPower = random.nextBetween(getMinEnchantmentPower(), this.getMaxEnchantmentPower()); // Random from Min to Max
+        // TODO: Maybe the enchantment power should be shown in the GUI.
+        this.enchantmentPower = random.nextBetween(this.getMinEnchantmentPower(), this.getMaxEnchantmentPower());
 
         List<EnchantmentLevelEntry> list;
 
-        if(this.enchantmentPower == 0
-        || (list = EnchantmentHelper.generateEnchantments(this.random, inputItemStack, this.enchantmentPower, this.canGenerateTreasure())).isEmpty()) {
-            this.enchantmentLevel = -1;
-            this.enchantmentId = -1;
+        if (this.enchantmentPower == 0 ||
+            (list = EnchantmentHelper.generateEnchantments(this.random, inputItemStack, this.enchantmentPower, this.canGenerateTreasure())).isEmpty()) {
             this.enchantmentCost = 0;
             return ItemStack.EMPTY;
         }
@@ -224,14 +189,14 @@ public class EnchantedBookshelfScreenHandler extends AbstractConverterScreenHand
         }
     }
     
-    protected int getMaxEnchantmentPower() {
-        return 10;
-    }
-    
     protected int getMinEnchantmentPower() {
         return 1;
     }
 
+    protected int getMaxEnchantmentPower() {
+        return 10;
+    }
+    
     protected boolean hasEnoughExperience() {
         return player.experienceLevel >= this.getEnchantingCost() || player.getAbilities().creativeMode;
     }
