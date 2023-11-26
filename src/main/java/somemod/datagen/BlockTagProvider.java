@@ -19,7 +19,9 @@ public class BlockTagProvider extends FabricTagProvider<Block> {
     @Override
     protected void configure(WrapperLookup registries) {
         
-        getOrCreateTagBuilder(CrystalBlockTags.GUARDED_BY_ENDERMEN).add(CrystalBlocks.CRYSTAL_GLASS, CrystalBlocks.CRYSTAL_BLOCK);
+        getOrCreateTagBuilder(CrystalBlockTags.GUARDED_BY_ENDERMEN)
+            .add(CrystalBlocks.CRYSTAL_GLASS, CrystalBlocks.CRYSTAL_BLOCK)
+            .setReplace(false);
     
     }
     

@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "somemod:arctic_hat",
+    "somemod:arctic_jacket",
+    "somemod:arctic_pants",
+    "somemod:arctic_boots"
+  ]
+}
