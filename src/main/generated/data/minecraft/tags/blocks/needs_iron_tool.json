@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "somemod:crystal_glass",
+    "somemod:crystal_block",
+    "somemod:citrine_ore",
+    "somemod:ruby_ore",
+    "somemod:sapphire_ore"
+  ]
+}

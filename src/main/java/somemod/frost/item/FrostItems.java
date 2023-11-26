@@ -4,6 +4,7 @@ import net.minecraft.item.ArmorItem.Type;
 import net.minecraft.util.Rarity;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.ArmorItem;
+import net.minecraft.item.ArrowItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.item.Items;
@@ -16,6 +17,8 @@ public class FrostItems {
 
     public static final BlockItem SPRUCE_CHEST = blockItem("spruce_chest", FrostBlocks.SPRUCE_CHEST).set(Rarity.COMMON).after(ItemGroups.FUNCTIONAL, Items.CHEST).build();
     public static final BlockItem ICE_CHEST    = blockItem("ice_chest",    FrostBlocks.ICE_CHEST)   .set(Rarity.COMMON).after(ItemGroups.FUNCTIONAL, Items.CHEST).build();
+
+    public static final ArrowItem FROSTBITE_ARROW = item("frostbite_arrow", FrostbiteArrowItem::new).after(ItemGroups.COMBAT, Items.TIPPED_ARROW).build();
     
     // Arctic: Craftable & Found in chests
     public static final ArmorItem ARCTIC_BOOTS  = armorItem("arctic_boots",  ARCTIC, Type.BOOTS)     .before(ItemGroups.COMBAT, Items.CHAINMAIL_HELMET).build();

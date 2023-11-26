@@ -22,7 +22,6 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.world.World;
 import somemod.common.screen.ConverterScreenHandler;
 import somemod.magic.block.MagicBlocks;
 

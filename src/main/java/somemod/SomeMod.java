@@ -38,7 +38,9 @@ import somemod.frost.block.FrostBlocks;
 import somemod.frost.block.entity.FrostBlockEntityTypes;
 import somemod.frost.block.entity.render.FrostBlockEntityRendererFactories;
 import somemod.frost.enchantment.FrostEnchantments;
+import somemod.frost.entity.effect.FrostStatusEffects;
 import somemod.frost.item.FrostItems;
+import somemod.frost.potion.FrostPotions;
 import somemod.frost.village.FrostTradeOffers;
 import somemod.frost.world_gen.FrostBiomeModifications;
 import somemod.frost.world_gen.feature.FrostFeatures;
@@ -118,6 +120,8 @@ public final class SomeMod implements ModInitializer {
 		FrostItems.notifyFabric();
         FrostFeatures.notifyFabric();
         FrostEnchantments.notifyFabric();
+        FrostStatusEffects.notifyFabric();
+        FrostPotions.notifyFabric();
 	}
 
     public static void logInfo(String string, Object... objects) { // info is for general information

@@ -59,34 +59,35 @@ public class MagicPotions {
         return effects;
     }
 
-    private static final Potion register(String name, StatusEffect effect, int duration) {
+    // TODO: Move these somewhere else?
+    public static final Potion register(String name, StatusEffect effect, int duration) {
         return register(name, effect, duration, 0);
     }
-    private static final Potion register(String name, StatusEffect effect, int duration, int amplifier) {
+    public static final Potion register(String name, StatusEffect effect, int duration, int amplifier) {
         return register("", name, effect, duration, amplifier);
     }
-    private static final Potion register(String prefix, String baseName, StatusEffect effect, int duration) {
+    public static final Potion register(String prefix, String baseName, StatusEffect effect, int duration) {
         return register(prefix, baseName, effect, duration, 0);
     }
-    private static final Potion register(String prefix, String baseName, StatusEffect effect, int duration, int amplifier) {
+    public static final Potion register(String prefix, String baseName, StatusEffect effect, int duration, int amplifier) {
         return register(prefix, baseName, new StatusEffect[] {effect}, duration, amplifier);
     }
-    private static final Potion register(String name, StatusEffect[] effects, int duration) {
+    public static final Potion register(String name, StatusEffect[] effects, int duration) {
         return register(name, effects, duration, 0);
     }
-    private static final Potion register(String name, StatusEffect[] effects, int duration, int amplifier) {
+    public static final Potion register(String name, StatusEffect[] effects, int duration, int amplifier) {
         return register("", name, effects, duration, amplifier);
     }
-    private static final Potion register(String prefix, String baseName, StatusEffect[] effects, int duration) {
+    public static final Potion register(String prefix, String baseName, StatusEffect[] effects, int duration) {
         return register(prefix, baseName, effects, duration, 0);
     }
-    private static final Potion register(String prefix, String baseName, StatusEffect[] effects, int duration, int amplifier) {
+    public static final Potion register(String prefix, String baseName, StatusEffect[] effects, int duration, int amplifier) {
         return register(prefix, baseName, Stream.of(effects).map(effect -> new StatusEffectInstance(effect, duration, amplifier)).toArray(StatusEffectInstance[]::new));
     }
-    private static final Potion register(String name, StatusEffectInstance... instances) {
+    public static final Potion register(String name, StatusEffectInstance... instances) {
         return register("", name, instances);
     }
-    private static final Potion register(String prefix, String baseName, StatusEffectInstance... instances) {
+    public static final Potion register(String prefix, String baseName, StatusEffectInstance... instances) {
         return SomeMod.register(Registries.POTION, prefix + (prefix.isEmpty() ? "" : "_") + baseName, new Potion(baseName, instances));
     }
 
