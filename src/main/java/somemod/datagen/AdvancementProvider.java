@@ -13,9 +13,24 @@ import net.minecraft.util.Identifier;
 import somemod.SomeMod;
 import somemod.crystal.item.CrystalItems;
 
-public class AdvancementsProvider extends FabricAdvancementProvider {
+public class AdvancementProvider extends FabricAdvancementProvider {
 
-    protected AdvancementsProvider(FabricDataOutput output) {
+    public static final String END_BREAK_END_STONE_CRYSTAL_TITLE = "advancements.somemod.end.break.end_stone.crystal.title";
+    public static final String END_BREAK_END_STONE_CRYSTAL_DESCRIPTION = "advancements.somemod.break.end_stone.crystal.description";
+
+    public static final String JEWELLERY_ROOT_TITLE = "advancements.somemod.jewellery.root.title";
+    public static final String JEWELLERY_ROOT_DESCRIPTION = "advancements.somemod.jewellery.root.description";
+
+    public static final String JEWELLERY_CRAFT_CRYSTAL_TITLE = "advancements.somemod.jewellery.craft.crystal.title";
+    public static final String JEWELLERY_CRAFT_CRYSTAL_DESCRIPTION = "advancements.somemod.jewellery.craft.crystal.description";
+
+    public static final String JEWELLERY_CRAFT_CRYSTAL_ARMOR_TITLE = "advancements.somemod.jewellery.craft.crystal.armor.title";
+    public static final String JEWELLERY_CRAFT_CRYSTAL_ARMOR_DESCRIPTION = "advancements.somemod.jewellery.craft.crystal.armor.description";
+
+    public static final String JEWELLERY_CRAFT_CRYSTAL_TOOLS_TITLE = "advancements.somemod.jewellery.craft.crystal.tools.title";
+    public static final String JEWELLERY_CRAFT_CRYSTAL_TOOLS_DESCRIPTION = "advancements.somemod.jewellery.craft.crystal.tools.description";
+
+    protected AdvancementProvider(FabricDataOutput output) {
         super(output);
     }
 
@@ -40,8 +55,8 @@ public class AdvancementsProvider extends FabricAdvancementProvider {
         Advancement jewelleryRoot = create("jewellery/root", exporter, b -> b
             .display(
                 CrystalItems.CRYSTAL_DUST,
-                Text.translatable("advancements.somemod.jewellery.root.title"),
-                Text.translatable("advancements.somemod.jewellery.root.description"),
+                Text.translatable(JEWELLERY_ROOT_TITLE),
+                Text.translatable(JEWELLERY_ROOT_DESCRIPTION),
                 new Identifier("minecraft:textures/gui/advancements/backgrounds/nether.png"), // TODO: Make custom background
                 AdvancementFrame.TASK,
                 false, false, false
@@ -54,8 +69,8 @@ public class AdvancementsProvider extends FabricAdvancementProvider {
             .parent(jewelleryRoot)
             .display(
                 CrystalItems.CRYSTAL,
-                Text.translatable("advancements.somemod.jewellery.craft.crystal.title"),
-                Text.translatable("advancements.somemod.jewellery.craft.crystal.description"),
+                Text.translatable(JEWELLERY_CRAFT_CRYSTAL_TITLE),
+                Text.translatable(JEWELLERY_CRAFT_CRYSTAL_DESCRIPTION),
                 null,
                 AdvancementFrame.TASK,
                 true, true, false
@@ -68,8 +83,8 @@ public class AdvancementsProvider extends FabricAdvancementProvider {
             .parent(jewelleryCraftCrystal)
             .display(
                 CrystalItems.CRYSTAL_CHESTPLATE,
-                Text.translatable("advancements.somemod.jewellery.craft.crystal.armor.title"),
-                Text.translatable("advancements.somemod.jewellery.craft.crystal.armor.description"),
+                Text.translatable(JEWELLERY_CRAFT_CRYSTAL_ARMOR_TITLE),
+                Text.translatable(JEWELLERY_CRAFT_CRYSTAL_ARMOR_DESCRIPTION),
                 null,
                 AdvancementFrame.TASK,
                 true, true, false
@@ -85,8 +100,8 @@ public class AdvancementsProvider extends FabricAdvancementProvider {
             .parent(jewelleryCraftCrystal)
             .display(
                 CrystalItems.CRYSTAL_PICKAXE,
-                Text.translatable("advancements.somemod.jewellery.craft.crystal.tools.title"),
-                Text.translatable("advancements.somemod.jewellery.craft.crystal.tools.description"),
+                Text.translatable(JEWELLERY_CRAFT_CRYSTAL_TOOLS_TITLE),
+                Text.translatable(JEWELLERY_CRAFT_CRYSTAL_TOOLS_DESCRIPTION),
                 null,
                 AdvancementFrame.TASK,
                 true, true, false

@@ -24,25 +24,6 @@ public class MagicPotions {
     public static final Potion LONG_MAGIC_RESILIENCE = register("long", "magic_resilience", MagicStatusEffects.MAGIC_RESILIENCE, 9600);
     public static final Potion STRONG_MAGIC_RESILIENCE = register("strong", "magic_resilience", MagicStatusEffects.MAGIC_RESILIENCE, 1800, 2);
 
-    //public static final Potion BLAST_STRIKE = register("blast_strike", MagicStatusEffects.BLAST_STRIKE, 1800);
-    //public static final Potion LONG_BLAST_STRIKE = register("long", "blast_strike", MagicStatusEffects.BLAST_STRIKE, 4800);
-    //public static final Potion STRONG_BLAST_STRIKE = register("strong", "blast_strike", MagicStatusEffects.BLAST_STRIKE, 400, 2);
-
-    /* 
-     * Ideas for potions combining different effects
-     *
-     *   Mystic Endurance: Wounded and Magic Resilience
-     *   Feral Endurance: Resistance and Magic Fragility
-     *   Stealth: Speed and Invisibility
-     *   Phantom Speed: Speed, Magic Resilience, and Blindness
-     *   Lunar Sight: Blindness and Night Vision
-     *   Mighty Miner's Elixir: Haste and Slowness
-     *   Swift Digging: Haste and Mining Fatigue
-     *   Meditation: Regeneration and Slowness
-     *   Agility: Speed and Jump Boost
-     * 
-     */
-
     public static final Potion MYSTIC_ENDURANCE = register("mystic_endurance", effects(MagicStatusEffects.MAGIC_RESILIENCE, MagicStatusEffects.WOUNDED), 900, 1);
     public static final Potion LONG_MYSTIC_ENDURANCE = register("long", "mystic_endurance", effects(MagicStatusEffects.MAGIC_RESILIENCE, MagicStatusEffects.WOUNDED), 1800, 1);
     public static final Potion STRONG_MYSTIC_ENDURANCE = register("strong", "mystic_endurance", effects(MagicStatusEffects.MAGIC_RESILIENCE, MagicStatusEffects.WOUNDED), 900, 3);

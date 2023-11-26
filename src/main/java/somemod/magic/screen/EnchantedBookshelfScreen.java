@@ -14,8 +14,8 @@ import somemod.SomeMod;
 public class EnchantedBookshelfScreen extends HandledScreen<EnchantedBookshelfScreenHandler> {
 
     private static final Identifier TEXTURE = SomeMod.id("textures/gui/container/enchanted_bookshelf.png");
-    private static final String ENCHANTING_COST_TEXT = "container.somemod.enchanted_bookshelf.cost"; // or use the vanilla anvil text: "container.repair.cost". (Already translated) 
-    private static final String ENCHANTING_TOO_EXPENSIVE_TEXT = "container.somemod.enchanted_bookshelf.expensive"; // or use the vanilla anvil text: "container.repair.expensive". (Already translated)
+    public static final String ENCHANTING_COST = "container.somemod.enchanted_bookshelf.cost"; // or use the vanilla anvil text: "container.repair.cost". (Already translated) 
+    public static final String ENCHANTING_TOO_EXPENSIVE = "container.somemod.enchanted_bookshelf.expensive"; // or use the vanilla anvil text: "container.repair.expensive". (Already translated)
 
     public EnchantedBookshelfScreen(EnchantedBookshelfScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
@@ -42,11 +42,11 @@ public class EnchantedBookshelfScreen extends HandledScreen<EnchantedBookshelfSc
         int color;
 
         if(this.handler.hasEnoughExperience()) {
-            text = Text.translatable(ENCHANTING_COST_TEXT, cost);
+            text = Text.translatable(ENCHANTING_COST, cost);
             color = 0x80FF20; // 8453920 in dec
         }
         else {
-            text = Text.translatable(ENCHANTING_TOO_EXPENSIVE_TEXT, cost);
+            text = Text.translatable(ENCHANTING_TOO_EXPENSIVE, cost);
             color = 0xFF6060;
         }
 

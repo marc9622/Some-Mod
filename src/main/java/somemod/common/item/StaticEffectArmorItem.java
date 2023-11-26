@@ -14,7 +14,7 @@ import net.minecraft.item.Item;
 /**
  * An armor item that applies a list of effects to the player wearing it.
  * <p>
- * Use {@link #builder(ArmorMaterial, ArmorItem.Type)} to create a new instance.
+ * Use {@link #of(ArmorMaterial, ArmorItem.Type)} to create a new instance.
  */
 public class StaticEffectArmorItem extends EffectArmorItem {
 
@@ -30,7 +30,7 @@ public class StaticEffectArmorItem extends EffectArmorItem {
         return effects;
     }
 
-    public static Builder builder(ArmorMaterial material, ArmorItem.Type type) {
+    public static Builder of(ArmorMaterial material, ArmorItem.Type type) {
         return new Builder(material, type);
     }
 

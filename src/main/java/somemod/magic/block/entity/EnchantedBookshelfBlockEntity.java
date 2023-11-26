@@ -16,6 +16,8 @@ import net.minecraft.util.math.BlockPos;
 
 public class EnchantedBookshelfBlockEntity extends BlockEntity implements Nameable, NamedScreenHandlerFactory {
 
+    public static final String ENCHANT_BOOK = "container.somemod.enchanted_bookshelf";
+
     @Nullable
     private Text customName;
 
@@ -44,7 +46,7 @@ public class EnchantedBookshelfBlockEntity extends BlockEntity implements Nameab
     }
 
     protected Text getDefaultName() {
-        return Text.translatable("container.somemod.enchanted_bookshelf");
+        return Text.translatable(ENCHANT_BOOK);
     }
 
     @Override

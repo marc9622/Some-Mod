@@ -45,7 +45,7 @@ public class RandomEffectArmorItem extends EffectArmorItem {
         return array;
     }
 
-    public static Builder builder(ArmorMaterial material, ArmorItem.Type type) {
+    public static Builder of(ArmorMaterial material, ArmorItem.Type type) {
         return new Builder(material, type);
     }
 

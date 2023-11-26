@@ -11,12 +11,12 @@ import static somemod.utils.BlockBuilder.*;
 public class CrystalBlocks {
     
     //#region NATURAL
-    public static final Block CRYSTAL_GLASS = defaultBlock("crystal_glass").copyWith(Blocks.GLASS, s -> s.strength(0.3F, 0.3F).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.OFF_WHITE).requiresTool().nonOpaque());
-    public static final Block CRYSTAL_BLOCK = defaultBlock("crystal_block").copyWith(Blocks.DIAMOND_BLOCK, s -> s.strength(5F, 6F).sounds(BlockSoundGroup.METAL).requiresTool());
+    public static final Block CRYSTAL_GLASS = block("crystal_glass").copyWith(Blocks.GLASS, s -> s.strength(0.3F, 0.3F).sounds(BlockSoundGroup.GLASS).mapColor(MapColor.OFF_WHITE).requiresTool().nonOpaque());
+    public static final Block CRYSTAL_BLOCK = block("crystal_block").copyWith(Blocks.DIAMOND_BLOCK, s -> s.strength(5F, 6F).sounds(BlockSoundGroup.METAL).requiresTool());
     
-    public static final ExperienceDroppingBlock CITRINE_ORE  = defaultXpBlock("citrine_ore",  UniformIntProvider.create(3, 7)).copyWith(Blocks.STONE, s -> s.strength(3F, 3F).sounds(BlockSoundGroup.STONE).requiresTool());
-    public static final ExperienceDroppingBlock RUBY_ORE     = defaultXpBlock("ruby_ore",     UniformIntProvider.create(3, 7)).copyWith(Blocks.STONE, s -> s.strength(3F, 3F).sounds(BlockSoundGroup.STONE).requiresTool());
-    public static final ExperienceDroppingBlock SAPPHIRE_ORE = defaultXpBlock("sapphire_ore", UniformIntProvider.create(3, 7)).copyWith(Blocks.STONE, s -> s.strength(3F, 3F).sounds(BlockSoundGroup.STONE).requiresTool());
+    public static final ExperienceDroppingBlock CITRINE_ORE  = xpBlock("citrine_ore",  UniformIntProvider.create(3, 7)).copyWith(Blocks.STONE, s -> s.strength(3F, 3F).sounds(BlockSoundGroup.STONE).requiresTool());
+    public static final ExperienceDroppingBlock RUBY_ORE     = xpBlock("ruby_ore",     UniformIntProvider.create(3, 7)).copyWith(Blocks.STONE, s -> s.strength(3F, 3F).sounds(BlockSoundGroup.STONE).requiresTool());
+    public static final ExperienceDroppingBlock SAPPHIRE_ORE = xpBlock("sapphire_ore", UniformIntProvider.create(3, 7)).copyWith(Blocks.STONE, s -> s.strength(3F, 3F).sounds(BlockSoundGroup.STONE).requiresTool());
     //#endregion
 
     public static void notifyFabric() {/* This is just here to make sure the class is loaded */}

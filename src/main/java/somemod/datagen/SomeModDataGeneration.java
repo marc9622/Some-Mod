@@ -21,13 +21,14 @@ public class SomeModDataGeneration implements DataGeneratorEntrypoint {
     public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
         FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
 
-        pack.addProvider(AdvancementsProvider::new);
+        pack.addProvider(AdvancementProvider::new);
         pack.addProvider(BiomeTagProvider::new);
-        pack.addProvider(BlockTagProvider::new);
         pack.addProvider(BlockLootTableProvider::new);
+        pack.addProvider(BlockTagProvider::new);
         pack.addProvider(ChestLootTableProvider::new);
-        pack.addProvider(WorldGenProvider::new);
+        pack.addProvider(LanguageProviders.English::new);
         pack.addProvider(ModelProvider::new);
+        pack.addProvider(WorldGenProvider::new);
     }
     
     @Override

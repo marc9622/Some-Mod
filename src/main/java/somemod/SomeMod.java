@@ -1,6 +1,14 @@
 package somemod;
 
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.block.Block;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.attribute.EntityAttribute;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.potion.Potion;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -25,6 +33,7 @@ import somemod.crystal.block.CrystalBlocks;
 import somemod.crystal.item.CrystalItems;
 import somemod.crystal.world_gen.CrystalBiomeModifications;
 import somemod.crystal.world_gen.feature.CrystalFeatures;
+import somemod.datagen.LanguageProviders;
 import somemod.frost.block.FrostBlocks;
 import somemod.frost.block.entity.FrostBlockEntityTypes;
 import somemod.frost.block.entity.render.FrostBlockEntityRendererFactories;
@@ -154,6 +163,50 @@ public final class SomeMod implements ModInitializer {
 		return registerable.register(key, entry);
 	}
 
+    public static <I extends Item> I registerItem(String path, I item) {
+        LanguageProviders.English.addItem(item, pathToEnglish(path));
+        return register(Registries.ITEM, path, item);
+    }
+
+    public static <B extends Block> B registerBlock(String path, B block) {
+        LanguageProviders.English.addBlock(block, pathToEnglish(path));
+        return register(Registries.BLOCK, path, block);
+    }
+
+    public static <E extends Enchantment> E registerEnchantment(String path, E enchantment) {
+        LanguageProviders.English.addEnchantment(enchantment, pathToEnglish(path));
+        return register(Registries.ENCHANTMENT, path, enchantment);
+    }
+
+    public static <S extends StatusEffect> S registerStatusEffect(String path, S statusEffect) {
+        LanguageProviders.English.addStatusEffect(statusEffect, pathToEnglish(path));
+        return register(Registries.STATUS_EFFECT, path, statusEffect);
+    }
+
+    public static Potion registerPotionBase(String path, Potion potion) {
+        LanguageProviders.English.addPotion(potion, pathToEnglish(path));
+        return register(Registries.POTION, path, potion);
+    }
+
+    public static Potion registerPotion(String path, Potion potion) {
+        return register(Registries.POTION, path, potion);
+    }
+
+    public static <E extends EntityType<?>> E registerEntityType(String path, E entityType) {
+        LanguageProviders.English.addEntityType(entityType, pathToEnglish(path));
+        return register(Registries.ENTITY_TYPE, path, entityType);
+    }
+
+    public static <E extends EntityAttribute> E registerEntityAttribute(String path, E entityAttribute) {
+        LanguageProviders.English.addEntityAttribute(entityAttribute, pathToEnglish(path));
+        return register(Registries.ATTRIBUTE, path, entityAttribute);
+    }
+
+    public static RegistryKey<ItemGroup> registerItemGroup(String path, RegistryKey<ItemGroup> itemGroup) {
+        LanguageProviders.English.addItemGroup(itemGroup, pathToEnglish(path));
+        return itemGroup;
+    }
+
 	public static <FC extends FeatureConfig> Feature<FC> registerFeature(String path, Feature<FC> feature) {
 		return SomeMod.register(Registries.FEATURE, path, feature);
 	}
@@ -208,4 +261,21 @@ public final class SomeMod implements ModInitializer {
 	public static String idString(String path) {
 		return "somemod:" + path;
 	}
+
+    private static String pathToEnglish(String path) {
+        char[] chars = path.toCharArray();
+        if (chars.length <= 0) throw new IllegalArgumentException("Path must not be empty");
+
+        chars[0] = Character.toUpperCase(chars[0]);
+
+        for (int i = 1; i < chars.length; i++) {
+            if (chars[i] == '_') {
+                chars[i] = ' ';
+                if (i + 1 < chars.length)
+                    chars[i + 1] = Character.toUpperCase(chars[i + 1]);
+            }
+        }
+
+        return new String(chars);
+    }
 }
