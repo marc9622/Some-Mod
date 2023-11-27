@@ -7,12 +7,15 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.math.Direction;
+import net.minecraft.world.Heightmap;
+import net.minecraft.world.gen.YOffset;
 import net.minecraft.world.gen.blockpredicate.BlockPredicate;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.PlacedFeature;
 import net.minecraft.world.gen.feature.PlacedFeatures;
 import net.minecraft.world.gen.placementmodifier.BiomePlacementModifier;
 import net.minecraft.world.gen.placementmodifier.BlockFilterPlacementModifier;
+import net.minecraft.world.gen.placementmodifier.HeightRangePlacementModifier;
 import net.minecraft.world.gen.placementmodifier.PlacementModifier;
 import net.minecraft.world.gen.placementmodifier.RarityFilterPlacementModifier;
 import net.minecraft.world.gen.placementmodifier.SquarePlacementModifier;
@@ -41,13 +44,13 @@ public class FrostPlacedFeatures {
 
         registerChest(registerable, SPRUCE_CHEST_MOUNTAIN, configuredSpruceChestMountain, 64, PlacedFeatures.OCEAN_FLOOR_HEIGHTMAP);
 
-        registerChest(registerable, ICE_CHEST, configuredIceChest, 1, PlacedFeatures.BOTTOM_TO_120_RANGE);
+        registerChest(registerable, ICE_CHEST, configuredIceChest, 1, HeightRangePlacementModifier.trapezoid(YOffset.fixed(0), YOffset.fixed(50)));
 
     }
 
     private static void registerChest(Registerable<PlacedFeature> registerable, RegistryKey<PlacedFeature> placedFeatureKey,
-                                            RegistryEntry.Reference<ConfiguredFeature<?, ?>> configuredFeatureKey,
-                                            int rarity, PlacementModifier placementModifier, Block... validGroundBlocks) {
+                                      RegistryEntry.Reference<ConfiguredFeature<?, ?>> configuredFeatureKey,
+                                      int rarity, PlacementModifier placementModifier, Block... validGroundBlocks) {
 
         SomeMod.registerPlacedFeature(registerable, placedFeatureKey, configuredFeatureKey,
             RarityFilterPlacementModifier.of(rarity),

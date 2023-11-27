@@ -15,16 +15,34 @@ public final class FrostTradeOffers {
 
     public static void registerTradeOffers() {
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.LIBRARIAN, 3, factories -> {
-            factories.add((entity, random) -> {
-                ItemStack enchantedBlizzardBoots = new ItemStack(FrostItems.BLIZZARD_BOOTS);
-                EnchantmentHelper.set(Map.of(FrostEnchantments.WINTER_WALKER, 2), new ItemStack(FrostItems.BLIZZARD_BOOTS));
-                return new TradeOffer(
-                    new ItemStack(Items.EMERALD, 3),
-                    new ItemStack(FrostItems.BLIZZARD_BOOTS),
-                    enchantedBlizzardBoots,
-                    12, 10, 0.05f
-                );
-            });
+            factories.add((entity, random) -> new TradeOffer(
+                new ItemStack(Items.EMERALD),
+                new ItemStack(FrostItems.BLIZZARD_BOOTS),
+                blizzardBoots(1),
+                6, 10, 0.05f
+            ));
         });
+        TradeOfferHelper.registerVillagerOffers(VillagerProfession.LIBRARIAN, 4, factories -> {
+            factories.add((entity, random) -> new TradeOffer(
+                new ItemStack(Items.EMERALD, 2),
+                new ItemStack(FrostItems.BLIZZARD_BOOTS),
+                blizzardBoots(2),
+                6, 15, 0.2f
+            ));
+        });
+        TradeOfferHelper.registerVillagerOffers(VillagerProfession.LIBRARIAN, 5, factories -> {
+            factories.add((entity, random) -> new TradeOffer(
+                new ItemStack(Items.EMERALD, 5),
+                new ItemStack(FrostItems.BLIZZARD_BOOTS),
+                blizzardBoots(3),
+                6, 30, 0.2f
+            ));
+        });
+    }
+
+    private static ItemStack blizzardBoots(int level) {
+        ItemStack stack = new ItemStack(FrostItems.BLIZZARD_BOOTS);
+        EnchantmentHelper.set(Map.of(FrostEnchantments.WINTER_WALKER, level), stack);
+        return stack;
     }
 }

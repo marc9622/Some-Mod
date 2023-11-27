@@ -55,7 +55,7 @@
             {
               "add": false,
               "enchantments": {
-                "minecraft:protection": {
+                "somemod:ice_cold": {
                   "type": "minecraft:uniform",
                   "max": 1.0,
                   "min": 0.0

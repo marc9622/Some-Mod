@@ -59,7 +59,6 @@ public class BiomeTagProvider extends FabricTagProvider<Biome> {
 
         // From 'has_structure/igloo'
         getOrCreateTagBuilder(FrostBiomeTags.HAS_SPRUCE_CHEST_SNOWY).add(
-            SNOWY_TAIGA,
             SNOWY_PLAINS,
             SNOWY_SLOPES,
             SNOWY_BEACH
@@ -68,9 +67,10 @@ public class BiomeTagProvider extends FabricTagProvider<Biome> {
         // From 'is_taiga'
         getOrCreateTagBuilder(FrostBiomeTags.HAS_SPRUCE_CHEST_TAIGA).add(
             TAIGA,
-            // SNOWY_TAIGA
+            SNOWY_TAIGA,
             OLD_GROWTH_PINE_TAIGA,
-            OLD_GROWTH_SPRUCE_TAIGA
+            OLD_GROWTH_SPRUCE_TAIGA,
+            GROVE
         );
 
         // From 'is_mountain'
@@ -79,7 +79,15 @@ public class BiomeTagProvider extends FabricTagProvider<Biome> {
             FROZEN_PEAKS, // TODO: maybe move to _SNOWY?
             JAGGED_PEAKS,
             STONY_PEAKS
-            // SNOWY_SLOPES
+        );
+
+        getOrCreateTagBuilder(FrostBiomeTags.HAS_ICE_CHEST).add(
+            // Biomes with a temperature < 0.0
+            FROZEN_PEAKS,
+            JAGGED_PEAKS,
+            SNOWY_TAIGA,
+            SNOWY_SLOPES,
+            GROVE
         );
     
     }

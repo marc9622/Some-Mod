@@ -26,17 +26,6 @@
                 "min": 0.1
               },
               "function": "minecraft:set_damage"
-            },
-            {
-              "add": false,
-              "enchantments": {
-                "minecraft:unbreaking": {
-                  "type": "minecraft:uniform",
-                  "max": 1.0,
-                  "min": 0.0
-                }
-              },
-              "function": "minecraft:set_enchantments"
             }
           ],
           "name": "somemod:arctic_hat"
@@ -69,17 +58,6 @@
                 "min": 0.1
               },
               "function": "minecraft:set_damage"
-            },
-            {
-              "add": false,
-              "enchantments": {
-                "minecraft:unbreaking": {
-                  "type": "minecraft:uniform",
-                  "max": 1.0,
-                  "min": 0.0
-                }
-              },
-              "function": "minecraft:set_enchantments"
             }
           ],
           "name": "somemod:arctic_jacket"
@@ -112,17 +90,6 @@
                 "min": 0.1
               },
               "function": "minecraft:set_damage"
-            },
-            {
-              "add": false,
-              "enchantments": {
-                "minecraft:unbreaking": {
-                  "type": "minecraft:uniform",
-                  "max": 1.0,
-                  "min": 0.0
-                }
-              },
-              "function": "minecraft:set_enchantments"
             }
           ],
           "name": "somemod:arctic_pants"
@@ -155,17 +122,6 @@
                 "min": 0.1
               },
               "function": "minecraft:set_damage"
-            },
-            {
-              "add": false,
-              "enchantments": {
-                "minecraft:unbreaking": {
-                  "type": "minecraft:uniform",
-                  "max": 1.0,
-                  "min": 0.0
-                }
-              },
-              "function": "minecraft:set_enchantments"
             }
           ],
           "name": "somemod:arctic_boots"

@@ -1,6 +1,7 @@
 package somemod.datagen;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
@@ -8,7 +9,10 @@ import java.util.function.Consumer;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.SimpleFabricLootTableProvider;
 import static net.minecraft.enchantment.Enchantments.*;
+
+import net.minecraft.data.server.loottable.LootTableGenerator;
 import net.minecraft.item.Item;
+import static net.minecraft.item.Items.*;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
@@ -37,16 +41,18 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 import somemod.SomeMod;
-import static net.minecraft.item.Items.*;
+import somemod.frost.data.server.loottable.FrostChestLootTableGenerator;
+
 import static somemod.magic.item.MagicItems.*;
 import somemod.magic.potion.MagicPotions;
-import somemod.frost.item.FrostItems;
-import static somemod.frost.item.FrostItems.*;
 
 @SuppressWarnings("unused")
-public class ChestLootTableProvider extends SimpleFabricLootTableProvider {
+public final class ChestLootTableProvider extends SimpleFabricLootTableProvider {
 
-    private static final List<Consumer<BiConsumer<Identifier, LootTable.Builder>>> exportings = new ArrayList<>();
+    private static final Collection<Consumer<BiConsumer<Identifier, LootTable.Builder>>> exportings = new ArrayList<>();
+    private static final Collection<LootTableGenerator> generators = new ArrayList<>() {{
+        add(new FrostChestLootTableGenerator());
+    }};
 
     public ChestLootTableProvider(FabricDataOutput output) {
         super(output, LootContextTypes.CHEST);
@@ -389,221 +395,39 @@ public class ChestLootTableProvider extends SimpleFabricLootTableProvider {
         );
     //#endregion
 
-    //#region FROST
-    private static final Identifier SPRUCE_CHEST_ARCTIC_ARMOR =
-        registerLootTable("spruce_chest_arctic_armor",
-            LootPool.builder()
-                .rolls(constant(1))
-                .conditionally(randomChance(0.15f))
-                .with(itemEntry(ARCTIC_HAT,    1, constant(1), setDamage(uniform(0.1f, 0.9f)), setEnchantments().enchantment(UNBREAKING, uniform(0, 1)))),
-            LootPool.builder()
-                .rolls(constant(1))
-                .conditionally(randomChance(0.15f))
-                .with(itemEntry(ARCTIC_JACKET, 1, constant(1), setDamage(uniform(0.1f, 0.9f)), setEnchantments().enchantment(UNBREAKING, uniform(0, 1)))),
-            LootPool.builder()
-                .rolls(constant(1))
-                .conditionally(randomChance(0.15f))
-                .with(itemEntry(ARCTIC_PANTS,  1, constant(1), setDamage(uniform(0.1f, 0.9f)), setEnchantments().enchantment(UNBREAKING, uniform(0, 1)))),
-            LootPool.builder()
-                .rolls(constant(1))
-                .conditionally(randomChance(0.15f))
-                .with(itemEntry(ARCTIC_BOOTS,  1, constant(1), setDamage(uniform(0.1f, 0.9f)), setEnchantments().enchantment(UNBREAKING, uniform(0, 1))))
-        );
-
-    private static final Identifier SPRUCE_CHEST_GLACIER_ARMOR =
-        registerLootTable("spruce_chest_glacier_armor",
-            LootPool.builder()
-                .rolls(constant(1))
-                .with(itemEntry(GLACIER_HELMET,     1, constant(1), setDamage(uniform(0.5f, 1.0f)), setEnchantments().enchantment(PROTECTION, uniform(0, 1))))
-                .with(itemEntry(GLACIER_CHESTPLATE, 1, constant(1), setDamage(uniform(0.5f, 1.0f)), setEnchantments().enchantment(PROTECTION, uniform(0, 1))))
-                .with(itemEntry(GLACIER_LEGGINGS,   1, constant(1), setDamage(uniform(0.5f, 1.0f)), setEnchantments().enchantment(PROTECTION, uniform(0, 1))))
-                .with(itemEntry(GLACIER_BOOTS,      1, constant(1), setDamage(uniform(0.5f, 1.0f)), setEnchantments().enchantment(FROST_WALKER, uniform(0, 1))))
-        );
-
-    public static final Identifier SPRUCE_CHEST_SNOWY =
-        registerLootTable("spruce_chest_snowy",
-            LootPool.builder()
-                .rolls(constant(1))
-                .with(lootTableEntry(SPRUCE_CHEST_ARCTIC_ARMOR, 2))
-                .with(lootTableEntry(SPRUCE_CHEST_GLACIER_ARMOR)),
-            LootPool.builder()
-                .rolls(uniform(8, 12))
-                .with(itemEntry(SNOWBALL, 8))
-                .with(itemEntry(TORCH,    8))
-                .with(itemEntry(COAL,     2))
-                .with(itemEntry(STICK,    2))
-                .with(itemEntry(SPRUCE_LOG,     2))
-                .with(itemEntry(SPRUCE_PLANKS,  2))
-                .with(itemEntry(SPRUCE_FENCE,   2))
-                .with(itemEntry(CRAFTING_TABLE, 1))
-                .with(itemEntry(FURNACE,        1)),
-            LootPool.builder()
-                .rolls(constant(1))
-                .with(itemEntry(BREAD, 1, uniform(0, 3)))
-                .with(itemEntry(APPLE, 1, uniform(0, 6))),
-            LootPool.builder()
-                .rolls(constant(1))
-                .with(itemEntry(STONE_SWORD,  1, constant(1), setDamage(uniform(0.1f, 0.9f))))
-                .with(itemEntry(STONE_SHOVEL, 1, constant(1), setDamage(uniform(0.1f, 0.9f))))
-                .with(itemEntry(CAMPFIRE)),
-            LootPool.builder()
-                .rolls(constant(1))
-                .conditionally(randomChance(0.5f))
-                .with(itemEntry(IRON_INGOT, 1, uniform(1, 3)))
-                .with(itemEntry(GOLD_INGOT, 1, uniform(1, 3))),
-            LootPool.builder()
-                .rolls(constant(1))
-                .conditionally(randomChance(0.1f))
-                .with(itemEntry(DIAMOND))
-        );
-
-    public static final Identifier SPRUCE_CHEST_TAIGA =
-        registerLootTable("spruce_chest_taiga",
-            LootPool.builder()
-                .rolls(constant(1))
-                .with(lootTableEntry(SPRUCE_CHEST_ARCTIC_ARMOR)),
-            LootPool.builder()
-                .rolls(uniform(8, 12))
-                .with(itemEntry(TORCH,    8))
-                .with(itemEntry(COAL,     2))
-                .with(itemEntry(STICK,    2))
-                .with(itemEntry(SPRUCE_LOG,     2))
-                .with(itemEntry(SPRUCE_PLANKS,  2))
-                .with(itemEntry(SPRUCE_FENCE,   2))
-                .with(itemEntry(CRAFTING_TABLE, 1))
-                .with(itemEntry(FURNACE,        1)),
-            LootPool.builder()
-                .rolls(constant(1))
-                .with(itemEntry(BREAD, 1, uniform(0, 3)))
-                .with(itemEntry(APPLE, 1, uniform(0, 6)))
-                .with(itemEntry(SWEET_BERRIES, 4, uniform(0, 8))),
-            LootPool.builder()
-                .rolls(constant(1))
-                .with(itemEntry(STONE_SWORD,   1, constant(1), setDamage(uniform(0.1f, 0.9f))))
-                .with(itemEntry(STONE_PICKAXE, 1, constant(1), setDamage(uniform(0.1f, 0.9f))))
-                .with(itemEntry(STONE_AXE,     1, constant(1), setDamage(uniform(0.1f, 0.9f))))
-                .with(itemEntry(STONE_HOE,     1, constant(1), setDamage(uniform(0.1f, 0.9f))))
-                .with(itemEntry(CAMPFIRE)),
-            LootPool.builder()
-                .rolls(constant(1))
-                .conditionally(randomChance(0.5f))
-                .with(itemEntry(IRON_INGOT, 1, uniform(1, 3)))
-                .with(itemEntry(GOLD_INGOT, 1, uniform(1, 3)))
-        );
-
-    public static final Identifier SPRUCE_CHEST_MOUNTAIN =
-        registerLootTable("spruce_chest_mountain",
-            LootPool.builder()
-                .rolls(constant(1))
-                .with(lootTableEntry(SPRUCE_CHEST_ARCTIC_ARMOR, 2))
-                .with(lootTableEntry(SPRUCE_CHEST_GLACIER_ARMOR)),
-            LootPool.builder()
-                .rolls(uniform(8, 12))
-                .with(itemEntry(TORCH,    8))
-                .with(itemEntry(COAL,     2))
-                .with(itemEntry(STICK,    2))
-                .with(itemEntry(SPRUCE_LOG,     2))
-                .with(itemEntry(SPRUCE_PLANKS,  2))
-                .with(itemEntry(SPRUCE_FENCE,   2))
-                .with(itemEntry(CRAFTING_TABLE, 1))
-                .with(itemEntry(FURNACE,        1)),
-            LootPool.builder()
-                .rolls(constant(1))
-                .with(itemEntry(BREAD, 1, uniform(0, 3)))
-                .with(itemEntry(APPLE, 1, uniform(0, 6))),
-            LootPool.builder()
-                .rolls(constant(1))
-                .with(itemEntry(STONE_SWORD,   1, constant(1), setDamage(uniform(0.1f, 0.9f))))
-                .with(itemEntry(STONE_PICKAXE, 1, constant(1), setDamage(uniform(0.1f, 0.9f))))
-                .with(itemEntry(CAMPFIRE)),
-            LootPool.builder()
-                .rolls(constant(1))
-                .conditionally(randomChance(0.5f))
-                .with(itemEntry(IRON_INGOT, 1, uniform(1, 3)))
-                .with(itemEntry(GOLD_INGOT, 1, uniform(1, 3))),
-            LootPool.builder()
-                .rolls(constant(1))
-                .conditionally(randomChance(0.1f))
-                .with(itemEntry(EMERALD))
-        );
-
-    private static final Identifier ICE_CHEST_FROSTBITE =
-        registerLootTable("ice_chest_frostbite",
-            LootPool.builder()
-                .rolls(constant(1))
-                .with(itemEntry(FROSTBITE_CHESTPLATE, 2, constant(1), setDamage(uniform(0.2f, 1.0f)), setEnchantments().enchantment(PROTECTION, uniform(0, 2)).enchantment(UNBREAKING, uniform(0, 2)).enchantment(THORNS, uniform(0, 2))))
-                .with(itemEntry(FROSTBITE_LEGGINGS,   2, constant(1), setDamage(uniform(0.2f, 1.0f)), setEnchantments().enchantment(PROTECTION, uniform(0, 2)).enchantment(UNBREAKING, uniform(0, 2)).enchantment(THORNS, uniform(0, 2)))),
-            LootPool.builder()
-                .rolls(uniform(2, 4))
-                .with(itemEntry(IRON_INGOT,   8, uniform(1, 2)))
-                .with(itemEntry(IRON_SWORD,   1, constant(1), setDamage(uniform(0.1f, 0.9f))))
-                .with(itemEntry(IRON_PICKAXE, 1, constant(1), setDamage(uniform(0.1f, 0.9f))))
-                .with(itemEntry(IRON_AXE,     1, constant(1), setDamage(uniform(0.1f, 0.9f))))
-                .with(itemEntry(IRON_SHOVEL,  1, constant(1), setDamage(uniform(0.1f, 0.9f))))
-        );
-
-    private static final Identifier ICE_CHEST_CROWN =
-        registerLootTable("ice_chest_crown",
-            LootPool.builder()
-                .rolls(constant(1))
-                .with(itemEntry(ICE_QUEEN_CROWN, 1, constant(1), setEnchantments().enchantment(PROTECTION, uniform(2, 3)).enchantment(MENDING, constant(1)))),
-            LootPool.builder()
-                .rolls(constant(1))
-                .with(itemEntry(SKELETON_SKULL)),
-            LootPool.builder()
-                .rolls(uniform(2, 4))
-                .with(itemEntry(GOLD_NUGGET, 1, uniform(3, 5)))
-                .with(itemEntry(GOLD_INGOT,  1, uniform(1, 2)))
-        );
-
-    public static final Identifier ICE_CHEST =
-        registerLootTable("ice_chest",
-            LootPool.builder()
-                .rolls(uniform(6, 10))
-                .with(itemEntry(SNOW,       2))
-                .with(itemEntry(SNOWBALL,   1, uniform(1, 2)))
-                .with(itemEntry(SNOW_BLOCK, 2))
-                .with(itemEntry(ICE,        2)),
-            LootPool.builder()
-                .rolls(constant(1))
-                .with(lootTableEntry(ICE_CHEST_FROSTBITE, 4))
-                .with(lootTableEntry(ICE_CHEST_CROWN))
-        );
-    //#endregion
-
-    private static Identifier registerLootTable(String path, LootPool.Builder... poolBuilders) {
+    public static Identifier registerLootTable(String path, LootPool.Builder... poolBuilders) {
         Identifier id = SomeMod.registerLootTable(path);
         exportings.add(exporter -> export(exporter, id, poolBuilders));
         return id;
     }
 
-    private static void export(BiConsumer<Identifier, LootTable.Builder> exporter, Identifier id, LootPool.Builder... poolBuilders) {
+    public static void export(BiConsumer<Identifier, LootTable.Builder> exporter, Identifier id, LootPool.Builder... poolBuilders) {
         LootTable.Builder builder = LootTable.builder();
         for (LootPool.Builder poolBuilder : poolBuilders)
             builder = builder.pool(poolBuilder);
         exporter.accept(id, builder);
     }
     
-    private static LeafEntry.Builder<?> itemEntry(ItemConvertible item) {
+    public static LeafEntry.Builder<?> itemEntry(ItemConvertible item) {
         return ItemEntry.builder(item);
     }
 
-    private static LeafEntry.Builder<?> itemEntry(Item item, int weight) {
+    public static LeafEntry.Builder<?> itemEntry(Item item, int weight) {
         return itemEntry(item).weight(weight);
     }
 
-    private static LeafEntry.Builder<?> itemEntry(Item item, int weight, LootNumberProvider countRange) {
+    public static LeafEntry.Builder<?> itemEntry(Item item, int weight, LootNumberProvider countRange) {
         return itemEntry(item, weight).apply(ChestLootTableProvider.setCount(countRange));
     }
 
-    private static LeafEntry.Builder<?> itemEntry(Item item, int weight, LootNumberProvider countRange, ConditionalLootFunction.Builder<?>... lootFunctions) {
+    public static LeafEntry.Builder<?> itemEntry(Item item, int weight, LootNumberProvider countRange, ConditionalLootFunction.Builder<?>... lootFunctions) {
         LeafEntry.Builder<?> builder = itemEntry(item, weight, countRange);
         for (LootFunction.Builder lootFunction : lootFunctions)
             builder = builder.apply(lootFunction);
         return builder;
     }
     
-    private static LeafEntry.Builder<?> itemEntry(Item item, int weight, LootNumberProvider countRange, List<ConditionalLootFunction.Builder<?>> lootFunctions, List<LootCondition.Builder> lootConditions) {
+    public static LeafEntry.Builder<?> itemEntry(Item item, int weight, LootNumberProvider countRange, List<ConditionalLootFunction.Builder<?>> lootFunctions, List<LootCondition.Builder> lootConditions) {
         LeafEntry.Builder<?> builder = itemEntry(item, weight, countRange);
         for (LootFunction.Builder lootFunction : lootFunctions)
             builder = builder.apply(lootFunction);
@@ -612,63 +436,63 @@ public class ChestLootTableProvider extends SimpleFabricLootTableProvider {
         return builder;
     }
 
-    private static LootTableEntry.Builder<?> lootTableEntry(Identifier id) {
+    public static LootTableEntry.Builder<?> lootTableEntry(Identifier id) {
         return LootTableEntry.builder(id);
     }
 
-    private static LootTableEntry.Builder<?> lootTableEntry(Identifier id, int weight) {
+    public static LootTableEntry.Builder<?> lootTableEntry(Identifier id, int weight) {
         return LootTableEntry.builder(id).weight(weight);
     }
 
-    private static SetNameLootFunction.Builder<?> setName(Text name) {
+    public static SetNameLootFunction.Builder<?> setName(Text name) {
         return SetNameLootFunction.builder(name);
     }
 
-    private static SetLoreLootFunction.Builder setLore(Text... lore) {
+    public static SetLoreLootFunction.Builder setLore(Text... lore) {
         SetLoreLootFunction.Builder builder = SetLoreLootFunction.builder();
         for (Text line : lore)
             builder = builder.lore(line);
         return builder;
     }
 
-    private static SetDamageLootFunction.Builder<?> setDamage(LootNumberProvider damageRange) {
+    public static SetDamageLootFunction.Builder<?> setDamage(LootNumberProvider damageRange) {
         return SetDamageLootFunction.builder(damageRange);
     }
 
-    private static SetEnchantmentsLootFunction.Builder setEnchantments() {
+    public static SetEnchantmentsLootFunction.Builder setEnchantments() {
         return new SetEnchantmentsLootFunction.Builder();
     }
 
-    private static ConditionalLootFunction.Builder<?> setPotion(Potion potion) {
+    public static ConditionalLootFunction.Builder<?> setPotion(Potion potion) {
         return SetPotionLootFunction.builder(potion);
     }
 
-    private static ConditionalLootFunction.Builder<?> setCount(LootNumberProvider countRange) {
+    public static ConditionalLootFunction.Builder<?> setCount(LootNumberProvider countRange) {
         return SetCountLootFunction.builder(countRange);
     }
 
-    private static UniformLootNumberProvider uniform(float min, float max) {
+    public static UniformLootNumberProvider uniform(float min, float max) {
         return UniformLootNumberProvider.create(min, max);
     }
 
-    private static ConstantLootNumberProvider constant(float value) {
+    public static ConstantLootNumberProvider constant(float value) {
         return ConstantLootNumberProvider.create(value);
     }
     
-    private static enum Weather {
+    public static enum Weather {
         SUNNY,
         RAINING,
         THUNDERING,
         THUNDERSTORM
     }
 
-    private static LootCondition.Builder weatherCheck(Weather weather) {
+    public static LootCondition.Builder weatherCheck(Weather weather) {
         boolean raining    = weather == Weather.RAINING    || weather == Weather.THUNDERSTORM;
         boolean thundering = weather == Weather.THUNDERING || weather == Weather.THUNDERSTORM;
         return WeatherCheckLootCondition.create().raining(raining).thundering(thundering);
     }
     
-    private static LootCondition.Builder randomChance(float chance) {
+    public static LootCondition.Builder randomChance(float chance) {
         return RandomChanceLootCondition.builder(chance);
     }
     

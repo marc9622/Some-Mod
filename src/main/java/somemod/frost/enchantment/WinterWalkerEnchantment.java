@@ -56,7 +56,7 @@ public class WinterWalkerEnchantment extends Enchantment implements WalkingSpeed
 
     @Override
     public boolean isTreasure() {
-        return true;
+        return false;
     }
 
     @Override

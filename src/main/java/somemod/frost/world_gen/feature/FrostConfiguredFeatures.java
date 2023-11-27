@@ -9,8 +9,8 @@ import net.minecraft.text.Text;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import somemod.SomeMod;
 import somemod.common.world_gen.feature.SingleChestFeatureConfig;
-import somemod.datagen.ChestLootTableProvider;
 import somemod.frost.block.FrostBlocks;
+import somemod.frost.data.server.loottable.FrostChestLootTableGenerator;
 
 public class FrostConfiguredFeatures {
 
@@ -27,7 +27,7 @@ public class FrostConfiguredFeatures {
             new SingleChestFeatureConfig(
                 Optional.of(Text.of("Snowy Spruce Chest")),
                 FrostBlocks.SPRUCE_CHEST,
-                ChestLootTableProvider.SPRUCE_CHEST_SNOWY
+                FrostChestLootTableGenerator.SPRUCE_CHEST_SNOWY
             )
         );
 
@@ -36,7 +36,7 @@ public class FrostConfiguredFeatures {
             new SingleChestFeatureConfig(
                 Optional.of(Text.of("Taiga Spruce Chest")),
                 FrostBlocks.SPRUCE_CHEST,
-                ChestLootTableProvider.SPRUCE_CHEST_TAIGA
+                FrostChestLootTableGenerator.SPRUCE_CHEST_TAIGA
             )
         );
 
@@ -45,7 +45,7 @@ public class FrostConfiguredFeatures {
             new SingleChestFeatureConfig(
                 Optional.of(Text.of("Mountain Spruce Chest")),
                 FrostBlocks.SPRUCE_CHEST,
-                ChestLootTableProvider.SPRUCE_CHEST_MOUNTAIN
+                FrostChestLootTableGenerator.SPRUCE_CHEST_MOUNTAIN
             )
         );
 
@@ -54,7 +54,7 @@ public class FrostConfiguredFeatures {
             new SingleChestFeatureConfig(
                 Optional.of(Text.of("Ice Chest")),
                 FrostBlocks.ICE_CHEST,
-                ChestLootTableProvider.ICE_CHEST
+                FrostChestLootTableGenerator.ICE_CHEST
             )
         );
 
