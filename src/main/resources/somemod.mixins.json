@@ -4,6 +4,7 @@
   "package": "somemod.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [ // Client and server mixins
+    "ArrowShooting",
     "CustomChestEntityRenderer",
     "CustomItemRenderer",
     "CustomModelItemRenderer",
