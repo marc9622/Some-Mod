@@ -18,7 +18,8 @@ import net.minecraft.world.biome.Biome;
 import somemod.frost.entity.effect.FrostStatusEffects;
 
 // TODO: Make frostbite armor give an effect that makes being frozen a buff.
-// TODO: Reduce the effectiveness of freeze immune armor.
+// TODO: Make the entities' y-coordinate also affect freezing.
+// TODO: Make snowballs add a little freezing.
 @Mixin(LivingEntity.class)
 public abstract class EntityFreezing {
 
@@ -31,9 +32,14 @@ public abstract class EntityFreezing {
     // This function slowly increases frozen ticks when it is cold.
     private void setFrozenTicks(LivingEntity entity, int frozenTicks) {
 
-        if (entity instanceof PlayerEntity player && player.getAbilities().creativeMode) {
-            entity.setFrozenTicks(0);
-            return;
+        boolean isPlayer = false;
+        if (entity instanceof PlayerEntity player) {
+            isPlayer = true;
+
+            if (player.getAbilities().creativeMode || player.isSpectator()) {
+                entity.setFrozenTicks(0);
+                return;
+            }
         }
 
         final int currentTicks = entity.getFrozenTicks();
@@ -68,7 +74,7 @@ public abstract class EntityFreezing {
         // warm armor, meaning that they will often freeze to death.
         // This should help them a bit.
         if (!(entity instanceof PlayerEntity))
-            bodyHeat += 3;
+            bodyHeat += 2;
 
         if (entity.inPowderSnow) {
             increase += 1.50f / bodyHeat;
@@ -98,7 +104,7 @@ public abstract class EntityFreezing {
         float temperature = biome.getTemperature();
 
         // Temperature can be between 2.0f and -0.7f
-        increase += -temperature * 1.50f;
+        if (isPlayer) increase += -temperature * 1.50f;
         //SomeMod.logInfo("temperature: " + temperature + ", adds " + temperature * -1.50f);
 
         float light = (float) world.getLightLevel(pos) / (float) world.getMaxLightLevel();
@@ -111,7 +117,7 @@ public abstract class EntityFreezing {
 
         if (temperature <= 0.15f) {
 
-            if (entity.isInsideWaterOrBubbleColumn()) {
+            if (isPlayer && entity.isInsideWaterOrBubbleColumn()) {
                 // Warm armor is not very effective in water.
                 increase += 1.00f;
             }

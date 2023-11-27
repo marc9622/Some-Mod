@@ -43,7 +43,7 @@ public class FrostPlacedFeatures {
 
         registerChest(registerable, SPRUCE_CHEST_MOUNTAIN, configuredSpruceChestMountain, 64, PlacedFeatures.OCEAN_FLOOR_HEIGHTMAP);
 
-        registerChest(registerable, ICE_CHEST, configuredIceChest, 32, HeightRangePlacementModifier.trapezoid(YOffset.fixed(0), YOffset.fixed(50)));
+        registerChest(registerable, ICE_CHEST, configuredIceChest, 16, HeightRangePlacementModifier.trapezoid(YOffset.fixed(0), YOffset.fixed(64)));
 
     }
 
