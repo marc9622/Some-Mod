@@ -172,7 +172,7 @@ public class ModelProvider extends FabricModelProvider {
 
             //#region FROST
             ARCTIC_HAT,
-            ARCTIC_JACKET,
+            ARCTIC_COAT,
             ARCTIC_PANTS,
             ARCTIC_BOOTS,
 

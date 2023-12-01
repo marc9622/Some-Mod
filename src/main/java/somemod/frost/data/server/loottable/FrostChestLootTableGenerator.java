@@ -35,7 +35,7 @@ public final class FrostChestLootTableGenerator implements LootTableGenerator {
             LootPool.builder()
                 .rolls(constant(1))
                 .conditionally(randomChance(0.15f))
-                .with(itemEntry(ARCTIC_JACKET, 1, constant(1), setDamage(uniform(0.1f, 0.9f)))),
+                .with(itemEntry(ARCTIC_COAT, 1, constant(1), setDamage(uniform(0.1f, 0.9f)))),
             LootPool.builder()
                 .rolls(constant(1))
                 .conditionally(randomChance(0.15f))

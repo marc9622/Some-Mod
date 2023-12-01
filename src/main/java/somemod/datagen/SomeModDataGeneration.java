@@ -29,6 +29,7 @@ public class SomeModDataGeneration implements DataGeneratorEntrypoint {
         pack.addProvider(ItemTagProvider::new);
         pack.addProvider(LanguageProviders.English::new);
         pack.addProvider(ModelProvider::new);
+        pack.addProvider(RecipeProvider::new);
         pack.addProvider(WorldGenProvider::new);
     }
     

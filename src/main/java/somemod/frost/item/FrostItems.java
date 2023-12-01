@@ -23,8 +23,8 @@ public class FrostItems {
     // Arctic: Craftable & Found in chests
     public static final ArmorItem ARCTIC_BOOTS  = armorItem("arctic_boots",  ARCTIC, Type.BOOTS)     .before(ItemGroups.COMBAT, Items.CHAINMAIL_HELMET).build();
     public static final ArmorItem ARCTIC_PANTS  = armorItem("arctic_pants",  ARCTIC, Type.LEGGINGS)  .before(ItemGroups.COMBAT, ARCTIC_BOOTS).build();
-    public static final ArmorItem ARCTIC_JACKET = armorItem("arctic_jacket", ARCTIC, Type.CHESTPLATE).before(ItemGroups.COMBAT, ARCTIC_PANTS).build();
-    public static final ArmorItem ARCTIC_HAT    = armorItem("arctic_hat",    ARCTIC, Type.HELMET)    .before(ItemGroups.COMBAT, ARCTIC_JACKET).build();
+    public static final ArmorItem ARCTIC_COAT   = armorItem("arctic_coat",   ARCTIC, Type.CHESTPLATE).before(ItemGroups.COMBAT, ARCTIC_PANTS).build();
+    public static final ArmorItem ARCTIC_HAT    = armorItem("arctic_hat",    ARCTIC, Type.HELMET)    .before(ItemGroups.COMBAT, ARCTIC_COAT).build();
     
     // Arctic: Craftable & found in chests
     public static final ArmorItem GLACIER_BOOTS      = armorItem("glacier_boots",      GLACIER, Type.BOOTS)     .before(ItemGroups.COMBAT, Items.IRON_HELMET).build();
