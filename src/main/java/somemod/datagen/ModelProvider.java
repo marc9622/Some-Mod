@@ -186,6 +186,8 @@ public class ModelProvider extends FabricModelProvider {
             FROSTBITE_CHESTPLATE,
             FROSTBITE_LEGGINGS,
 
+            FROSTBITE_ARROW,
+
             ICE_QUEEN_CROWN
             //#endregion
         ).forEach(item -> generator.register(item, Models.GENERATED));
