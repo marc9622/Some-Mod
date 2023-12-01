@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "e": {
+      "item": "somemod:elven_steel"
+    }
+  },
+  "pattern": [
+    "eee",
+    "e e",
+    "e e"
+  ],
+  "result": {
+    "item": "somemod:elven_leggings"
+  },
+  "show_notification": true
+}

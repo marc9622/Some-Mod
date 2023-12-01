@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "somemod:crystal"
+    },
+    {
+      "item": "somemod:crystal"
+    },
+    {
+      "item": "somemod:crystal"
+    },
+    {
+      "item": "somemod:crystal"
+    },
+    {
+      "item": "somemod:crystal"
+    },
+    {
+      "item": "somemod:crystal"
+    },
+    {
+      "item": "somemod:crystal"
+    },
+    {
+      "item": "somemod:crystal"
+    },
+    {
+      "item": "somemod:crystal"
+    }
+  ],
+  "result": {
+    "item": "somemod:crystal_block"
+  }
+}

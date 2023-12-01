@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "b": {
+      "item": "minecraft:book"
+    },
+    "g": {
+      "item": "minecraft:gold_block"
+    }
+  },
+  "pattern": [
+    "ggg",
+    "bbb",
+    "ggg"
+  ],
+  "result": {
+    "item": "somemod:enchanted_bookshelf"
+  },
+  "show_notification": true
+}

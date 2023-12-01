@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "c": {
+      "item": "somemod:crystal_dust"
+    },
+    "s": {
+      "item": "minecraft:cobblestone"
+    }
+  },
+  "pattern": [
+    " c ",
+    "csc",
+    " c "
+  ],
+  "result": {
+    "item": "minecraft:end_stone"
+  },
+  "show_notification": true
+}

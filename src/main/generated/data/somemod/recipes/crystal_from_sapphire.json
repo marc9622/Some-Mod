@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "crystal",
+  "key": {
+    "c": {
+      "item": "somemod:crystal_dust"
+    },
+    "x": {
+      "item": "somemod:sapphire"
+    }
+  },
+  "pattern": [
+    " c ",
+    "cxc",
+    " c "
+  ],
+  "result": {
+    "item": "somemod:crystal"
+  },
+  "show_notification": true
+}

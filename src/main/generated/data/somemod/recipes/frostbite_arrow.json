@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "b": {
+      "item": "minecraft:ice"
+    },
+    "f": {
+      "item": "minecraft:feather"
+    },
+    "i": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "pattern": [
+    "i",
+    "b",
+    "f"
+  ],
+  "result": {
+    "count": 4,
+    "item": "somemod:frostbite_arrow"
+  },
+  "show_notification": true
+}

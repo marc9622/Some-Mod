@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "c": {
+      "item": "somemod:crystal"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "c",
+    "c",
+    "s"
+  ],
+  "result": {
+    "item": "somemod:crystal_sword"
+  },
+  "show_notification": true
+}

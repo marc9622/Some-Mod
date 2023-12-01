@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "c": {
+      "item": "somemod:crystal"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "cc",
+    "cs",
+    " s"
+  ],
+  "result": {
+    "item": "somemod:crystal_axe"
+  },
+  "show_notification": true
+}

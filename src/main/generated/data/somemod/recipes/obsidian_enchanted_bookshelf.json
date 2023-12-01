@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "b": {
+      "item": "somemod:enchanted_bookshelf"
+    },
+    "d": {
+      "item": "minecraft:diamond"
+    },
+    "o": {
+      "item": "minecraft:obsidian"
+    }
+  },
+  "pattern": [
+    "ooo",
+    "dbd",
+    "ooo"
+  ],
+  "result": {
+    "item": "somemod:obsidian_enchanted_bookshelf"
+  },
+  "show_notification": true
+}

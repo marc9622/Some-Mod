@@ -60,7 +60,7 @@
               "function": "minecraft:set_damage"
             }
           ],
-          "name": "somemod:arctic_jacket"
+          "name": "somemod:arctic_coat"
         }
       ],
       "rolls": 1.0

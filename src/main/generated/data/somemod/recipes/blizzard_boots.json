@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "b": {
+      "item": "minecraft:ice"
+    },
+    "i": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "pattern": [
+    "b b",
+    "i i"
+  ],
+  "result": {
+    "item": "somemod:blizzard_boots"
+  },
+  "show_notification": true
+}

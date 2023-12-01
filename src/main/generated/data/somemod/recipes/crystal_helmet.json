@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "c": {
+      "item": "somemod:crystal"
+    }
+  },
+  "pattern": [
+    "ccc",
+    "c c"
+  ],
+  "result": {
+    "item": "somemod:crystal_helmet"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "c": {
+      "item": "somemod:crystal"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "ccc",
+    " s ",
+    " s "
+  ],
+  "result": {
+    "item": "somemod:crystal_pickaxe"
+  },
+  "show_notification": true
+}

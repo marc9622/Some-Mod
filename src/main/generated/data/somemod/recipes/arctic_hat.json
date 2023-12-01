@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "l": {
+      "item": "minecraft:leather"
+    },
+    "w": {
+      "item": "minecraft:white_wool"
+    }
+  },
+  "pattern": [
+    "lwl",
+    "w w"
+  ],
+  "result": {
+    "item": "somemod:arctic_hat"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.35,
+  "group": "crystal_dust",
+  "ingredient": {
+    "item": "minecraft:end_stone"
+  },
+  "result": "somemod:crystal_dust"
+}

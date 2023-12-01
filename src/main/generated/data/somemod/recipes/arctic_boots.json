@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "l": {
+      "item": "minecraft:leather"
+    }
+  },
+  "pattern": [
+    "l l",
+    "l l"
+  ],
+  "result": {
+    "item": "somemod:arctic_boots"
+  },
+  "show_notification": true
+}
