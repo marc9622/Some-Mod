@@ -1,3 +1,5 @@
-accessWidener   v1  named
+accessWidener   v2  named
 
 # Look into access wideners at https://fabricmc.net/wiki/tutorial:accesswideners
+
+# accessible  method  net/minecraft/world/biome/Biome getTemperature  (Lnet/minecraft/util/math/BlockPos;)F

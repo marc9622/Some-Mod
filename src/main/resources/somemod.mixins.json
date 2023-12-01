@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [ // Client and server mixins
     "ArrowShooting",
+    "BiomeTemperature",
     "CustomChestEntityRenderer",
     "CustomItemRenderer",
     "CustomModelItemRenderer",
@@ -12,7 +13,8 @@
     "EntityDamageTaken",
     "EntityFreezing",
     "EntityMovement",
-    "EntitySprinting"
+    "EntitySprinting",
+    "SnowballFreezing"
   ],
   "client": [ // Client-side only mixins
   ],
