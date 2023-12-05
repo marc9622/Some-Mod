@@ -186,11 +186,14 @@ public class ModelProvider extends FabricModelProvider {
             FROSTBITE_CHESTPLATE,
             FROSTBITE_LEGGINGS,
 
-            FROSTBITE_ARROW,
+            FROSTBITE_ARROW
 
-            ICE_QUEEN_CROWN
             //#endregion
         ).forEach(item -> generator.register(item, Models.GENERATED));
+
+        Stream.of(
+            ICE_QUEEN_CROWN
+        ).forEach(armorItem -> generator.registerArmor(armorItem));
 
         // I believe the JSONs for the chest items in the real game are hand-written for some reason.
         // But to reuse the model transformations from the chest item, we can just use 'item/chest' as the parent.

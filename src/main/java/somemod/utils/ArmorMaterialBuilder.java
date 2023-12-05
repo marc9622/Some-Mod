@@ -8,6 +8,7 @@ import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ArmorItem.Type;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.sound.SoundEvent;
+import somemod.SomeMod;
 
 public final class ArmorMaterialBuilder {
 
@@ -87,7 +88,7 @@ public final class ArmorMaterialBuilder {
 
         @Override
         public String getName() {
-            return this.name;
+            return SomeMod.idString(this.name);
         }
 
         @Override
