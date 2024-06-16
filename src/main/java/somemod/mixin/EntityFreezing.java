@@ -50,7 +50,7 @@ public abstract class EntityFreezing {
         if (entity instanceof PlayerEntity playerEntity) {
             player = playerEntity;
 
-            if (player.getAbilities().creativeMode || player.isSpectator()) {
+            if (player.isCreative() || player.isSpectator()) {
                 entity.setFrozenTicks(0);
                 return;
             }
