@@ -48,6 +48,8 @@ import somemod.magic.block.MagicBlocks;
 import somemod.magic.block.entity.MagicBlockEntityTypes;
 import somemod.magic.block.entity.render.MagicBlockEntityRendererFactories;
 import somemod.magic.enchantment.MagicEnchantments;
+import somemod.magic.entity.MagicEntityTypes;
+import somemod.magic.entity.attribute.MagicEntityAttributes;
 import somemod.magic.entity.effect.MagicStatusEffects;
 import somemod.magic.item.MagicItems;
 import somemod.magic.potion.MagicPotions;
@@ -86,6 +88,7 @@ public final class SomeMod implements ModInitializer {
 		// LOGGER.info("Hello Fabric world!");
 
 		CrystalBiomeModifications.addCrystalModifications();
+        MagicEntityAttributes.registerEntityAttributes();
 		MagicBiomeModifications.addMagicModifications();
         MagicTradeOffers.registerTradeOffers();
         FrostBiomeModifications.addFrostModifications();
@@ -105,6 +108,7 @@ public final class SomeMod implements ModInitializer {
 		MagicBlockEntityTypes.notifyFabric();
 		MagicBlockEntityRendererFactories.notifyFabric();
 		MagicItems.notifyFabric();
+        MagicEntityTypes.notifyFabric();
 		MagicScreenHandlers.notifyFabric();
 		MagicFeatures.notifyFabric();
 		MagicStructureTypes.notifyFabric();
