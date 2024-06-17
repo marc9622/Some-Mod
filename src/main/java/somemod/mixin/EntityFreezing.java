@@ -114,7 +114,7 @@ public abstract class EntityFreezing {
                 //SomeMod.logInfo("frostbite adds " + amount / bodyHeat);
             }
 
-            increase -= Math.min(warmth, 0.0f) * 0.30f;
+            increase -= Math.min(warmth, 0.0f) * 0.50f;
         }
 
         /* Environment */ {
