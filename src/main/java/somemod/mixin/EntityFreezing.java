@@ -30,7 +30,6 @@ import somemod.frost.entity.effect.FrostStatusEffects;
 
 // TODO: Make frostbite armor give an effect that makes being frozen a buff.
 // TODO: Make the entities' y-coordinate also affect freezing.
-// TODO: Make snowballs add a little freezing.
 @Mixin(LivingEntity.class)
 public abstract class EntityFreezing {
 
@@ -77,17 +76,7 @@ public abstract class EntityFreezing {
         float increase = 0;
 
         /* Body Heat */ {
-            // // Preferably, warm armor should have the WARMTH attribute.
-            // // But because FREEZE_IMMUNE_WEARABLES is already in the game,
-            // // this will then automatically support armor with that tag.
-            // double armorImmunity = 0;
-            // for (ItemStack stack : entity.getArmorItems()) {
-            //     if (stack.isIn(ItemTags.FREEZE_IMMUNE_WEARABLES)) {
-            //         armorImmunity += 1;
-            //     }
-            // }
-
-            double warmth = entity.getAttributeValue(FrostEntityAttributes.WARMTH);
+            float warmth = (float) entity.getAttributeValue(FrostEntityAttributes.WARMTH);
 
             // Non-player entities are most likely not able to equip
             // warm armor, meaning that they will often freeze to death.
@@ -97,8 +86,11 @@ public abstract class EntityFreezing {
             else
                 warmth += 1;
 
-            // All players have a base increase of -0.15f because bodyHeat starts at 1.
-            increase += -warmth * 0.15f;
+            warmth += Math.min(entity.getVelocity().lengthSquared() - 0.006f, 1.0f) * 0.30f;
+            // if (player != null) SomeMod.logInfo("" + entity.getVelocity().lengthSquared());
+            if (entity.isSneaking()) warmth += 0.20f;
+
+            increase -= warmth * 0.15f;
             //SomeMod.logInfo("body heat: " + bodyHeat + ", adds " + bodyHeat * -0.15f);
 
             if (entity.inPowderSnow) {
@@ -121,6 +113,8 @@ public abstract class EntityFreezing {
                 increase += amount / Math.min(warmth, 1.0f);
                 //SomeMod.logInfo("frostbite adds " + amount / bodyHeat);
             }
+
+            increase -= Math.min(warmth, 0.0f) * 0.15f;
         }
 
         /* Environment */ {
