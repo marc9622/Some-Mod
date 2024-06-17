@@ -4,6 +4,7 @@
   "package": "somemod.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [ // Client and server mixins
+    "ArmorItemsAttributes",
     "ArrowShooting",
     "BiomeTemperature",
     "CustomChestEntityRenderer",
@@ -14,7 +15,6 @@
     "EntityFreezing",
     "EntityMovement",
     "EntitySprinting",
-    "LeatherArmorWarmth",
     "LivingEntityAttributes",
     "SnowballFreezing"
   ],
