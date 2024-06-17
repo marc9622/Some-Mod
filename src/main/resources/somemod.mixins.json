@@ -14,6 +14,7 @@
     "EntityFreezing",
     "EntityMovement",
     "EntitySprinting",
+    "LivingEntityAttributes.java",
     "SnowballFreezing"
   ],
   "client": [ // Client-side only mixins
