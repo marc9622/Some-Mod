@@ -1,5 +1,6 @@
 package somemod.common.item;
 
+import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 
 import net.minecraft.entity.Entity;
@@ -31,7 +32,9 @@ public abstract class EffectArmorItem extends ArmorItem {
         ArmorItem... otherArmorRequired
     ) {
         super(material, type, settings);
-        this.attributeModifiers = attributeModifiers;
+        this.attributeModifiers = ImmutableMultimap.<EntityAttribute, EntityAttributeModifier>builder()
+            .putAll(super.getAttributeModifiers(this.type.getEquipmentSlot()))
+            .putAll(attributeModifiers).build();
         this.otherArmorRequired = otherArmorRequired;
     }
 
