@@ -14,7 +14,8 @@
     "EntityFreezing",
     "EntityMovement",
     "EntitySprinting",
-    "LivingEntityAttributes.java",
+    "LeatherArmorWarmth",
+    "LivingEntityAttributes",
     "SnowballFreezing"
   ],
   "client": [ // Client-side only mixins

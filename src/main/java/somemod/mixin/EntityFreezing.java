@@ -25,7 +25,6 @@ import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.densityfunction.DensityFunction.UnblendedNoisePos;
 import net.minecraft.world.gen.noise.NoiseConfig;
 import net.minecraft.world.gen.noise.NoiseRouter;
-import somemod.SomeMod;
 import somemod.frost.entity.attribute.FrostEntityAttributes;
 import somemod.frost.entity.effect.FrostStatusEffects;
 
@@ -88,15 +87,7 @@ public abstract class EntityFreezing {
             //     }
             // }
 
-            double warmth;
-            // TODO: I don't think this words
-            if (entity.getAttributes().hasAttribute(FrostEntityAttributes.WARMTH)) {
-                warmth = entity.getAttributeValue(FrostEntityAttributes.WARMTH);
-                SomeMod.logInfo("warmth = " + warmth + (player != null ? " (player)" : ""));
-            }
-            else {
-                warmth = 0;
-            }
+            double warmth = entity.getAttributeValue(FrostEntityAttributes.WARMTH);
 
             // Non-player entities are most likely not able to equip
             // warm armor, meaning that they will often freeze to death.
