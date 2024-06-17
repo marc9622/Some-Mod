@@ -14,9 +14,12 @@
     "EntityFreezing",
     "EntityMovement",
     "EntitySprinting",
+    "ItemAttributeModifiers",
+    "LavaBucketWarmth",
     "LeatherArmorWarmth",
     "LivingEntityAttributes",
-    "SnowballFreezing"
+    "SnowballFreezing",
+    "TorchWarmth"
   ],
   "client": [ // Client-side only mixins
   ],

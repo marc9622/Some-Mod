@@ -19,7 +19,6 @@ import net.minecraft.item.ArmorMaterials;
 import net.minecraft.item.Item;
 import somemod.frost.item.FrostArmorMaterials;
 
-// TODO: Also do this for other kinds of items (such as to allow torches and lava buckets to give warmth when held)
 @Mixin(ArmorItem.class)
 public abstract class LeatherArmorWarmth {
 
