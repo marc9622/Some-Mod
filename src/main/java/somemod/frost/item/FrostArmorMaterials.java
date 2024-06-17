@@ -12,11 +12,8 @@ import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributeModifier.Operation;
 import net.minecraft.item.ArmorMaterial;
-import net.minecraft.item.ArmorMaterials;
 import net.minecraft.item.Items;
 import net.minecraft.sound.SoundEvents;
-import somemod.common.item.ArmorItemsAttributes;
-import somemod.common.item.ArmorItemsAttributes.AttributePair;
 import somemod.frost.entity.attribute.FrostEntityAttributes;
 
 public final class FrostArmorMaterials {
@@ -28,17 +25,13 @@ public final class FrostArmorMaterials {
     public static final ArmorMaterial FROSTBITE = of("frostbite", 19, 3, 8, 6, 3, 14, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 0.5f, 0.0f,  () -> Items.PACKED_ICE);
     public static final ArmorMaterial ICE_QUEEN = of("ice_queen", 24, 3, 8, 6, 3, 28, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 0.5f, 0.0f,  () -> Items.DIAMOND);
 
-    static {
-        ArmorItemsAttributes.customAttributes.add((material, type) -> {
-            if (material == ArmorMaterials.LEATHER) {
-                return new AttributePair(FrostEntityAttributes.WARMTH, switch (type) {
-                    case HELMET     -> new EntityAttributeModifier(UUID.fromString("231f8b34-cd42-4a51-b0bc-824fc9f7a17a"), "Armor warmth", 0.8f, Operation.ADDITION);
-                    case CHESTPLATE -> new EntityAttributeModifier(UUID.fromString("bcf29fb1-b1ae-458c-a202-fefe0dd6e095"), "Armor warmth", 1.2f, Operation.ADDITION);
-                    case LEGGINGS   -> new EntityAttributeModifier(UUID.fromString("64154915-bfcb-47d6-ad7f-a9e7267486a6"), "Armor warmth", 1.0f, Operation.ADDITION);
-                    case BOOTS      -> new EntityAttributeModifier(UUID.fromString("beb9b060-2c0d-46c0-9612-7989c74c6ed3"), "Armor warmth", 0.5f, Operation.ADDITION);
-                });
-            }
-            return null;
+    public static Multimap<EntityAttribute, EntityAttributeModifier> leather(EquipmentSlot slot) {
+        return ImmutableMultimap.of(FrostEntityAttributes.WARMTH, switch (slot) {
+            case HEAD  -> new EntityAttributeModifier(UUID.fromString("231f8b34-cd42-4a51-b0bc-824fc9f7a17a"), "Armor warmth", 0.8f, Operation.ADDITION);
+            case CHEST -> new EntityAttributeModifier(UUID.fromString("bcf29fb1-b1ae-458c-a202-fefe0dd6e095"), "Armor warmth", 1.2f, Operation.ADDITION);
+            case LEGS  -> new EntityAttributeModifier(UUID.fromString("64154915-bfcb-47d6-ad7f-a9e7267486a6"), "Armor warmth", 1.0f, Operation.ADDITION);
+            case FEET  -> new EntityAttributeModifier(UUID.fromString("beb9b060-2c0d-46c0-9612-7989c74c6ed3"), "Armor warmth", 0.5f, Operation.ADDITION);
+            default -> throw new IllegalArgumentException();
         });
     }
 

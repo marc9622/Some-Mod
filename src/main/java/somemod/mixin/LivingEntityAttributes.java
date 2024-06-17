@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
-import net.minecraft.entity.attribute.EntityAttribute;
+import somemod.frost.entity.attribute.FrostEntityAttributes;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityAttributes {
@@ -19,9 +19,7 @@ public abstract class LivingEntityAttributes {
         cancellable = true)
     private static void createLivingAttributes(CallbackInfoReturnable<DefaultAttributeContainer.Builder> cir) {
         DefaultAttributeContainer.Builder builder = cir.getReturnValue();
-        for (EntityAttribute attribute : somemod.common.entity.LivingEntityAttributes.customAttributes) {
-            builder = builder.add(attribute);
-        }
+        builder = builder.add(FrostEntityAttributes.WARMTH);
         cir.setReturnValue(builder);
     }
 
