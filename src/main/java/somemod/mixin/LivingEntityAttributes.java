@@ -1,8 +1,5 @@
 package somemod.mixin;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -15,12 +12,6 @@ import net.minecraft.entity.attribute.EntityAttribute;
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityAttributes {
 
-    private static final Collection<EntityAttribute> customAttributes = new ArrayList<>();
-
-    public static void addAttribute(EntityAttribute attribute) {
-        customAttributes.add(attribute);
-    }
-
     @Inject(
         method = "createLivingAttributes(" +
                  ")Lnet/minecraft/entity/attribute/DefaultAttributeContainer$Builder;",
@@ -28,7 +19,7 @@ public abstract class LivingEntityAttributes {
         cancellable = true)
     private static void createLivingAttributes(CallbackInfoReturnable<DefaultAttributeContainer.Builder> cir) {
         DefaultAttributeContainer.Builder builder = cir.getReturnValue();
-        for (EntityAttribute attribute : customAttributes) {
+        for (EntityAttribute attribute : somemod.common.entity.LivingEntityAttributes.customAttributes) {
             builder = builder.add(attribute);
         }
         cir.setReturnValue(builder);
