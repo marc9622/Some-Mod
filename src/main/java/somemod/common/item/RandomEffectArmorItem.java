@@ -2,8 +2,11 @@ package somemod.common.item;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 
+import com.google.common.collect.Multimap;
+
+import net.minecraft.entity.attribute.EntityAttribute;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
@@ -11,19 +14,23 @@ import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.util.math.random.Random;
+import somemod.utils.ItemBuilder.AttributeItemConstructor;
 
 /**
  * TODO
  */
 public class RandomEffectArmorItem extends EffectArmorItem {
-
     protected record WeightedGroup(StatusEffect[] effects, int[] amplifiers, int duration, float chance) {}
 
     private final WeightedGroup[] groups;
     private final List<StatusEffectInstance> tempInstances = new ArrayList<>();
 
-    protected RandomEffectArmorItem(ArmorMaterial material, ArmorItem.Type type, Item.Settings settings, WeightedGroup[] groups, ArmorItem... otherArmorRequired) {
-        super(material, type, settings, otherArmorRequired);
+    protected RandomEffectArmorItem(
+        ArmorMaterial material, ArmorItem.Type type, Item.Settings settings,
+        Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers,
+        WeightedGroup[] groups, ArmorItem... otherArmorRequired
+    ) {
+        super(material, type, settings, attributeModifiers, otherArmorRequired);
         this.groups = groups;
     }
 
@@ -103,12 +110,12 @@ public class RandomEffectArmorItem extends EffectArmorItem {
                 return new Multi(effect, amplifier);
             }
 
-            public Function<Item.Settings, RandomEffectArmorItem> build() {
-                return settings -> build(settings);
+            public AttributeItemConstructor<RandomEffectArmorItem> build() {
+                return (settings, attributeModifiers) -> build(settings, attributeModifiers);
             }
 
-            public RandomEffectArmorItem build(Item.Settings settings) {
-                return new RandomEffectArmorItem(Builder.this.material, Builder.this.type, settings, this.groups.toArray(WeightedGroup[]::new), this.otherArmorRequired);
+            public RandomEffectArmorItem build(Item.Settings settings, Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers) {
+                return new RandomEffectArmorItem(Builder.this.material, Builder.this.type, settings, attributeModifiers, this.groups.toArray(WeightedGroup[]::new), this.otherArmorRequired);
             }
 
             public final class Single {

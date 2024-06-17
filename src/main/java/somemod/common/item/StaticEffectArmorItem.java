@@ -2,14 +2,18 @@ package somemod.common.item;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 
+import com.google.common.collect.Multimap;
+
+import net.minecraft.entity.attribute.EntityAttribute;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.Item;
+import somemod.utils.ItemBuilder.AttributeItemConstructor;
 
 /**
  * An armor item that applies a list of effects to the player wearing it.
@@ -17,11 +21,14 @@ import net.minecraft.item.Item;
  * Use {@link #of(ArmorMaterial, ArmorItem.Type)} to create a new instance.
  */
 public class StaticEffectArmorItem extends EffectArmorItem {
-
     private final StatusEffectInstance[] effects;
 
-    protected StaticEffectArmorItem(ArmorMaterial material, ArmorItem.Type type, Item.Settings settings, StatusEffectInstance[] effects, ArmorItem... otherArmorRequired) {
-        super(material, type, settings, otherArmorRequired);
+    protected StaticEffectArmorItem(
+        ArmorMaterial material, ArmorItem.Type type, Item.Settings settings,
+        Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers,
+        StatusEffectInstance[] effects, ArmorItem... otherArmorRequired
+    ) {
+        super(material, type, settings, attributeModifiers, otherArmorRequired);
         this.effects = effects;
     }
 
@@ -81,12 +88,16 @@ public class StaticEffectArmorItem extends EffectArmorItem {
                 return this;
             }
 
-            public Function<Item.Settings, StaticEffectArmorItem> build() {
-                return settings -> build(settings);
+            public AttributeItemConstructor<StaticEffectArmorItem> build() {
+                return (settings, attributeModifiers) -> build(settings, attributeModifiers);
             }
 
-            public StaticEffectArmorItem build(Item.Settings settings) {
-                return new StaticEffectArmorItem(Builder.this.material, Builder.this.type, settings, this.effects.toArray(StatusEffectInstance[]::new), this.otherArmorRequired);
+            public StaticEffectArmorItem build(Item.Settings settings, Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers) {
+                return new StaticEffectArmorItem(
+                    Builder.this.material, Builder.this.type,
+                    settings, attributeModifiers,
+                    this.effects.toArray(StatusEffectInstance[]::new), this.otherArmorRequired
+                );
             }
         }
     }

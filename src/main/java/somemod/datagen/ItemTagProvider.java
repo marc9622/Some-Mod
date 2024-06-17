@@ -18,10 +18,10 @@ public class ItemTagProvider extends FabricTagProvider<Item> {
 
     @Override
     protected void configure(WrapperLookup registries) {
-
-        getOrCreateTagBuilder(ItemTags.FREEZE_IMMUNE_WEARABLES)
-            .add(FrostItems.ARCTIC_HAT, FrostItems.ARCTIC_COAT, FrostItems.ARCTIC_PANTS, FrostItems.ARCTIC_BOOTS)
-            .setReplace(false);
+        // Uses WARMTH attribute instead
+        // getOrCreateTagBuilder(ItemTags.FREEZE_IMMUNE_WEARABLES)
+        //     .add(FrostItems.ARCTIC_HAT, FrostItems.ARCTIC_COAT, FrostItems.ARCTIC_PANTS, FrostItems.ARCTIC_BOOTS)
+        //     .setReplace(false);
 
         getOrCreateTagBuilder(ItemTags.ARROWS)
             .add(FrostItems.FROSTBITE_ARROW)

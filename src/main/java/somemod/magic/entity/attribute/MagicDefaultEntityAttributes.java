@@ -4,7 +4,7 @@ import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRe
 import somemod.magic.entity.MagicEntityTypes;
 import somemod.magic.entity.mob.GhostEntity;
 
-public final class MagicEntityAttributes {
+public final class MagicDefaultEntityAttributes {
 
     public static void registerEntityAttributes() {
         FabricDefaultAttributeRegistry.register(MagicEntityTypes.GHOST, GhostEntity.createMobAttributes());

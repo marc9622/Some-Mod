@@ -38,6 +38,7 @@ import somemod.frost.block.FrostBlocks;
 import somemod.frost.block.entity.FrostBlockEntityTypes;
 import somemod.frost.block.entity.render.FrostBlockEntityRendererFactories;
 import somemod.frost.enchantment.FrostEnchantments;
+import somemod.frost.entity.attribute.FrostEntityAttributes;
 import somemod.frost.entity.effect.FrostStatusEffects;
 import somemod.frost.item.FrostItems;
 import somemod.frost.potion.FrostPotions;
@@ -49,7 +50,7 @@ import somemod.magic.block.entity.MagicBlockEntityTypes;
 import somemod.magic.block.entity.render.MagicBlockEntityRendererFactories;
 import somemod.magic.enchantment.MagicEnchantments;
 import somemod.magic.entity.MagicEntityTypes;
-import somemod.magic.entity.attribute.MagicEntityAttributes;
+import somemod.magic.entity.attribute.MagicDefaultEntityAttributes;
 import somemod.magic.entity.effect.MagicStatusEffects;
 import somemod.magic.item.MagicItems;
 import somemod.magic.potion.MagicPotions;
@@ -88,7 +89,7 @@ public final class SomeMod implements ModInitializer {
 		// LOGGER.info("Hello Fabric world!");
 
 		CrystalBiomeModifications.addCrystalModifications();
-        MagicEntityAttributes.registerEntityAttributes();
+        MagicDefaultEntityAttributes.registerEntityAttributes();
 		MagicBiomeModifications.addMagicModifications();
         MagicTradeOffers.registerTradeOffers();
         FrostBiomeModifications.addFrostModifications();
@@ -123,6 +124,7 @@ public final class SomeMod implements ModInitializer {
         FrostBlockEntityRendererFactories.notifyFabric();
 		FrostItems.notifyFabric();
         FrostFeatures.notifyFabric();
+        FrostEntityAttributes.notifyFabric();
         FrostEnchantments.notifyFabric();
         FrostStatusEffects.notifyFabric();
         FrostPotions.notifyFabric();

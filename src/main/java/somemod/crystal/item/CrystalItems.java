@@ -2,11 +2,15 @@ package somemod.crystal.item;
 
 import net.minecraft.item.ArmorItem.Type;
 import net.minecraft.item.ArmorItem;
+import net.minecraft.item.AxeItem;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.HoeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.item.Items;
-
+import net.minecraft.item.PickaxeItem;
+import net.minecraft.item.ShovelItem;
+import net.minecraft.item.SwordItem;
 import somemod.crystal.block.CrystalBlocks;
 import static somemod.crystal.item.CrystalArmorMaterials.*;
 import static somemod.utils.ItemBuilder.*;
@@ -23,14 +27,14 @@ public final class CrystalItems {
     //#endregion
 
     //#region TOOLS
-    public static final CrystalShovelItem CRYSTAL_SHOVEL   = item("crystal_shovel",  CrystalShovelItem::new).after(ItemGroups.TOOLS, Items.NETHERITE_HOE).build();
-    public static final CrystalPickaxeItem CRYSTAL_PICKAXE = item("crystal_pickaxe", CrystalPickaxeItem::new).after(ItemGroups.TOOLS, CRYSTAL_SHOVEL).build();
-    public static final CrystalAxeItem CRYSTAL_AXE         = item("crystal_axe",     CrystalAxeItem::new).after(ItemGroups.TOOLS, CRYSTAL_PICKAXE).after(ItemGroups.COMBAT, Items.NETHERITE_AXE).build();
-    public static final CrystalHoeItem CRYSTAL_HOE         = item("crystal_hoe",     CrystalHoeItem::new).after(ItemGroups.TOOLS, CRYSTAL_AXE).build();
+    public static final ShovelItem CRYSTAL_SHOVEL   = shovelItem("crystal_shovel", CrystalToolMaterial.INSTANCE, 0.5f, -3f).after(ItemGroups.TOOLS, Items.NETHERITE_HOE).build();
+    public static final PickaxeItem CRYSTAL_PICKAXE = pickaxeItem("crystal_pickaxe", CrystalToolMaterial.INSTANCE, 0, -2.8f).after(ItemGroups.TOOLS, CRYSTAL_SHOVEL).build();
+    public static final AxeItem CRYSTAL_AXE         = axeItem("crystal_axe", CrystalToolMaterial.INSTANCE, 5f, -3f).after(ItemGroups.TOOLS, CRYSTAL_PICKAXE).after(ItemGroups.COMBAT, Items.NETHERITE_AXE).build();
+    public static final HoeItem CRYSTAL_HOE         = hoeItem("crystal_hoe", CrystalToolMaterial.INSTANCE, -5, 0f).after(ItemGroups.TOOLS, CRYSTAL_AXE).build();
     //#endregion
 
     //#region COMBAT
-    public static final CrystalSwordItem CRYSTAL_SWORD = item("crystal_sword", CrystalSwordItem::new).after(ItemGroups.COMBAT, Items.NETHERITE_SWORD).build();
+    public static final SwordItem CRYSTAL_SWORD = swordItem("crystal_sword", CrystalToolMaterial.INSTANCE, 3, -2.4f).after(ItemGroups.COMBAT, Items.NETHERITE_SWORD).build();
     
     public static final ArmorItem CRYSTAL_HELMET     = armorItem("crystal_helmet",     CrystalArmorMaterials.CRYSTAL, Type.HELMET)    .after(ItemGroups.COMBAT, Items.NETHERITE_BOOTS).build();
     public static final ArmorItem CRYSTAL_CHESTPLATE = armorItem("crystal_chestplate", CrystalArmorMaterials.CRYSTAL, Type.CHESTPLATE).after(ItemGroups.COMBAT, CRYSTAL_HELMET).build();

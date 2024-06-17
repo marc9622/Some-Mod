@@ -1,6 +1,11 @@
 package somemod.common.item;
 
+import com.google.common.collect.Multimap;
+
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.attribute.EntityAttribute;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArmorItem;
@@ -17,10 +22,16 @@ import net.minecraft.world.World;
  */
 public abstract class EffectArmorItem extends ArmorItem {
 
+    private final Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers;
     protected final ArmorItem[] otherArmorRequired;
 
-    public EffectArmorItem(ArmorMaterial material, ArmorItem.Type type, Item.Settings settings, ArmorItem... otherArmorRequired) {
+    public EffectArmorItem(
+        ArmorMaterial material, ArmorItem.Type type,
+        Item.Settings settings, Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers,
+        ArmorItem... otherArmorRequired
+    ) {
         super(material, type, settings);
+        this.attributeModifiers = attributeModifiers;
         this.otherArmorRequired = otherArmorRequired;
     }
 
@@ -82,5 +93,9 @@ public abstract class EffectArmorItem extends ArmorItem {
         return false;
     }
 
+    @Override
+    public Multimap<EntityAttribute, EntityAttributeModifier> getAttributeModifiers(EquipmentSlot slot) {
+        return slot == this.type.getEquipmentSlot() ? this.attributeModifiers : super.getAttributeModifiers(slot);
+    }
 }
 
