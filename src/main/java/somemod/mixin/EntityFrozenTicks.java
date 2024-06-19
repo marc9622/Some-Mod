@@ -1,8 +1,5 @@
 package somemod.mixin;
 
-import java.util.WeakHashMap;
-import java.util.function.ToDoubleFunction;
-
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -13,25 +10,19 @@ import net.minecraft.block.Blocks;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.server.world.ServerChunkManager;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.source.BiomeSource;
-import net.minecraft.world.biome.source.util.MultiNoiseUtil.MultiNoiseSampler;
-import net.minecraft.world.gen.chunk.ChunkGenerator;
-import net.minecraft.world.gen.densityfunction.DensityFunction.UnblendedNoisePos;
-import net.minecraft.world.gen.noise.NoiseConfig;
-import net.minecraft.world.gen.noise.NoiseRouter;
+import somemod.frost.entity.EntityFreezing;
 import somemod.frost.entity.attribute.FrostEntityAttributes;
 import somemod.frost.entity.effect.FrostStatusEffects;
 
 // TODO: Make frostbite armor give an effect that makes being frozen a buff.
 // TODO: Make the entities' y-coordinate also affect freezing.
+// TODO: Add at frozen ticks and local temperature to F3 debug info.
 @Mixin(LivingEntity.class)
-public abstract class EntityFreezing {
+public abstract class EntityFrozenTicks {
 
     @Redirect(
         method = "tickMovement()V",
@@ -126,7 +117,7 @@ public abstract class EntityFreezing {
             // checks that world is not client before calling method, so this is just a
             // safety check.
             if (player != null && world instanceof ServerWorld serverWorld) {
-                double temp = getLocalTemperature(player, serverWorld, pos);
+                double temp = EntityFreezing.getLocalTemperature(player, serverWorld, pos);
                 increase += temp * -0.90f + 0.15f;
                 //SomeMod.logInfo("Temp: " + temp);
             }
@@ -185,37 +176,6 @@ public abstract class EntityFreezing {
                      "canFreeze()Z"))
     private boolean canFreeze(LivingEntity entity) {
         return true;
-    }
-
-    private static WeakHashMap<PlayerEntity, Float> cachedTemp = new WeakHashMap<>();
-
-    private static float getLocalTemperature(PlayerEntity player, ServerWorld world, BlockPos pos) {
-        if (player.age % 10 != 0) {
-            Float temp = cachedTemp.get(player);
-            if (temp != null)
-                return temp;
-        }
-
-        ServerChunkManager chunkManager = world.getChunkManager();
-        ChunkGenerator chunkGenerator = chunkManager.getChunkGenerator();
-        NoiseConfig noiseConfig = chunkManager.getNoiseConfig();
-
-        BiomeSource biomeSource = chunkGenerator.getBiomeSource();
-        int x = pos.getX(), y = pos.getY(), z = pos.getZ();
-        MultiNoiseSampler noiseSampler = noiseConfig.getMultiNoiseSampler();
-        ToDoubleFunction<RegistryEntry<Biome>> tempGetter = biome -> ((BiomeTemperature)(Object)biome.value()).invokeGetTemperature(pos);
-
-        float biomes4 = (float) biomeSource.getBiomesInArea(x, y, z, 4, noiseSampler).stream().mapToDouble(tempGetter).average().orElse(0);
-        float biomes8 = (float) biomeSource.getBiomesInArea(x, y, z, 8, noiseSampler).stream().mapToDouble(tempGetter).average().orElse(0);
-        float biomes16 = (float) biomeSource.getBiomesInArea(x, y, z, 16, noiseSampler).stream().mapToDouble(tempGetter).average().orElse(0);
-        float biomeTemp = biomes4 * 1.00f + biomes8 * 1.00f + biomes16 * 1.00f;
-
-        NoiseRouter noiseRouter = noiseConfig.getNoiseRouter();
-        float noiseTemp = (float) noiseRouter.temperature().sample(new UnblendedNoisePos(pos.getX(), pos.getY(), pos.getZ()));
-
-        float result = biomeTemp * 0.25f + noiseTemp * 1.00f;
-        cachedTemp.put(player, result);
-        return result;
     }
 
 }

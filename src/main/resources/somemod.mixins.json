@@ -11,7 +11,7 @@
     "CustomModelItemRenderer",
     "EndermanAngeringBlock",
     "EntityDamageTaken",
-    "EntityFreezing",
+    "EntityFrozenTicks",
     "EntityMovement",
     "EntitySprinting",
     "ItemAttributeModifiers",

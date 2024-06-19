@@ -38,6 +38,8 @@ import somemod.frost.block.FrostBlocks;
 import somemod.frost.block.entity.FrostBlockEntityTypes;
 import somemod.frost.block.entity.render.FrostBlockEntityRendererFactories;
 import somemod.frost.enchantment.FrostEnchantments;
+import somemod.frost.entity.FrostEntityTypes;
+import somemod.frost.entity.attribute.FrostDefaultEntityAttributes;
 import somemod.frost.entity.attribute.FrostEntityAttributes;
 import somemod.frost.entity.effect.FrostStatusEffects;
 import somemod.frost.item.FrostItems;
@@ -89,9 +91,12 @@ public final class SomeMod implements ModInitializer {
 		// LOGGER.info("Hello Fabric world!");
 
 		CrystalBiomeModifications.addCrystalModifications();
+
         MagicDefaultEntityAttributes.registerEntityAttributes();
 		MagicBiomeModifications.addMagicModifications();
         MagicTradeOffers.registerTradeOffers();
+
+        FrostDefaultEntityAttributes.registerEntityAttributes();
         FrostBiomeModifications.addFrostModifications();
         FrostTradeOffers.registerTradeOffers();
 	}
@@ -123,6 +128,7 @@ public final class SomeMod implements ModInitializer {
         FrostBlockEntityTypes.notifyFabric();
         FrostBlockEntityRendererFactories.notifyFabric();
 		FrostItems.notifyFabric();
+        FrostEntityTypes.notifyFabric();
         FrostFeatures.notifyFabric();
         FrostEntityAttributes.notifyFabric();
         FrostEnchantments.notifyFabric();
