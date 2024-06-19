@@ -1,6 +1,7 @@
 package somemod.mixin;
 
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
@@ -21,6 +22,7 @@ import somemod.common.block.entity.CustomChestBlockEntity;
 @Mixin(ChestBlockEntityRenderer.class)
 public abstract class CustomChestEntityRenderer {
     
+    @Unique
     private static CustomChestBlockEntity entity = null;
 
     @Inject(

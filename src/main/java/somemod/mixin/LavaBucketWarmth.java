@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -25,8 +26,11 @@ import somemod.frost.entity.attribute.FrostEntityAttributes;
 @Mixin(BucketItem.class)
 public abstract class LavaBucketWarmth extends ItemAttributeModifiers {
 
-    @Nullable
-    private ImmutableMultimap<EntityAttribute, EntityAttributeModifier> attributeModifiers = null;
+    @Unique @Nullable
+    private ImmutableMultimap<EntityAttribute, EntityAttributeModifier> mainHandModifiers = null;
+
+    @Unique @Nullable
+    private ImmutableMultimap<EntityAttribute, EntityAttributeModifier> offHandModifiers = null;
 
     @Inject(
         method = "<init>(" +
@@ -36,8 +40,11 @@ public abstract class LavaBucketWarmth extends ItemAttributeModifiers {
         at = @At("RETURN"))
     private void addAttributeModifiers(Fluid fluid, Item.Settings settings, CallbackInfo ci) {
         if (fluid == Fluids.LAVA) {
-            attributeModifiers = ImmutableMultimap.of(
+            mainHandModifiers = ImmutableMultimap.of(
                 FrostEntityAttributes.WARMTH, new EntityAttributeModifier(UUID.fromString("a48e5bcb-2716-4359-8c5e-9be2daf40973"), "Item warmth", 1.0f, Operation.ADDITION)
+            );
+            offHandModifiers = ImmutableMultimap.of(
+                FrostEntityAttributes.WARMTH, new EntityAttributeModifier(UUID.fromString("66ad44a7-a918-4263-9cea-5ac044a7251f"), "Item warmth", 1.0f, Operation.ADDITION)
             );
             return;
         }
@@ -45,9 +52,10 @@ public abstract class LavaBucketWarmth extends ItemAttributeModifiers {
 
     @Override
     public void getAttributeModifiers(EquipmentSlot slot, CallbackInfoReturnable<Multimap<EntityAttribute, EntityAttributeModifier>> cir) {
-        if (attributeModifiers == null) return;
+        if (mainHandModifiers == null) return;
         switch (slot) {
-            case MAINHAND, OFFHAND -> cir.setReturnValue(attributeModifiers);
+            case MAINHAND -> cir.setReturnValue(mainHandModifiers);
+            case OFFHAND -> cir.setReturnValue(offHandModifiers);
             default -> {}
         }
     }

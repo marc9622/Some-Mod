@@ -9,6 +9,7 @@
     "CustomChestEntityRenderer",
     "CustomItemRenderer",
     "CustomModelItemRenderer",
+    "DebugHudTemperature",
     "EndermanAngeringBlock",
     "EntityDamageTaken",
     "EntityFrozenTicks",

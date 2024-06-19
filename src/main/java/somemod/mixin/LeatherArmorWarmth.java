@@ -1,8 +1,9 @@
 package somemod.mixin;
 
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Mutable;
-import org.spongepowered.asm.mixin.gen.Accessor;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -22,8 +23,8 @@ import somemod.frost.item.FrostArmorMaterials;
 @Mixin(ArmorItem.class)
 public abstract class LeatherArmorWarmth {
 
-    @Accessor("attributeModifiers") @Mutable
-    public abstract void setAttributeModifiers(Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers);
+    @Shadow @Final @Mutable
+    private Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers;
 
     @Inject(
         method = "<init>(" +
@@ -36,7 +37,7 @@ public abstract class LeatherArmorWarmth {
     private void addAttributeModifiers(ArmorMaterial material, ArmorItem.Type type, Item.Settings settings, CallbackInfo ci, ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> builder) {
         if (material == ArmorMaterials.LEATHER) {
             builder.putAll(FrostArmorMaterials.leather(type.getEquipmentSlot()));
-            this.setAttributeModifiers(builder.build());
+            this.attributeModifiers = builder.build();
         }
     }
 

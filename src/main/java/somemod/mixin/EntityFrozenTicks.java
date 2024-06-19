@@ -10,12 +10,14 @@ import net.minecraft.block.Blocks;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.world.ServerChunkManager;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.chunk.ChunkGenerator;
+import net.minecraft.world.gen.noise.NoiseConfig;
 import somemod.frost.entity.EntityFreezing;
-import somemod.frost.entity.attribute.FrostEntityAttributes;
 import somemod.frost.entity.effect.FrostStatusEffects;
 
 // TODO: Make frostbite armor give an effect that makes being frozen a buff.
@@ -33,24 +35,17 @@ public abstract class EntityFrozenTicks {
     // This function slowly increases frozen ticks when it is cold.
     private void setFrozenTicks(final LivingEntity entity, final int setTicks) {
 
-        @Nullable
-        PlayerEntity player = null;
-        if (entity instanceof PlayerEntity playerEntity) {
-            player = playerEntity;
-
-            if (player.isCreative() || player.isSpectator()) {
-                entity.setFrozenTicks(0);
-                return;
-            }
+        if (entity instanceof PlayerEntity player && !EntityFreezing.canFreeze(player)) {
+            entity.setFrozenTicks(0);
+            return;
         }
 
         final int currentTicks = entity.getFrozenTicks();
         //SomeMod.logInfo("### Info about: " + entity);
         //SomeMod.logInfo("currentTicks = " + currentTicks);
 
-        int maxTicks = entity.getMinFreezeDamageTicks();
-        if (currentTicks > maxTicks + 1) {
-            entity.setFrozenTicks(maxTicks + 1);
+        if (currentTicks > entity.getMinFreezeDamageTicks()) {
+            entity.setFrozenTicks(entity.getMinFreezeDamageTicks());
             return;
         }
 
@@ -67,19 +62,7 @@ public abstract class EntityFrozenTicks {
         float increase = 0;
 
         /* Body Heat */ {
-            float warmth = (float) entity.getAttributeValue(FrostEntityAttributes.WARMTH);
-
-            // Non-player entities are most likely not able to equip
-            // warm armor, meaning that they will often freeze to death.
-            // This should help them a bit.
-            if (player == null)
-                warmth += 2;
-            else
-                warmth += 1;
-
-            warmth += Math.min(entity.getVelocity().lengthSquared() - 0.006f, 1.0f) * 0.30f;
-            // if (player != null) SomeMod.logInfo("" + entity.getVelocity().lengthSquared());
-            if (entity.isSneaking()) warmth += 0.20f;
+            float warmth = EntityFreezing.getEntityWarmth(entity);
 
             increase -= warmth * 0.15f;
             //SomeMod.logInfo("body heat: " + bodyHeat + ", adds " + bodyHeat * -0.15f);
@@ -116,8 +99,12 @@ public abstract class EntityFrozenTicks {
             // The world should always be a server world, because the LivingEntity class
             // checks that world is not client before calling method, so this is just a
             // safety check.
-            if (player != null && world instanceof ServerWorld serverWorld) {
-                double temp = EntityFreezing.getLocalTemperature(player, serverWorld, pos);
+            if (world instanceof ServerWorld serverWorld) {
+                ServerChunkManager chunkManager = serverWorld.getChunkManager();
+                ChunkGenerator chunkGenerator = chunkManager.getChunkGenerator();
+                NoiseConfig noiseConfig = chunkManager.getNoiseConfig();
+
+                double temp = EntityFreezing.getLocalTemperature(entity, chunkGenerator, noiseConfig, pos);
                 increase += temp * -0.90f + 0.15f;
                 //SomeMod.logInfo("Temp: " + temp);
             }
@@ -128,7 +115,8 @@ public abstract class EntityFrozenTicks {
 
             if (biome.isCold(pos)) {
 
-                if (player != null && entity.isInsideWaterOrBubbleColumn()) {
+                // TODO: If possible, make it so that all entities that don't live in water freeze in water.
+                if (entity instanceof PlayerEntity && entity.isInsideWaterOrBubbleColumn()) {
                     // Warm armor is not very effective in water.
                     increase += 1.00f;
                 }

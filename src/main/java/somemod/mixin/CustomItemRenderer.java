@@ -1,5 +1,6 @@
 package somemod.mixin;
 
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -19,7 +20,7 @@ import somemod.common.block.CustomBlockItemRenderer;
 @Mixin(ItemRenderer.class)
 public abstract class CustomItemRenderer {
     
-    @Shadow
+    @Shadow @Final
     private BuiltinModelItemRenderer builtinModelItemRenderer;
 
     @Inject(

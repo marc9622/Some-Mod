@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.function.BiConsumer;
 
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -46,6 +47,7 @@ public abstract class EntitySprinting {
         );
     }
 
+    @Unique
     private void invokeOnSprintingEnchantment(LivingEntity entity, BiConsumer<SprintingEnchantment, Integer> consumer) {
         // would normally have created a class that contains these three values, but Mixins does not allow defining new classes in the same file.
         List<SprintingEnchantment> nonStackableEnchs = null;
