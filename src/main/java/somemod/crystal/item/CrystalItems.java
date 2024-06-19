@@ -24,6 +24,9 @@ public final class CrystalItems {
     public static final Item CITRINE      = item("citrine")       .after(ItemGroups.INGREDIENTS, CRYSTAL).build();
     public static final Item RUBY         = item("ruby")          .after(ItemGroups.INGREDIENTS, CITRINE).build();
     public static final Item SAPPHIRE     = item("sapphire")      .after(ItemGroups.INGREDIENTS, RUBY).build();
+
+    // TODO: Add new kind of crafting block that should be used to convert crystals between crystals
+
     //#endregion
 
     //#region TOOLS

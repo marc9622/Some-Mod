@@ -9,6 +9,7 @@ import net.minecraft.data.server.recipe.RecipeJsonProvider;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
 import net.minecraft.item.Item;
+import net.minecraft.predicate.item.ItemPredicate;
 import net.minecraft.recipe.book.RecipeCategory;
 
 import static net.minecraft.recipe.book.RecipeCategory.*;
@@ -36,8 +37,7 @@ public final class RecipeProvider extends FabricRecipeProvider {
             .pattern(" c ")
             .input('c', CRYSTAL_DUST)
             .input('x', DIAMOND)
-            .criterion(FabricRecipeProvider.hasItem(CRYSTAL_DUST), FabricRecipeProvider.conditionsFromItem(CRYSTAL_DUST))
-            .criterion(FabricRecipeProvider.hasItem(DIAMOND), FabricRecipeProvider.conditionsFromItem(DIAMOND))
+            .criterion("has_items", FabricRecipeProvider.conditionsFromItemPredicates(ItemPredicate.Builder.create().items(CRYSTAL_DUST, DIAMOND).build()))
             .offerTo(exporter, "crystal_from_diamond");
 
         shaped(MISC, CRYSTAL)
@@ -47,8 +47,7 @@ public final class RecipeProvider extends FabricRecipeProvider {
             .pattern(" c ")
             .input('c', CRYSTAL_DUST)
             .input('x', EMERALD)
-            .criterion(FabricRecipeProvider.hasItem(CRYSTAL_DUST), FabricRecipeProvider.conditionsFromItem(CRYSTAL_DUST))
-            .criterion(FabricRecipeProvider.hasItem(EMERALD), FabricRecipeProvider.conditionsFromItem(EMERALD))
+            .criterion("has_items", FabricRecipeProvider.conditionsFromItemPredicates(ItemPredicate.Builder.create().items(CRYSTAL_DUST, EMERALD).build()))
             .offerTo(exporter, "crystal_from_emerald");
 
         shaped(MISC, CRYSTAL)
@@ -58,8 +57,7 @@ public final class RecipeProvider extends FabricRecipeProvider {
             .pattern(" c ")
             .input('c', CRYSTAL_DUST)
             .input('x', CITRINE)
-            .criterion(FabricRecipeProvider.hasItem(CRYSTAL_DUST), FabricRecipeProvider.conditionsFromItem(CRYSTAL_DUST))
-            .criterion(FabricRecipeProvider.hasItem(CITRINE), FabricRecipeProvider.conditionsFromItem(CITRINE))
+            .criterion("has_items", FabricRecipeProvider.conditionsFromItemPredicates(ItemPredicate.Builder.create().items(CRYSTAL_DUST, CITRINE).build()))
             .offerTo(exporter, "crystal_from_citrine");
 
         shaped(MISC, CRYSTAL)
@@ -69,8 +67,7 @@ public final class RecipeProvider extends FabricRecipeProvider {
             .pattern(" c ")
             .input('c', CRYSTAL_DUST)
             .input('x', RUBY)
-            .criterion(FabricRecipeProvider.hasItem(CRYSTAL_DUST), FabricRecipeProvider.conditionsFromItem(CRYSTAL_DUST))
-            .criterion(FabricRecipeProvider.hasItem(RUBY), FabricRecipeProvider.conditionsFromItem(RUBY))
+            .criterion("has_items", FabricRecipeProvider.conditionsFromItemPredicates(ItemPredicate.Builder.create().items(CRYSTAL_DUST, RUBY).build()))
             .offerTo(exporter, "crystal_from_ruby");
 
         shaped(MISC, CRYSTAL)
@@ -80,8 +77,7 @@ public final class RecipeProvider extends FabricRecipeProvider {
             .pattern(" c ")
             .input('c', CRYSTAL_DUST)
             .input('x', SAPPHIRE)
-            .criterion(FabricRecipeProvider.hasItem(CRYSTAL_DUST), FabricRecipeProvider.conditionsFromItem(CRYSTAL_DUST))
-            .criterion(FabricRecipeProvider.hasItem(SAPPHIRE), FabricRecipeProvider.conditionsFromItem(SAPPHIRE))
+            .criterion("has_items", FabricRecipeProvider.conditionsFromItemPredicates(ItemPredicate.Builder.create().items(CRYSTAL_DUST, SAPPHIRE).build()))
             .offerTo(exporter, "crystal_from_sapphire");
 
         shaped(MISC, CRYSTAL)
@@ -91,59 +87,60 @@ public final class RecipeProvider extends FabricRecipeProvider {
             .pattern(" c ")
             .input('c', CRYSTAL_DUST)
             .input('x', AMETHYST_SHARD)
-            .criterion(FabricRecipeProvider.hasItem(CRYSTAL_DUST), FabricRecipeProvider.conditionsFromItem(CRYSTAL_DUST))
-            .criterion(FabricRecipeProvider.hasItem(AMETHYST_SHARD), FabricRecipeProvider.conditionsFromItem(AMETHYST_SHARD))
+            .criterion("has_items", FabricRecipeProvider.conditionsFromItemPredicates(ItemPredicate.Builder.create().items(CRYSTAL_DUST, AMETHYST_SHARD).build()))
             .offerTo(exporter, "crystal_from_amethyst");
 
         shapeless(MISC, DIAMOND)
             .input(CRYSTAL)
             .input(LIGHT_BLUE_DYE)
-            .criterion(FabricRecipeProvider.hasItem(CRYSTAL), FabricRecipeProvider.conditionsFromItem(CRYSTAL))
-            .criterion(FabricRecipeProvider.hasItem(LIGHT_BLUE_DYE), FabricRecipeProvider.conditionsFromItem(LIGHT_BLUE_DYE))
+            .criterion("has_items", FabricRecipeProvider.conditionsFromItemPredicates(ItemPredicate.Builder.create().items(CRYSTAL, DIAMOND).build()))
+            .criterion("has_items_dye", FabricRecipeProvider.conditionsFromItemPredicates(ItemPredicate.Builder.create().items(CRYSTAL, LIGHT_BLUE_DYE).build()))
             .offerTo(exporter, "diamond_from_crystal");
 
         shapeless(MISC, EMERALD)
             .group("emerald")
             .input(CRYSTAL)
             .input(GREEN_DYE)
-            .criterion(FabricRecipeProvider.hasItem(CRYSTAL), FabricRecipeProvider.conditionsFromItem(CRYSTAL))
-            .criterion(FabricRecipeProvider.hasItem(GREEN_DYE), FabricRecipeProvider.conditionsFromItem(GREEN_DYE))
+            .criterion("has_items", FabricRecipeProvider.conditionsFromItemPredicates(ItemPredicate.Builder.create().items(CRYSTAL, EMERALD).build()))
+            .criterion("has_items_green", FabricRecipeProvider.conditionsFromItemPredicates(ItemPredicate.Builder.create().items(CRYSTAL, GREEN_DYE).build()))
+            .criterion("has_items_lime", FabricRecipeProvider.conditionsFromItemPredicates(ItemPredicate.Builder.create().items(CRYSTAL, LIME_DYE).build()))
             .offerTo(exporter, "emerald_from_crystal_green");
 
         shapeless(MISC, EMERALD)
             .group("emerald")
             .input(CRYSTAL)
             .input(LIME_DYE)
-            .criterion(FabricRecipeProvider.hasItem(CRYSTAL), FabricRecipeProvider.conditionsFromItem(CRYSTAL))
-            .criterion(FabricRecipeProvider.hasItem(LIME_DYE), FabricRecipeProvider.conditionsFromItem(LIME_DYE))
+            .criterion("has_items", FabricRecipeProvider.conditionsFromItemPredicates(ItemPredicate.Builder.create().items(CRYSTAL, EMERALD).build()))
+            .criterion("has_items_green", FabricRecipeProvider.conditionsFromItemPredicates(ItemPredicate.Builder.create().items(CRYSTAL, GREEN_DYE).build()))
+            .criterion("has_items_lime", FabricRecipeProvider.conditionsFromItemPredicates(ItemPredicate.Builder.create().items(CRYSTAL, LIME_DYE).build()))
             .offerTo(exporter, "emerald_from_crystal_lime");
 
         shapeless(MISC, CITRINE)
             .input(CRYSTAL)
             .input(YELLOW_DYE)
-            .criterion(FabricRecipeProvider.hasItem(CRYSTAL), FabricRecipeProvider.conditionsFromItem(CRYSTAL))
-            .criterion(FabricRecipeProvider.hasItem(YELLOW_DYE), FabricRecipeProvider.conditionsFromItem(YELLOW_DYE))
+            .criterion("has_items", FabricRecipeProvider.conditionsFromItemPredicates(ItemPredicate.Builder.create().items(CRYSTAL, CITRINE).build()))
+            .criterion("has_items_dye", FabricRecipeProvider.conditionsFromItemPredicates(ItemPredicate.Builder.create().items(CRYSTAL, YELLOW_DYE).build()))
             .offerTo(exporter, "citrine_from_crystal");
 
         shapeless(MISC, RUBY)
             .input(CRYSTAL)
             .input(RED_DYE)
-            .criterion(FabricRecipeProvider.hasItem(CRYSTAL), FabricRecipeProvider.conditionsFromItem(CRYSTAL))
-            .criterion(FabricRecipeProvider.hasItem(RED_DYE), FabricRecipeProvider.conditionsFromItem(RED_DYE))
+            .criterion("has_items", FabricRecipeProvider.conditionsFromItemPredicates(ItemPredicate.Builder.create().items(CRYSTAL, RUBY).build()))
+            .criterion("has_items_dye", FabricRecipeProvider.conditionsFromItemPredicates(ItemPredicate.Builder.create().items(CRYSTAL, RED_DYE).build()))
             .offerTo(exporter, "ruby_from_crystal");
 
         shapeless(MISC, SAPPHIRE)
             .input(CRYSTAL)
             .input(BLUE_DYE)
-            .criterion(FabricRecipeProvider.hasItem(CRYSTAL), FabricRecipeProvider.conditionsFromItem(CRYSTAL))
-            .criterion(FabricRecipeProvider.hasItem(BLUE_DYE), FabricRecipeProvider.conditionsFromItem(BLUE_DYE))
+            .criterion("has_items", FabricRecipeProvider.conditionsFromItemPredicates(ItemPredicate.Builder.create().items(CRYSTAL, SAPPHIRE).build()))
+            .criterion("has_items_dye", FabricRecipeProvider.conditionsFromItemPredicates(ItemPredicate.Builder.create().items(CRYSTAL, BLUE_DYE).build()))
             .offerTo(exporter, "sapphire_from_crystal");
 
         shapeless(MISC, AMETHYST_SHARD)
             .input(CRYSTAL)
             .input(PURPLE_DYE)
-            .criterion(FabricRecipeProvider.hasItem(CRYSTAL), FabricRecipeProvider.conditionsFromItem(CRYSTAL))
-            .criterion(FabricRecipeProvider.hasItem(PURPLE_DYE), FabricRecipeProvider.conditionsFromItem(PURPLE_DYE))
+            .criterion("has_items", FabricRecipeProvider.conditionsFromItemPredicates(ItemPredicate.Builder.create().items(CRYSTAL, AMETHYST_SHARD).build()))
+            .criterion("has_items_dye", FabricRecipeProvider.conditionsFromItemPredicates(ItemPredicate.Builder.create().items(CRYSTAL, PURPLE_DYE).build()))
             .offerTo(exporter, "amethyst_from_crystal");
 
         shaped(BUILDING_BLOCKS, END_STONE)
@@ -153,7 +150,6 @@ public final class RecipeProvider extends FabricRecipeProvider {
             .input('c', CRYSTAL_DUST)
             .input('s', COBBLESTONE)
             .criterion(FabricRecipeProvider.hasItem(CRYSTAL_DUST), FabricRecipeProvider.conditionsFromItem(CRYSTAL_DUST))
-            .criterion(FabricRecipeProvider.hasItem(COBBLESTONE), FabricRecipeProvider.conditionsFromItem(COBBLESTONE))
             .offerTo(exporter);
 
         shapeless(BUILDING_BLOCKS, CRYSTAL_BLOCK)
@@ -175,7 +171,6 @@ public final class RecipeProvider extends FabricRecipeProvider {
             .input('c', CRYSTAL)
             .input('s', STICK)
             .criterion(FabricRecipeProvider.hasItem(CRYSTAL), FabricRecipeProvider.conditionsFromItem(CRYSTAL))
-            .criterion(FabricRecipeProvider.hasItem(STICK), FabricRecipeProvider.conditionsFromItem(STICK))
             .offerTo(exporter);
 
         shaped(TOOLS, CRYSTAL_PICKAXE)
@@ -185,7 +180,6 @@ public final class RecipeProvider extends FabricRecipeProvider {
             .input('c', CRYSTAL)
             .input('s', STICK)
             .criterion(FabricRecipeProvider.hasItem(CRYSTAL), FabricRecipeProvider.conditionsFromItem(CRYSTAL))
-            .criterion(FabricRecipeProvider.hasItem(STICK), FabricRecipeProvider.conditionsFromItem(STICK))
             .offerTo(exporter);
 
         shaped(TOOLS, CRYSTAL_AXE)
@@ -195,7 +189,6 @@ public final class RecipeProvider extends FabricRecipeProvider {
             .input('c', CRYSTAL)
             .input('s', STICK)
             .criterion(FabricRecipeProvider.hasItem(CRYSTAL), FabricRecipeProvider.conditionsFromItem(CRYSTAL))
-            .criterion(FabricRecipeProvider.hasItem(STICK), FabricRecipeProvider.conditionsFromItem(STICK))
             .offerTo(exporter);
 
         shaped(TOOLS, CRYSTAL_SHOVEL)
@@ -205,7 +198,6 @@ public final class RecipeProvider extends FabricRecipeProvider {
             .input('c', CRYSTAL)
             .input('s', STICK)
             .criterion(FabricRecipeProvider.hasItem(CRYSTAL), FabricRecipeProvider.conditionsFromItem(CRYSTAL))
-            .criterion(FabricRecipeProvider.hasItem(STICK), FabricRecipeProvider.conditionsFromItem(STICK))
             .offerTo(exporter);
 
         shaped(TOOLS, CRYSTAL_HOE)
@@ -215,7 +207,6 @@ public final class RecipeProvider extends FabricRecipeProvider {
             .input('c', CRYSTAL)
             .input('s', STICK)
             .criterion(FabricRecipeProvider.hasItem(CRYSTAL), FabricRecipeProvider.conditionsFromItem(CRYSTAL))
-            .criterion(FabricRecipeProvider.hasItem(STICK), FabricRecipeProvider.conditionsFromItem(STICK))
             .offerTo(exporter);
 
         shaped(COMBAT, CRYSTAL_HELMET)
@@ -255,8 +246,8 @@ public final class RecipeProvider extends FabricRecipeProvider {
             .pattern("ggg")
             .input('g', GOLD_BLOCK)
             .input('b', BOOK)
-            .criterion(FabricRecipeProvider.hasItem(GOLD_BLOCK), FabricRecipeProvider.conditionsFromItem(GOLD_BLOCK))
-            .criterion(FabricRecipeProvider.hasItem(BOOK), FabricRecipeProvider.conditionsFromItem(BOOK))
+            .criterion("has_items", FabricRecipeProvider.conditionsFromItemPredicates(ItemPredicate.Builder.create().items(GOLD_INGOT, BOOK).build()))
+            .criterion("has_items_enchanted", FabricRecipeProvider.conditionsFromItemPredicates(ItemPredicate.Builder.create().items(GOLD_INGOT, ENCHANTED_BOOK).build()))
             .offerTo(exporter);
 
         shaped(BUILDING_BLOCKS, OBSIDIAN_ENCHANTED_BOOKSHELF)
@@ -266,9 +257,7 @@ public final class RecipeProvider extends FabricRecipeProvider {
             .input('o', OBSIDIAN)
             .input('d', DIAMOND)
             .input('b', ENCHANTED_BOOKSHELF)
-            .criterion(FabricRecipeProvider.hasItem(OBSIDIAN), FabricRecipeProvider.conditionsFromItem(OBSIDIAN))
-            .criterion(FabricRecipeProvider.hasItem(DIAMOND), FabricRecipeProvider.conditionsFromItem(DIAMOND))
-            .criterion(FabricRecipeProvider.hasItem(ENCHANTED_BOOKSHELF), FabricRecipeProvider.conditionsFromItem(ENCHANTED_BOOKSHELF))
+            .criterion("has_items", FabricRecipeProvider.conditionsFromItemPredicates(ItemPredicate.Builder.create().items(OBSIDIAN, ENCHANTED_BOOKSHELF).build()))
             .offerTo(exporter);
 
         shaped(COMBAT, ELVEN_HELMET)
@@ -309,8 +298,7 @@ public final class RecipeProvider extends FabricRecipeProvider {
             .pattern("i i")
             .input('b', ICE)
             .input('i', IRON_INGOT)
-            .criterion(FabricRecipeProvider.hasItem(ICE), FabricRecipeProvider.conditionsFromItem(ICE))
-            .criterion(FabricRecipeProvider.hasItem(IRON_INGOT), FabricRecipeProvider.conditionsFromItem(IRON_INGOT))
+            .criterion("has_items", FabricRecipeProvider.conditionsFromItemPredicates(ItemPredicate.Builder.create().items(ICE, IRON_INGOT).build()))
             .offerTo(exporter);
 
         shaped(COMBAT, FROSTBITE_ARROW, 4)
@@ -320,9 +308,7 @@ public final class RecipeProvider extends FabricRecipeProvider {
             .input('i', IRON_INGOT)
             .input('b', ICE)
             .input('f', FEATHER)
-            .criterion(FabricRecipeProvider.hasItem(ICE), FabricRecipeProvider.conditionsFromItem(ICE))
-            .criterion(FabricRecipeProvider.hasItem(IRON_INGOT), FabricRecipeProvider.conditionsFromItem(IRON_INGOT))
-            .criterion(FabricRecipeProvider.hasItem(FEATHER), FabricRecipeProvider.conditionsFromItem(FEATHER))
+            .criterion("has_items", FabricRecipeProvider.conditionsFromItemPredicates(ItemPredicate.Builder.create().items(ICE, FEATHER).build()))
             .offerTo(exporter);
 
         shaped(COMBAT, ARCTIC_HAT)
@@ -355,10 +341,12 @@ public final class RecipeProvider extends FabricRecipeProvider {
             .offerTo(exporter);
 
         shaped(COMBAT, ARCTIC_BOOTS)
-            .pattern("l l")
+            .pattern("w w")
             .pattern("l l")
             .input('l', LEATHER)
+            .input('w', WHITE_WOOL)
             .criterion(FabricRecipeProvider.hasItem(LEATHER), FabricRecipeProvider.conditionsFromItem(LEATHER))
+            .criterion(FabricRecipeProvider.hasItem(WHITE_WOOL), FabricRecipeProvider.conditionsFromItem(WHITE_WOOL))
             .offerTo(exporter);
 
         shaped(COMBAT, GLACIER_HELMET)

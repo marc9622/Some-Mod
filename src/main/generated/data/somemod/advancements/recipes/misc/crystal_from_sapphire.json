@@ -1,23 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_crystal_dust": {
+    "has_items": {
       "conditions": {
         "items": [
           {
             "items": [
-              "somemod:crystal_dust"
-            ]
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
-    "has_sapphire": {
-      "conditions": {
-        "items": [
-          {
-            "items": [
+              "somemod:crystal_dust",
               "somemod:sapphire"
             ]
           }
@@ -34,8 +23,7 @@
   },
   "requirements": [
     [
-      "has_crystal_dust",
-      "has_sapphire",
+      "has_items",
       "has_the_recipe"
     ]
   ],

@@ -4,10 +4,13 @@
   "key": {
     "l": {
       "item": "minecraft:leather"
+    },
+    "w": {
+      "item": "minecraft:white_wool"
     }
   },
   "pattern": [
-    "l l",
+    "w w",
     "l l"
   ],
   "result": {

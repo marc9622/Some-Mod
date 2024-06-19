@@ -1,24 +1,13 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_citrine": {
+    "has_items": {
       "conditions": {
         "items": [
           {
             "items": [
+              "somemod:crystal_dust",
               "somemod:citrine"
-            ]
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
-    "has_crystal_dust": {
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "somemod:crystal_dust"
             ]
           }
         ]
@@ -34,8 +23,7 @@
   },
   "requirements": [
     [
-      "has_crystal_dust",
-      "has_citrine",
+      "has_items",
       "has_the_recipe"
     ]
   ],

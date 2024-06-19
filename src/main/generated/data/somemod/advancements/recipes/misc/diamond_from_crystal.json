@@ -1,23 +1,25 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_crystal": {
+    "has_items": {
       "conditions": {
         "items": [
           {
             "items": [
-              "somemod:crystal"
+              "somemod:crystal",
+              "minecraft:diamond"
             ]
           }
         ]
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_light_blue_dye": {
+    "has_items_dye": {
       "conditions": {
         "items": [
           {
             "items": [
+              "somemod:crystal",
               "minecraft:light_blue_dye"
             ]
           }
@@ -34,8 +36,8 @@
   },
   "requirements": [
     [
-      "has_crystal",
-      "has_light_blue_dye",
+      "has_items",
+      "has_items_dye",
       "has_the_recipe"
     ]
   ],

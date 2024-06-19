@@ -1,11 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_book": {
+    "has_items": {
       "conditions": {
         "items": [
           {
             "items": [
+              "minecraft:gold_ingot",
               "minecraft:book"
             ]
           }
@@ -13,12 +14,13 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_gold_block": {
+    "has_items_enchanted": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:gold_block"
+              "minecraft:gold_ingot",
+              "minecraft:enchanted_book"
             ]
           }
         ]
@@ -34,8 +36,8 @@
   },
   "requirements": [
     [
-      "has_gold_block",
-      "has_book",
+      "has_items",
+      "has_items_enchanted",
       "has_the_recipe"
     ]
   ],

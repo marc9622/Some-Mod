@@ -1,36 +1,13 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_diamond": {
+    "has_items": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:diamond"
-            ]
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
-    "has_enchanted_bookshelf": {
-      "conditions": {
-        "items": [
-          {
-            "items": [
+              "minecraft:obsidian",
               "somemod:enchanted_bookshelf"
-            ]
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
-    "has_obsidian": {
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "minecraft:obsidian"
             ]
           }
         ]
@@ -46,9 +23,7 @@
   },
   "requirements": [
     [
-      "has_obsidian",
-      "has_diamond",
-      "has_enchanted_bookshelf",
+      "has_items",
       "has_the_recipe"
     ]
   ],

@@ -1,23 +1,38 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_crystal": {
+    "has_items": {
       "conditions": {
         "items": [
           {
             "items": [
-              "somemod:crystal"
+              "somemod:crystal",
+              "minecraft:emerald"
             ]
           }
         ]
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_lime_dye": {
+    "has_items_green": {
       "conditions": {
         "items": [
           {
             "items": [
+              "somemod:crystal",
+              "minecraft:green_dye"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_items_lime": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "somemod:crystal",
               "minecraft:lime_dye"
             ]
           }
@@ -34,8 +49,9 @@
   },
   "requirements": [
     [
-      "has_crystal",
-      "has_lime_dye",
+      "has_items",
+      "has_items_green",
+      "has_items_lime",
       "has_the_recipe"
     ]
   ],
