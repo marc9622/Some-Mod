@@ -7,7 +7,7 @@ import somemod.frost.entity.mob.ArcticZombieEntity;
 public final class FrostDefaultEntityAttributes {
 
     public static void registerEntityAttributes() {
-        FabricDefaultAttributeRegistry.register(FrostEntityTypes.ARCTIC_ZOMBIE, ArcticZombieEntity.createMobAttributes());
+        FabricDefaultAttributeRegistry.register(FrostEntityTypes.ARCTIC_ZOMBIE, ArcticZombieEntity.createArcticZombieAttributes());
     }
 
 }

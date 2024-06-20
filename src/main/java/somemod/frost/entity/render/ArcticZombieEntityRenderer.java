@@ -4,18 +4,18 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.ZombieEntityRenderer;
+import net.minecraft.client.render.entity.model.EntityModelLayers;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.mob.ZombieEntity;
 import net.minecraft.util.Identifier;
-import somemod.frost.entity.render.model.FrostEntityModelLayers;
 
 @Environment(EnvType.CLIENT)
 public class ArcticZombieEntityRenderer extends ZombieEntityRenderer {
 
-    private static final Identifier TEXTURE = new Identifier("textures/entity/zombie/arctic_zombie.png");
+    private static final Identifier TEXTURE = new Identifier("textures/entity/zombie/husk.png"); //SomeMod.id("textures/entity/zombie/arctic_zombie.png");
 
     public ArcticZombieEntityRenderer(EntityRendererFactory.Context context) {
-        super(context, FrostEntityModelLayers.ARCTIC_ZOMBIE, FrostEntityModelLayers.ARCTIC_ZOMBIE_INNER_ARMOR, FrostEntityModelLayers.ARCTIC_ZOMBIE_OUTER_ARMOR);
+        super(context, EntityModelLayers.HUSK, EntityModelLayers.HUSK_INNER_ARMOR, EntityModelLayers.HUSK_OUTER_ARMOR);
     }
 
     @Override
