@@ -4,6 +4,8 @@ import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArrowItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Items;
+import net.minecraft.item.SpawnEggItem;
+
 import static net.minecraft.entity.effect.StatusEffects.*;
 import static net.minecraft.item.ItemGroups.*;
 import static net.minecraft.item.ArmorItem.Type.*;
@@ -11,6 +13,8 @@ import static net.minecraft.util.Rarity.*;
 import static net.minecraft.entity.EquipmentSlot.*;
 import somemod.common.item.StaticEffectArmorItem;
 import somemod.frost.block.FrostBlocks;
+import somemod.frost.entity.FrostEntityTypes;
+
 import static somemod.frost.item.FrostArmorMaterials.*;
 import static somemod.utils.ItemBuilder.*;
 
@@ -22,10 +26,10 @@ public class FrostItems {
     public static final ArrowItem FROSTBITE_ARROW = item("frostbite_arrow", FrostbiteArrowItem::new).after(COMBAT, Items.TIPPED_ARROW).build();
     
     // Arctic: Craftable & Found in chests
-    public static final ArmorItem ARCTIC_BOOTS  = armorItem("arctic_boots",  ARCTIC, BOOTS)     .attributes(arctic(FEET)).before(COMBAT, Items.CHAINMAIL_HELMET).build();
-    public static final ArmorItem ARCTIC_PANTS  = armorItem("arctic_pants",  ARCTIC, LEGGINGS)  .attributes(arctic(LEGS)).before(COMBAT, ARCTIC_BOOTS).build();
-    public static final ArmorItem ARCTIC_COAT   = armorItem("arctic_coat",   ARCTIC, CHESTPLATE).attributes(arctic(CHEST)).before(COMBAT, ARCTIC_PANTS).build();
-    public static final ArmorItem ARCTIC_HAT    = armorItem("arctic_hat",    ARCTIC, HELMET)    .attributes(arctic(HEAD)).before(COMBAT, ARCTIC_COAT).build();
+    public static final ArmorItem ARCTIC_BOOTS  = armorItem("arctic_boots", ARCTIC, BOOTS)     .attributes(arctic(FEET)) .before(COMBAT, Items.CHAINMAIL_HELMET).build();
+    public static final ArmorItem ARCTIC_PANTS  = armorItem("arctic_pants", ARCTIC, LEGGINGS)  .attributes(arctic(LEGS)) .before(COMBAT, ARCTIC_BOOTS).build();
+    public static final ArmorItem ARCTIC_COAT   = armorItem("arctic_coat",  ARCTIC, CHESTPLATE).attributes(arctic(CHEST)).before(COMBAT, ARCTIC_PANTS).build();
+    public static final ArmorItem ARCTIC_HAT    = armorItem("arctic_hat",   ARCTIC, HELMET)    .attributes(arctic(HEAD)) .before(COMBAT, ARCTIC_COAT).build();
     
     // Arctic: Craftable & found in chests
     public static final ArmorItem GLACIER_BOOTS      = armorItem("glacier_boots",      GLACIER, BOOTS)     .attributes(glacier(FEET)).before(COMBAT, Items.IRON_HELMET).build();
@@ -45,6 +49,8 @@ public class FrostItems {
     // Ice Queen: Found in chests
     public static final ArmorItem ICE_QUEEN_CROWN = item("ice_queen_crown", StaticEffectArmorItem.of(ICE_QUEEN, HELMET)
                                                     .gives(REGENERATION).gives(LUCK).build()).after(COMBAT, Items.NETHERITE_BOOTS).build();
+
+    public static final SpawnEggItem ARCTIC_ZOMBIE_SPAWN_EGG = spawnEggItem("arctic_zombie_spawn_egg", FrostEntityTypes.ARCTIC_ZOMBIE, 0, 0).addGroup(SPAWN_EGGS).build();
 
     public static void notifyFabric() {/* This is just here to make sure the class is loaded */}
 

@@ -89,6 +89,16 @@ public class BiomeTagProvider extends FabricTagProvider<Biome> {
             SNOWY_SLOPES,
             GROVE
         );
+
+        getOrCreateTagBuilder(FrostBiomeTags.IS_COLD).add(
+            FROZEN_PEAKS,
+            JAGGED_PEAKS,
+            SNOWY_PLAINS,
+            SNOWY_TAIGA,
+            SNOWY_SLOPES,
+            SNOWY_BEACH,
+            GROVE
+        );
     
     }
     

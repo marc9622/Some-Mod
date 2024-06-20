@@ -25,7 +25,7 @@ public class SomeModDataGeneration implements DataGeneratorEntrypoint {
         pack.addProvider(BiomeTagProvider::new);
         pack.addProvider(BlockLootTableProvider::new);
         pack.addProvider(BlockTagProvider::new);
-        pack.addProvider(ChestLootTableProvider::new);
+        pack.addProvider(LootTableProvider::new);
         pack.addProvider(ItemTagProvider::new);
         pack.addProvider(LanguageProviders.English::new);
         pack.addProvider(ModelProvider::new);

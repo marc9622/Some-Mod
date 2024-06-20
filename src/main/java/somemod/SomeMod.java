@@ -260,13 +260,19 @@ public final class SomeMod implements ModInitializer {
 		LOGGER.info("| Registering Advancement | " + path);
 	}
 
-	public static void logLootTableRegistration(Identifier id) {
-		LOGGER.info("| Registering Loot Table | " + id.toString());
+	public static void logLootTableRegistration(String path) {
+		LOGGER.info("| Registering Loot Table | " + path);
 	}
 
-	public static Identifier registerLootTable(String path) {
+    public static Identifier registerEntityLootTable(EntityType<?> entityType) {
+        Identifier id = entityType.getLootTableId();
+        logLootTableRegistration(id.getPath());
+        return id;
+    }
+
+	public static Identifier registerChestLootTable(String path) {
 		path = "chests/" + path;
-		LOGGER.info("| Registering Loot Table | " + path);
+        logLootTableRegistration(path);
 		return SomeMod.id(path);
 	}
 

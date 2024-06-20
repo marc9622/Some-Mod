@@ -14,10 +14,8 @@ import somemod.SomeMod;
 import somemod.crystal.block.CrystalBlocks;
 import static somemod.crystal.item.CrystalItems.*;
 import somemod.frost.block.FrostBlocks;
-import somemod.frost.item.FrostItems;
 import static somemod.frost.item.FrostItems.*;
 import somemod.magic.block.MagicBlocks;
-import somemod.magic.item.MagicItems;
 import static somemod.magic.item.MagicItems.*;
 
 import java.util.Optional;
@@ -187,7 +185,6 @@ public class ModelProvider extends FabricModelProvider {
             FROSTBITE_LEGGINGS,
 
             FROSTBITE_ARROW
-
             //#endregion
         ).forEach(item -> generator.register(item, Models.GENERATED));
 
@@ -197,11 +194,21 @@ public class ModelProvider extends FabricModelProvider {
 
         // I believe the JSONs for the chest items in the real game are hand-written for some reason.
         // But to reuse the model transformations from the chest item, we can just use 'item/chest' as the parent.
-        generator.register(MagicItems.FORGOTTEN_CHEST, CHEST_MODEL);
-        generator.register(FrostItems.SPRUCE_CHEST, CHEST_MODEL);
-        generator.register(FrostItems.ICE_CHEST, CHEST_MODEL);
+        Stream.of(
+            FORGOTTEN_CHEST,
+
+            SPRUCE_CHEST,
+            ICE_CHEST
+        ).forEach(chestItem -> generator.register(chestItem, CHEST_MODEL));
+
+        Stream.of(
+            GHOST_SPAWN_EGG,
+
+            ARCTIC_ZOMBIE_SPAWN_EGG
+        ).forEach(spawnEggItem -> generator.register(spawnEggItem, SPAWN_EGG_MODEL));
     }
     
     private static final Model CHEST_MODEL = new Model(Optional.of(new Identifier("minecraft", "item/chest")), Optional.empty());
+    private static final Model SPAWN_EGG_MODEL = new Model(Optional.of(new Identifier("minecraft", "item/template_spawn_egg")), Optional.empty());
 
 }

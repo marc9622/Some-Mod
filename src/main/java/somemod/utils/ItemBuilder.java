@@ -8,9 +8,11 @@ import com.google.common.collect.Multimap;
 
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.Block;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.AxeItem;
@@ -20,6 +22,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.PickaxeItem;
 import net.minecraft.item.ShovelItem;
+import net.minecraft.item.SpawnEggItem;
 import net.minecraft.item.SwordItem;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.registry.RegistryKey;
@@ -137,6 +140,10 @@ public class ItemBuilder<I extends Item> {
                 return slot == EquipmentSlot.MAINHAND ? this.attributes : super.getAttributeModifiers(slot);
             }
         });
+    }
+
+    public static ItemBuilder<SpawnEggItem>.Settinger spawnEggItem(String name, EntityType<? extends MobEntity> type, int primaryColor, int secondaryColor) {
+        return item(name, settings -> new SpawnEggItem(type, primaryColor, secondaryColor, settings));
     }
 
     public static <I extends Item> ItemBuilder<I> item(String name, AttributeItemConstructor<I> itemConstructor) {

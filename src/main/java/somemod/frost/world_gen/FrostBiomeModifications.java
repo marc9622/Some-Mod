@@ -2,8 +2,9 @@ package somemod.frost.world_gen;
 
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.minecraft.entity.SpawnGroup;
 import net.minecraft.world.gen.GenerationStep;
-
+import somemod.frost.entity.FrostEntityTypes;
 import somemod.frost.tag.FrostBiomeTags;
 import somemod.frost.world_gen.feature.FrostPlacedFeatures;
 
@@ -17,6 +18,8 @@ public class FrostBiomeModifications {
         // TODO: maybe add an underground variant?
 
         BiomeModifications.addFeature(BiomeSelectors.tag(FrostBiomeTags.HAS_ICE_CHEST), GenerationStep.Feature.UNDERGROUND_STRUCTURES, FrostPlacedFeatures.ICE_CHEST);
+
+        BiomeModifications.addSpawn(BiomeSelectors.tag(FrostBiomeTags.IS_COLD), SpawnGroup.MONSTER, FrostEntityTypes.ARCTIC_ZOMBIE, 250, 1, 1);
 
     }
 

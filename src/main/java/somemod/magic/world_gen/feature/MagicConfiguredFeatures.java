@@ -9,8 +9,8 @@ import net.minecraft.text.Text;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import somemod.SomeMod;
 import somemod.common.world_gen.feature.SingleChestFeatureConfig;
-import somemod.datagen.ChestLootTableProvider;
 import somemod.magic.block.MagicBlocks;
+import somemod.magic.data.server.loottable.MagicChestLootTableGenerator;
 
 public class MagicConfiguredFeatures {
     
@@ -23,7 +23,7 @@ public class MagicConfiguredFeatures {
             new SingleChestFeatureConfig(
                 Optional.of(Text.of("Forgotten Elven Chest")),
                 MagicBlocks.FORGOTTEN_CHEST,
-                ChestLootTableProvider.ELVEN_CHEST
+                MagicChestLootTableGenerator.ELVEN_CHEST
             )
         );
 
