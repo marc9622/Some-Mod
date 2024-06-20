@@ -63,7 +63,7 @@ public class ModelProvider extends FabricModelProvider {
     @Override
     public void generateItemModels(ItemModelGenerator generator) {
         Stream.of(
-            //#region CRYSTAL
+            // Crystal
             CRYSTAL_DUST,
             CRYSTAL,
             CITRINE,
@@ -76,6 +76,15 @@ public class ModelProvider extends FabricModelProvider {
             CRYSTAL_HOE,
             CRYSTAL_SWORD,
 
+            // Magic
+            ELVEN_STEEL,
+
+            // Frost
+            FROSTBITE_ARROW
+        ).forEach(item -> generator.register(item, Models.GENERATED));
+
+        Stream.of(
+            // Crystal
             CRYSTAL_HELMET,
             CRYSTAL_CHESTPLATE,
             CRYSTAL_LEGGINGS,
@@ -85,9 +94,8 @@ public class ModelProvider extends FabricModelProvider {
             DRAGON_SCALE_CHESTPLATE,
             DRAGON_SCALE_LEGGINGS,
             DRAGON_SCALE_BOOTS,
-            //#endregion
 
-            //#region MAGIC
+            // Magic
             ARCANE_HAT,
             ARCANE_ROBE,
             ARCANE_PANTS,
@@ -110,7 +118,6 @@ public class ModelProvider extends FabricModelProvider {
             ELVEN_CHESTPLATE,
             ELVEN_LEGGINGS,
             ELVEN_BOOTS,
-            ELVEN_STEEL,
             
             OCEANIC_MASK,
             OCEANIC_SUIT,
@@ -166,9 +173,8 @@ public class ModelProvider extends FabricModelProvider {
             GUARDIAN_CHESTPLATE,
             GUARDIAN_LEGGINGS,
             GUARDIAN_BOOTS,
-            //#endregion
 
-            //#region FROST
+            // Frost
             ARCTIC_HAT,
             ARCTIC_COAT,
             ARCTIC_PANTS,
@@ -184,11 +190,6 @@ public class ModelProvider extends FabricModelProvider {
             FROSTBITE_CHESTPLATE,
             FROSTBITE_LEGGINGS,
 
-            FROSTBITE_ARROW
-            //#endregion
-        ).forEach(item -> generator.register(item, Models.GENERATED));
-
-        Stream.of(
             ICE_QUEEN_CROWN
         ).forEach(armorItem -> generator.registerArmor(armorItem));
 
