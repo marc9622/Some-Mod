@@ -38,7 +38,7 @@ public final class EntityFreezing {
         // warm armor, meaning that they will often freeze to death.
         // This should help them a bit.
         if (!(entity instanceof PlayerEntity))
-            warmth += 1.0f;
+            warmth += 2.5f;
 
         warmth += Math.min(entity.getVelocity().lengthSquared() - 0.006f, 1.0f) * 0.30f;
         if (entity.isSneaking()) warmth += 0.20f;
